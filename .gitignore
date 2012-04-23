@@ -1,0 +1,8 @@
+backups/
+bin/
+dict/
+nbproject/
+.htaccess
+CHANGE LOG.txt
+favicon
+*~
