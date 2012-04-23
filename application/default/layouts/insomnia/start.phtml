@@ -1,0 +1,76 @@
+<?php
+/**
+ * Home page layout
+ *  
+ * @author Klein Devort
+ * @version 2
+ */
+echo '<?xml version="1.0" encoding="UTF-8" ?>';
+echo $this->doctype();
+?>
+<html>
+<?php require_once('header.phtml'); ?>
+<?php 
+
+$widgets = $this->userView()->currentUser()->getSettings()->getWidgets();
+$widgets_arr = Precurio_Widget::organize($widgets);
+unset($widgets);
+?>
+
+<div  id="pageBody" class="row5"> 
+           <!-- Main Bar -->
+<div id="mainbar">
+
+<!-- Rounded Box inside main bar -->
+<div class="dropTop margin_top" >
+	<!-- Main Dashboard begins here -->
+	<?php foreach($widgets_arr as $position=>$widgets):?>  
+	<?php if($position == 'side')continue;//skip those that should be in the side bar ?>
+	  <?php if(!empty($widgets_arr[$position])):?>
+	  <div id="<?php echo 'start_'.$position;?>" class="Droppable">
+		<?php 
+			 foreach($widgets as $widget)
+			 {
+			 	include('widget.phtml');
+			 }
+		 ?>
+		
+	  </div>
+	  <?php endif;?>
+	<?php endforeach;?>
+ 	<!-- Main Dashboard ends here -->
+ 	
+<br style="clear:both"/>
+
+ </div>   
+<!-- End rounded box -->
+
+ </div>
+<!-- End Main bar --> 
+
+ <!-- Sidebar begins here -->
+ <?php if(!empty($widgets_arr['side'])):?>
+ <div id="start_side" class="Droppable">
+		<?php 
+			 foreach($widgets_arr['side'] as $widget)
+			 {
+			 	include('widget_side.phtml');
+			 }
+		 ?>
+ </div>
+<?php endif;?>
+<!-- Sidebar ends here -->
+ 
+          </div>  
+		  
+  	</div><!-- closing tag to included pages -->
+        
+  </div><!-- closing tag to included pages -->
+        
+        
+</div><!-- closing tag to included pages -->
+<?php require_once 'footer.phtml';?>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/others/widget.js"></script>
+</html>
+
+

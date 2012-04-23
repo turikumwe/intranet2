@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+				<process xmlns:local="schema">
+<header>
+		<description></description>
+		<label value='Travel Request Form'/>
+	</header>
+<fields>
+<field>
+	<label>Name of Person Travelling</label>
+	<name>name</name>
+	<type>user</type>
+	<control>select</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>1</position>
+	<componentid>10</componentid>
+	<datasource>
+		<tablename>user_details</tablename>
+		<labelfield>first_name,last_name</labelfield>
+		<indexfield>user_id</indexfield>
+	</datasource>
+</field>
+<field>
+	<label>Department</label>
+	<name>department</name>
+	<type>department</type>
+	<control>select</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>2</position>
+	<componentid>11</componentid>
+	<datasource>
+		<tablename>department</tablename>
+		<labelfield>title</labelfield>
+		<indexfield>id</indexfield>
+	</datasource>
+</field>
+<field>
+	<label>Type of Travel</label>
+	<name>type</name>
+	<type>varchar</type>
+	<control>select</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>3</position>
+	<componentid>12</componentid>
+	<data>
+		<option>Domestic</option>
+		<option>International</option>
+	</data>
+</field>
+<field>
+	<label>Purpose of Travel</label>
+	<name>purpose</name>
+	<type>varchar</type>
+	<control>textarea</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>4</position>
+	<componentid>13</componentid>
+</field>
+<field>
+	<label>Destination</label>
+	<name>destination</name>
+	<type>varchar</type>
+	<control>text</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>5</position>
+	<componentid>14</componentid>
+</field>
+<field>
+	<label>Departure Date</label>
+	<name>departure</name>
+	<type>date</type>
+	<control>text</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>6</position>
+	<componentid>15</componentid>
+</field>
+<field>
+	<label>Departure Time</label>
+	<name>departure_time</name>
+	<type>varchar</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>7</position>
+	<componentid>16</componentid>
+</field>
+<field>
+	<label>Arrival Date</label>
+	<name>arrival</name>
+	<type>date</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>8</position>
+	<componentid>17</componentid>
+</field>
+<field>
+	<label>Arrival Time</label>
+	<name>arrival_time</name>
+	<type>varchar</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>9</position>
+	<componentid>18</componentid>
+</field>
+<field>
+	<label>Means of transport</label>
+	<name>means</name>
+	<type>varchar</type>
+	<control>select</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>10</position>
+	<componentid>19</componentid>
+	<data>
+		<option>Air</option>
+		<option>Road</option>
+		<option>Water</option>
+		<option>Rail</option>
+	</data>
+</field>
+<field>
+	<label>Preferences</label>
+	<name>preferences</name>
+	<type>varchar</type>
+	<control>checkbox</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>11</position>
+	<componentid>20</componentid>
+	<data>
+		<option>Hotel Reservation</option>
+		<option>Car Hire</option>
+	</data>
+</field>
+<field>
+	<label>Notes (if any)</label>
+	<name>notes</name>
+	<type>varchar</type>
+	<control>textarea</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>12</position>
+	<componentid>21</componentid>
+</field>
+<field>
+	<label>signature</label>
+	<name>signature</name>
+	<type>signature</type>
+	<control>hidden</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>13</position>
+	<componentid>22</componentid>
+</field>
+<field>
+	<label>signature</label>
+	<name>signature_2</name>
+	<type>signature</type>
+	<control>hidden</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>14</position>
+	<componentid>23</componentid>
+</field>
+<field>
+	<label>Accommodation Cost</label>
+	<name>accommodation</name>
+	<type>currency</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>15</position>
+	<componentid>24</componentid>
+</field>
+<field>
+	<label>Flight Tickets</label>
+	<name>flight</name>
+	<type>currency</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>16</position>
+	<componentid>25</componentid>
+</field>
+<field>
+	<label>Road Transportation</label>
+	<name>road</name>
+	<type>currency</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>17</position>
+	<componentid>26</componentid>
+</field>
+<field>
+	<label>Other Costs</label>
+	<name>other</name>
+	<type>currency</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>18</position>
+	<componentid>27</componentid>
+</field>
+</fields></process>

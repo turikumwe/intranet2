@@ -1,0 +1,124 @@
+<?php $selected = $selected == '' ? 'current' : $selected; ?>
+<ul id="tabnav">
+	
+	<?php
+  if( VisitorUtil::isReceptionist($this->user->id) ) 
+  {
+  ?>
+  
+  <li <?php if ($selected == 'current') echo 'class="selectedTab"' ?>>
+    	<a href="#" rel="<?php echo "{$this->baseUrl()}/visitor/list/currentappointment/"?>"> <?php echo $this->translate('Today'); ?></a>
+    </li>
+    
+    
+    <?php
+    }
+    ?>
+    &nbsp;
+	<li <?php if ($selected == 'upcoming') echo 'class="selectedTab"' ?>>
+    	<a href="#" title="<?php if($mine && $type == Appointments::UPCOMING) echo $this->translate('click to fetch all upcoming appointments'); else echo $this->translate('click to fetch your past appointments'); ?>" rel="<?php echo "{$this->baseUrl()}/visitor/list/upcomingappointment/mine/1"?>"> <?php echo $this->translate('Upcoming'); ?>
+	
+	</a>
+	
+    </li>
+    
+    &nbsp;
+    <li <?php if ($selected == 'past') echo 'class="selectedTab"' ?>>
+    	<a href="#" title="<?php if($mine && $type == Appointments::PAST) echo $this->translate('click to fetch all past appointments'); else echo $this->translate('click to fetch your past appointments'); ?>" rel="<?php echo "{$this->baseUrl()}/visitor/list/pastappointment/mine/1"?>"> <?php echo $this->translate('Past'); ?>
+	
+	</a>
+	
+    </li>
+   
+  
+  
+
+</ul>
+
+<script type='text/javascript'>
+
+$('#tabnav li').click(function()
+{
+	if($(this).hasClass('selectedTab')) return;
+		
+	$('#loading').show();
+	switch($.trim( $(this).text() ))
+	{
+		case "<?php echo $this->translate('Upcoming'); ?>":
+			<?php if( $is_receptionist )
+			{
+			?>
+			loadPage("<?php echo $this->baseUrl()?>/visitor/list/upcomingappointment");
+			<?php
+			} else {
+			?>
+			loadPage("<?php echo $this->baseUrl()?>/visitor/list/upcomingappointment/mine/1");
+			<?php
+			}
+			?>
+			break;
+		case "<?php echo $this->translate('Past'); ?>":
+			<?php if( $is_receptionist )
+			{
+			?>
+			loadPage("<?php echo $this->baseUrl()?>/visitor/list/pastappointment");
+			<?php
+			} else {
+			?>
+			loadPage("<?php echo $this->baseUrl()?>/visitor/list/pastappointment/mine/1");
+			<?php
+			}
+			?>
+			break;
+		case "<?php echo $this->translate('Today'); ?>":
+			loadPage("<?php echo $this->baseUrl()?>/visitor/list/currentappointment");
+			break;
+	}		
+});
+
+
+$('#upcomingchecker').click(function()
+{
+	$('#loading').show();
+
+	switch($.trim($('#a').text()))
+	{
+		case "0":
+			loadPage("/precurio/public/visitor/list/upcomingappointment");
+			break;
+
+		case "1":
+			loadPage("/precurio/public/visitor/list/upcomingappointment/mine/1");
+			break;
+	}
+
+});
+
+
+
+$('#pastchecker').click(function()
+{
+	$('#loading').show();
+
+	
+	switch($.trim($('#a').text()))
+	{
+		case "0":
+			loadPage("/precurio/public/visitor/list/pastappointment");
+			break;
+
+		case "1":
+			loadPage("/precurio/public/visitor/list/pastappointment/mine/1");
+			break;
+
+	}
+
+});
+
+
+
+
+
+	
+
+</script>

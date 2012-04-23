@@ -1,0 +1,19 @@
+<?php $selected = 'recent_changes' ?>
+<div  id="tab" class="appTabs">
+ <?php require_once('employee/views/scripts/tabs.phtml'); ?>
+ <?php $this->employeeView()->getRecentProfileChanges();?>
+
+ 
+<div id="app_main">
+	<?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+    <?php if (count($this->paginator)): ?>
+	<?php foreach ($this->paginator as $item) echo $item; ?>
+	<?php endif; ?>
+    
+    
+</div>
+
+
+
+  <br style="clear:both"/>		
+</div>

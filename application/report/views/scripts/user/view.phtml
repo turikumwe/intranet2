@@ -1,0 +1,76 @@
+   <?php if(!isset($this->user) || $this->user == null)return;?>
+   	<!-- Left Bar -->
+	<div id="left_bar">
+  			
+      <img src="<?php echo $this->baseUrl().$this->user->getProfilePicture()?>">
+        <span style="font-weight: bold"><br>
+        <br>
+ 	<?php echo $this->translate("Name");?>:</span> <?php echo $this->user->getFullName();?>
+ 
+ <br>
+ <span style="font-weight: bold"><?php echo $this->translate("Date Registered");?>:</span> <?php echo $this->user->getDateJoined();?>
+      <p> <div  id="titleText"><a href="<?php echo $this->baseUrl().'/user/profile/view/'.$this->user->getId();?>"><?php echo $this->translate("User information");?></a></div></p>
+	         <br />
+	         <div class="contentPad"  id="details_info">
+	          
+	           <p><em><?php echo $this->translate("Work Phone");?>:</em><br />
+	             <?php echo $this->user->getWorkPhone(); ?></p>
+	           <p><em><?php echo $this->translate("Mobile Phone");?>:</em><br />
+	           <?php echo $this->user->getMobilePhone(); ?></p>
+	           <p><em><?php echo $this->translate("Birthday");?>:</em><br />
+	           <?php echo $this->user->getDOB(); ?></p>
+	           <p><em><?php echo $this->translate("Job Title");?>:</em><br />
+	           <?php echo $this->user->getJobTitle(); ?></p>
+	           <p><em><?php echo $this->translate("Department");?>:</em><br />
+	           <?php echo $this->user->getDepartment(); ?> </p>
+	           <p><em><?php echo $this->translate("Location");?>:</em><br />
+	             <?php echo $this->user->getLocation(); ?>.<br />
+	           </p>
+	            <p><em><?php echo $this->translate("Portal Activity Rank");?>:</em><br />
+	          # <?php echo $this->user->getActivityPosition(); ?> </p>
+	          <p><em><?php echo $this->translate("Group Membership");?>:</em><br />
+	           <?php $groups = $this->user->getGroups();foreach($groups as $group)echo $group->title.'<br/>'; ?> </p>
+	      </div>  
+      <p>&nbsp;</p>
+	</div>
+  	<!-- End Left Bar -->
+  	<div class="box_D">
+		  <div class="appPad">
+ <div class="buttons" id="task_controlBar">
+        <a href='<?php echo $this->baseUrl();?>/report/user' class="mild">
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/back.png"	alt="" />
+          <?php echo $this->translate("Back to User List");?></a> 
+       
+</div>
+			
+                
+                   <table class="workflow_table" cellspacing="0" >
+                     <tr>
+                       <td  colspan="2"> 
+						<?php if(Precurio_Session::getLicense()->isPro) echo $this->chart;?>
+						</td>
+
+                     </tr>
+                     <tr>
+                       <th scope="row" abbr="Model" class="spec"> 
+						<?php echo $this->chart2;?>
+						</th>
+                       <td width="40%">	
+	                       <DIV class="pieSummary">
+					
+								<DIV class="pieLegend" id="pieOpened"><H3><?php echo $this->user->getNumOfContents();?> <SPAN><A href="#"><?php echo $this->translate("Contents Contributed");?></A></SPAN></H3><?php echo $this->user->getPercentageContent();?>% <?php echo $this->translate("of  total contents");?></DIV>
+								<DIV class="pieLegend" id="pieBounced"><H3><?php echo $this->user->getNumOfComments();?> <SPAN><A href="#"><?php echo $this->translate("Comments contributed");?></A></SPAN></H3><?php echo $this->user->getPercentageComment();?>% <?php echo $this->translate("of total comments");?></DIV>
+								<DIV class="pieLegend" id="pieUnopened"><H3><?php echo $this->user->getNumOfEvents();?> <SPAN><A href="#"><?php echo $this->translate("Events added");?></A></SPAN></H3><?php echo $this->user->getPercentageEvent();?>% <?php echo $this->translate("of total events");?> </DIV>
+				                
+				                	<DIV class="pieLegend" id="pieOpened"><H3><?php echo $this->user->getNumOfTasks();?> <SPAN><A href="#"><?php echo $this->translate("Tasks Contributed");?></A></SPAN></H3><?php echo $this->user->getPercentageTask();?>% <?php echo $this->translate("of  total tasks");?></DIV>
+								<DIV class="pieLegend" id="pieBounced"><H3><?php echo $this->user->getNumOfContacts();?> <SPAN><A href="#"><?php echo $this->translate("Contacts added");?></A></SPAN></H3><?php echo $this->user->getPercentageContact();?>% <?php echo $this->translate("of total contacts");?></DIV>
+								<DIV class="pieLegend" id="pieUnopened"><H3><?php echo $this->user->getNumOfProcesses();?> <SPAN><A href="#"><?php echo $this->translate("Processes in all");?> </A></SPAN></H3><?php echo $this->user->getPercentageProcess();?>% <?php echo $this->translate("of total processes");?> </DIV>
+				                
+							</DIV>			
+						</td>
+                     </tr>
+              </table>
+</div>
+</div>                   
+			       
+	          <p>&nbsp;</p>

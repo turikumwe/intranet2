@@ -1,0 +1,242 @@
+<?php echo $this->headLink();?>
+<script>
+
+var changes = false;
+
+function setChange(){
+     changes = true;
+     var obj=document.getElementById('OKBtn');
+     var obj1=document.getElementById('ApplyBtn');
+     var body=document.getElementById('OKBtn_body');
+     var body1=document.getElementById('ApplyBtn_body');
+}
+
+var global_value;
+
+function checkChange(val) {
+     if (global_value.length!=val.length) {
+       setChange();
+       return;
+     }
+     for(i=0;i< global_value.length;i++) {
+       if(global_value.charAt(i) != val.charAt(i)) {
+         setChange();
+       }
+     }
+}
+
+function ValidateFrm(){
+     if (document.frm.problem_type.value=="none") {
+       alert("Please select a category.");
+       document.frm.problem_type.focus();
+       return false;
+     }
+     if (document.frm.subcategory.value=="none") {
+       alert("Please select a sub-category.");
+       document.frm.subcategory.focus();
+       return false;
+     }
+     if (document.frm.title.value.replace(/^\s*/, "").replace(/\s*$/, "").length==0) {
+       alert("Please select a title.");
+       document.frm.title.focus();
+       return false;
+     }
+     if (document.frm.desc.value.replace(/^\s*/, "").replace(/\s*$/, "").length==0 ) {
+       alert("Please enter a description");
+       document.frm.desc.focus();
+       return false;
+     }
+     return true;
+}
+
+function ExecuteOK(){
+    if (! ValidateFrm())
+      return;
+    document.frm.OK.value = "OK";
+    document.frm.submit();
+}
+
+function gotoPage(pageID) {
+}
+</script>
+
+
+
+
+<div id="helpdeskHolder" >
+
+	
+
+
+ </div>
+ <div id="helpdesk_main">
+ 
+ 		
+         
+<div id="helpdesk">
+         		<div class="contentPad" >
+                	<span class="sysAidHeader">Helpdesk form</span>
+                	<div class="rightside">
+	              	<span class="sysAidHeader"><a href="http://www.ilient.com"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/sysaid.jpg"  /></a></span>
+                	</div>
+                    <div id="helpdesk_form">
+                        	<div class="contentPad"><!-- window panel -->
+ <div class="window"  >
+ 
+    <div class="windowContent" >
+         
+          <div  id="form">
+<form action="http://sysaid/webformsubmit?pageEncoding=utf-8" method="post" name="frm">
+<input type="hidden" name="accountID" value="FOODCONCEPT" />
+<input type="hidden" name="formID" value="-7125de5:125509bf1b8:-8000" />
+<input type="hidden" name="reRoute" value="0"> <input type="hidden" name="parentPageName" value="WebFormHTML.jsp?idx=0" >
+<input type="hidden" name="paneMessage" value="">
+<input type="hidden" name="paneType" value="">
+<input type="hidden" name="paneBtnArrayButtons" value="">
+<input type="hidden" name="panePreSubmitFunc" value="">
+<input type="hidden" name="paneTextRow" value=""><input type="hidden" name="centerPopup" value=""/>
+<script src="http://sysaid/calendar1.js" type="text/javascript" language="javascript"></script>
+<script type="text/javascript" language="javascript" src="http://sysaid/webformsubmit?getJS=YES&accountID=FOODCONCEPT&formID=-7125de5:125509bf1b8:-8000" >
+</script>
+	<p><label for="firstName" >Firstname</label>
+		<input name="firstName" type="text" onFocus="global_value=this.value" onChange="setChange();" onKeyUp="checkChange(this.value)" value="" size="40" maxlength="40">
+	</p>
+	<p><label for="lastName" >Lastname</label>
+		<input name="lastName" type="text" onFocus="global_value=this.value" onChange="setChange();" onKeyUp="checkChange(this.value)" value="" size="50" maxlength="50">
+	</p>
+    <p><label for="title" >Title</label>
+		<input name="title" type="text" onFocus="global_value=this.value" onChange="setChange();" onKeyUp="checkChange(this.value)" value="" size="50" maxlength="100">
+	</p>
+    <p><label for="lname" >Category</label>
+		<select name="problem_type"  onChange="setChange();updateSubCategory();">  <option value="none">Please select a category.</option><option value="CASH REGISTER" >CASH REGISTER</option><option value="DESKJET PRINTER" >DESKJET PRINTER</option><option value="EXTERNAL HARD DRIVE" >EXTERNAL HARD DRIVE</option><option value="FACILITY" >FACILITY</option><option value="GENERAL" >GENERAL</option><option value="HARDWARE" >HARDWARE</option><option value="INVERTER" >INVERTER</option><option value="IT SERVICES" >IT SERVICES</option><option value="POS" >POS</option><option value="PROJECTOR" >PROJECTOR</option><option value="SCANNER" >SCANNER</option><option value="SOFTWARE" >SOFTWARE</option><option value="UPS" >UPS</option><option value="USER ACCESS" >USER ACCESS</option><option value="WIRELESS PRINTER" >WIRELESS PRINTER</option></select>
+	</p>
+    <p><label> &nbsp;</label> <select name="subcategory" onChange="setChange();updateThirdLevelCategory();">  <option value="none">Please select a sub-category.</option></select> </p>
+    <p><label> &nbsp;</label> <select name="thirdLevelCategory" onChange="setChange();thirdLevelChage();">  <option value="none">Select third level category</option></select><input type="hidden" name="autoDescriptionTemplate" value="N"> </p>
+    
+       <p><label for="lname" >Email</label>
+		<input class="sysaid" name="email" type="text" onFocus="global_value=this.value" onChange="setChange();" onKeyUp="checkChange(this.value)" value="" size="50" maxlength="64">
+	</p>
+    
+      <p><label for="lname" >Location</label>
+		<script>function comboboxlocationSelected(){var combobox = document.frm.location;  if (combobox != null && combobox.value == "-2"){combobox.options[lastSelectionForlocation].selected = true;   newwin = window.open("http://sysaid/SelectFilterValues.jsp?func=updatelocationSelectedValue&dbValueField=value_key&dbCaptionField=value_caption&dbTable=cust_values where list_name = 'location' &comboboxId=location", 'usr','scrollbars=yes,location=no,menubars=no,toolbars=no,resizable=yes,left=20,top=20,width=400,height=460');}else{setChange();}lastSelectionForlocation=combobox.selectedIndex;}
+function updatelocationSelectedValue(comboboxId,comboboxValue,comboboxCaption)
+	{
+		var combobox = document.getElementById(comboboxId);
+		selectedFound = false;
+		for (i = 0;i < combobox.options.length;i++)
+		{
+			if (combobox.options[i].value == comboboxValue)
+			{
+				combobox[i].selected = "1";
+				selectedFound = true;
+				break;
+			}
+		}
+
+		if (!selectedFound)
+		{
+			var optn = document.createElement("OPTION");
+			optn.text = comboboxCaption;
+			optn.value = comboboxValue;
+			combobox.options[combobox.options.length-2] = optn;
+			combobox[combobox.options.length-2].selected = "1";
+		}
+		setChange();
+	lastSelectionForlocation=combobox.selectedIndex;}</script>
+    <select  name="location" id = "location" onChange="comboboxlocationSelected()" >
+  <option value="0">select location</option>
+<option value="1"  >Head Office</option>
+<option value="2"  >Chicken Republic-Aminu Kano</option>
+<option value="3"  >Chicken Republic Abacha road</option>
+<option value="4"  >Chicken Republic Abuja 2</option>
+<option value="5"  >Chicken Republic Adeola Odeku</option>
+<option value="6"  >Chicken Republic Agbani</option>
+<option value="7"  >Chicken Republic Airport road Benin</option>
+<option value="8"  >Chicken Republic Ajah</option>
+<option value="9"  >Chicken Republic Ajose Adeogun</option>
+<option value="10"  >Chicken Republic Akowonjo</option>
+<option value="11"  >Chicken Republic Akpakpava</option>
+<option value="12"  >Chicken Republic Area 8</option>
+<option value="13"  >Chicken Republic Awolowo</option>
+<option value="14"  >Chicken Republic Blue Island</option>
+<option value="15"  >Chicken Republic Bode Thomas</option>
+<option value="16"  >Chicken Republic Challenge</option>
+<option value="17"  >Chicken Republic Domino</option>
+<option value="18"  >Chicken Republic Ekenwa</option>
+<option value="19"  >Chicken Republic Eta-Agbor</option>
+<option value="20"  >Chicken Republic Festac</option>
+  <option value="-2">more...</option></select>
+</select>
+         
+	</p>
+    
+  <p><label for="lname" >Description</label>
+  <script>
+var lastSelectionForlocation=document.frm.location.selectedIndex;</script>
+		<textarea name="desc"  id="desc" onchange="setChangeDesc(this);setChange(this);" onKeyUp="checkChangeDesc(this.value,this);checkChange(this.value,this);" onFocus="global_value=this.value" ></textarea>
+	</p>
+    
+     <p><label for="lname" >Phone</label>
+		<input name="phone" type="text" onFocus="global_value=this.value" onChange="setChange();" onKeyUp="checkChange(this.value)" value="" size="32" maxlength="32"><input type="hidden" name="selectUrgency" value="0"> 
+	</p>
+	<p><label for="lname" >Priority</label>
+		<script>function comboboxselectPrioritySelected(){var combobox = document.frm.selectPriority;  if (combobox != null && combobox.value == "-2"){combobox.options[lastSelectionForPriority].selected = true;   newwin = window.open("SelectFilterValues.jsp?func=updateselectPrioritySelectedValue&dbValueField=value_key&dbCaptionField=value_caption&dbTable= cust_values where list_name = 'priority'&comboboxId=selectPriority", 'usr','scrollbars=yes,location=no,menubars=no,toolbars=no,resizable=yes,left=20,top=20,width=400,height=460');}else{setChange();}lastSelectionForPriority=combobox.selectedIndex;}
+		function updateselectPrioritySelectedValue(comboboxId,comboboxValue,comboboxCaption)
+			{
+				var combobox = document.getElementById(comboboxId);
+				selectedFound = false;
+				for (i = 0;i < combobox.options.length;i++)
+				{
+					if (combobox.options[i].value == comboboxValue)
+					{
+						combobox[i].selected = "1";
+						selectedFound = true;
+						break;
+					}
+				}
+		
+				if (!selectedFound)
+				{
+					var optn = document.createElement("OPTION");
+					optn.text = comboboxCaption;
+					optn.value = comboboxValue;
+					combobox.options[combobox.options.length-2] = optn;
+					combobox[combobox.options.length-2].selected = "1";
+				}
+				setChange();
+			lastSelectionForPriority=combobox.selectedIndex;}</script>
+		<select name="selectPriority" id="selectPriority" onChange="comboboxselectPrioritySelected();" >
+		  <option value="-1"  >Please select a priority.</option>
+		  <option value="0"  selected  >Default value</option>
+		<option value="1"  >Highest</option>
+		<option value="2"  >Very High</option>
+		<option value="3"  >High</option>
+		<option value="4"  >Normal</option>
+		<option value="5"  >Low</option>
+		</select>
+		<script>
+		var lastSelectionForPriority=document.frm.selectPriority.selectedIndex;</script>
+	</p>
+          <p><label >&nbsp;</label>
+		    <div class="buttons">
+             <button type="submit" class="positive" id="submitHelp">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+               Submit
+            </button></div>
+            </p>
+            <br /><br />
+</form>
+ 		
+      </div>          	
+       		</div>
+ <!-- end window panel --></div>
+ 
+                        	</div>
+                         
+               		</div>
+            </div>
+		 </div>
+         
+         
+
+ </div>

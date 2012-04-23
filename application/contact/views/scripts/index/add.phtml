@@ -1,0 +1,76 @@
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php $x = isset($this->contact_id) ? $this->translate('Edit') : $this->translate('Add'); echo $x;?> <?php echo $this->translate("a new Contact");?></div>
+           
+       	               
+    </div>       
+    <div  id="windowContent">
+ 		
+<div  id="form">
+<form method="post" action="<?php echo $this->baseUrl();?>/contact/index/submit" id="addForm"  name="addForm">
+	<?php echo $this->form->id; echo $this->form->date_created;?>
+	<p><label for="fullname" ><?php echo $this->translate("Full Name");?></label>
+		<?php echo $this->form->full_name; ?>
+	</p>
+	<p><label for="company" ><?php echo $this->translate("Company");?></label>
+		<?php echo $this->form->company;?>
+	</p>
+    
+    <p><label for="job_title" ><?php echo $this->translate("Job Title");?></label>
+		<?php echo $this->form->job_title ;?>
+	</p>
+    
+    
+    <p><label for="address" ><?php echo $this->translate("Address");?></label>
+    
+    	<?php echo $this->form->address; ?>
+	</p>
+    
+      <p><label for="work_phone" ><?php echo $this->translate("Business Phone");?></label>
+		<?php echo $this->form->work_phone; ?>
+	</p>
+   
+    <p><label for="mobile_phone" ><?php echo $this->translate("Mobile Phone");?></label>
+		<?php echo $this->form->mobile_phone;  ?>
+	</p>
+     <p><label for="fax" ><?php echo $this->translate("Fax");?></label>
+		<?php echo $this->form->fax;  ?>
+	</p>
+    
+     <p><label for="email" ><?php echo $this->translate("Email");?></label>
+		<?php echo $this->form->email;  ?>
+	</p>
+    
+     <p><label for="website" ><?php echo $this->translate("Website");?></label>
+		<?php echo $this->form->website;  ?>
+	</p>
+    
+        
+     <p><label >&nbsp;</label>
+		<?php echo $this->form->shared;  ?> <?php echo $this->translate("Allow others to view this contact");?>
+	</p>
+     <p> <label >&nbsp;</label>
+		    <div class="buttons">
+             <button type="submit" class="positive" id="addContact">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/contacts_add.png" alt=""/> 
+               <?php $x = isset($this->contact_id) ? $this->translate('Edit') : $this->translate('Add'); echo $x;?> <?php echo $this->translate("Contact");?>
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate("Cancel");?>
+            </button>
+            </div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>

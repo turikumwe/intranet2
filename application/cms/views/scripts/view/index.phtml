@@ -1,0 +1,122 @@
+	<style>
+.temp{;margin:0px 10px 20px 10px; overflow:auto;background-color: #ECEFF5;}
+</style>
+<div  id="tab" class="appTabs">
+
+ <div class="completeText" id="application_controlBar"><strong>
+ 	<?php echo Precurio_Date::now()->get(Precurio_Date::DATE_LONG);?>  </strong></div>
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad">
+      <div   class="buttons">
+		
+            <a href="<?php echo $this->baseUrl();?>/cms/add/" class="positive"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/>  <?php echo $this->translate("Add new content");?></a>
+   
+</div>
+<br /> <br />
+<!--  <form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    </form>-->
+    
+      <span class="maroon_text"><strong> <?php echo $this->translate('Recent Content');?>     </strong></span>
+    <div id="news_sideList">
+     		<?php $result = $this->contentView()->getMostRecent();?>
+        	 <?php foreach($result as $news):?>
+           
+            <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div><br />
+     
+     <span class="maroon_text"><strong><?php echo $this->translate("Most Popular Content");?>   </strong></span><br/>
+    <div id="news_sideList">
+     	
+            <?php $result = $this->contentView()->getMostRead();?>
+        	 <?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div>
+     <br />
+     <span class="maroon_text"><strong><?php echo $this->translate("Most Discussed Content");?>    </strong></span><br/>
+    <div id="news_sideList">
+     	
+              <?php $result = $this->contentView()->getMostCommented();?>
+        	<?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div>
+    </div>
+</div>
+<div id="app_main">
+
+<div id="news_window">
+
+	
+
+
+<div class="rssHolder">
+
+  	<div  id="task_controlBar" class="buttons">
+		<a href="<?php echo $this->baseUrl();?>/cms/view/index/id/0" class="<?php echo $this->category_id == 0 ? '' : 'mild'; ?>" ><?php echo $this->translate("All");?></a>
+		<?php $myCategorys  = $this->userView()->currentUser()->getCategorys();
+  foreach($myCategorys as $category):?>
+    	<a href="<?php echo $this->baseUrl();?>/cms/view/index/id/<?php echo $category->id;?>" class="<?php echo ($this->category_id == $category->id ? '' : 'mild'); ?>"><?php echo $category->title; ?></a>
+    <?php endforeach; ?>
+	</div>
+	
+	
+	<!-- 
+	code block below commented. uncomment to have contents grouped by groups instead
+	<div  id="task_controlBar" class="buttons">
+		<a href="<?php echo $this->baseUrl();?>/cms/view/index/g_id/0" class="<?php echo $this->group_id == 0 ? '' : 'mild'; ?>" ><?php echo $this->translate("All");?></a>
+		<?php $groups  = $this->userView()->currentUser()->getGroups();
+  foreach($groups as $group):?>
+    	<a href="<?php echo $this->baseUrl();?>/cms/view/index/g_id/<?php echo $group->id;?>" class="<?php echo ($this->group_id == $group->id ? '' : 'mild'); ?>"><?php echo $group->title; ?></a>
+    <?php endforeach; ?>
+	</div> 
+	end of code block comments
+	-->
+	
+	<?php 
+	if(count($this->contents))
+	{
+		require_once 'Zend/Paginator.php';
+		$cPage = Zend_Controller_Front::getInstance()->getRequest()->getParam('cpage',1);
+		
+		
+		$paginator = Zend_Paginator::factory($this->contents);
+		$paginator->setItemCountPerPage(10);
+		$paginator->setCurrentPageNumber($cPage);
+		echo $this->paginationControl($paginator, 'Elastic','page_control.phtml');
+     	$this->partialLoop()->setObjectKey('content');
+		echo $this->partialLoop('partial_content.phtml',$paginator->getCurrentItems());
+	}
+	else
+	{
+		echo "<div id='noRecords'>".$this->translate("This group has no content yet").".</div>";
+	} 
+     ?>
+    
+     <!-- end rss panel -->
+    </div>
+    </div>
+</div>
+
+  <br style="clear:both"/>		
+</div>

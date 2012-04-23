@@ -1,0 +1,90 @@
+<script>
+			$(document).ready(function(){
+				$('.searchBox').autofill({
+					value: '<?php echo $this->translate("Search News Items");?>'
+				});
+			});
+			function indexRSS(id)
+			{
+				$.post("<?php echo $this->baseUrl();?>/news/index/indexrss/", {'id':id },
+				  function(data){
+				  }, "text");
+				  return false;
+			}
+		</script>
+	
+<div  id="tab" class="appTabs">
+<?php require_once ('news/models/MyNews.php');?>
+ <div class="completeText" id="application_controlBar"><strong>
+ 	<?php echo Precurio_Date::now()->get(Precurio_Date::DATE_LONG);?> </strong></div>
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad">
+<!--  <form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    </form>-->
+    
+      <p><br />
+        <br/>
+      </p>
+    </div>
+</div>
+<div id="app_main">
+<!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo ($this->translate('Company News'));?></div>
+           
+    </div>       
+    <?php $temp = $this->newsView()->getRecent();
+    	if($temp->count()):
+    ?>
+    <div  id="news_window">
+       
+       
+       <div id="news_featured">
+       <img src="<?php echo $this->baseUrl().$this->newsView()->getMostRecent()->getImagePath(Content::WIDTH_IMAGE_271); ?>" width="271" height="156" /><br />
+       <span class="nameText"><a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $this->newsView()->getMostRecent()->getContentId();?>"><?php echo $this->newsView()->getMostRecent()->getHeadline();?> </a></span><br />
+       <?php echo $this->newsView()->getMostRecent()->getSummary(); ?><br />
+       <a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $this->newsView()->getMostRecent()->getContentId(); ?>"><span class="readmore"><?php echo $this->translate("Read More");?></span></a></div>
+       <div id="news_list"><strong><?php echo $this->translate("More");?></strong>
+              <br />
+              <!-- MAYOWA, news title should not display more then 40 xters, if its more , strip it to 36 and add ... , also it shouldnt be more than 7 lines-->
+        
+         <ul>
+         <?php $recentNews = $this->newsView()->getRecent(7);?>
+         <?php foreach($recentNews as $news):?>
+           <li>
+             <a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $news->getContentId(); ?>"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" /><?php echo $news->getShortHeadline(); ?></a><br />
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span></li>
+           <?php endforeach;?>
+          
+           <li><a href="news/view/company"><?php echo $this->translate("View all");?> </a></li>
+         </ul>
+        </div>
+       
+         
+    </div>          	
+     <?php else:?>
+	<div id="noRecords">
+      <?php echo $this->translate("There are no company news yet");?>. <br />
+      <a href="<?php echo $this->baseUrl();?>/cms/add/"><?php echo $this->translate("Please click here to add a news content");?></a> 
+    </div>
+<?php endif; ?>  		
+ <!-- end window panel --></div>
+ 
+ 
+	<div id="news_window">
+
+	<?php 
+     	$this->partialLoop()->setObjectKey('rss');
+		echo $this->partialLoop('partial_rss.phtml',$this->newsView()->getRss()); 
+     ?>
+ 
+
+
+  </div>
+</div>
+
+  <br style="clear:both"/>		
+</div>

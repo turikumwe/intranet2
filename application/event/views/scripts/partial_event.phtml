@@ -1,0 +1,20 @@
+
+  <?php
+	$ns = new Zend_Session_Namespace('temp');
+  $page = $ns->page;?>
+ 
+    <div class="windowContent">
+         <div class="events">
+          <img width="100" src="<?php echo $this->baseUrl().$this->event->getImagePath(); ?>"  />
+          
+       	   <div id="eventsDesc">
+   	 	  <span class="nameText"><a href="<?php echo $this->baseUrl();?>/event/<?php echo $page; ?>/details/e_id/<?php echo $this->event->getId(); ?>"><?php echo $this->event->getTitle(); ?> </a></span><br />
+               <?php echo $this->event->getSummary(); ?>
+                <p>
+                <div class="left"><em><?php echo $this->translate("Location");?>: </em></div><?php echo $this->event->getLocation(); ?>    <br />  	
+                 <div class="left"> <em><?php echo $this->translate("Host");?>: </em> </div><?php echo $this->event->host; ?><br />  
+                 <div class="left"> <em><?php echo $this->translate("Venue");?>: </em></div><?php echo $this->event->venue; ?><br />  
+                  <div class="left">  <em><?php echo $this->translate("Time");?>: </em></div><?php echo $this->event->start_time; ?> <p><a href="<?php echo $this->baseUrl();?>/event/<?php echo $page; ?>/details/e_id/<?php echo $this->event->getId(); ?>"><?php echo $this->translate("View Event Details");?></a> </p>
+           </div>
+        </div>
+     </div>          	

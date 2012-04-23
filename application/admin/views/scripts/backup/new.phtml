@@ -1,0 +1,71 @@
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#loading").hide();
+});
+function startBackup()
+	{
+		title = $('#title').val();
+		$("#loading")//this should be a progrss bar.
+		.ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+			$(this).text("<?php echo $this->translate("Backup Complete");?>");
+		});
+
+		$.post("<?php echo $this->baseUrl();?>/admin/backup/backup", $("#backupForm").serialize(),
+			  function(data){
+			    alert(data);
+			    location.reload();
+				jQuery(document).trigger('close.facebox');
+			  }, "text"
+			  );
+
+	
+		return false;
+
+	}
+	</script>	
+
+<form id="backupForm" name="backupForm" method="post" action="">
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Create a new Backup");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+    <span class="textLinks"><?php echo $this->translate("A backup operation usually takes a while, please be patient");?> </span>
+          <br />
+             
+     <p>
+    <input type="text" name="title" id="title" value="<?php echo 'Precurio_'.time();?>"/>
+    <label for="title" >  <?php echo $this->translate("File name");?></label>
+    </p>
+<!--    -->
+<!--    <p>-->
+<!--    <input type="checkbox" name="db" id="db" value="1" checked="checked"/>-->
+<!--    <label for="db" > Database</label>-->
+<!--    </p>-->
+<!---->
+<!--	<p>-->
+<!--    <input type="checkbox" name="fs" id="fs" value="1" checked="checked"/>-->
+<!--    <label for="fs" > FileSystem</label>-->
+<!--    </p>-->
+    
+   <div class="buttons">
+    <button type="submit" class="standout" onclick="return startBackup();">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Backup!");?>
+    </button>
+   </div>
+ 
+ </div>          	
+       		
+ <!-- end window panel --></div>
+</form> 
+  <div id="loading" style="width: 300;" >
+      
+    </div>

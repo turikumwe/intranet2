@@ -1,0 +1,25 @@
+<div  id="form">
+<form method="post" action="<?php echo $this->baseUrl();?>/admin/poll/submitoption" id="optionForm"  name="optionForm">
+	<?php echo $this->form->id; ?>
+	<?php echo $this->form->poll_id; ?>
+	<?php echo $this->form->date_created; ?>
+	<?php echo $this->form->active; ?>
+	<p><label for="label" ><?php echo $this->translate("Option");?></label>
+		<?php echo $this->form->label; ?>
+	</p>
+
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+             <button type="submit" class="positive" id="submit">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+              <?php $x = isset($this->id) ? $this->translate('Edit') : $this->translate('Add'); echo $x;?> 
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate("Cancel");?>
+            </button>
+            </div>
+	</p>
+</form>
+</div>

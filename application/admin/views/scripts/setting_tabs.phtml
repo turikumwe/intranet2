@@ -1,0 +1,25 @@
+<?php $selected = $selected == 'index' ? 'general' : $selected;?>
+<ul id="tabnav">
+	<li <?php if ($selected == 'general') echo 'class="selectedTab"' ?>>
+    	<a href=""><?php echo $this->translate("General Settings");?></a>    </li>
+   
+    <li <?php if (substr($selected,0,5) == 'database') echo 'class="selectedTab"' ?>>
+    	<a href=""><?php echo $this->translate("Database");?></a></li>
+
+ 	<li <?php if ($selected == 'ldap') echo 'class="selectedTab"' ?>>
+  		<a href=""><?php echo $this->translate("Active Directory");?></a></li>
+          
+    <li <?php if ($selected == 'live') echo 'class="selectedTab"' ?>>
+  		<a href=""><?php echo $this->translate("Live Server");?></a></li>
+  	
+  	<li <?php if ($selected == 'mail') echo 'class="selectedTab"' ?>>
+  		<a href=""><?php echo $this->translate("Mail Settings");?></a></li>
+          
+ 	<li <?php if ($selected == 'module') echo 'class="selectedTab"' ?>>
+  		<a href=""><?php echo $this->translate("Module Settings");?></a></li>
+ 
+ 	<li <?php if ($selected == 'appearance') echo 'class="selectedTab"' ?>>
+  		<a href=""><?php echo $this->translate("Appearance");?></a></li>
+                             
+</ul>
+    

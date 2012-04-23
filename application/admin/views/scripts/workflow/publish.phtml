@@ -1,0 +1,9 @@
+<div id="noRecords" >
+<?php echo $this->translate("You have succesfully published");?> '<?php echo $this->process->getDisplayName(); ?>'<br />
+<p style="margin-top: 1em;font-weight: bold"><?php echo $this->translate("Next Step?");?></p>
+<ul>
+	<li><a href='<?php echo $this->baseUrl()."/admin/workflow/view/id/".$this->process->getId(); ?>'><?php echo $this->translate("Click here to manage request and approval access");?></a></li>
+	<li><a href='<?php echo $this->baseUrl()."/formsbuilder/?userid=".Precurio_Session::getCurrentUserId(); ?>'><?php echo $this->translate("Click here to create another workflow or form");?></a></li>
+</ul>
+
+</div>

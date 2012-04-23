@@ -1,0 +1,77 @@
+<form id="mailForm" action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+	<p>
+		<?php echo $this->form->server; ?>
+	</p>
+	<p>
+		<?php echo $this->form->port; ?>
+	</p>
+    <p>
+		<?php echo $this->form->admin_name; ?>
+	</p>
+	<p>
+		<?php echo $this->form->admin_email; ?>
+	</p>
+	<p>
+		<?php echo $this->form->use_auth; ?>
+		<span class="textLinks"><?php echo $this->translate("You can ignore the other settings below, if not using authentication");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->auth; ?>
+		<span class="textLinks"><?php echo $this->translate("NOTE : LOGIN is most commonly used");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->username; ?>
+	</p>
+	<p>
+		<?php echo $this->form->password; ?>
+	</p>
+	<p>
+		<?php echo $this->form->use_secure; ?>
+		<span class="textLinks"><?php echo $this->translate("Ignore the protocol setting below if not using secure protocol");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->ssl; ?>
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+	             <a type="submit" class="negative" id="testmail" href="#">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/time.png" alt=""/> 
+	              <?php echo $this->translate("Send Test Mail");?>
+	             </a>
+	             
+	             <button type="submit" class="positive" id="addTask">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	              <?php echo $this->translate("Save");?>
+	            </button>
+            </div>
+	</p>
+</form>
+<p>
+	 <div id="loading" style="width: 500;" >
+      
+    </div>
+	</p>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#loading")//this should be a progrss bar.
+	.ajaxStart(function(){
+		$(this).show();
+	})
+	.ajaxComplete(function(){
+		$(this).hide();
+	});
+	//handle clicking on add
+	$('#testmail').live('click', function()  {
+		
+		$.post("<?php echo $this->baseUrl();?>/admin/setting/testmail", $("#mailForm").serialize(),
+		  function(data){
+		    alert(data);
+		  }, "text");
+		return false;
+		
+	});
+});
+</script>
+           

@@ -1,0 +1,18 @@
+<?php
+if(Bootstrap::usesDatabase()):
+?>
+
+<?php require_once 'admin/views/scripts/form.phtml';?>	
+
+<?php 
+else:
+?>
+<div id="noRecords">
+	
+	<?php echo $this->translate("You have configured Precurio to use a directory service");?>. <br/><?php echo $this->translate("To add a new user, please visit your directory listings");?>.
+	
+</div>
+
+<?php 
+endif
+?>

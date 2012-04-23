@@ -1,0 +1,13 @@
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->eventGroup->name; ?></div>
+           
+    </div>  
+	 <?php 
+		$this->partialLoop()->setObjectKey('event');
+		echo $this->partialLoop('partial_event.phtml',$this->eventGroup->events);
+	?>
+  	
+       <?php $this->partialLoop()->setObjectKey('eventGroup');?>		
+</div>    <!-- end window panel -->

@@ -1,0 +1,57 @@
+ <?php 
+ 	$res = $this->userView()->getPhotoDetails($this->param1);
+	
+ 	$photo = $res->photo;
+ 	$pos = $res->position;
+ 	$total = $res->total;
+ 		
+ ?>
+ <div id="profilePhotoPaging">
+     	<div class="leftside">
+       	  <span class="text"><?php echo $this->translate("Photo");?> <?php echo $pos; ?> <?php echo $this->translate("of");?> <?php echo $total; ?> <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo($this->user->getId()); ?>/photos"><?php echo $this->translate("Back to photos");?> </a></span>        </div>
+     	<div  class="rightside">
+    	  <a name="photo" href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($this->user->getId()); ?>/photo_details/<?php echo ($pos-1); ?>/#photo"><?php echo $this->translate("Previous");?></a> | <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($this->user->getId()); ?>/photo_details/<?php echo ($pos+1); ?>/#photo"><?php echo $this->translate("Next");?> </a></div>
+    </div>
+   <?php if(Precurio_Session::getCurrentUserId() == $this->user->getId()): ?>
+   <br/> <a href="<?php echo $this->baseUrl();?>/user/mypage/deletephoto/c_id/<?php echo $photo->getId();?>" style="text-decoration: underline;"><?php echo $this->translate("Delete Photo");?></a>
+   <?php endif;?>
+<div id="galleryHolder" >
+  <a href="#photo" ><img alt="<?php echo ($photo->getTitle()); ?>" src="<?php echo $this->baseUrl().$photo->getImagePath(Content::IMAGE_LARGE); ?>" /></a>                 <br />
+    <div id="profilePhotoPaging">
+     	<div class="leftside">
+     	<?php echo $photo->getTitle();?><br/>
+          </div>
+     	<div  class="rightside">
+       	   <?php echo $this->translate("Added");?>: <span class="textLinks"><?php echo ($photo->getSinceWhen());?></span>
+          
+           </div>
+    </div>
+</div>
+
+<span class="maroon_text"><?php echo $this->translate("Comments");?>    </span>
+<div id="<?php echo ('comment'.$photo->getId());?>"  class="photoComment"> 
+	<?php 
+		$this->partialLoop()->setObjectKey('comment');
+		echo $this->partialLoop('partial_comment.phtml',$photo->getComments());
+	?>
+	  
+</div>
+
+  <div  class="photoComment">
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($photo->getId().','.$this->userView()->currentUser()->getId().',1' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$photo->getId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($photo->getId()) ?>)"> <?php echo $this->translate("Write something");?></textarea>
+    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+        </div>
+  	</form>
+  </div>
+  <br /><br />
+         <div class="buttons" align="right">        
+          <a href="#"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/share_this.png" /> <?php echo $this->translate("Share this content");?></a>
+         </div>   
+          
+
+      
+
+
+ 

@@ -1,0 +1,70 @@
+
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php $x = isset($this->task_id) ? $this->translate('Edit') : $this->translate('Add'); echo $x;?> <?php echo $this->translate("a new Task");?></div>
+           <div id="titleBtns">
+             
+                <a href="#" class=""  onclick=" jQuery(document).trigger('close.facebox');"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_close.jpg"   /></a> 
+            </div>
+       	               
+    </div>       
+    <div  id="windowContent">
+ 		
+<div  id="form">
+<form method="post" action="#" id="addForm"  name="addForm">
+	<?php echo $this->form->id; ?>
+	<p><label for="title" ><?php echo $this->translate("Task");?></label>
+		<?php echo $this->form->title; ?>
+	</p>
+	<p><label for="end_month" ><?php echo $this->translate("Due Date");?></label>
+		<?php echo $this->form->end_month; ?>
+		<?php echo $this->form->end_day; ?>
+		<?php echo $this->form->end_year; ?>
+	</p>
+    
+    <p><label for="end_hour" ><?php echo $this->translate("Due Time");?></label>
+		<?php echo $this->form->end_hour; ?> : 
+		<?php echo $this->form->end_minute; ?>
+		24hrs format
+	</p>
+    
+    <p><label for="description" ><?php echo $this->translate("Description");?></label>
+    
+    	<?php echo $this->form->description; ?>
+	</p>
+    
+      <p><label for="user_id" ><?php echo $this->translate("Assign to");?>: </label>
+		<?php echo $this->form->user_id; ?>
+		<div id="results" ></div>
+	</p>
+    
+          <p><label for="status" ><?php echo $this->translate("Status");?>: </label>
+		<?php echo $this->form->status; ?>
+	</p>
+   
+    
+     <p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+             <button type="submit" class="positive" id="addTask">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+              <?php $x = isset($this->task_id) ? $this->translate('Edit') : $this->translate('Add'); echo $x;?> <?php echo $this->translate("Task");?>
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate("Cancel");?>
+            </button>
+            </div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>

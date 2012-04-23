@@ -1,0 +1,5197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Precurio v2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-03 19:38+0100\n"
+"PO-Revision-Date: 2010-11-11 17:10+0100\n"
+"Last-Translator: Mayor Brain <mayowa@precurio.com>\n"
+"Language-Team: Klein Devort <support@precurio.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-Basepath: C:\\Program Files (x86)\\Zend\\Apache2\\htdocs\\precurio\\\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: NIGERIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/admin/controllers/ApprovalController.php:8
+#: application/admin/controllers/CategoryController.php:38
+#: application/admin/controllers/CategoryController.php:138
+msgid "Name"
+msgstr ""
+
+#: application/admin/controllers/ApprovalController.php:8
+msgid "Type"
+msgstr ""
+
+#: application/admin/controllers/ApprovalController.php:125
+#: application/admin/controllers/ContentController.php:162
+msgid "Select Group"
+msgstr ""
+
+#: application/admin/controllers/ApprovalController.php:146
+#: application/admin/controllers/BugController.php:158
+#: application/admin/controllers/CategoryController.php:215
+#: application/admin/controllers/ContentController.php:175
+#: application/admin/controllers/FactController.php:147
+#: application/admin/controllers/ForumController.php:163
+#: application/admin/controllers/GroupController.php:162
+#: application/admin/controllers/LinkController.php:126
+msgid "Submit"
+msgstr ""
+
+#: application/admin/controllers/ApprovalController.php:154
+msgid "Workflow Approval Access"
+msgstr ""
+
+#: application/admin/controllers/ApprovalController.php:175
+#: application/admin/controllers/BaseController.php:34
+msgid "Add new"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:16
+msgid "File name"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:16
+msgid "Size"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:16
+#: application/admin/controllers/CategoryController.php:38
+#: application/admin/controllers/CategoryController.php:191
+#: application/admin/controllers/ForumController.php:7
+msgid "Date Created"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:59
+msgid "Backup operation was successful"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:63
+msgid "Backup operation was not successful"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:106
+msgid "Restore operation was successful"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:110
+msgid "Restore operation was not successful"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:116
+msgid "Backup"
+msgstr ""
+
+#: application/admin/controllers/BackupController.php:116
+msgid "Restore"
+msgstr ""
+
+#: application/admin/controllers/BaseController.php:61
+#: application/admin/controllers/GroupController.php:186
+msgid "Edit"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:8
+#: application/admin/controllers/BugController.php:95
+msgid "Report Type"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:8
+msgid "Component/Module"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:8
+#: application/admin/controllers/BugController.php:122
+#: application/admin/controllers/DepartmentController.php:5
+#: application/admin/controllers/FactController.php:29
+#: application/admin/controllers/FactController.php:113
+#: application/admin/controllers/ForumController.php:7
+#: application/admin/controllers/ForumController.php:146
+#: application/admin/controllers/GroupController.php:7
+#: application/admin/controllers/GroupController.php:116
+#: application/admin/controllers/LinkController.php:7
+#: application/admin/controllers/LinkController.php:92
+#: application/admin/controllers/LocationController.php:5
+msgid "Title"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:8
+msgid "Sent"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:89
+#: application/admin/controllers/BugController.php:101
+msgid "Please Select"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:90
+msgid "Bug Report"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:91
+msgid "Feature Request"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:92
+msgid "Enhancement"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:102
+msgid "Opinion Poll"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:103
+msgid "Company Links"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:104
+msgid "User Profile"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:105
+msgid "Employee Directory"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:106
+msgid "Events"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:107
+msgid "Contacts Manager"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:108
+msgid "Task Management"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:109
+msgid "Intranet Content"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:110
+#: application/admin/controllers/ContentController.php:7
+#: application/admin/controllers/ContentController.php:141
+msgid "News"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:111
+msgid "Others"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:113
+msgid "Component"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:131
+msgid "Detailed Description"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:140
+#: application/admin/controllers/FactController.php:129
+#: application/admin/controllers/LinkController.php:108
+msgid "Added By"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:149
+#: application/admin/controllers/FactController.php:138
+#: application/admin/controllers/LinkController.php:117
+msgid "Date Added"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:166
+msgid "Bug Report / Feature Request"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:231
+msgid "Your mail server settings may be incorrect."
+msgstr ""
+
+#: application/admin/controllers/BugController.php:232
+msgid "Error Message"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:235
+msgid "Click here"
+msgstr ""
+
+#: application/admin/controllers/BugController.php:235
+msgid "to change your mail settings"
+msgstr ""
+
+#: application/admin/controllers/CategoryController.php:38
+#: application/admin/controllers/CategoryController.php:147
+#: application/admin/controllers/DepartmentController.php:5
+#: application/admin/controllers/ForumController.php:153
+#: application/admin/controllers/GroupController.php:7
+#: application/admin/controllers/GroupController.php:123
+#: application/admin/controllers/LocationController.php:5
+msgid "Description"
+msgstr ""
+
+#: application/admin/controllers/CategoryController.php:38
+#: application/admin/controllers/CategoryController.php:182
+#: application/admin/controllers/CategoryController.php:208
+#: application/admin/controllers/ForumController.php:7
+msgid "Created By"
+msgstr ""
+
+#: application/admin/controllers/CategoryController.php:38
+#: application/admin/controllers/CategoryController.php:169
+msgid "Access Type"
+msgstr ""
+
+#: application/admin/controllers/CategoryController.php:42
+msgid "Content Category(s)"
+msgstr ""
+
+#: application/admin/controllers/CategoryController.php:152
+msgid "None"
+msgstr ""
+
+#: application/admin/controllers/CategoryController.php:161
+msgid "Parent Category"
+msgstr ""
+
+#: application/admin/controllers/ContentController.php:7
+#: application/admin/controllers/ContentController.php:118
+msgid "User"
+msgstr ""
+
+#: application/admin/controllers/ContentController.php:7
+#: application/admin/controllers/ContentController.php:127
+msgid "Featured Articles"
+msgstr ""
+
+#: application/admin/controllers/ContentController.php:7
+#: application/admin/controllers/ContentController.php:134
+msgid "Adverts"
+msgstr ""
+
+#: application/admin/controllers/ContentController.php:7
+#: application/admin/controllers/ContentController.php:148
+msgid "Group Contents"
+msgstr ""
+
+#: application/admin/controllers/ContentController.php:184
+msgid "Content Approval"
+msgstr ""
+
+#: application/admin/controllers/DepartmentController.php:70
+msgid "Departments"
+msgstr ""
+
+#: application/admin/controllers/FactController.php:21
+msgid "Facts"
+msgstr ""
+
+#: application/admin/controllers/FactController.php:29
+#: application/admin/controllers/LinkController.php:7
+msgid "Url"
+msgstr ""
+
+#: application/admin/controllers/FactController.php:120
+#: application/admin/controllers/LinkController.php:99
+msgid "URL"
+msgstr ""
+
+#: application/admin/controllers/ForumController.php:7
+msgid "Topics"
+msgstr ""
+
+#: application/admin/controllers/ForumController.php:7
+msgid "Replies"
+msgstr ""
+
+#: application/admin/controllers/ForumController.php:42
+msgid "Forums Management"
+msgstr ""
+
+#: application/admin/controllers/GroupController.php:7
+#: application/admin/controllers/GroupController.php:131
+msgid "Is Location"
+msgstr ""
+
+#: application/admin/controllers/GroupController.php:7
+#: application/admin/controllers/GroupController.php:138
+msgid "Is Department"
+msgstr ""
+
+#: application/admin/controllers/GroupController.php:7
+#: application/admin/controllers/GroupController.php:145
+msgid "Is Role"
+msgstr ""
+
+#: application/admin/controllers/GroupController.php:152
+msgid "Parent Group"
+msgstr ""
+
+#: application/admin/controllers/GroupController.php:170
+msgid "Groups"
+msgstr ""
+
+#: application/admin/controllers/GroupController.php:193
+#: application/admin/controllers/GroupController.php:214
+msgid "New Members"
+msgstr ""
+
+#: application/admin/controllers/LinkController.php:135
+msgid "Links"
+msgstr ""
+
+#: application/admin/controllers/LocationController.php:62
+msgid "Locations"
+msgstr ""
+
+#: application/admin/controllers/LogoController.php:21
+#: application/admin/controllers/LogoController.php:47
+msgid "No file was selected"
+msgstr ""
+
+#: application/admin/controllers/LogoController.php:34
+msgid "Incorrect file format"
+msgstr ""
+
+#: application/admin/controllers/LogoController.php:40
+msgid "Cannot upload file"
+msgstr ""
+
+#: application/admin/controllers/LogoController.php:55
+msgid "Could not complete upload"
+msgstr ""
+
+#: application/admin/controllers/LogoController.php:75
+msgid "Company Logo"
+msgstr ""
+
+#: application/admin/controllers/NotificationController.php:6
+msgid "Feed"
+msgstr ""
+
+#: application/admin/controllers/NotificationController.php:6
+#: application/admin/controllers/UserController.php:248
+msgid "Email"
+msgstr ""
+
+#: application/admin/controllers/NotificationController.php:97
+msgid "Notification type"
+msgstr ""
+
+#: application/admin/controllers/NotificationController.php:107
+msgid "By Feeds"
+msgstr ""
+
+#: application/admin/controllers/NotificationController.php:114
+msgid "By Emails"
+msgstr ""
+
+#: application/admin/controllers/NotificationController.php:128
+msgid "Notification Settings"
+msgstr ""
+
+#: application/admin/controllers/PollController.php:7
+#: application/admin/controllers/PollController.php:108
+msgid "Multiple Answers"
+msgstr ""
+
+#: application/admin/controllers/PollController.php:7
+msgid "Expiring"
+msgstr ""
+
+#: application/admin/controllers/PollController.php:116
+msgid "Randomise Options"
+msgstr ""
+
+#: application/admin/controllers/PollController.php:126
+msgid "Expiring Date"
+msgstr ""
+
+#: application/admin/controllers/PollController.php:151
+msgid "Expiring Time"
+msgstr ""
+
+#: application/admin/controllers/PollController.php:200
+msgid "Polls"
+msgstr ""
+
+#: application/admin/controllers/PollController.php:218
+#: application/admin/controllers/PollController.php:232
+msgid "Option"
+msgstr ""
+
+#: application/admin/controllers/PollController.php:218
+#: application/admin/controllers/PollController.php:232
+msgid "Number of Votes"
+msgstr ""
+
+#: application/admin/controllers/RequestController.php:16
+#: application/admin/controllers/RequestController.php:167
+msgid "Start Level"
+msgstr ""
+
+#: application/admin/controllers/RequestController.php:181
+msgid "Workflow Request Access"
+msgstr ""
+
+#: application/admin/controllers/RoleController.php:90
+msgid "Roles"
+msgstr ""
+
+#: application/admin/controllers/RssController.php:127
+msgid "Last Updated"
+msgstr ""
+
+#: application/admin/controllers/RssController.php:145
+msgid "RSS Sources"
+msgstr ""
+
+#: application/admin/controllers/RuleController.php:111
+msgid "Role"
+msgstr ""
+
+#: application/admin/controllers/RuleController.php:119
+msgid "Resource"
+msgstr ""
+
+#: application/admin/controllers/RuleController.php:147
+msgid "Access Control"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:144
+msgid "Company Name"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:151
+msgid "Web URL"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:158
+msgid "Currency Symbol"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:163
+#: application/admin/controllers/SettingController.php:280
+msgid "Database"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:164
+msgid "LDAP (Active Directory)"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:166
+msgid "Authentication Mechanism"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:173
+msgid "Domain"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:180
+msgid "Email Domain"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:191
+msgid "Default Language"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:198
+msgid "Content Requires Approval"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:205
+msgid "Allow Guest Users"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:213
+msgid "Welcome Text"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:247
+#: application/admin/controllers/SettingController.php:311
+#: application/admin/controllers/SettingController.php:404
+#: application/admin/controllers/VisitorController.php:10
+msgid "Host"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:255
+#: application/admin/controllers/SettingController.php:319
+#: application/admin/controllers/SettingController.php:453
+#: application/admin/controllers/SettingController.php:716
+msgid "Port"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:263
+#: application/admin/controllers/SettingController.php:351
+#: application/admin/controllers/SettingController.php:494
+#: application/admin/controllers/SettingController.php:721
+msgid "Username"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:272
+#: application/admin/controllers/SettingController.php:359
+#: application/admin/controllers/SettingController.php:503
+#: application/admin/controllers/SettingController.php:722
+#: application/admin/controllers/UserController.php:255
+msgid "Password"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:327
+msgid "Use SSL"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:336
+msgid "Base DN"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:344
+msgid "Account Domain Name"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:368
+msgid "Bind Required DN"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:412
+msgid "Service"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:445
+#: application/admin/controllers/SettingController.php:715
+msgid "Server"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:461
+#: application/admin/controllers/SettingController.php:717
+msgid "Administrator Email"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:469
+msgid "Administrator's Full Name"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:477
+#: application/admin/controllers/SettingController.php:719
+msgid "Use SMTP Authentication"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:486
+#: application/admin/controllers/SettingController.php:720
+msgid "Authentication Type"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:511
+#: application/admin/controllers/SettingController.php:723
+msgid "Use Secure Protocol"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:516
+msgid "SSL"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:517
+msgid "TLS"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:519
+#: application/admin/controllers/SettingController.php:724
+msgid "Protocol"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:569
+msgid "System Settings"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:598
+#: application/admin/controllers/SettingController.php:684
+msgid "Invalid LDAP Settings"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:622
+#: application/admin/controllers/SettingController.php:671
+msgid "Success"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:640
+msgid "Invalid Database Settings"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:708
+msgid "Mail Server Setup"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:712
+msgid "You have successfully setup your mail server on Precurio using the configurations below."
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:713
+msgid "Please do not delete this message, so you can use it as a reference for future mail setups"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:714
+msgid "Configuration"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:718
+msgid "Administrator Name"
+msgstr ""
+
+#: application/admin/controllers/SettingController.php:730
+msgid "If the mail settings are correct, you should recieve a test mail at"
+msgstr ""
+
+#: application/admin/controllers/StyleController.php:46
+msgid "Default"
+msgstr ""
+
+#: application/admin/controllers/StyleController.php:96
+msgid "Theme"
+msgstr ""
+
+#: application/admin/controllers/ThemeController.php:19
+msgid "Author"
+msgstr ""
+
+#: application/admin/controllers/ThemeController.php:19
+msgid "Version"
+msgstr ""
+
+#: application/admin/controllers/ThemeController.php:44
+msgid "Active"
+msgstr ""
+
+#: application/admin/controllers/ThemeController.php:93
+msgid "Themes"
+msgstr ""
+
+#: application/admin/controllers/UpgradeController.php:26
+msgid "No file selected"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:7
+msgid "First Name"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:7
+msgid "Last Name"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:7
+msgid "Job Title"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:7
+#: application/admin/controllers/UserController.php:262
+#: application/admin/controllers/WorkflowController.php:15
+msgid "Department"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:7
+#: application/admin/controllers/UserController.php:269
+msgid "Location"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:49
+msgid "User Management"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:120
+msgid "Passwords do not match"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:125
+msgid "Password must be atleast 6 characters"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:234
+msgid "First name"
+msgstr ""
+
+#: application/admin/controllers/UserController.php:241
+msgid "Last name"
+msgstr ""
+
+#: application/admin/controllers/VisitorController.php:10
+msgid "Visitor Name"
+msgstr ""
+
+#: application/admin/controllers/VisitorController.php:10
+msgid "Visitor Company"
+msgstr ""
+
+#: application/admin/controllers/VisitorController.php:52
+msgid "Visitor Management"
+msgstr ""
+
+#: application/admin/controllers/VisitorController.php:106
+msgid "Add Receptionist"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:15
+#: application/admin/controllers/WorkflowController.php:94
+msgid "Code"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:102
+msgid "No Department"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:108
+msgid "Select Department"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:131
+#: application/admin/controllers/WorkflowController.php:216
+msgid "Workflow State"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:172
+msgid "SLA"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:179
+msgid "Email to alert on SLA breach"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:189
+msgid "Allow approver change?"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:232
+msgid "Workflow"
+msgstr ""
+
+#: application/admin/controllers/WorkflowController.php:274
+msgid "Publish"
+msgstr ""
+
+#: application/chat/controllers/IndexController.php:22
+msgid "You are using LDAP Authentication, please integrate Precurio with Openfire from the Openfire Administrator Console"
+msgstr ""
+
+#: application/chat/controllers/IndexController.php:66
+msgid "Openfire integration parameters have been successfully set."
+msgstr ""
+
+#: application/chat/controllers/IndexController.php:66
+msgid "Click here to login"
+msgstr ""
+
+#: application/cms/controllers/ViewController.php:81
+msgid "Selected"
+msgstr ""
+
+#: application/cms/models/vo/Category.php:63
+msgid "Orphaned Category"
+msgstr ""
+
+#: application/cms/models/vo/Category.php:205
+msgid "Shared"
+msgstr ""
+
+#: application/cms/models/vo/Category.php:206
+msgid "Public"
+msgstr ""
+
+#: application/cms/models/vo/Category.php:207
+msgid "Private"
+msgstr ""
+
+#: application/cms/models/vo/Content.php:121
+msgid "advert"
+msgstr ""
+
+#: application/cms/models/vo/Content.php:121
+msgid "advertisment"
+msgstr ""
+
+#: application/cms/models/vo/Content.php:122
+msgid "news"
+msgstr ""
+
+#: application/cms/models/vo/Content.php:123
+msgid "featured"
+msgstr ""
+
+#: application/cms/models/vo/Content.php:123
+msgid "article"
+msgstr ""
+
+#: application/cms/models/vo/Content.php:124
+msgid "picture"
+msgstr ""
+
+#: application/cms/models/vo/Content.php:124
+msgid "photo"
+msgstr ""
+
+#: application/cms/views/helpers/ContentView.php:46
+msgid "No intranet content yet"
+msgstr ""
+
+#: application/cms/views/helpers/ContentView.php:61
+#: application/cms/views/helpers/ContentView.php:80
+msgid "read more"
+msgstr ""
+
+#: application/cms/views/helpers/ContentView.php:103
+msgid "Welcome to your intranet"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:51
+msgid "Full Name"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:51
+msgid "Company"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:51
+msgid "E-mail Address"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:52
+msgid "Business Address"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:52
+msgid "Mobile Phone"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:53
+msgid "Business Phone"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:53
+msgid "Business Fax"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:53
+msgid "Web Page"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:78
+#: application/contact/controllers/ListController.php:95
+msgid "No file was uploaded"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:86
+msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:89
+msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:92
+msgid "The uploaded file was only partially uploaded"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:99
+msgid "Missing a temporary folder"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:102
+msgid "Failed to write file to disk"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:105
+msgid "File upload stopped by extension"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:108
+msgid "No error code avaiable"
+msgstr ""
+
+#: application/contact/controllers/ListController.php:111
+msgid "Unsupported file format"
+msgstr ""
+
+#: application/default/controllers/ErrorController.php:91
+msgid "Error code"
+msgstr ""
+
+#: application/default/controllers/LoginController.php:30
+msgid "Your intranet subscription has been deactivated. Please contact Precurio support team."
+msgstr ""
+
+#: application/default/helpers/DatabaseAuth.php:104
+#: application/default/helpers/LdapAuth.php:119
+msgid "Invalid Password"
+msgstr ""
+
+#: application/default/helpers/DatabaseAuth.php:107
+#: application/default/helpers/DatabaseAuth.php:110
+#: application/default/helpers/LdapAuth.php:122
+#: application/default/helpers/LdapAuth.php:125
+msgid "Invalid user"
+msgstr ""
+
+#: application/default/helpers/DatabaseAuth.php:113
+#: application/default/helpers/DatabaseAuth.php:116
+#: application/default/helpers/LdapAuth.php:128
+#: application/default/helpers/LdapAuth.php:131
+msgid "Login Attempt Failed, please try again"
+msgstr ""
+
+#: application/default/helpers/LdapAuth.php:134
+msgid "There was a problem retrieving your detail from the directory"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:84
+msgid "Your user role does not exist"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:85
+msgid "You dont have enough permissions"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:86
+msgid "Unknown notification channel, please make sure the Precurio Notification service is properly setup."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:87
+msgid "An important configuration file or xml schema could not be found"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:88
+msgid "A database related error has occured"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:89
+msgid "The process you are trying to access is either corrupt or missing"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:90
+msgid "The page you are trying to access does not exist"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:91
+msgid "We are sorry, you need to  <a href=\"#\" onclick=\"gotoHome()\">login</a> to view this page"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:92
+msgid "This process has not been configured properly, please contact your administrator"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:93
+msgid "The content your are looking for has been removed"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:94
+msgid "This user does not exist or is currently deactivated"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:95
+msgid "Some semantic error just occured, please contact your administrator"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:96
+msgid "Your last operation resulted in an error"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:97
+msgid "You have spent too long filling the form, please fill the form again"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:98
+msgid "You have confirmed your attendance"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:99
+msgid "You are not attending this event"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:100
+msgid "You are not sure about attending this event"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:101
+msgid "Add operation was successful"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:102
+msgid "Transfer operation was successful"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:103
+msgid "Edit operation was successful"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:104
+msgid "Successfully deleted"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:106
+msgid "Workflow Approval"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:107
+msgid "The content you are trying to access does not exist anymore."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:109
+msgid "Your license configuration has been tampered with, please contact support@kleindevort.com"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:110
+msgid "Your license has expired, please purchase a new one"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:111
+msgid "This feature is only available on the pro version <br/> <a href='http://www.precurio.com/commercial-services-precurio-pro.php' target='_blank'>Click here to purchase a PRO license</a>"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:112
+msgid "You have exceeded your number of users licenses. Please purchase more user licenses"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:114
+msgid "There is been an error connecting to your database, please check your database settings."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:116
+msgid "Today"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:117
+msgid "Yesterday"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:118
+msgid "hours ago"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:119
+msgid "hour ago"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:120
+msgid "days ago"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:121
+msgid "months ago"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:122
+msgid "Some minutes ago"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:123
+msgid "Few seconds ago"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:124
+msgid "Few minutes ago"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:125
+msgid "about"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:126
+msgid "an"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:129
+msgid "No"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:130
+msgid "Yes"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:132
+msgid "I HEREBY INDICATE MY APPROVAL"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:134
+msgid "Not enough data to build report"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:138
+msgid "Contacts"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:139
+msgid "Service Centre"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:140
+msgid "Task"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:142
+msgid "Visitors"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:144
+msgid "Admin"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:146
+msgid "Report"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:147
+msgid "Forum"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:148
+msgid "click here"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:156
+msgid "An internal directory for your organization, contains phone numbers and contact details of every person in your company. It allows employees to easily locate anyone in your organization."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:157
+msgid "Events Management"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:158
+msgid "A company-wide calendar to maintain company events, public holidays, pay days, employee birthdays and other company-wide relevant dates."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:159
+msgid "Contacts Management"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:160
+msgid "Allows employees maintain, manage and share contacts."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:161
+msgid "Help Desk"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:162
+msgid "Manage support requests"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:164
+msgid "Organize and manage your tasks. It also allows you assign tasks to others."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:165
+msgid "Publish important company news items. It also allows you connect to international/external news sources via RSS"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:166
+msgid "Enterprise Content Management"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:167
+msgid "Creation, management, distribution, publishing, and searching of corporate information."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:168
+msgid "Intranet Contents"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:169
+msgid "Intranet Administration"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:170
+msgid "Setup basic configuration data, create and manage user access levels, manage notifications, backup and restore; these are just part of the many administration tools available for you."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:171
+msgid "Streamline your business processes with a comprehensive forms builder and automatic approval routing"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:172
+msgid "Reports and Analytics"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:173
+msgid "Measure your ROI with reports such as Top Contents, Top Contributors, Workflow Report, Portal Activity Report, Module Report etc"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:175
+msgid "Track all visitors to your company from arrival to departure. Also includes a telephone message management system."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:176
+msgid "Allows employees discuss ideas and challenges."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:177
+msgid "Forums"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:178
+msgid "Document Management"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:179
+msgid "Documents"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:180
+msgid "Organize your documents in a central repository for fast and efficient retrieval."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:181
+msgid "Instant Messaging"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:182
+msgid "Allows employees chat with each other."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:183
+msgid "Quick Poll"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:184
+msgid "Find out what matters most to your colleagues with an informal polling tool. Create single or multi-question polls and view live results."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:185
+msgid "Featured Employee"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:186
+msgid "Staff of the Day"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:187
+msgid "Uses an algorithm to pick an employee to be featured on the intranet for the day"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:189
+msgid "Allows you link to company related resources."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:190
+msgid "Recent Contents"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:191
+msgid "Displays a list of recently added contents."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:192
+msgid "Featured Article"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:193
+msgid "Displays the featured article which has set by your content administrator"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:194
+msgid "Portal Updates"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:195
+msgid "Know what your colleagues are up. Gives you an aggregated feed of all activities happening around your intranet"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:196
+msgid "My Profile"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:197
+msgid "Displays your profile picture and a few other details"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:198
+msgid "Suggested Content"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:199
+msgid "Analyses your entire intranet content and presents you with those you will most likely be interested in."
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:200
+msgid "Group Resources"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:201
+msgid "Quick access to group content and documents"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:202
+msgid "Intranet Ads"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:203
+msgid "View important advertisements circulating around your workplace"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:204
+msgid "Reminders"
+msgstr ""
+
+#: application/default/models/PrecurioStrings.php:205
+msgid "Never miss something important anymore"
+msgstr ""
+
+#: application/event/controllers/MyController.php:312
+msgid "Currently Invited"
+msgstr ""
+
+#: application/event/models/vo/Event.php:104
+msgid "You did not attend this event"
+msgstr ""
+
+#: application/forum/controllers/PostController.php:52
+msgid "Could not post empty content, please enter a post content."
+msgstr ""
+
+#: application/forum/controllers/TopicController.php:61
+msgid "Could not create topic, please enter a topic title."
+msgstr ""
+
+#: application/forum/controllers/TopicController.php:66
+msgid "Could not create topic, please enter a new post for your topic."
+msgstr ""
+
+#: application/install/controllers/InstallController.php:32
+msgid "There was a problem accessing the configuration file. Make sure you have write permissions to the"
+msgstr ""
+
+#: application/install/controllers/InstallController.php:32
+msgid "file"
+msgstr ""
+
+#: application/install/controllers/InstallController.php:62
+msgid "Precurio Installation"
+msgstr ""
+
+#: application/install/controllers/InstallController.php:354
+msgid "Connection to database was Successful!"
+msgstr ""
+
+#: application/poll/controllers/IndexController.php:50
+msgid "Thank you for voting"
+msgstr ""
+
+#: application/poll/models/vo/Poll.php:78
+msgid "Never"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:58
+msgid "Number of Views"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:58
+msgid "Score"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:59
+msgid "Top Contents"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:59
+#: application/report/controllers/ContentController.php:165
+#: application/report/controllers/ContentController.php:185
+#: application/report/controllers/ContentController.php:205
+#: application/report/controllers/PortalController.php:58
+#: application/report/controllers/PortalController.php:110
+#: application/report/controllers/SearchController.php:44
+#: application/report/controllers/SearchController.php:70
+msgid "within the last 3 months"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:87
+#: application/report/controllers/SearchController.php:101
+#: application/report/controllers/SearchController.php:125
+msgid "Content Title"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:89
+#: application/report/controllers/SearchController.php:103
+#: application/report/controllers/SearchController.php:127
+msgid "Number of Search Hits"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:126
+msgid "Last Contribution Date"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:127
+msgid "Number of Contributions"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:128
+msgid "Contributor"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:164
+#: application/report/controllers/ContentController.php:184
+#: application/report/controllers/ContentController.php:204
+#: application/report/controllers/UserController.php:94
+msgid "Value"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:165
+msgid "Content View Activity"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:185
+msgid "Content Addition Activity"
+msgstr ""
+
+#: application/report/controllers/ContentController.php:205
+msgid "Content Update Activity"
+msgstr ""
+
+#: application/report/controllers/PortalController.php:57
+msgid "Usage"
+msgstr ""
+
+#: application/report/controllers/PortalController.php:58
+msgid "Usage Report"
+msgstr ""
+
+#: application/report/controllers/PortalController.php:109
+msgid "Total Visits"
+msgstr ""
+
+#: application/report/controllers/PortalController.php:110
+msgid "Weekly Visits"
+msgstr ""
+
+#: application/report/controllers/PortalController.php:163
+#: application/report/controllers/UserController.php:70
+msgid "Activity"
+msgstr ""
+
+#: application/report/controllers/PortalController.php:164
+msgid "Overall Portal Activity"
+msgstr ""
+
+#: application/report/controllers/PortalController.php:164
+#: application/report/controllers/UserController.php:71
+msgid "in the last 30 days"
+msgstr ""
+
+#: application/report/controllers/SearchController.php:43
+#: application/report/controllers/SearchController.php:69
+msgid "Number of Times"
+msgstr ""
+
+#: application/report/controllers/SearchController.php:43
+#: application/report/controllers/SearchController.php:69
+msgid "times"
+msgstr ""
+
+#: application/report/controllers/SearchController.php:44
+msgid "Words that occured the most in Search Queries"
+msgstr ""
+
+#: application/report/controllers/SearchController.php:69
+msgid "Returned no results"
+msgstr ""
+
+#: application/report/controllers/SearchController.php:70
+msgid "Top Searches that failed"
+msgstr ""
+
+#: application/report/controllers/UserController.php:31
+msgid "Date Joined"
+msgstr ""
+
+#: application/report/controllers/UserController.php:71
+msgid "User Activity Chart"
+msgstr ""
+
+#: application/report/controllers/UserController.php:95
+msgid "User Inventory"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:33
+msgid "Completed"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:34
+msgid "Pending"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:35
+msgid "OverDue"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:36
+msgid "Approved"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:37
+msgid "Denied"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:49
+msgid "Your Workflow Summary"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:82
+msgid "Total"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:83
+msgid "Most active workflows"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:183
+msgid "View Form"
+msgstr ""
+
+#: application/report/controllers/WorkflowController.php:215
+msgid "Total number of request per user (Top 20)"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:120
+#: application/report/models/AnalyticsReport.php:155
+#: application/report/models/AnalyticsReport.php:190
+#: application/report/models/AnalyticsReport.php:459
+msgid "week"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:511
+#: application/report/models/AnalyticsReport.php:595
+msgid "day"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:610
+msgid "and"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:611
+msgid "or"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:612
+msgid "them"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:613
+msgid "it"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:614
+msgid "then"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:615
+msgid "there"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:616
+msgid "are"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:617
+msgid "is"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:618
+msgid "were"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:619
+msgid "where"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:620
+msgid "what"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:621
+msgid "module"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:622
+msgid "cms"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:623
+msgid "event"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:624
+msgid "task"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:625
+msgid "user"
+msgstr ""
+
+#: application/report/models/AnalyticsReport.php:626
+msgid "now"
+msgstr ""
+
+#: application/search/controllers/IndexController.php:54
+msgid "Search Indexes have been optimised"
+msgstr ""
+
+#: application/task/models/Tasks.php:155
+msgid "click here to view content"
+msgstr ""
+
+#: application/task/models/Tasks.php:157
+msgid "Your group needs you to approve a content"
+msgstr ""
+
+#: application/user/controllers/ContentController.php:37
+msgid "Delete"
+msgstr ""
+
+#: application/user/controllers/IndexController.php:40
+msgid "Invalid callback selected"
+msgstr ""
+
+#: application/user/controllers/MypageController.php:78
+msgid "Invalid image file."
+msgstr ""
+
+#: application/user/controllers/MypageController.php:152
+msgid "Current password is not correct"
+msgstr ""
+
+#: application/user/controllers/MypageController.php:157
+msgid "Your new passwords do not match"
+msgstr ""
+
+#: application/user/controllers/MypageController.php:162
+msgid "Your new password is invalid, enter atleast 6 characters"
+msgstr ""
+
+#: application/user/controllers/MypageController.php:166
+msgid "You have successfuly changed your password"
+msgstr ""
+
+#: application/user/controllers/MypageController.php:191
+msgid "Blocked list"
+msgstr ""
+
+#: application/user/controllers/MypageController.php:335
+msgid "Welcome back"
+msgstr ""
+
+#: application/user/models/UserUtil.php:245
+#: application/user/models/UserUtil.php:246
+msgid "Guest"
+msgstr ""
+
+#: application/user/models/vo/User.php:392
+#: application/user/models/vo/UserActivity.php:137
+msgid "him"
+msgstr ""
+
+#: application/user/models/vo/User.php:394
+#: application/user/models/vo/UserActivity.php:139
+msgid "his"
+msgstr ""
+
+#: application/user/models/vo/User.php:396
+#: application/user/models/vo/UserActivity.php:141
+msgid "her"
+msgstr ""
+
+#: application/user/models/vo/UserActivity.php:38
+msgid "You"
+msgstr ""
+
+#: application/user/models/vo/UserActivity.php:240
+msgid "one of your activities"
+msgstr ""
+
+#: application/workflow/controllers/ProcessController.php:178
+msgid "There was an error submiting your form, please make sure you have properly filled this form"
+msgstr ""
+
+#: application/workflow/models/ProcessForm.php:106
+msgid "Date of Request"
+msgstr ""
+
+#: application/workflow/models/ProcessForm.php:148
+msgid "By"
+msgstr ""
+
+#: application/workflow/models/ProcessForm.php:223
+msgid "Signature"
+msgstr ""
+
+#: application/workflow/models/ProcessForm.php:251
+msgid "Confirm next level approver:"
+msgstr ""
+
+#: application/workflow/models/ProcessForm.php:324
+msgid "REASON FOR DISAPPROVAL"
+msgstr ""
+
+#: library/Precurio/Activity.php:92
+msgid "added a profile picture"
+msgstr ""
+
+#: library/Precurio/Activity.php:95
+#: library/Precurio/Activity.php:98
+#: library/Precurio/Activity.php:101
+#: library/Precurio/Activity.php:104
+#: library/Precurio/Activity.php:107
+msgid "changed"
+msgstr ""
+
+#: library/Precurio/Activity.php:95
+msgid "profile picture"
+msgstr ""
+
+#: library/Precurio/Activity.php:98
+msgid "phone number"
+msgstr ""
+
+#: library/Precurio/Activity.php:101
+msgid "location"
+msgstr ""
+
+#: library/Precurio/Activity.php:104
+msgid "job title"
+msgstr ""
+
+#: library/Precurio/Activity.php:107
+msgid "department"
+msgstr ""
+
+#: library/Precurio/Activity.php:113
+msgid "commented on"
+msgstr ""
+
+#: library/Precurio/Activity.php:113
+msgid "to view details"
+msgstr ""
+
+#: library/Precurio/Activity.php:116
+msgid "added an event"
+msgstr ""
+
+#: library/Precurio/Activity.php:116
+#: library/Precurio/Activity.php:119
+#: library/Precurio/Activity.php:167
+msgid "to view event details"
+msgstr ""
+
+#: library/Precurio/Activity.php:119
+msgid "edited an event"
+msgstr ""
+
+#: library/Precurio/Activity.php:122
+msgid "added a photo to event"
+msgstr ""
+
+#: library/Precurio/Activity.php:122
+msgid "to view it"
+msgstr ""
+
+#: library/Precurio/Activity.php:125
+msgid "just shared a contact"
+msgstr ""
+
+#: library/Precurio/Activity.php:125
+msgid "to view contact details"
+msgstr ""
+
+#: library/Precurio/Activity.php:128
+msgid "just assigned a task to"
+msgstr ""
+
+#: library/Precurio/Activity.php:128
+#: library/Precurio/Activity.php:131
+#: library/Precurio/Activity.php:146
+msgid "to view task details"
+msgstr ""
+
+#: library/Precurio/Activity.php:131
+msgid "just edited the details of a task"
+msgstr ""
+
+#: library/Precurio/Activity.php:134
+msgid "has completed a task"
+msgstr ""
+
+#: library/Precurio/Activity.php:134
+#: library/Precurio/Activity.php:137
+msgid "to view the details of the task"
+msgstr ""
+
+#: library/Precurio/Activity.php:137
+msgid "failed to complete a task"
+msgstr ""
+
+#: library/Precurio/Activity.php:140
+msgid "approved your content for view"
+msgstr ""
+
+#: library/Precurio/Activity.php:140
+#: library/Precurio/Activity.php:143
+msgid "to view your content"
+msgstr ""
+
+#: library/Precurio/Activity.php:143
+msgid "rejected your content for view"
+msgstr ""
+
+#: library/Precurio/Activity.php:146
+msgid "just transfered a task to"
+msgstr ""
+
+#: library/Precurio/Activity.php:149
+msgid "just created a new workflow request"
+msgstr ""
+
+#: library/Precurio/Activity.php:149
+#: library/Precurio/Activity.php:152
+#: library/Precurio/Activity.php:155
+#: library/Precurio/Activity.php:158
+msgid "to view workflow details"
+msgstr ""
+
+#: library/Precurio/Activity.php:152
+msgid "have a new request for approval"
+msgstr ""
+
+#: library/Precurio/Activity.php:155
+msgid "your workflow request has been approved by"
+msgstr ""
+
+#: library/Precurio/Activity.php:158
+msgid "your workflow request has been denied by"
+msgstr ""
+
+#: library/Precurio/Activity.php:161
+msgid "added a new content"
+msgstr ""
+
+#: library/Precurio/Activity.php:161
+#: library/Precurio/Activity.php:164
+msgid "to view content"
+msgstr ""
+
+#: library/Precurio/Activity.php:164
+msgid "edited content"
+msgstr ""
+
+#: library/Precurio/Activity.php:167
+msgid "has invited you to event"
+msgstr ""
+
+#: library/Precurio/Activity.php:170
+msgid "just created a new forum"
+msgstr ""
+
+#: library/Precurio/Activity.php:170
+msgid "to view the forum"
+msgstr ""
+
+#: library/Precurio/Activity.php:173
+msgid "just created a new discussion topic"
+msgstr ""
+
+#: library/Precurio/Activity.php:173
+#: library/Precurio/Activity.php:176
+msgid "to join this discussion"
+msgstr ""
+
+#: library/Precurio/Activity.php:176
+msgid "just contributed to a discussion topic"
+msgstr ""
+
+#: library/Precurio/Activity.php:179
+msgid "has created a new appointment"
+msgstr ""
+
+#: library/Precurio/Activity.php:179
+msgid "to view appointment details"
+msgstr ""
+
+#: library/Precurio/Activity.php:182
+msgid "Your password has been changed. Your new password is"
+msgstr ""
+
+#: library/Precurio/Activity.php:182
+msgid "to login to your intranet with your new password."
+msgstr ""
+
+#: library/Precurio/Activity.php:185
+msgid "You account has been created. Your login details are"
+msgstr ""
+
+#: library/Precurio/Activity.php:185
+msgid "to login to your intranet."
+msgstr ""
+
+#: library/Precurio/Date.php:91
+msgid "Welcome!"
+msgstr ""
+
+#: library/Precurio/Date.php:97
+msgid "Good Morning!"
+msgstr ""
+
+#: library/Precurio/Date.php:99
+msgid "Good Afternoon!"
+msgstr ""
+
+#: library/Precurio/Date.php:101
+msgid "Good Evening!"
+msgstr ""
+
+#: library/Precurio/FormElement.php:55
+msgid "Cancel"
+msgstr ""
+
+#: library/Precurio/FormElement.php:295
+#: library/Precurio/FormElement.php:297
+msgid "Approve"
+msgstr ""
+
+#: library/Precurio/FormElement.php:296
+msgid "Reject"
+msgstr ""
+
+#: library/Precurio/Mail.php:161
+msgid "New Activity"
+msgstr ""
+
+#: library/Precurio/Themes.php:223
+msgid "INSTALL FAILED : Could not open unzipped directory"
+msgstr ""
+
+#: library/Precurio/Themes.php:240
+msgid "INSTALL FAILED : This theme does not contain any style."
+msgstr ""
+
+#: library/Precurio/Themes.php:247
+msgid "Unknown"
+msgstr ""
+
+#: library/Precurio/Themes.php:300
+msgid "has been successfully installed."
+msgstr ""
+
+#: library/Precurio/Themes.php:357
+msgid "Style"
+msgstr ""
+
+#: library/Precurio/Themes.php:357
+msgid "has been successfully added to"
+msgstr ""
+
+#: library/Precurio/Upgrade.php:40
+msgid "Upgrade Successful!"
+msgstr ""
+
+#: library/Precurio/Upload.php:217
+msgid "Upload class: Impossible upload file size"
+msgstr ""
+
+#: library/Precurio/Upload.php:220
+msgid "Upload class: Impossible upload file type"
+msgstr ""
+
+#: library/Precurio/Upload.php:238
+msgid "Upload class: cannot upload file"
+msgstr ""
+
+#: library/Precurio/Upload.php:244
+msgid "Upload class: cannot create tmp file"
+msgstr ""
+
+#: library/Precurio/Utils.php:91
+msgid "View"
+msgstr ""
+
+#: library/Precurio/Widget.php:100
+msgid "Widget is not available or has not been properly configured"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:46
+#: public/formsbuilder/popup_newform.php:13
+msgid "Please enter a valid form name"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:72
+msgid "Please select a valid form"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:86
+msgid "Form does not exist or has been deleted. Please select another form"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:97
+#: public/formsbuilder/form_design.php:130
+#: public/formsbuilder/index.php:8
+#: public/formsbuilder/index.php:28
+msgid "Precurio Workflow and Forms Builder"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:110
+msgid "Are you sure you want to delete this field?"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:137
+#: public/formsbuilder/index.php:33
+msgid "Workflows"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:138
+#: public/formsbuilder/index.php:34
+msgid "Logout"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:154
+msgid "PUBLISH THIS FORM"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:155
+#: public/formsbuilder/popup_newsection.php:58
+msgid "Add a new section"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:156
+msgid "back to forms"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:175
+msgid "Base Section"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:202
+#: public/formsbuilder/form_design.php:205
+#: public/formsbuilder/form_design.php:212
+#: public/formsbuilder/form_design.php:215
+msgid "Automatically Filled"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:233
+msgid "Section 1  - Entered by [Employee Name]"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:247
+msgid "manage options"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:254
+msgid "Up"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:263
+msgid "Approval"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:267
+msgid "No, i do not approve this request."
+msgstr ""
+
+#: public/formsbuilder/form_design.php:270
+msgid "I Approve This Request"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:295
+msgid "There are no fields added to this form yet, click the links on the left to add a new field."
+msgstr ""
+
+#: public/formsbuilder/form_design.php:305
+msgid "Form Fields"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:312
+msgid "Add Single Line Text"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:316
+msgid "Add Paragraph Text"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:320
+msgid "Add Number"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:324
+msgid "Add Checkboxes"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:330
+msgid "Add Drop Down"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:334
+msgid "Add Radio Buttons"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:338
+msgid "Add Date"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:343
+#: public/formsbuilder/popup_newcomponent.php:70
+msgid "Price"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:343
+#: public/formsbuilder/popup_newcomponent.php:70
+msgid "Currency"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:343
+#: public/formsbuilder/popup_newcomponent.php:70
+msgid "Amount"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:347
+msgid "Add File Upload"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:353
+msgid "Add User Selection Field"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:359
+msgid "Add Department  field"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:364
+msgid "Add Location Selection field"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:373
+msgid "Sections"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:390
+msgid "edit"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:391
+msgid "delete"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:392
+msgid "up"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:393
+msgid "down"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:402
+msgid "There are no sections created yet"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:408
+msgid "Form Properties"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:414
+#: public/formsbuilder/popup_newform.php:46
+msgid "Form Name"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:419
+msgid "Form Code"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:425
+#: public/formsbuilder/popup_newform.php:50
+msgid "Form Description"
+msgstr ""
+
+#: public/formsbuilder/form_design.php:430
+msgid "Update form properties"
+msgstr ""
+
+#: public/formsbuilder/functions.php:76
+msgid "Unable to create form"
+msgstr ""
+
+#: public/formsbuilder/functions.php:84
+#: public/formsbuilder/functions.php:120
+msgid "Sorry, a form with this name already exists"
+msgstr ""
+
+#: public/formsbuilder/functions.php:106
+msgid "Form Successfully Updated"
+msgstr ""
+
+#: public/formsbuilder/functions.php:112
+msgid "Unable to update form"
+msgstr ""
+
+#: public/formsbuilder/functions.php:197
+#: public/formsbuilder/functions.php:461
+#: public/formsbuilder/functions.php:481
+msgid "Error creating component"
+msgstr ""
+
+#: public/formsbuilder/functions.php:222
+#: public/formsbuilder/functions.php:530
+msgid "Error updating component"
+msgstr ""
+
+#: public/formsbuilder/functions.php:246
+msgid "Error deleting component"
+msgstr ""
+
+#: public/formsbuilder/functions.php:577
+#: public/formsbuilder/popup_newsection.php:32
+msgid "Error creating section"
+msgstr ""
+
+#: public/formsbuilder/index.php:42
+#: public/formsbuilder/popup_newform.php:43
+msgid "Add a new form"
+msgstr ""
+
+#: public/formsbuilder/index.php:43
+msgid "back to Intranet"
+msgstr ""
+
+#: public/formsbuilder/index.php:48
+msgid "Forms Manager"
+msgstr ""
+
+#: public/formsbuilder/index.php:67
+msgid "Created by"
+msgstr ""
+
+#: public/formsbuilder/index.php:68
+msgid "Last Modified"
+msgstr ""
+
+#: public/formsbuilder/index.php:88
+msgid "There are no forms designed yet."
+msgstr ""
+
+#: public/formsbuilder/popup_manageoptions.php:15
+msgid "Please select a valid component"
+msgstr ""
+
+#: public/formsbuilder/popup_manageoptions.php:53
+msgid "Manage Options"
+msgstr ""
+
+#: public/formsbuilder/popup_manageoptions.php:59
+msgid "Options"
+msgstr ""
+
+#: public/formsbuilder/popup_manageoptions.php:59
+msgid "seperate options with comma"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:17
+#: public/formsbuilder/popup_newsection.php:18
+#: public/formsbuilder/popup_updatecomponent.php:17
+msgid "Please enter a valid form label"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:53
+msgid "Add a new field"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:56
+msgid "Field Type"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:59
+msgid "Single Line Text"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:60
+msgid "Paragraph Text"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:61
+msgid "Number"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:62
+msgid "Checkbox"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:63
+msgid "Dropdown"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:64
+msgid "Radio Button"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:65
+msgid "Date"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:66
+msgid "File Upload"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:67
+msgid "User Selection"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:68
+msgid "Location Selection"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:69
+msgid "Department Selection"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:77
+#: public/formsbuilder/popup_updatecomponent.php:60
+msgid "Field Label"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:83
+#: public/formsbuilder/popup_updatecomponent.php:66
+msgid "This field is not required"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:85
+#: public/formsbuilder/popup_updatecomponent.php:68
+msgid "This field is required"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:88
+#: public/formsbuilder/popup_updatecomponent.php:73
+msgid "Default Value"
+msgstr ""
+
+#: public/formsbuilder/popup_newcomponent.php:94
+msgid "Add Field"
+msgstr ""
+
+#: public/formsbuilder/popup_newform.php:56
+msgid "Add form"
+msgstr ""
+
+#: public/formsbuilder/popup_newsection.php:61
+msgid "Display Name"
+msgstr ""
+
+#: public/formsbuilder/popup_newsection.php:68
+msgid "Is this section an approval section?"
+msgstr ""
+
+#: public/formsbuilder/popup_newsection.php:78
+msgid "Can user change"
+msgstr ""
+
+#: public/formsbuilder/popup_newsection.php:79
+msgid "the approver?"
+msgstr ""
+
+#: public/formsbuilder/popup_newsection.php:87
+msgid "Hours"
+msgstr ""
+
+#: public/formsbuilder/popup_newsection.php:91
+msgid "Email Address to send"
+msgstr ""
+
+#: public/formsbuilder/popup_newsection.php:92
+msgid "escalations to"
+msgstr ""
+
+#: public/formsbuilder/popup_newsection.php:99
+msgid "Add Section"
+msgstr ""
+
+#: public/formsbuilder/popup_updatecomponent.php:55
+msgid "Update Field"
+msgstr ""
+
+#: public/formsbuilder/popup_updatecomponent.php:79
+msgid "Edit Field"
+msgstr ""
+
+#: application/admin/views/scripts/access.phtml:94
+msgid "Access Rules"
+msgstr ""
+
+#: application/admin/views/scripts/date.phtml:26
+msgid "24HR"
+msgstr ""
+
+#: application/admin/views/scripts/list.phtml:17
+#: application/admin/views/scripts/members.phtml:102
+#: application/admin/views/scripts/approval/index.phtml:85
+#: application/admin/views/scripts/bug/index.phtml:60
+msgid "Search"
+msgstr ""
+
+#: application/admin/views/scripts/list.phtml:18
+#: application/admin/views/scripts/members.phtml:103
+#: application/admin/views/scripts/approval/index.phtml:86
+#: application/admin/views/scripts/bug/index.phtml:61
+msgid "Show all"
+msgstr ""
+
+#: application/admin/views/scripts/list.phtml:27
+#: application/admin/views/scripts/list.phtml:45
+#: application/admin/views/scripts/members.phtml:110
+#: application/admin/views/scripts/bug/index.phtml:70
+msgid "Add"
+msgstr ""
+
+#: application/admin/views/scripts/list.phtml:28
+#: application/admin/views/scripts/approval/index.phtml:97
+#: application/admin/views/scripts/backup/index.phtml:55
+#: application/admin/views/scripts/bug/index.phtml:71
+msgid "Delete Selected Records"
+msgstr ""
+
+#: application/admin/views/scripts/list.phtml:45
+#: application/admin/views/scripts/members.phtml:123
+#: application/admin/views/scripts/approval/index.phtml:114
+#: application/admin/views/scripts/backup/index.phtml:72
+#: application/admin/views/scripts/bug/index.phtml:88
+msgid "No records found"
+msgstr ""
+
+#: application/admin/views/scripts/members.phtml:73
+#: application/admin/views/scripts/members.phtml:75
+#: application/admin/views/scripts/category/view.phtml:85
+msgid "Remove"
+msgstr ""
+
+#: application/admin/views/scripts/members.phtml:84
+msgid "Group Members"
+msgstr ""
+
+#: application/admin/views/scripts/members.phtml:123
+msgid "Add Members"
+msgstr ""
+
+#: application/admin/views/scripts/page_control.phtml:6
+#: application/admin/views/scripts/page_control.phtml:7
+msgid "Previous"
+msgstr ""
+
+#: application/admin/views/scripts/page_control.phtml:19
+#: application/admin/views/scripts/page_control.phtml:21
+msgid "Next"
+msgstr ""
+
+#: application/admin/views/scripts/setting_tabs.phtml:4
+msgid "General Settings"
+msgstr ""
+
+#: application/admin/views/scripts/setting_tabs.phtml:10
+msgid "Active Directory"
+msgstr ""
+
+#: application/admin/views/scripts/setting_tabs.phtml:13
+msgid "Live Server"
+msgstr ""
+
+#: application/admin/views/scripts/setting_tabs.phtml:16
+msgid "Mail Settings"
+msgstr ""
+
+#: application/admin/views/scripts/setting_tabs.phtml:19
+msgid "Module Settings"
+msgstr ""
+
+#: application/admin/views/scripts/setting_tabs.phtml:22
+msgid "Appearance"
+msgstr ""
+
+#: application/admin/views/scripts/approval/add.phtml:4
+#: application/admin/views/scripts/approval/index.phtml:7
+msgid "Process"
+msgstr ""
+
+#: application/admin/views/scripts/approval/add.phtml:16
+#: application/admin/views/scripts/approval/index.phtml:19
+msgid "State"
+msgstr ""
+
+#: application/admin/views/scripts/approval/add.phtml:19
+#: application/admin/views/scripts/approval/index.phtml:22
+msgid "Position"
+msgstr ""
+
+#: application/admin/views/scripts/approval/add.phtml:23
+#: application/admin/views/scripts/approval/index.phtml:26
+msgid "Duration"
+msgstr ""
+
+#: application/admin/views/scripts/approval/index.phtml:95
+msgid "Add Group"
+msgstr ""
+
+#: application/admin/views/scripts/approval/index.phtml:96
+msgid "Add User"
+msgstr ""
+
+#: application/admin/views/scripts/approval/index.phtml:97
+#: application/admin/views/scripts/backup/index.phtml:55
+#: application/admin/views/scripts/bug/index.phtml:71
+msgid "No records selected"
+msgstr ""
+
+#: application/admin/views/scripts/backup/index.phtml:31
+msgid "Download"
+msgstr ""
+
+#: application/admin/views/scripts/backup/new.phtml:14
+msgid "Backup Complete"
+msgstr ""
+
+#: application/admin/views/scripts/backup/new.phtml:35
+msgid "Create a new Backup"
+msgstr ""
+
+#: application/admin/views/scripts/backup/new.phtml:40
+msgid "A backup operation usually takes a while, please be patient"
+msgstr ""
+
+#: application/admin/views/scripts/backup/new.phtml:61
+msgid "Backup!"
+msgstr ""
+
+#: application/admin/views/scripts/backup/restore.phtml:8
+msgid "You are now restoring Precurio from a previous backup"
+msgstr ""
+
+#: application/admin/views/scripts/backup/restore.phtml:15
+msgid "Restore Complete"
+msgstr ""
+
+#: application/admin/views/scripts/backup/restore.phtml:41
+msgid "Restore from a Backup"
+msgstr ""
+
+#: application/admin/views/scripts/backup/restore.phtml:46
+msgid "A restore operation usually takes a while, please be patient"
+msgstr ""
+
+#: application/admin/views/scripts/backup/restore.phtml:51
+msgid "Are you sure you want to restore Precurio from backup dated"
+msgstr ""
+
+#: application/admin/views/scripts/backup/restore.phtml:67
+msgid "Restore!"
+msgstr ""
+
+#: application/admin/views/scripts/bug/index.phtml:31
+msgid "Resend"
+msgstr ""
+
+#: application/admin/views/scripts/category/addcontent.phtml:22
+msgid "Quick Search"
+msgstr ""
+
+#: application/admin/views/scripts/category/addcontent.phtml:60
+#: application/admin/views/scripts/category/view.phtml:62
+msgid "Add Contents"
+msgstr ""
+
+#: application/admin/views/scripts/category/delete.phtml:3
+msgid "Warning!!!"
+msgstr ""
+
+#: application/admin/views/scripts/category/delete.phtml:8
+msgid "The following Category(s) are not empty"
+msgstr ""
+
+#: application/admin/views/scripts/category/delete.phtml:24
+msgid "Force Delete"
+msgstr ""
+
+#: application/admin/views/scripts/category/delete.phtml:27
+msgid "OR"
+msgstr ""
+
+#: application/admin/views/scripts/category/delete.phtml:31
+msgid "Go Back"
+msgstr ""
+
+#: application/admin/views/scripts/category/view.phtml:5
+msgid "Category does not exist"
+msgstr ""
+
+#: application/admin/views/scripts/category/view.phtml:23
+msgid "Owner"
+msgstr ""
+
+#: application/admin/views/scripts/category/view.phtml:41
+msgid "Sub-Category(s)"
+msgstr ""
+
+#: application/admin/views/scripts/category/view.phtml:69
+msgid "Content(s)"
+msgstr ""
+
+#: application/admin/views/scripts/category/view.phtml:95
+msgid "This category is empty."
+msgstr ""
+
+#: application/admin/views/scripts/category/view.phtml:99
+msgid "No Intranet Content in this Category yet."
+msgstr ""
+
+#: application/admin/views/scripts/forum/topic.phtml:6
+msgid "Are you sure you want to delete this topic?"
+msgstr ""
+
+#: application/admin/views/scripts/forum/topic.phtml:56
+msgid "Go to topic"
+msgstr ""
+
+#: application/admin/views/scripts/forum/topic.phtml:66
+msgid "Forum Topics"
+msgstr ""
+
+#: application/admin/views/scripts/index/index.phtml:44
+msgid "RSS"
+msgstr ""
+
+#: application/admin/views/scripts/index/index.phtml:78
+msgid "Workflow Management"
+msgstr ""
+
+#: application/admin/views/scripts/index/index.phtml:101
+msgid "Upgrade"
+msgstr ""
+
+#: application/admin/views/scripts/index/index.phtml:112
+msgid "Report Bugs"
+msgstr ""
+
+#: application/admin/views/scripts/logo/index.phtml:10
+msgid "Please select a photo to upload"
+msgstr ""
+
+#: application/admin/views/scripts/logo/index.phtml:14
+msgid "Maximum size of 1MB"
+msgstr ""
+
+#: application/admin/views/scripts/logo/index.phtml:14
+msgid "JPG  ONLY"
+msgstr ""
+
+#: application/admin/views/scripts/logo/index.phtml:19
+msgid "Please select which styles you want to apply this logo to"
+msgstr ""
+
+#: application/admin/views/scripts/logo/index.phtml:34
+msgid "Apply Logo"
+msgstr ""
+
+#: application/admin/views/scripts/logo/index.phtml:56
+msgid "Please note that irrespective of whatever you see here, your company logo will only be displayed if it is allowed by your current theme"
+msgstr ""
+
+#: application/admin/views/scripts/poll/view.phtml:52
+msgid "Expires"
+msgstr ""
+
+#: application/admin/views/scripts/poll/view.phtml:61
+msgid "24hrs format"
+msgstr ""
+
+#: application/admin/views/scripts/poll/view.phtml:83
+msgid "Poll Options"
+msgstr ""
+
+#: application/admin/views/scripts/poll/view.phtml:85
+#: application/admin/views/scripts/poll/view.phtml:97
+msgid "Add Options"
+msgstr ""
+
+#: application/admin/views/scripts/setting/anonymousinfo.phtml:3
+msgid "More information about Allowing Guest Users"
+msgstr ""
+
+#: application/admin/views/scripts/setting/database.phtml:22
+#: application/admin/views/scripts/setting/ldap.phtml:33
+msgid "Test Connection"
+msgstr ""
+
+#: application/admin/views/scripts/setting/database.phtml:26
+#: application/admin/views/scripts/setting/general.phtml:45
+#: application/admin/views/scripts/setting/ldap.phtml:37
+#: application/admin/views/scripts/setting/live.phtml:15
+msgid "Save"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:8
+msgid "This should be what you have before"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:8
+msgid "on your address bar now"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:16
+msgid "NOTE : If you are changing from database authentication to Active Directory"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:16
+msgid "Make sure you have properly configured your active directory settings"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:23
+msgid "When using LDAP Authentication, the domain corresponds to the directory structure"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:23
+msgid "Although this will typically be the same as your email domain"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:27
+msgid "This will not affect group contents. To configure group content approval,"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:31
+msgid "Do not forget to set permissions for the anonymous user (i.e. guest user)"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:31
+msgid "click here for more information"
+msgstr ""
+
+#: application/admin/views/scripts/setting/general.phtml:36
+msgid "NOTE : This text will only appear on the login page if your current theme allows it"
+msgstr ""
+
+#: application/admin/views/scripts/setting/ldap.phtml:24
+msgid "should be true only if ldap server is not Microsoft Active Directory"
+msgstr ""
+
+#: application/admin/views/scripts/setting/live.phtml:3
+msgid "The live server is responsible for the chat and live feeds features"
+msgstr ""
+
+#: application/admin/views/scripts/setting/live.phtml:3
+msgid "Please visit the Administrator's manual on how to properly configure the live server"
+msgstr ""
+
+#: application/admin/views/scripts/setting/mail.phtml:17
+msgid "You can ignore the other settings below, if not using authentication"
+msgstr ""
+
+#: application/admin/views/scripts/setting/mail.phtml:21
+msgid "NOTE : LOGIN is most commonly used"
+msgstr ""
+
+#: application/admin/views/scripts/setting/mail.phtml:31
+msgid "Ignore the protocol setting below if not using secure protocol"
+msgstr ""
+
+#: application/admin/views/scripts/setting/mail.phtml:40
+msgid "Send Test Mail"
+msgstr ""
+
+#: application/admin/views/scripts/style/index.phtml:29
+msgid "Set as default"
+msgstr ""
+
+#: application/admin/views/scripts/style/index.phtml:64
+msgid "Add new Style"
+msgstr ""
+
+#: application/admin/views/scripts/style/index.phtml:65
+msgid "Delete Selected Styles"
+msgstr ""
+
+#: application/admin/views/scripts/style/new.phtml:13
+#: application/admin/views/scripts/theme/new.phtml:13
+msgid "Installation Complete"
+msgstr ""
+
+#: application/admin/views/scripts/style/new.phtml:49
+msgid "Add a new style to"
+msgstr ""
+
+#: application/admin/views/scripts/style/new.phtml:49
+msgid "theme"
+msgstr ""
+
+#: application/admin/views/scripts/style/new.phtml:55
+msgid "Adding a new style may take a while, please be patient"
+msgstr ""
+
+#: application/admin/views/scripts/style/new.phtml:59
+msgid "Select style ZIP file"
+msgstr ""
+
+#: application/admin/views/scripts/style/new.phtml:67
+#: application/admin/views/scripts/theme/new.phtml:66
+msgid "Install"
+msgstr ""
+
+#: application/admin/views/scripts/theme/index.phtml:30
+msgid "Activate"
+msgstr ""
+
+#: application/admin/views/scripts/theme/index.phtml:31
+msgid "View Styles"
+msgstr ""
+
+#: application/admin/views/scripts/theme/index.phtml:66
+msgid "Install Theme"
+msgstr ""
+
+#: application/admin/views/scripts/theme/index.phtml:67
+msgid "Delete Selected Themes"
+msgstr ""
+
+#: application/admin/views/scripts/theme/new.phtml:49
+msgid "Install a new theme"
+msgstr ""
+
+#: application/admin/views/scripts/theme/new.phtml:54
+msgid "Installing a theme usually takes a while, please be patient"
+msgstr ""
+
+#: application/admin/views/scripts/theme/new.phtml:58
+msgid "Select theme ZIP file"
+msgstr ""
+
+#: application/admin/views/scripts/theme/new.phtml:77
+msgid "Click here to buy custom theme"
+msgstr ""
+
+#: application/admin/views/scripts/upgrade/index.phtml:13
+msgid "Upgrade Complete"
+msgstr ""
+
+#: application/admin/views/scripts/upgrade/index.phtml:48
+msgid "Upgrade Precurio"
+msgstr ""
+
+#: application/admin/views/scripts/upgrade/index.phtml:53
+msgid "Performing an upgrade usually takes a while, please be patient"
+msgstr ""
+
+#: application/admin/views/scripts/upgrade/index.phtml:57
+msgid "Select Upgrade ZIP file"
+msgstr ""
+
+#: application/admin/views/scripts/upgrade/index.phtml:72
+msgid "Your current Precurio version is"
+msgstr ""
+
+#: application/admin/views/scripts/user/add.phtml:12
+msgid "You have configured Precurio to use a directory service"
+msgstr ""
+
+#: application/admin/views/scripts/user/add.phtml:12
+msgid "To add a new user, please visit your directory listings"
+msgstr ""
+
+#: application/admin/views/scripts/user/index.phtml:29
+msgid "Deactivate Selected Users"
+msgstr ""
+
+#: application/admin/views/scripts/user/reset.phtml:33
+msgid "Reset User Password"
+msgstr ""
+
+#: application/admin/views/scripts/user/reset.phtml:39
+msgid "Depending on whether your notification service is running, the user may or may not get a notification of the new password"
+msgstr ""
+
+#: application/admin/views/scripts/user/reset.phtml:44
+msgid "New Password"
+msgstr ""
+
+#: application/admin/views/scripts/user/reset.phtml:47
+msgid "Confirm Password"
+msgstr ""
+
+#: application/admin/views/scripts/user/view.phtml:31
+msgid "Gender"
+msgstr ""
+
+#: application/admin/views/scripts/user/view.phtml:34
+msgid "Male"
+msgstr ""
+
+#: application/admin/views/scripts/user/view.phtml:35
+msgid "Female"
+msgstr ""
+
+#: application/admin/views/scripts/user/view.phtml:41
+msgid "Birthday"
+msgstr ""
+
+#: application/admin/views/scripts/user/view.phtml:48
+msgid "Work Phone"
+msgstr ""
+
+#: application/admin/views/scripts/user/view.phtml:99
+msgid "Set out of office"
+msgstr ""
+
+#: application/admin/views/scripts/user/view.phtml:113
+msgid "Reset Password"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/add.phtml:84
+#: application/admin/views/scripts/visitor/view.phtml:53
+msgid "Select Host"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/add.phtml:96
+msgid "Birth Date"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/add.phtml:102
+#: application/admin/views/scripts/visitor/view.phtml:68
+msgid "Emergency Contact"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/add.phtml:106
+msgid "Car Number"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/addreceptionist.phtml:11
+msgid "You have not selected a group"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/addreceptionist.phtml:27
+msgid "You have not entered group name"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/addreceptionist.phtml:35
+msgid "Receptionist Group has been registered"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/addreceptionist.phtml:71
+msgid "Click to select users"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/addreceptionist.phtml:82
+msgid "No group has been given a 'share' privilege access to the 'Visitors / Appointment' resource."
+msgstr ""
+
+#: application/admin/views/scripts/visitor/addreceptionist.phtml:83
+msgid "to edit the access rules for your existing groups, or enter the name of a new group below."
+msgstr ""
+
+#: application/admin/views/scripts/visitor/addreceptionist.phtml:88
+msgid "New 'Receptionist' Group"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/index.phtml:27
+#: application/admin/views/scripts/visitor/index.phtml:48
+msgid "Add Visitor"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/view.phtml:74
+msgid "Car registration Number"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/view.phtml:92
+msgid "Visits"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/view.phtml:102
+msgid "Time In"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/view.phtml:106
+msgid "Time Out"
+msgstr ""
+
+#: application/admin/views/scripts/visitor/view.phtml:110
+msgid "Appointment Title"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/index.phtml:28
+#: application/admin/views/scripts/workflow/index.phtml:30
+msgid "Build New Workflow"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/index.phtml:32
+msgid "Delete Selected Workflows"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/index.phtml:49
+msgid "No have no workflows installed"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/index.phtml:49
+msgid "Click here to buy workflows"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/publish.phtml:2
+msgid "You have succesfully published"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/publish.phtml:3
+msgid "Next Step?"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/publish.phtml:5
+msgid "Click here to manage request and approval access"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/publish.phtml:6
+msgid "Click here to create another workflow or form"
+msgstr ""
+
+#: application/admin/views/scripts/workflow/view.phtml:34
+msgid "Manage Access"
+msgstr ""
+
+#: application/cms/views/scripts/partial_content.phtml:8
+#: application/cms/views/scripts/view/details.phtml:157
+msgid "Comment"
+msgstr ""
+
+#: application/cms/views/scripts/partial_content.phtml:8
+#: application/cms/views/scripts/view/details.phtml:139
+msgid "Comments"
+msgstr ""
+
+#: application/cms/views/scripts/partial_content.phtml:48
+msgid "You don't have enough permission to delete this content"
+msgstr ""
+
+#: application/cms/views/scripts/partial_content.phtml:52
+msgid "Are you sure you want to delete this content?"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:62
+msgid "Add a new content"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:70
+#: application/cms/views/scripts/edit/edit.phtml:73
+msgid "Content Body"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:76
+msgid "Upload Document"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:81
+#: application/cms/views/scripts/edit/edit.phtml:82
+msgid "Add to departmental resources"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:81
+#: application/cms/views/scripts/edit/edit.phtml:82
+msgid "may require approval"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:94
+#: application/cms/views/scripts/edit/edit.phtml:95
+msgid "Content Catgory(s)"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:103
+#: application/cms/views/scripts/edit/edit.phtml:104
+msgid "Keywords"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:108
+#: application/cms/views/scripts/edit/edit.phtml:109
+msgid "Upload Image"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:115
+#: application/cms/views/scripts/edit/edit.phtml:116
+msgid "External URL"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:115
+#: application/cms/views/scripts/edit/edit.phtml:116
+msgid "if any"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:123
+#: application/cms/views/scripts/edit/edit.phtml:124
+msgid "Set as featured content"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:123
+#: application/cms/views/scripts/edit/edit.phtml:124
+msgid "will remove existing featured content"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:130
+#: application/cms/views/scripts/edit/edit.phtml:131
+msgid "Add to company news"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:137
+#: application/cms/views/scripts/edit/edit.phtml:138
+msgid "Advertorial Content"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:143
+#: application/cms/views/scripts/edit/edit.phtml:144
+msgid "Content can be viewed by everyone"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:146
+#: application/cms/views/scripts/edit/edit.phtml:147
+msgid "Excerpt"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:146
+#: application/cms/views/scripts/edit/edit.phtml:147
+msgid "Summary"
+msgstr ""
+
+#: application/cms/views/scripts/add/add.phtml:171
+msgid "Create Content"
+msgstr ""
+
+#: application/cms/views/scripts/edit/edit.phtml:63
+msgid "Edit Content"
+msgstr ""
+
+#: application/cms/views/scripts/edit/edit.phtml:172
+msgid "Update Content"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:3
+msgid "The content you are trying to view does not exists anymore"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:19
+#: application/cms/views/scripts/view/index.phtml:13
+msgid "Add new content"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:27
+#: application/cms/views/scripts/view/index.phtml:21
+msgid "Recent Content"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:41
+#: application/cms/views/scripts/view/index.phtml:35
+msgid "Most Popular Content"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:56
+#: application/cms/views/scripts/view/index.phtml:50
+msgid "Most Discussed Content"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:83
+#: application/cms/views/scripts/view/load.phtml:4
+msgid "by"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:93
+msgid "Share this content"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:97
+msgid "Print"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:110
+msgid "Edit this content"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:116
+msgid "Was this information helpful?"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:131
+msgid "I dont Know"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:156
+msgid "Write something"
+msgstr ""
+
+#: application/cms/views/scripts/view/details.phtml:180
+msgid "Thank you for rating this content"
+msgstr ""
+
+#: application/cms/views/scripts/view/index.phtml:76
+#: application/cms/views/scripts/view/index.phtml:87
+msgid "All"
+msgstr ""
+
+#: application/cms/views/scripts/view/index.phtml:112
+msgid "This group has no content yet"
+msgstr ""
+
+#: application/cms/views/scripts/view/load.phtml:14
+msgid "Close"
+msgstr ""
+
+#: application/contact/views/scripts/index/add.phtml:3
+msgid "a new Contact"
+msgstr ""
+
+#: application/contact/views/scripts/index/add.phtml:24
+msgid "Address"
+msgstr ""
+
+#: application/contact/views/scripts/index/add.phtml:36
+msgid "Fax"
+msgstr ""
+
+#: application/contact/views/scripts/index/add.phtml:44
+msgid "Website"
+msgstr ""
+
+#: application/contact/views/scripts/index/add.phtml:50
+msgid "Allow others to view this contact"
+msgstr ""
+
+#: application/contact/views/scripts/index/add.phtml:56
+msgid "Contact"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:17
+msgid "Add New Contact"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:22
+msgid "Import Contacts"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:27
+msgid "Export Contacts"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:45
+msgid "All Contacts"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:46
+msgid "My Contacts"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:47
+msgid "Shared Contacts"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:48
+msgid "Coworkers"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:50
+msgid "Loading Contacts"
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:196
+msgid "You can only edit from \"My Contacts\""
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:211
+msgid "You can only delete from \"My Contacts\""
+msgstr ""
+
+#: application/contact/views/scripts/index/index.phtml:215
+msgid "Are you sure you want to delete this contact?"
+msgstr ""
+
+#: application/contact/views/scripts/index/view.phtml:28
+msgid "Mobile"
+msgstr ""
+
+#: application/contact/views/scripts/index/view.phtml:34
+msgid "Work"
+msgstr ""
+
+#: application/contact/views/scripts/index/view.phtml:40
+msgid "email"
+msgstr ""
+
+#: application/contact/views/scripts/index/view.phtml:46
+msgid "website"
+msgstr ""
+
+#: application/contact/views/scripts/index/view.phtml:66
+msgid "VCard"
+msgstr ""
+
+#: application/contact/views/scripts/list/all.phtml:46
+msgid "Showing"
+msgstr ""
+
+#: application/contact/views/scripts/list/all.phtml:47
+msgid "to"
+msgstr ""
+
+#: application/contact/views/scripts/list/all.phtml:47
+msgid "of"
+msgstr ""
+
+#: application/contact/views/scripts/list/all.phtml:71
+msgid "Phone Numbers"
+msgstr ""
+
+#: application/contact/views/scripts/list/all.phtml:175
+msgid "First"
+msgstr ""
+
+#: application/contact/views/scripts/list/all.phtml:190
+msgid "Last"
+msgstr ""
+
+#: application/contact/views/scripts/list/all.phtml:211
+msgid "You have no contacts in this category"
+msgstr ""
+
+#: application/contact/views/scripts/list/export.phtml:8
+msgid "Export your contacts"
+msgstr ""
+
+#: application/contact/views/scripts/list/export.phtml:14
+msgid "Please select contact category"
+msgstr ""
+
+#: application/contact/views/scripts/list/export.phtml:24
+msgid "Co-Workers"
+msgstr ""
+
+#: application/contact/views/scripts/list/export.phtml:29
+msgid "Export"
+msgstr ""
+
+#: application/contact/views/scripts/list/upload.phtml:8
+msgid "Upload a Contacts CSV file"
+msgstr ""
+
+#: application/contact/views/scripts/list/upload.phtml:14
+msgid "Please select a csv file"
+msgstr ""
+
+#: application/contact/views/scripts/list/upload.phtml:26
+msgid "Upload"
+msgstr ""
+
+#: application/default/layouts/dock.phtml:14
+msgid "Chat"
+msgstr ""
+
+#: application/default/layouts/dock.phtml:20
+msgid "close"
+msgstr ""
+
+#: application/default/layouts/dock.phtml:23
+msgid "Online"
+msgstr ""
+
+#: application/default/layouts/dock.phtml:24
+msgid "Offline"
+msgstr ""
+
+#: application/default/layouts/dock.phtml:25
+msgid "Invisible"
+msgstr ""
+
+#: application/default/layouts/dock.phtml:42
+msgid "Powered by"
+msgstr ""
+
+#: application/default/layouts/dock.phtml:46
+msgid "Shortcuts"
+msgstr ""
+
+#: application/default/layouts/insomnia/footer.phtml:12
+msgid "Search  the intranet"
+msgstr ""
+
+#: application/default/layouts/insomnia/header.phtml:3
+#: application/default/layouts/insomnia/login.phtml:5
+#: application/default/layouts/insomnia/main_error.phtml:5
+msgid "Intranet"
+msgstr ""
+
+#: application/default/layouts/insomnia/header.phtml:72
+msgid "GO"
+msgstr ""
+
+#: application/default/layouts/insomnia/header.phtml:77
+msgid "Login"
+msgstr ""
+
+#: application/default/layouts/insomnia/header.phtml:78
+msgid "Settings"
+msgstr ""
+
+#: application/default/layouts/insomnia/header.phtml:86
+msgid "Home"
+msgstr ""
+
+#: application/default/layouts/insomnia/header.phtml:87
+msgid "My Page"
+msgstr ""
+
+#: application/default/layouts/insomnia/header.phtml:128
+msgid "Welcome"
+msgstr ""
+
+#: application/default/layouts/insomnia/login.phtml:5
+msgid "login"
+msgstr ""
+
+#: application/default/layouts/insomnia/login.phtml:43
+msgid "Login to the portal"
+msgstr ""
+
+#: application/default/layouts/insomnia/login.phtml:56
+msgid "Forgot password?"
+msgstr ""
+
+#: application/default/layouts/insomnia/nav.phtml:5
+msgid "Back"
+msgstr ""
+
+#: application/default/layouts/insomnia/nav.phtml:6
+msgid "Forward"
+msgstr ""
+
+#: application/default/layouts/insomnia/widget.phtml:6
+#: application/default/layouts/insomnia/widget_side.phtml:6
+#: application/default/layouts/maxi/widget.phtml:6
+msgid "settings"
+msgstr ""
+
+#: application/default/layouts/insomnia/widget.phtml:9
+#: application/default/layouts/insomnia/widget_side.phtml:9
+#: application/default/layouts/maxi/widget.phtml:9
+msgid "minimize"
+msgstr ""
+
+#: application/default/layouts/maxi/header.phtml:86
+msgid "more..."
+msgstr ""
+
+#: application/default/layouts/maxi/start.phtml:27
+msgid "Hi"
+msgstr ""
+
+#: application/default/layouts/midnight/header.phtml:40
+msgid "Intranet Applications"
+msgstr ""
+
+#: application/default/layouts/midnight/header.phtml:126
+msgid "Choose your style"
+msgstr ""
+
+#: application/default/layouts/midnight/login.phtml:52
+msgid "Latest News"
+msgstr ""
+
+#: application/default/layouts/midnight/login.phtml:61
+msgid "No recent news"
+msgstr ""
+
+#: application/default/layouts/midnight/login.phtml:109
+msgid "Share"
+msgstr ""
+
+#: application/default/layouts/midnight/login.phtml:112
+msgid "Be more effective in your daily work by collaborating with peers."
+msgstr ""
+
+#: application/default/layouts/midnight/login.phtml:120
+msgid "Learn"
+msgstr ""
+
+#: application/default/layouts/midnight/login.phtml:123
+msgid "Learn about the company, staffs, policies, and events ."
+msgstr ""
+
+#: application/default/layouts/midnight/login.phtml:130
+msgid "Discuss"
+msgstr ""
+
+#: application/default/layouts/midnight/login.phtml:133
+msgid "Discuss ideas and challenges with like minded people. "
+msgstr ""
+
+#: application/default/views/scripts/error/error.phtml:20
+msgid "Oooops!!! Something has gone wrong"
+msgstr ""
+
+#: application/default/views/scripts/error/error.phtml:28
+msgid "Error message"
+msgstr ""
+
+#: application/default/views/scripts/error/error.phtml:30
+msgid "to go to your page"
+msgstr ""
+
+#: application/default/views/scripts/error/error.phtml:31
+msgid "to go back"
+msgstr ""
+
+#: application/employee/views/scripts/tabs.phtml:4
+msgid "Find People"
+msgstr ""
+
+#: application/employee/views/scripts/tabs.phtml:7
+msgid "Staff List"
+msgstr ""
+
+#: application/employee/views/scripts/tabs.phtml:10
+msgid "Recent Changes"
+msgstr ""
+
+#: application/employee/views/scripts/tabs.phtml:13
+msgid "Out of Office"
+msgstr ""
+
+#: application/employee/views/scripts/tabs.phtml:16
+msgid "Birthdays"
+msgstr ""
+
+#: application/employee/views/scripts/staff/birthdays.phtml:6
+msgid "Below are your colleagues whose birthday occur in"
+msgstr ""
+
+#: application/employee/views/scripts/staff/birthdays.phtml:22
+msgid "Month"
+msgstr ""
+
+#: application/employee/views/scripts/staff/find.phtml:20
+msgid "By Department"
+msgstr ""
+
+#: application/employee/views/scripts/staff/find.phtml:23
+msgid "By Location"
+msgstr ""
+
+#: application/employee/views/scripts/staff/out.phtml:7
+msgid "People are currently out of office"
+msgstr ""
+
+#: application/event/views/scripts/partial_event.phtml:16
+msgid "Venue"
+msgstr ""
+
+#: application/event/views/scripts/partial_event.phtml:17
+msgid "Time"
+msgstr ""
+
+#: application/event/views/scripts/partial_event.phtml:17
+msgid "View Event Details"
+msgstr ""
+
+#: application/event/views/scripts/tabs.phtml:4
+msgid "My Events"
+msgstr ""
+
+#: application/event/views/scripts/tabs.phtml:7
+msgid "Upcoming Events"
+msgstr ""
+
+#: application/event/views/scripts/tabs.phtml:10
+msgid "Past Events"
+msgstr ""
+
+#: application/event/views/scripts/tabs.phtml:14
+msgid "Ongoing Events"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:20
+#: application/event/views/scripts/ongoing/details.phtml:47
+#: application/event/views/scripts/past/details.phtml:46
+#: application/event/views/scripts/upcoming/details.phtml:46
+msgid "Event does not exist anymore"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:28
+#: application/event/views/scripts/ongoing/details.phtml:55
+#: application/event/views/scripts/past/details.phtml:53
+#: application/event/views/scripts/upcoming/details.phtml:54
+msgid "Confirmed Guests"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:36
+#: application/event/views/scripts/ongoing/details.phtml:63
+#: application/event/views/scripts/past/details.phtml:61
+#: application/event/views/scripts/upcoming/details.phtml:62
+#: application/event/views/scripts/upcoming/details.phtml:121
+msgid "Not Sure"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:44
+#: application/event/views/scripts/ongoing/details.phtml:71
+#: application/event/views/scripts/past/details.phtml:69
+#: application/event/views/scripts/upcoming/details.phtml:70
+#: application/event/views/scripts/upcoming/details.phtml:125
+msgid "Not Attending"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:54
+#: application/event/views/scripts/ongoing/details.phtml:81
+#: application/event/views/scripts/past/details.phtml:79
+#: application/event/views/scripts/upcoming/details.phtml:80
+msgid "Invitation list"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:72
+#: application/event/views/scripts/ongoing/details.phtml:99
+#: application/event/views/scripts/past/details.phtml:97
+#: application/event/views/scripts/upcoming/details.phtml:98
+msgid "Start"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:73
+#: application/event/views/scripts/ongoing/details.phtml:100
+#: application/event/views/scripts/past/details.phtml:98
+#: application/event/views/scripts/upcoming/details.phtml:99
+msgid "End"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:91
+msgid "Edit Event details"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:95
+msgid "Delete Event"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:103
+#: application/event/views/scripts/ongoing/details.phtml:119
+#: application/event/views/scripts/past/details.phtml:126
+#: application/event/views/scripts/upcoming/details.phtml:145
+msgid "Photos"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:106
+#: application/event/views/scripts/ongoing/details.phtml:122
+#: application/event/views/scripts/past/details.phtml:129
+#: application/event/views/scripts/upcoming/details.phtml:148
+msgid "Add Photo"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:112
+#: application/event/views/scripts/ongoing/details.phtml:128
+#: application/event/views/scripts/past/details.phtml:135
+#: application/event/views/scripts/upcoming/details.phtml:154
+msgid "There are"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:112
+#: application/event/views/scripts/ongoing/details.phtml:128
+#: application/event/views/scripts/past/details.phtml:135
+#: application/event/views/scripts/upcoming/details.phtml:154
+msgid "Photos. Click here to view all"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:155
+#: application/event/views/scripts/ongoing/details.phtml:171
+#: application/event/views/scripts/past/details.phtml:177
+#: application/event/views/scripts/upcoming/details.phtml:194
+msgid "Write Something"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:186
+msgid "Are you sure you want to delete this event?"
+msgstr ""
+
+#: application/event/views/scripts/my/details.phtml:208
+#: application/event/views/scripts/ongoing/details.phtml:20
+#: application/event/views/scripts/past/details.phtml:20
+#: application/event/views/scripts/upcoming/details.phtml:20
+msgid "Attendance status updated"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:24
+msgid "back to my events"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:27
+msgid "Event Details"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:34
+msgid "Short Summary"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:47
+msgid "Start Date"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:54
+msgid "End Date"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:70
+msgid "Event Type"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:73
+msgid "Work Related"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:80
+msgid "Allow only admin to post photos and resources"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:87
+msgid "Disable photos and resources"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:94
+msgid "Allow everyone see confirmed guests"
+msgstr ""
+
+#: application/event/views/scripts/my/new.phtml:99
+msgid "Upload Event Banner"
+msgstr ""
+
+#: application/event/views/scripts/my/upload.phtml:52
+#: application/event/views/scripts/ongoing/upload.phtml:52
+#: application/event/views/scripts/past/upload.phtml:52
+#: application/event/views/scripts/upcoming/upload.phtml:52
+msgid "Upload a Photo to the event"
+msgstr ""
+
+#: application/event/views/scripts/my/upload.phtml:62
+#: application/event/views/scripts/ongoing/upload.phtml:62
+#: application/event/views/scripts/past/upload.phtml:62
+#: application/event/views/scripts/upcoming/upload.phtml:62
+msgid "Maximum size of 1MB. JPG, GIF, PNG."
+msgstr ""
+
+#: application/event/views/scripts/my/upload.phtml:70
+#: application/event/views/scripts/ongoing/upload.phtml:70
+#: application/event/views/scripts/past/upload.phtml:70
+#: application/event/views/scripts/upcoming/upload.phtml:70
+msgid "Upload Photo"
+msgstr ""
+
+#: application/event/views/scripts/my/view.phtml:26
+msgid "Create a new event"
+msgstr ""
+
+#: application/event/views/scripts/my/view.phtml:43
+msgid "By Event Type"
+msgstr ""
+
+#: application/event/views/scripts/my/view.phtml:45
+msgid "Official Events"
+msgstr ""
+
+#: application/event/views/scripts/my/view.phtml:48
+msgid "Personal Events"
+msgstr ""
+
+#: application/event/views/scripts/my/view.phtml:80
+msgid "You have no event in this category"
+msgstr ""
+
+#: application/event/views/scripts/my/view.phtml:81
+msgid "Please click here to add a new event"
+msgstr ""
+
+#: application/event/views/scripts/past/details.phtml:105
+#: application/event/views/scripts/upcoming/details.phtml:107
+msgid "Attendance Status"
+msgstr ""
+
+#: application/event/views/scripts/upcoming/details.phtml:108
+msgid "click here to change"
+msgstr ""
+
+#: application/event/views/scripts/upcoming/details.phtml:113
+msgid "Please Confirm your attendance"
+msgstr ""
+
+#: application/event/views/scripts/upcoming/details.phtml:117
+msgid "Attending"
+msgstr ""
+
+#: application/forum/views/scripts/index/add.phtml:16
+msgid "Create Forum"
+msgstr ""
+
+#: application/forum/views/scripts/index/add.phtml:24
+msgid "Forum name"
+msgstr ""
+
+#: application/forum/views/scripts/index/add.phtml:50
+msgid "Create Form"
+msgstr ""
+
+#: application/forum/views/scripts/index/index.phtml:32
+msgid "You have not selected a forum"
+msgstr ""
+
+#: application/forum/views/scripts/index/index.phtml:53
+msgid "Create New Forum"
+msgstr ""
+
+#: application/forum/views/scripts/index/index.phtml:105
+msgid "Last Post"
+msgstr ""
+
+#: application/forum/views/scripts/index/index.phtml:125
+msgid "There are currently no forums"
+msgstr ""
+
+#: application/forum/views/scripts/post/add.phtml:107
+#: application/forum/views/scripts/post/index.phtml:58
+msgid "New Post"
+msgstr ""
+
+#: application/forum/views/scripts/post/add.phtml:126
+msgid "Submit post"
+msgstr ""
+
+#: application/forum/views/scripts/post/index.phtml:36
+msgid "Are you sure you want to delete this post"
+msgstr ""
+
+#: application/forum/views/scripts/post/index.phtml:68
+#: application/forum/views/scripts/topic/add.phtml:91
+msgid "Forum Topic"
+msgstr ""
+
+#: application/forum/views/scripts/post/index.phtml:102
+msgid "Back to Top"
+msgstr ""
+
+#: application/forum/views/scripts/post/index.phtml:103
+msgid "Quote"
+msgstr ""
+
+#: application/forum/views/scripts/topic/add.phtml:99
+#: application/forum/views/scripts/topic/edit.phtml:33
+msgid "Topic"
+msgstr ""
+
+#: application/forum/views/scripts/topic/add.phtml:108
+msgid "Post"
+msgstr ""
+
+#: application/forum/views/scripts/topic/add.phtml:125
+msgid "Create Topic"
+msgstr ""
+
+#: application/forum/views/scripts/topic/edit.phtml:25
+msgid "Edit Topic"
+msgstr ""
+
+#: application/forum/views/scripts/topic/list.phtml:35
+msgid "You have not selected a topic"
+msgstr ""
+
+#: application/forum/views/scripts/topic/list.phtml:55
+msgid "Create New Topic"
+msgstr ""
+
+#: application/forum/views/scripts/topic/list.phtml:89
+msgid "Started By"
+msgstr ""
+
+#: application/forum/views/scripts/topic/list.phtml:90
+msgid "Last Action"
+msgstr ""
+
+#: application/forum/views/scripts/topic/list.phtml:102
+msgid "none"
+msgstr ""
+
+#: application/forum/views/scripts/topic/list.phtml:115
+msgid "There are currently no topics in this forum"
+msgstr ""
+
+#: application/install/views/scripts/check_settings.phtml:24
+msgid "Please enable the following extensions on your php server (php.ini)"
+msgstr ""
+
+#: application/install/views/scripts/check_settings.phtml:28
+msgid "Extension"
+msgstr ""
+
+#: application/install/views/scripts/check_settings.phtml:29
+msgid "library"
+msgstr ""
+
+#: application/install/views/scripts/check_settings.phtml:30
+msgid "Status"
+msgstr ""
+
+#: application/install/views/scripts/check_settings.phtml:38
+msgid "not enabled"
+msgstr ""
+
+#: application/install/views/scripts/check_settings.phtml:43
+msgid "Remember you have to restart your web server to completely enable an extension"
+msgstr ""
+
+#: application/install/views/scripts/check_settings.phtml:46
+msgid "Click here to continue"
+msgstr ""
+
+#: application/install/views/scripts/index/index.phtml:38
+msgid "Upgrade Existing Installation"
+msgstr ""
+
+#: application/install/views/scripts/index/index.phtml:44
+msgid "New Installtion"
+msgstr ""
+
+#: application/install/views/scripts/install/general.phtml:15
+msgid "This is the email domain of your company, for example, @mycompany.com"
+msgstr ""
+
+#: application/install/views/scripts/install/live.phtml:23
+#: application/install/views/scripts/install/mail.phtml:53
+msgid "Skip"
+msgstr ""
+
+#: application/install/views/scripts/install/module.phtml:49
+msgid "Please select the modules you want. (you can always change this later)"
+msgstr ""
+
+#: application/install/views/scripts/install/module.phtml:82
+msgid "Finish"
+msgstr ""
+
+#: application/install/views/scripts/install/newuser.phtml:2
+msgid "Installation is almost complete, please register an administrator for your company intranet"
+msgstr ""
+
+#: application/install/views/scripts/install/newuser.phtml:21
+msgid "Done"
+msgstr ""
+
+#: application/news/views/scripts/partial_rss.phtml:20
+msgid "RSS feeds are still being fetched"
+msgstr ""
+
+#: application/news/views/scripts/partial_rss.phtml:21
+msgid "Please check back later"
+msgstr ""
+
+#: application/news/views/scripts/partial_rssnews.phtml:8
+msgid "share this"
+msgstr ""
+
+#: application/news/views/scripts/view/company.phtml:22
+#: application/news/views/scripts/view/details.phtml:19
+msgid "Recent News"
+msgstr ""
+
+#: application/news/views/scripts/view/company.phtml:36
+#: application/news/views/scripts/view/details.phtml:33
+msgid "Most Read News"
+msgstr ""
+
+#: application/news/views/scripts/view/company.phtml:51
+#: application/news/views/scripts/view/details.phtml:48
+msgid "Most Discussed News"
+msgstr ""
+
+#: application/news/views/scripts/view/company.phtml:91
+msgid "There is no company related news"
+msgstr ""
+
+#: application/news/views/scripts/view/details.phtml:102
+msgid "Edit this news"
+msgstr ""
+
+#: application/news/views/scripts/view/index.phtml:4
+msgid "Search News Items"
+msgstr ""
+
+#: application/news/views/scripts/view/index.phtml:36
+msgid "Company News"
+msgstr ""
+
+#: application/news/views/scripts/view/index.phtml:49
+msgid "Read More"
+msgstr ""
+
+#: application/news/views/scripts/view/index.phtml:50
+msgid "More"
+msgstr ""
+
+#: application/news/views/scripts/view/index.phtml:62
+msgid "View all"
+msgstr ""
+
+#: application/news/views/scripts/view/index.phtml:70
+msgid "There are no company news yet"
+msgstr ""
+
+#: application/news/views/scripts/view/index.phtml:71
+msgid "Please click here to add a news content"
+msgstr ""
+
+#: application/poll/views/scripts/index/index.phtml:49
+msgid "There is no active poll at this time"
+msgstr ""
+
+#: application/poll/views/scripts/index/result.phtml:7
+msgid "votes"
+msgstr ""
+
+#: application/poll/views/scripts/index/result.phtml:16
+msgid "Return to poll"
+msgstr ""
+
+#: application/poll/views/scripts/index/vote.phtml:18
+msgid "view results"
+msgstr ""
+
+#: application/report/views/scripts/content/content_tab.phtml:7
+msgid "Top Contributors"
+msgstr ""
+
+#: application/report/views/scripts/content/content_tab.phtml:9
+msgid "Activity Chart"
+msgstr ""
+
+#: application/report/views/scripts/content/top.phtml:3
+msgid "Most Searched Contents"
+msgstr ""
+
+#: application/report/views/scripts/content/user.phtml:1
+msgid "Top Content Contributors"
+msgstr ""
+
+#: application/report/views/scripts/index/index.phtml:50
+msgid "User Reports"
+msgstr ""
+
+#: application/report/views/scripts/index/index.phtml:57
+msgid "Content Reports"
+msgstr ""
+
+#: application/report/views/scripts/index/index.phtml:64
+msgid "Workflow Reports"
+msgstr ""
+
+#: application/report/views/scripts/index/index.phtml:73
+msgid "Portal Reports"
+msgstr ""
+
+#: application/report/views/scripts/index/index.phtml:80
+msgid "Search Reports"
+msgstr ""
+
+#: application/report/views/scripts/portal/module.phtml:3
+msgid "Inventory Report"
+msgstr ""
+
+#: application/report/views/scripts/portal/portal_tab.phtml:3
+msgid "Module Report"
+msgstr ""
+
+#: application/report/views/scripts/portal/portal_tab.phtml:6
+msgid "Visitors Report"
+msgstr ""
+
+#: application/report/views/scripts/portal/portal_tab.phtml:9
+msgid "Activity Report"
+msgstr ""
+
+#: application/report/views/scripts/portal/visitor.phtml:3
+msgid "Top Visitors"
+msgstr ""
+
+#: application/report/views/scripts/search/content.phtml:2
+msgid "Top Search Destination Pages"
+msgstr ""
+
+#: application/report/views/scripts/search/content.phtml:6
+msgid "Top Search Orgination Pages"
+msgstr ""
+
+#: application/report/views/scripts/search/search_tab.phtml:4
+msgid "Phrase Analysis"
+msgstr ""
+
+#: application/report/views/scripts/search/search_tab.phtml:7
+msgid "Content Analysis"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:11
+msgid "Date Registered"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:12
+msgid "User information"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:29
+msgid "Portal Activity Rank"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:31
+msgid "Group Membership"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:42
+msgid "Back to User List"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:61
+msgid "Contents Contributed"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:61
+msgid "of  total contents"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:62
+msgid "Comments contributed"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:62
+msgid "of total comments"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:63
+msgid "Events added"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:63
+msgid "of total events"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:65
+msgid "Tasks Contributed"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:65
+msgid "of  total tasks"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:66
+msgid "Contacts added"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:66
+msgid "of total contacts"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:67
+msgid "Processes in all"
+msgstr ""
+
+#: application/report/views/scripts/user/view.phtml:67
+msgid "of total processes"
+msgstr ""
+
+#: application/search/views/scripts/partial_content.phtml:37
+msgid "Read more"
+msgstr ""
+
+#: application/search/views/scripts/partial_employee.phtml:3
+msgid "Staff"
+msgstr ""
+
+#: application/search/views/scripts/partial_employee.phtml:14
+msgid "View Complete Profile"
+msgstr ""
+
+#: application/search/views/scripts/partial_employee.phtml:17
+msgid "Chat with"
+msgstr ""
+
+#: application/search/views/scripts/partial_task.phtml:12
+msgid "Assigned by"
+msgstr ""
+
+#: application/search/views/scripts/partial_task.phtml:23
+msgid "Due"
+msgstr ""
+
+#: application/search/views/scripts/index/index.phtml:13
+msgid "Your search returned"
+msgstr ""
+
+#: application/search/views/scripts/index/index.phtml:13
+msgid "results"
+msgstr ""
+
+#: application/search/views/scripts/index/index.phtml:49
+msgid "Your search returned no results."
+msgstr ""
+
+#: application/search/views/scripts/index/index.phtml:50
+msgid "Suggestions"
+msgstr ""
+
+#: application/search/views/scripts/index/index.phtml:52
+msgid "Make sure all words are spelled correctly"
+msgstr ""
+
+#: application/search/views/scripts/index/index.phtml:53
+msgid "Try different keywords"
+msgstr ""
+
+#: application/search/views/scripts/index/index.phtml:54
+msgid "Try more general keywords"
+msgstr ""
+
+#: application/task/views/scripts/index/add.phtml:4
+msgid "a new Task"
+msgstr ""
+
+#: application/task/views/scripts/index/add.phtml:19
+#: application/task/views/scripts/index/view.phtml:28
+#: application/task/views/scripts/list/all.phtml:89
+msgid "Due Date"
+msgstr ""
+
+#: application/task/views/scripts/index/add.phtml:25
+msgid "Due Time"
+msgstr ""
+
+#: application/task/views/scripts/index/add.phtml:36
+msgid "Assign to"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:131
+msgid "You cannot edit this task"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:145
+msgid "You cannot transfer this task"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:166
+msgid "You cannot delete this task"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:170
+msgid "Are you sure you want to delete this task?"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:237
+msgid "Add New Task"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:252
+#: application/task/views/scripts/list/all.phtml:27
+msgid "All Tasks"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:253
+msgid "Assigned to me"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:254
+msgid "Assigned by me"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:255
+#: application/task/views/scripts/list/all.phtml:36
+msgid "Pending Tasks"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:256
+#: application/task/views/scripts/list/all.phtml:39
+msgid "Completed Tasks"
+msgstr ""
+
+#: application/task/views/scripts/index/index.phtml:259
+msgid "Loading tasks"
+msgstr ""
+
+#: application/task/views/scripts/index/transfer.phtml:3
+#: application/task/views/scripts/index/view.phtml:102
+msgid "Transfer task"
+msgstr ""
+
+#: application/task/views/scripts/index/transfer.phtml:18
+msgid "Reason for Transfer"
+msgstr ""
+
+#: application/task/views/scripts/index/transfer.phtml:23
+msgid "Transfer to"
+msgstr ""
+
+#: application/task/views/scripts/index/transfer.phtml:32
+msgid "Transfer"
+msgstr ""
+
+#: application/task/views/scripts/index/transfer.phtml:37
+msgid "Cancel "
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:12
+msgid "You do not have access to this task"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:24
+msgid "Created"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:43
+msgid "Task Details"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:50
+#: application/task/views/scripts/list/all.phtml:83
+#: application/user/views/scripts/partial_task.phtml:13
+msgid "Assigned to"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:56
+msgid "put on hold"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:58
+msgid "Open task"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:63
+msgid "Transfer History"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:73
+msgid "From"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:74
+msgid "To"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:76
+msgid "Reason"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:94
+msgid "Mark as done"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:98
+msgid "Edit details"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:141
+msgid "Return to tasks"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:143
+msgid "Delete task"
+msgstr ""
+
+#: application/task/views/scripts/index/view.phtml:144
+msgid "Print task"
+msgstr ""
+
+#: application/task/views/scripts/list/all.phtml:30
+msgid "Tasks assigned to me"
+msgstr ""
+
+#: application/task/views/scripts/list/all.phtml:33
+msgid "Tasks assigned by me"
+msgstr ""
+
+#: application/task/views/scripts/list/all.phtml:205
+msgid "No tasks on this list"
+msgstr ""
+
+#: application/user/views/scripts/partial_task.phtml:3
+msgid "Tasks"
+msgstr ""
+
+#: application/user/views/scripts/partial_topic.phtml:6
+msgid "A new post has added to the"
+msgstr ""
+
+#: application/user/views/scripts/partial_topic.phtml:6
+msgid "Click here to view"
+msgstr ""
+
+#: application/user/views/scripts/user_pod.phtml:9
+msgid "Edit Profile"
+msgstr ""
+
+#: application/user/views/scripts/user_pod.phtml:18
+msgid "Your profile is"
+msgstr ""
+
+#: application/user/views/scripts/user_pod.phtml:18
+msgid "complete"
+msgstr ""
+
+#: application/user/views/scripts/user_pod.phtml:19
+msgid "to edit your profile"
+msgstr ""
+
+#: application/user/views/scripts/user_pod.phtml:21
+msgid "You have completed your profile"
+msgstr ""
+
+#: application/user/views/scripts/index/select.phtml:155
+msgid "Select People"
+msgstr ""
+
+#: application/user/views/scripts/index/select.phtml:164
+msgid "Start by typing a name"
+msgstr ""
+
+#: application/user/views/scripts/mypage/index.phtml:93
+msgid "Create Event"
+msgstr ""
+
+#: application/user/views/scripts/mypage/index.phtml:96
+msgid "Add Contact"
+msgstr ""
+
+#: application/user/views/scripts/mypage/index.phtml:103
+msgid "Create Task"
+msgstr ""
+
+#: application/user/views/scripts/mypage/index.phtml:110
+msgid "What are you doing?"
+msgstr ""
+
+#: application/user/views/scripts/mypage/index.phtml:124
+msgid "Update"
+msgstr ""
+
+#: application/user/views/scripts/mypage/out.phtml:4
+msgid "Use the form below to"
+msgstr ""
+
+#: application/user/views/scripts/mypage/out.phtml:5
+msgid "an 'Out of office' status"
+msgstr ""
+
+#: application/user/views/scripts/mypage/out.phtml:33
+msgid "Out of Office Message"
+msgstr ""
+
+#: application/user/views/scripts/mypage/out.phtml:40
+#: application/user/views/scripts/mypage/settings.phtml:184
+msgid "Delegate"
+msgstr ""
+
+#: application/user/views/scripts/mypage/out.phtml:40
+msgid "Duties To"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:52
+msgid "Are you sure you are back to work?"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:72
+msgid "Select your preferred language"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:122
+#: application/user/views/scripts/mypage/settings.phtml:144
+msgid "Change Password"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:129
+msgid "Current Password"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:169
+msgid "You are currently not out of office."
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:182
+msgid "Return"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:183
+msgid "Message"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:188
+msgid "Edit Details"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:192
+msgid "Am Back"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:228
+msgid "Start page pods"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:232
+msgid "Please enable the pods you want to see on the start page."
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:281
+msgid "Privacy Settings"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:286
+msgid "If you block someone, they will not be notified of your activities on the portal."
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:287
+msgid "Currently blocking"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:287
+msgid "no one"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:287
+msgid "employees"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:287
+msgid "employee"
+msgstr ""
+
+#: application/user/views/scripts/mypage/settings.phtml:307
+msgid "Click to block people"
+msgstr ""
+
+#: application/user/views/scripts/mypage/uploadphoto.phtml:53
+msgid "Add photos to your profile"
+msgstr ""
+
+#: application/user/views/scripts/mypage/uploadphoto.phtml:67
+msgid "Describe this photo"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:21
+msgid "Please take a moment to set up your account, this information will be displayed on the Intranet."
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:25
+msgid "Complete"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:34
+msgid "Personal Information"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:55
+msgid "Day"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:80
+msgid "Profile Picture"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:86
+msgid "You can upload a JPG, GIF or PNG file. This picture will be shown beside your name"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:88
+msgid "Upload Picture"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:106
+msgid "Work Information"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:120
+msgid "Job title"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:134
+#: application/user/views/scripts/profile/view.phtml:33
+#: application/user/views/scripts/profile/view.phtml:60
+msgid "My Job"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:137
+#: application/user/views/scripts/profile/view.phtml:35
+#: application/user/views/scripts/profile/view.phtml:62
+msgid "My Skills"
+msgstr ""
+
+#: application/user/views/scripts/profile/edit.phtml:154
+msgid "Update Profile"
+msgstr ""
+
+#: application/user/views/scripts/profile/photo_details.phtml:11
+msgid "Photo"
+msgstr ""
+
+#: application/user/views/scripts/profile/photo_details.phtml:11
+msgid "Back to photos"
+msgstr ""
+
+#: application/user/views/scripts/profile/photo_details.phtml:16
+msgid "Delete Photo"
+msgstr ""
+
+#: application/user/views/scripts/profile/photo_details.phtml:25
+msgid "Added"
+msgstr ""
+
+#: application/user/views/scripts/profile/profile_tabs.phtml:4
+msgid "Recent Activity"
+msgstr ""
+
+#: application/user/views/scripts/profile/profile_tabs.phtml:10
+#: application/user/views/scripts/profile/view.phtml:13
+msgid "Shared Items"
+msgstr ""
+
+#: application/user/views/scripts/profile/profile_tabs.phtml:13
+msgid "Content"
+msgstr ""
+
+#: application/user/views/scripts/profile/view.phtml:10
+msgid "Send"
+msgstr ""
+
+#: application/user/views/scripts/profile/view.phtml:10
+msgid "a Message"
+msgstr ""
+
+#: application/user/views/scripts/profile/view.phtml:12
+msgid "View Photos of"
+msgstr ""
+
+#: application/user/views/scripts/profile/view.phtml:19
+msgid "Information"
+msgstr ""
+
+#: application/user/views/scripts/profile/view.phtml:48
+msgid "My Information"
+msgstr ""
+
+#: application/visitor/views/scripts/tabs.phtml:20
+msgid "click to fetch all upcoming appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/tabs.phtml:20
+#: application/visitor/views/scripts/tabs.phtml:28
+msgid "click to fetch your past appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/tabs.phtml:20
+#: application/visitor/views/scripts/tabs.phtml:48
+msgid "Upcoming"
+msgstr ""
+
+#: application/visitor/views/scripts/tabs.phtml:28
+msgid "click to fetch all past appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/tabs.phtml:28
+#: application/visitor/views/scripts/tabs.phtml:61
+msgid "Past"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/addcontact.phtml:37
+msgid "Contact Name"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/addcontact.phtml:40
+msgid "Contact Company"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/addcontact.phtml:105
+msgid "Contact Company cannot be empty"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/addcontact.phtml:111
+msgid "Entry would be created as a new contact"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/login.phtml:4
+msgid "Check Visitor In"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/login.phtml:39
+msgid "Visitor Tag"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/login.phtml:44
+msgid "Visitor Note"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/login.phtml:54
+msgid "Check In"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/logout.phtml:4
+msgid "Check Visitor Out"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/logout.phtml:32
+msgid "Check Out"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:102
+#: application/visitor/views/scripts/appointment/register.phtml:143
+#: application/visitor/views/scripts/appointment/register.phtml:152
+#: application/visitor/views/scripts/appointment/register.phtml:167
+msgid "remove"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:136
+msgid "Both fields are required"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:142
+msgid "This entry would be created as a new contact"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:238
+msgid "back to appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:265
+msgid "Expected Date"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:271
+msgid "Expected Time"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:277
+#: application/visitor/views/scripts/appointment/view.phtml:141
+#: application/visitor/views/scripts/index/search.phtml:20
+msgid "Purpose"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:282
+#: application/visitor/views/scripts/appointment/view.phtml:142
+msgid "Purpose Detail"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:292
+msgid "Other people in the meeting"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:317
+msgid "Visitor(s)"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:330
+msgid "add"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:376
+msgid "Edit Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/register.phtml:386
+#: application/visitor/views/scripts/appointment/register.phtml:388
+#: application/visitor/views/scripts/index/index.phtml:302
+msgid "Add Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:50
+#: application/visitor/views/scripts/appointment/view.phtml:66
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:92
+msgid "Upcoming Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:96
+msgid "Past Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:100
+#: application/visitor/views/scripts/index/viewvisitor.phtml:69
+msgid "Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:115
+#: application/visitor/views/scripts/index/getsdiary.phtml:53
+#: application/visitor/views/scripts/list/appointments.phtml:114
+msgid "Appointment Date"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:119
+msgid "Appointment Time"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:140
+msgid "Creator"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:164
+msgid "present"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:165
+msgid "absent"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:178
+msgid "Other Participants"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:191
+msgid "Added on"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:216
+msgid "Add Participant"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:266
+msgid "End Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:271
+msgid "Delete Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/appointment/view.phtml:272
+msgid "Print Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/index/getsdiary.phtml:31
+#: application/visitor/views/scripts/list/appointments.phtml:34
+msgid "Upcoming Appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/index/getsdiary.phtml:101
+msgid "Staff has no upcoming appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/index/index.phtml:38
+#: application/visitor/views/scripts/index/index.phtml:338
+msgid "Appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/index/index.phtml:44
+#: application/visitor/views/scripts/index/index.phtml:344
+#: application/visitor/views/scripts/index/viewsdiary.phtml:9
+msgid "Staff Diary"
+msgstr ""
+
+#: application/visitor/views/scripts/index/index.phtml:47
+#: application/visitor/views/scripts/index/index.phtml:348
+#: application/visitor/views/scripts/list/telmessages.phtml:51
+msgid "Telephone Messages"
+msgstr ""
+
+#: application/visitor/views/scripts/index/index.phtml:50
+#: application/visitor/views/scripts/index/index.phtml:343
+msgid "Who's In"
+msgstr ""
+
+#: application/visitor/views/scripts/index/index.phtml:312
+msgid "Log Telephone Message"
+msgstr ""
+
+#: application/visitor/views/scripts/index/index.phtml:324
+msgid "Select Receptionist"
+msgstr ""
+
+#: application/visitor/views/scripts/index/index.phtml:352
+msgid "Loading"
+msgstr ""
+
+#: application/visitor/views/scripts/index/logout.phtml:4
+msgid "Log Visitor Out"
+msgstr ""
+
+#: application/visitor/views/scripts/index/logout.phtml:32
+msgid "LogOut"
+msgstr ""
+
+#: application/visitor/views/scripts/index/search.phtml:25
+msgid "Start Day"
+msgstr ""
+
+#: application/visitor/views/scripts/index/search.phtml:32
+msgid "Start Time"
+msgstr ""
+
+#: application/visitor/views/scripts/index/search.phtml:39
+msgid "End Day"
+msgstr ""
+
+#: application/visitor/views/scripts/index/search.phtml:46
+msgid "End Time"
+msgstr ""
+
+#: application/visitor/views/scripts/index/searchresult.phtml:76
+#: application/visitor/views/scripts/list/visitor.phtml:89
+msgid "Visitor's Name"
+msgstr ""
+
+#: application/visitor/views/scripts/index/searchresult.phtml:83
+msgid "To see"
+msgstr ""
+
+#: application/visitor/views/scripts/index/searchresult.phtml:139
+msgid "Your searched matched no result"
+msgstr ""
+
+#: application/visitor/views/scripts/index/viewsdiary.phtml:16
+msgid "Select Staff"
+msgstr ""
+
+#: application/visitor/views/scripts/index/viewsdiary.phtml:31
+msgid "Go"
+msgstr ""
+
+#: application/visitor/views/scripts/index/viewvisitor.phtml:25
+msgid "Visitor Details"
+msgstr ""
+
+#: application/visitor/views/scripts/index/viewvisitor.phtml:39
+msgid "Book another appointment with this visitor"
+msgstr ""
+
+#: application/visitor/views/scripts/index/viewvisitor.phtml:41
+msgid "Book Appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/index/viewvisitor.phtml:45
+msgid "Delete Visitor"
+msgstr ""
+
+#: application/visitor/views/scripts/index/viewvisitor.phtml:50
+msgid "Previous Visits"
+msgstr ""
+
+#: application/visitor/views/scripts/list/appointments.phtml:35
+msgid "You have no upcoming appointment"
+msgstr ""
+
+#: application/visitor/views/scripts/list/appointments.phtml:35
+msgid "There are no upcoming appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/list/appointments.phtml:39
+msgid "Past Appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/list/appointments.phtml:40
+msgid "You have not had any appointment in the past"
+msgstr ""
+
+#: application/visitor/views/scripts/list/appointments.phtml:40
+msgid "There are no past appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/list/appointments.phtml:44
+msgid "Today's Appointments"
+msgstr ""
+
+#: application/visitor/views/scripts/list/appointments.phtml:45
+msgid "No appointment has been scheduled for today"
+msgstr ""
+
+#: application/visitor/views/scripts/list/appointments.phtml:68
+#: application/visitor/views/scripts/list/appointments.phtml:75
+msgid "Yours"
+msgstr ""
+
+#: application/visitor/views/scripts/list/telmessages.phtml:85
+msgid "Contact's Name"
+msgstr ""
+
+#: application/visitor/views/scripts/list/telmessages.phtml:93
+#: application/visitor/views/scripts/list/whoisin.phtml:90
+msgid "For"
+msgstr ""
+
+#: application/visitor/views/scripts/list/telmessages.phtml:104
+msgid "Date Logged"
+msgstr ""
+
+#: application/visitor/views/scripts/list/telmessages.phtml:257
+msgid "You have no telephone messages"
+msgstr ""
+
+#: application/visitor/views/scripts/list/visitor.phtml:122
+msgid "view history"
+msgstr ""
+
+#: application/visitor/views/scripts/list/visitor.phtml:243
+msgid "You have no visitor records"
+msgstr ""
+
+#: application/visitor/views/scripts/list/whoisin.phtml:91
+msgid "With"
+msgstr ""
+
+#: application/visitor/views/scripts/list/whoisin.phtml:215
+msgid "There are currently no visitors in the premises"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/register.phtml:105
+#: application/visitor/views/scripts/telephone/view.phtml:19
+msgid "Telephone Message"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/register.phtml:109
+msgid "back to Telephone Messages"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/register.phtml:116
+msgid "Message For"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/register.phtml:118
+msgid "select"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/register.phtml:142
+msgid "Log Date"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/register.phtml:148
+msgid "Log Time"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/view.phtml:31
+msgid "Day Logged"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/view.phtml:35
+msgid "Time Logged"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/view.phtml:50
+msgid "Message Details"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/view.phtml:55
+msgid "Logged By"
+msgstr ""
+
+#: application/visitor/views/scripts/telephone/view.phtml:56
+msgid "Logged For"
+msgstr ""
+
+#: application/widget/views/scripts/configure.phtml:6
+msgid "Widget Settings for "
+msgstr ""
+
+#: application/widget/views/scripts/configure.phtml:16
+msgid "Top"
+msgstr ""
+
+#: application/widget/views/scripts/configure.phtml:17
+msgid "Bottom"
+msgstr ""
+
+#: application/widget/views/scripts/configure.phtml:18
+msgid "Left"
+msgstr ""
+
+#: application/widget/views/scripts/configure.phtml:19
+msgid "Right"
+msgstr ""
+
+#: application/widget/views/scripts/configure.phtml:20
+msgid "Side"
+msgstr ""
+
+#: application/widget/views/scripts/configure.phtml:25
+msgid "Order"
+msgstr ""
+
+#: application/widget/views/scripts/ads/index.phtml:10
+msgid "There are no adverts at this time"
+msgstr ""
+
+#: application/widget/views/scripts/featured-article/index.phtml:8
+msgid "No featured article has been set."
+msgstr ""
+
+#: application/widget/views/scripts/featured-employee/index.phtml:14
+msgid "Total Number of Contents"
+msgstr ""
+
+#: application/widget/views/scripts/featured-employee/index.phtml:15
+msgid "Total Number of Comments"
+msgstr ""
+
+#: application/widget/views/scripts/featured-employee/index.phtml:20
+#: application/widget/views/scripts/featured-employee/index.phtml:32
+msgid "Most active member on the portal"
+msgstr ""
+
+#: application/widget/views/scripts/featured-employee/index.phtml:24
+msgid "2nd Most active member on the portal"
+msgstr ""
+
+#: application/widget/views/scripts/featured-employee/index.phtml:28
+msgid "3rd Most active member on the portal"
+msgstr ""
+
+#: application/widget/views/scripts/featured-employee/index.phtml:36
+msgid "Responsible for"
+msgstr ""
+
+#: application/widget/views/scripts/featured-employee/index.phtml:36
+msgid "of total portal activity"
+msgstr ""
+
+#: application/widget/views/scripts/featured-employee/index.phtml:39
+msgid "There is no featured member at this time"
+msgstr ""
+
+#: application/widget/views/scripts/link/index.phtml:3
+msgid "No available company links"
+msgstr ""
+
+#: application/widget/views/scripts/reminder/index.phtml:17
+msgid "Out Of Office"
+msgstr ""
+
+#: application/workflow/views/scripts/rightframe.phtml:16
+msgid "Create New Request"
+msgstr ""
+
+#: application/workflow/views/scripts/rightframe.phtml:24
+msgid "You have not been given access to any workflow"
+msgstr ""
+
+#: application/workflow/views/scripts/process/reject.phtml:8
+msgid "Reason for disapproval"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:53
+msgid "Don't show completed"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:53
+msgid "Show Completed"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:62
+msgid "Waiting for my approval"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:70
+msgid "There are currently no approvals that require your attention"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:75
+#: application/workflow/views/scripts/user/index.phtml:121
+msgid "ID"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:76
+#: application/workflow/views/scripts/user/index.phtml:122
+msgid "Form"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:79
+msgid "Requested By"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:107
+msgid "My Requests"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:116
+msgid "You have no pending requests"
+msgstr ""
+
+#: application/workflow/views/scripts/user/index.phtml:125
+msgid "Next Approver"
+msgstr ""
+

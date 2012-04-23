@@ -1,0 +1,61 @@
+<?php
+/**
+ * Default Layout
+ *  
+ * @author Klein Devort
+ * @version 2
+ */
+echo '<?xml version="1.0" encoding="UTF-8" ?>';
+echo $this->doctype();
+?>
+<html>
+
+  <?php require_once('header.phtml'); ?>
+  <!-- Container -->
+  <div id="container">
+  	
+  	
+	<div id="app_bar">
+		<div class="box_D rounded">
+			<div >
+				<?php //require_once('nav.phtml'); ?>
+				<div class="box_head">
+					<h1><?php $module_name = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+					try{
+					$module = new Precurio_Module($module_name);
+					$module_label = $module->getShortTitle();
+					}catch (Exception $e){
+						if(Zend_Controller_Front::getInstance()->getRequest()->getControllerName() == 'error')			
+							$module_label = "Error";
+						if($module_name == 'user' && Zend_Controller_Front::getInstance()->getRequest()->getControllerName() == 'mypage')
+						{
+							$module_label = $user->getFirstName()."'s Page";
+						}
+						else
+						{
+							$module_label = '&nbsp;';
+						}
+					}
+					echo $this->translate($module_label); ?></h1>
+				</div>
+				<div id="navHolder">
+			<?php require_once('nav.phtml'); ?>
+		</div>
+				<div class="appPad">
+					<?php echo $this->layout()->content ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Left Bar -->
+	<div id="left_bar">
+  		<?php require_once('sidebar_a.phtml'); ?>
+  	</div>
+  	<!-- End Left Bar -->
+	
+
+  </div><!-- End Container -->
+<?php require_once 'footer.phtml';?>
+
+</html>

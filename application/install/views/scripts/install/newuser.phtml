@@ -1,0 +1,33 @@
+<form action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+	<h4 align="center"><?php echo $this->translate("Installation is almost complete, please register an administrator for your company intranet");?></h4>
+	<p>
+		<?php echo $this->form->first_name; ?>
+	</p>
+	<p>
+		<?php echo $this->form->last_name; ?>
+	</p>
+	</br>
+    <p>
+		<?php echo $this->form->email; ?>
+	</p>
+	<p>
+		<?php echo $this->form->password; ?>
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+	            
+	            <button type="submit" class="positive">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	              <?php echo $this->translate("Done");?>
+	            </button>
+            </div>
+	</p>
+	
+	<p class="topMargin"><label >&nbsp;</label>
+		    	<a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/module">
+	                
+	              &laquo; <?php echo $this->translate("Back");?>  
+	            </a>
+			
+				</p>
+</form>

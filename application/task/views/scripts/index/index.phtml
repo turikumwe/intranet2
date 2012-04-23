@@ -1,0 +1,276 @@
+<?php 
+
+require_once('task/models/Tasks.php'); 
+require_once('task/models/vo/Task.php'); 
+?>
+<script type="text/javascript">
+$(document).ready(function() {
+	//load "All tasks" as default
+	<?php
+	if(isset($this->id))
+		echo "var page = '{$this->baseUrl()}/task/index/view/id/".$this->id."/type/".$this->type."';";
+	else
+		echo "var page = '{$this->baseUrl()}/task/list/all/type/".$this->type."';";
+	
+	?>
+	$("#loading").show();
+		loadTasks(page);
+						   
+    // click on the menu						   
+	$('#tasks_a a').click(function() {
+		$(this).css('outline','none');
+		$('#tasks_a .selected').removeClass('selected');
+	
+		$(this).addClass('selected');
+		
+		var page  = "<?php echo $this->baseUrl();?>/task/list/all/type/" + $(this).attr("rel");
+	
+		$("#loading").show();
+	//	$("#contacts_b").hide('slow');
+		loadTasks(page);
+     	
+		
+		
+	
+		return false;
+		
+		
+		
+	});
+	//click on the return button
+	$('#tasks_return').live('click', function()  {
+		
+		var page  = "<?php echo $this->baseUrl();?>/task/list/all/type/" + $('#tasks_a .selected').attr("rel");
+	
+		$("#loading").show();
+	//	$("#contacts_b").hide('slow');
+		loadTasks(page);
+     	
+		
+		
+	
+		return false;
+		
+		
+		
+	});
+	//click on a page
+	
+	$('#pager a').live('click', function()  {
+		$(this).css('outline','none');
+		
+		//alert ("test");
+		
+		var page  = "<?php echo $this->baseUrl();?>/task/list/all/type/" + $(this).attr("id") + "/page/" + $(this).attr("rel");
+	
+		$("#loading").show();
+	//	$("#contacts_b").hide('slow');
+		loadTasks(page);
+     	
+		
+		
+	
+		return false;
+		
+		
+		
+	});
+
+	// click on the task			   
+	$('.taskLine').live('click', function() {
+		
+	    page =  '<?php echo $this->baseUrl();?>/task/index/view/id/' + ($(this).attr("id"))+ '/type/' + $(this).attr("tag");
+		
+		$("#loading").show();
+		
+		loadTasks(page);
+	
+		return false;
+	});
+
+	//handle clicking on add
+	$('#addTask').live('click', function()  {
+		
+		//alert ($("#addForm").serialize());
+		$.post("<?php echo $this->baseUrl();?>/task/index/submit", $("#addForm").serialize(),
+  function(data){
+    alert(data);
+    location.reload();
+  }, "text");
+
+	
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});
+	//handle clicking on submit add
+	$('#submitTransfer').live('click', function()  {
+		
+		//alert ($("#addForm").serialize());
+		$.post("<?php echo $this->baseUrl();?>/task/index/submittransfer", $("#transferForm").serialize(),
+  function(data){
+    alert(data);
+  }, "text");
+
+	
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});
+
+	//edit
+	$('#editTask').live('click', function()  {
+
+		tag = $(this).attr("tag");   
+		if(!tag)
+		{
+			alert("<?php echo $this->translate("You cannot edit this task");?>");
+			return false;	
+		}
+		url = $(this).attr("href") ;
+		jQuery.facebox({ ajax: url });
+		return false;
+	});
+
+	//transfer
+	$('#transferTask').live('click', function()  {
+
+		tag = $(this).attr("tag");   
+		if(!tag)
+		{
+			alert("<?php echo $this->translate("You cannot transfer this task");?>");
+			return false;	
+		}
+		url = $(this).attr("href") ;
+		jQuery.facebox({ ajax: url });
+		return false;
+	});
+
+	//view content details
+	$('.contentTask').live('click', function()  {
+		url = $(this).attr("href") ;
+		jQuery.facebox({ ajax: url });
+		return false;
+	});
+
+	//handle clicking on delete
+	$('#deleteTask').live('click', function()  {
+		
+		tag = $(this).attr("tag");   
+		if(!tag)
+		{
+			alert("<?php echo $this->translate("You cannot delete this task");?>");
+			return false;	
+		}
+
+         if (confirm('<?php echo $this->translate("Are you sure you want to delete this task?");?>'))
+		 {
+			$.post("<?php echo $this->baseUrl();?>/task/index/delete/", {id:$(this).attr("rel") },
+			  function(data){
+				alert(data);
+			  }, "text");
+
+		loadTasks("<?php echo $this->baseUrl();?>/task/list/all/type/" + <?php echo '"'. Tasks::TYPE_BY . '"' ; ?>  + "/page/1");
+		jQuery(document).trigger('close.facebox');
+		location.reload();
+		
+		}
+		return false;
+		
+		
+		
+	});
+	//handle clicking on download
+	$('#downloadTasks').live('click', function()  {
+		
+		
+			$.post("<?php echo $this->baseUrl();?>/task/index/download/", {id:$(this).attr("rel") },
+			  function(data){
+				alert(data);
+			  }, "text");
+
+				
+		
+		return false;
+		
+		
+		
+	});
+});
+function changeStatus(event,id,status,type)
+{
+	$.post("<?php echo $this->baseUrl();?>/task/index/status/", {'id':id,'s':status},
+	  function(data){
+		//alert(data);
+	  }, "text");
+
+	page =  '<?php echo $this->baseUrl();?>/task/index/view/id/' + id + '/type/' + type;
+	$("#loading").show();
+	loadTasks(page);
+	event.preventDefault();
+	return false;
+}
+function loadTasks (page)
+{
+	$("#taskDiv").load(page,{} , function()
+	{
+			$("#loading").hide();
+			//alert("loaded");
+  			//$("#contactsDiv").show();
+	}); 
+}
+</script>
+<?php 
+$var = new Tasks();
+?>
+<div id="taskHolder" >
+	
+    <div class="leftside">
+    
+    <div class="buttons">
+		<a href="<?php echo $this->baseUrl();?>/task/index/add" rel="facebox[]" class="positive">
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/> 
+        	<?php echo $this->translate('Add New Task');?>
+    	</a>
+	</div>
+    
+    </div>
+    <div class="rightside">
+<!-- 	<form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    </form>-->
+    </div>
+ </div>
+ <div id="tasks_main">
+ 
+ 	 <div id="tasks_a">
+         
+            <a href="#" rel="<?php echo Tasks::TYPE_ALL;?>" class="selected" ><?php echo $this->translate('All Tasks');?> <span class="rightside"> [<?php echo $var->getCount(Tasks::TYPE_ALL) ?>]</span></a>
+              <a href="#"  rel="<?php echo Tasks::TYPE_TO;?>" ><?php echo $this->translate('Assigned to me');?> <span class="rightside"> [<?php echo $var->getCount(Tasks::TYPE_TO) ?>] </span></a>	   
+              <a href="#"  rel="<?php echo Tasks::TYPE_BY;?>" ><?php echo $this->translate('Assigned by me');?> <span class="rightside"> [<?php echo $var->getCount(Tasks::TYPE_BY) ?>] </span></a>	
+            <a href="#"  rel="<?php echo Tasks::TYPE_PENDING;?>" ><?php echo $this->translate('Pending Tasks');?>  <span class="rightside"> [<?php echo $var->getCount(Tasks::TYPE_PENDING) ?>] </span></a>
+            <a href="#" rel="<?php echo Tasks::TYPE_COMPLETE;?>" ><?php echo $this->translate('Completed Tasks');?> <span class="rightside"> [<?php echo $var->getCount(Tasks::TYPE_COMPLETE) ?>] </span></a>
+          <div id="loading" ><br /><br />
+                    
+                    <?php echo $this->translate("Loading tasks");?>
+            </div> 
+     </div>
+         
+	 <div id="tasks_b">
+         <div class="contentPad" >
+                
+                <div id="taskDiv">
+                    <div id="task_body">
+                        <div class="contentPad">
+                            
+                        </div>
+                    </div>
+               	</div>
+            </div>
+	 </div>
+      
+ </div>

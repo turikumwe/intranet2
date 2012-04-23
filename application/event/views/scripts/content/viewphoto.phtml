@@ -1,0 +1,108 @@
+<div id="holder" >
+	
+    <div class="rightside">
+ 	<form>
+    	<input type="text" id="searchText"  class="searchBox"/>
+    </form>
+    </div>
+ </div>
+
+<?php $selected = $this->page; ?>
+<div  id="tab" class="appTabs">
+<?php require_once('event/views/scripts/tabs.phtml'); require_once 'user/models/UserUtil.php';?>
+  <div class="completeText" id="application_controlBar">
+ 	<a href="<?php echo $this->baseUrl();?>/event/<?php echo $selected;?>/details/e_id/<?php echo $this->event->getId();?>">go back to <?php echo $this->event->getTitle(); ?> events   </a></div>
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad">
+		<img src="<?php echo $this->event->logo;?>"  /><br/>
+      <span class="maroon_text"><strong>Confirmed Guests</strong></span><br />
+      <?php 
+      foreach($this->event->getUsersAttending() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/>
+       <span class="maroon_text"><strong>Not Sure</strong></span><br />
+      <?php 
+      foreach($this->event->getUsersNotSure() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/>
+       <span class="maroon_text"><strong>Not Attending</strong></span><br />
+      <?php 
+      foreach($this->event->getUsersNotAttending() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/>
+
+    </div>
+  </div>
+	<div id="app_main">
+ <?php 
+ 	$res = $this->photoDetails;
+	
+ 	$photo = $res->photo;
+ 	$pos = $res->position;
+ 	$total = $res->total;
+ 		
+ ?>
+ <div id="profilePhotoPaging">
+     	<div class="leftside">
+       	  <span class="text">Photo <?php echo $pos; ?> of <?php echo $total; ?> <a href="<?php echo $this->baseUrl();?>/event/content/photos/id/<?php echo $this->event->getId();?>">Back to photos </a></span>        </div>
+     	<div  class="rightside">
+    	  <a href="<?php echo $this->baseUrl();?>/event/content/viewphoto/e_id/<?php echo ($this->event->getId()); ?>/pos/<?php echo ($pos-1); ?>">Previous</a> | <a href="<?php echo $this->baseUrl();?>/event/content/viewphoto/e_id/<?php echo ($this->event->getId()); ?>/pos/<?php echo ($pos+1); ?>">Next </a></div>
+    </div>
+<div id="galleryHolder">
+  <a href="#"><img alt="<?php echo ($photo->getTitle()); ?>" src="<?php echo $photo->getImagePath(Content::IMAGE_LARGE); ?>" /></a>                 <br />
+    <div id="profilePhotoPaging">
+     	<div class="leftside">
+       	   Added: <span class="textLinks"><?php echo ($photo->getSinceWhen());?></span>
+          </div>
+     	<div  class="rightside">
+          
+           </div>
+    </div>
+</div>
+
+<span class="maroon_text">Comments    </span>
+<div id="<?php echo ('comment'.$photo->getId());?>"  class="photoComment"> 
+	<?php 
+		$this->partialLoop()->setObjectKey('comment');
+		echo $this->partialLoop('partial_comment.phtml',$photo->getComments());
+	?>
+	  
+</div>
+
+  <div  class="photoComment">
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($photo->getId().','.$this->userView()->currentUser()->getId().',1' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$photo->getId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($photo->getId()) ?>)"> Write something</textarea>
+    	  <input type="submit" value="Comment" />
+        </div>
+  	</form>
+  </div>
+<br />
+         <div class="buttons" align="right">        
+          <a href="<?php echo $this->baseUrl();?>/user/index/select"  rel="facebox">
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/share_this.png" /> Share this content</a>
+         </div>   
+          
+
+ 	</div>
+  <br style="clear:both"/>		
+</div>        
+<script>
+	$(document).ready(function(){
+		$('.searchBox').autofill({
+			value: 'Search Within Events'
+		});
+	});
+</script>
+
+ 

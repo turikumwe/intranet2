@@ -1,0 +1,15 @@
+ <?php require_once('dock.phtml'); ?>
+<div id="footer">
+<!--	(C) 2009. Klein Devort. All Rights Reserved.-->
+</div>
+	<?php 
+	    echo $this->headScript();
+    ?>
+
+</body>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/others/midnight.js"></script>
+<script type="text/javascript">
+$('.header_search').autofill({
+	value: '<?php echo $this->translate('Search  the intranet');?>'
+});
+</script>

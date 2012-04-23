@@ -1,0 +1,27 @@
+<div class="dashboardLine">
+        	<div class="dashboardModule">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle();?>/images/icons/tasks.png"  /><a href="#"><?php echo $this->translate("Tasks");?>         </a>
+             </div>
+             <div class="dashboardContent">
+             					 
+            <div id="task_info">
+                 <div class="task_title <?php if($this->model->isDue())echo 'taskDue';?>">
+                      <span><a href="<?php echo $this->baseUrl();?>/task/index/index/id/<?php echo $this->model->id;?>"><?php echo ($this->model->title); ?></a></span>
+                 </div>
+                                                                              
+                <?php if($this->model->isMine()):?>
+                         <p><em><?php echo $this->translate("Assigned to");?>: </em><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($this->model->user_id); ?>"> <?php echo ($this->model->getTaskUserName()); ?></a></p>
+                         <?php else:?>    
+                        	<p> <em><?php echo $this->translate("Assigned by");?>: </em><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($this->model->creator_user_id); ?>"> <?php echo ($this->model->getTaskCreatorName()); ?></a></p> 
+                        <?php endif;?>   
+                     <p>
+                     	<em><?php echo $this->translate("Status");?>:</em> <span class="statusText"> <?php echo ($this->model->getStatusStr()); ?></span>
+                      </p>
+			</div>                                    
+                                         
+            <div id="task_due">
+                 <em><?php echo $this->translate("Due");?>:  </em><?php echo ($this->model->getDueDate()); ?> <br />     
+            </div>     
+                                              
+             </div>
+        </div>

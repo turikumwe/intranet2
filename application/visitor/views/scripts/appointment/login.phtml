@@ -1,0 +1,74 @@
+
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"> <?php echo $this->translate('Check Visitor In'); ?> (<?php echo $this->visitors_name; ?>)</div>
+           <div id="titleBtns">
+             
+                <a href="#" class=""  onclick=" jQuery(document).trigger('close.facebox');"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_close.jpg"   /></a> 
+            </div>
+       	               
+    </div>       
+    <div  id="windowContent">
+ 		
+<div  id="form">
+<form method="post" action="#" id="loginVisitorForm"  name="registerForm">
+		
+	<?php echo $this->form->v_id; ?>
+	
+		    
+    <p><label for="in_hour" > <?php echo $this->translate('Time In') ?></label>
+		<?php echo $this->form->timein_hour; ?> : 
+		<?php echo $this->form->timein_minute; ?>
+		<?php echo $this->translate('24hrs format'); ?>
+	</p>
+	
+	<p><label for="dob_month" > <?php echo $this->translate('Birth Date') ?></label>
+		<?php echo $this->form->dob_month; ?>
+		<?php echo $this->form->dob_day; ?>
+		<?php echo $this->form->dob_year; ?>
+	</p>
+	
+	<p><label for="emergency_contact" > <?php echo $this->translate('Emergency Contact') ?></label>
+		<?php echo $this->form->emergency_contact; ?> 
+	</p>
+	
+	<p><label for="car_reg_num" > <?php echo $this->translate('Car Number') ?></label>
+		<?php echo $this->form->car_reg_number; ?> 
+	</p>
+	
+	<p><label for="car_reg_num" > <?php echo $this->translate('Visitor Tag') ?></label>
+		<?php echo $this->form->visitor_tag; ?> 
+	</p>
+    
+    
+	<p><label for="car_reg_num" > <?php echo $this->translate('Visitor Note') ?> </label>
+		<?php echo $this->form->visitor_note; ?> 
+	</p>
+    
+	
+    
+     <p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+             <button type="submit" class="positive" id="login" tag="<?php echo $appointment_id; ?> >
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+              <?php echo $this->translate('Check In') ?>
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate('Cancel') ?>
+            </button>
+            </div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>

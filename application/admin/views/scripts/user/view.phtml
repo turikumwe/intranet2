@@ -1,0 +1,124 @@
+	<?php 
+	$user = $this->user;
+	
+	
+	?>
+	
+		    <div id="form">
+			<form id="addForm" name="addForm" action="<?php echo $this->baseUrl();?>/admin/user/submit" method="post">
+			<input type="hidden" id="id" name="id" value="<?php echo $user->getId();?>" />
+				<table  border="0" cellpadding="0" cellspacing="0" >
+				  <tr>
+				  	<td width="30%" colspan="1" rowspan="5"><input type="image" name="image_path" src="<?php echo $this->baseUrl().$user->getProfilePicture(); ?>"/></td>
+					
+					<td width="26%"><p><label for="first_name"><?php echo $this->translate("First Name");?></label> </p></td>
+					<td width="24%"><input type="text" id="first_name" name="first_name" value="<?php echo $user->getFirstName();?>" /></td>
+				  </tr>
+				  <tr>
+					
+					<td width="26%"><p><label for="last_name"><?php echo $this->translate("Last Name");?> </label></p></td>
+					<td width="24%"><input type="text" id="last_name" name="last_name" value="<?php echo $user->getLastName();?>"/></td>
+					<td>&nbsp;</td>
+				  </tr>
+				  <tr>
+					
+					<td><p><label for="job_title"><?php echo $this->translate("Job Title");?> </label></p></td>
+					<td><input type="text" id="job_title" name="job_title" value="<?php echo $user->getJobTitle();?>"/></td>
+					<td>&nbsp;</td>
+				  </tr>
+				   <tr>
+					
+					<td><p><label for="gender"><?php echo $this->translate("Gender");?></label></p></td>
+					<td>
+					<select name="gender" id="gender" >
+		               <option value='<?php echo $this->translate("Male");?>' <?php echo (($user->getGender() == $this->translate('Male') ? ' selected="selected"' : ' ' )) ?>><?php echo $this->translate("Male");?></option>
+		               <option value='<?php echo $this->translate("Female");?>' <?php echo (($user->getGender() == $this->translate('Female') ? ' selected="selected"' : ' ' )) ?>><?php echo $this->translate("Female");?></option>
+		             </select></td>
+					<td>&nbsp;</td>
+				  </tr>
+				  <tr>
+					
+					<td><p><label for="birthday"><?php echo $this->translate("Birthday");?></label></p></td>
+					<td><input name="birthday" type="text" id="birthday" value="<?php echo $user->getDOB();?>" /></td>
+					<td>&nbsp;</td>
+				  </tr>
+				 <tr>
+						<td>&nbsp;</td>
+					
+						<td><p><label for="work_phone"><?php echo $this->translate("Work Phone");?> </label></p></td>
+					 	<td><input type="text" id="work_phone" name="work_phone" value="<?php echo $user->getWorkPhone();?>"/></td>
+				  </tr>
+				  <tr>
+				  		<td>&nbsp;</td>
+						<td><p><label for="mobile_phone"><?php echo $this->translate("Mobile Phone");?></label></p> </td>
+						<td><input type="text" id="mobile_phone"  name="mobile_phone" value="<?php echo $user->getMobilePhone();?>" /></td>
+				  </tr>
+				   <tr>
+				  		<td>&nbsp;</td>
+						<td><p><label for="location_id"><?php echo $this->translate("Location");?></label></p></td>
+						<td><select name="location_id" id="location_id" >
+			               <option value='0'><?php echo $this->translate("Please Select");?></option>
+			               <?php echo $this->userView()->getLocations($user['location_id'],false);?>
+			             </select></td>				  
+			      </tr>
+				  <tr>
+					<td>&nbsp;</td>
+					
+					<td><p><label for="department_id"><?php echo $this->translate("Department");?></label><p></td>
+					<td><select name="department_id" id="department_id" >
+			               <option value='0'><?php echo $this->translate("Please Select");?></option>
+			               <?php echo $this->userView()->getDepartments($user['department_id'],false);?>
+			             </select>		</td>
+				  </tr>
+				  <tr>
+						<td>&nbsp;</td>
+					
+						<td><p><label for="email"><?php echo $this->translate("Email");?></label></p> </td>
+						<td><input type="text" id="email"  name="email" value="<?php echo $user->email;?>" /></td>
+				  </tr>
+				  <tr>
+				  	<td>&nbsp;</td>
+				  	<td><p><label for="active"><?php echo $this->translate("Active");?></label><p></td>
+					<td><input type="checkbox" id="active" name="active" value="1" <?php if($user->active)echo 'checked="checked"';?>/></td>
+				  </tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				
+				<?php if(isset($this->edtop)):?>
+				<tr>
+				  	<td>&nbsp;</td>
+					  
+			        <?php if(!$user->out_of_office):?>
+					<td>	
+						<div class="buttons">
+							<a class="mild" href="<?php echo $this->baseUrl();?>/user/mypage/out/u_id/<?php echo $user->user_id; ?>/a/1"  rel="facebox" >
+							<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/clock_go.png" alt="" />
+								 <?php echo $this->translate("Set out of office");?>
+							</a>
+			            </div>
+		            </td>
+					<?php endif;?>	
+		            <td colspan="3">
+					    <div class="buttons">
+				             <button type="submit" class="positive">
+				             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt="" />
+				               <?php echo $this->translate("Submit");?>
+				            </button>
+				            <?php if(Bootstrap::usesDatabase()):?>	
+				            <a class="negative" href="<?php echo $this->baseUrl();?>/admin/user/reset/u_id/<?php echo $user->user_id; ?>"  rel="facebox" >
+								<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" alt="" />
+									 <?php echo $this->translate("Reset Password");?>
+								</a>
+							<?php endif;?>
+				          </div>
+				       </td>
+				  </tr>
+				<?php endif;?>
+				</table>
+				
+			</form>
+			</div>
+	

@@ -1,0 +1,52 @@
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Transfer task");?></div>
+           <div id="titleBtns">
+             
+                <a href="#" class=""  onclick=" jQuery(document).trigger('close.facebox');"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_close.jpg"   /></a> 
+            </div>
+       	               
+    </div>       
+    <div  id="windowContent">
+ 		
+<div  id="form">
+<form method="post" action="#" id="transferForm"  name="transferForm">
+	<?php echo $this->form->task_id; ?>
+	
+    
+    
+    <p><label for="reason" ><?php echo $this->translate("Reason for Transfer");?></label>
+    
+    	<?php echo $this->form->reason; ?>
+	</p>
+    
+      <p><label for="user_id" ><?php echo $this->translate("Transfer to");?>: </label>
+		<?php echo $this->form->to_user_id; ?>
+	</p>
+    
+    
+     <p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+             <button type="submit" class="positive" id="submitTransfer">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+             <?php echo $this->translate("Transfer");?>
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate("Cancel ");?>
+            </button>
+            </div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>

@@ -1,0 +1,40 @@
+<?php 
+require_once ('user/models/UserUtil.php');
+
+$userFn = new UserUtil();
+	$user = $userFn->getFeaturedUser();
+	if($user !== null):
+?>
+<span class="listLine contentPad_5">
+    <img src="<?php echo $this->baseUrl().Precurio_Image::getPath($user->getProfilePicture(),Precurio_Image::IMAGE_ICON);?>" width="50" height="50" />
+    <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $user->getId();?>" class="nameText"><?php echo $user->getFullName();?> </a><br />
+    </span>
+	&nbsp;<?php echo $user->getJobTitle();?> (<?php echo $user->getLocation();?>)<br/>
+<span class="textLinks" style="font-size: 12px;">    
+    <?php echo $this->translate("Total Number of Contents");?> : <?php echo $user->getNumOfContents();?> <br/>
+    <?php echo $this->translate("Total Number of Comments");?> : <?php echo $user->getNumOfComments();?> <br/>&emsp;&emsp;&emsp;&emsp;&nbsp;
+    <?php 
+    $pos = $user->getActivityPosition();
+    if($pos == 1)
+    {
+    	echo $this->translate('Most active member on the portal').'<br/>&emsp;&emsp;&emsp;&emsp;&nbsp;';
+    }
+    else if($pos == 2)
+    {
+    	echo $this->translate('2nd Most active member on the portal').'<br/>&emsp;&emsp;&emsp;&emsp;&nbsp;';
+    }
+    else if($pos == 3)
+    {
+    	echo $this->translate('3rd Most active member on the portal').'<br/>&emsp;&emsp;&emsp;&emsp;&nbsp;';
+    }
+    else if($pos <= 20 && $pos > 3)
+    {
+    	echo $pos.'th '.$this->translate('Most active member on the portal').'<br/>&emsp;&emsp;&emsp;&emsp;&nbsp;';
+    }
+    ?><!--
+    
+    <?php echo $this->translate("Responsible for");?> <b><?php  echo $user->getPercentageActivity();?>%</b> <?php echo $this->translate("of total portal activity");?><br/>
+ --></span>
+ <?php else:?>
+ <div id="noRecords"><?php echo $this->translate("There is no featured member at this time");?>.</div>
+ <?php endif;?>

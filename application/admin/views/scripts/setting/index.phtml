@@ -1,0 +1,10 @@
+<div  id="tab" class="appTabs">
+<?php $selected = $this->page;?>
+	<div class="completeText" >
+		<?php require_once('setting_tabs.phtml'); ?>
+		<br />
+	 </div>
+	 <div id="form">
+	 <?php require_once($selected .'.phtml'); ?> 
+	 </div>
+ </div>             

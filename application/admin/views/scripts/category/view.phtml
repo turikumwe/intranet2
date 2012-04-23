@@ -1,0 +1,107 @@
+<?php 
+$baseUrl = Zend_Controller_Front::getInstance()->getRequest()->getBaseUrl();
+if($this->category == null)
+{
+	throw new Precurio_Exception($this->translate('Category does not exist'));
+}
+
+?> 							
+ 							
+ 							<div id="details_info">
+                            <ul>
+                                <li>
+                                    <em><?php echo $this->translate("Name");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->category->title); ?>
+                                </li>
+                                
+                                <li>
+                                      <em><?php echo $this->translate("Description");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->category->description); ?>
+                                </li>
+                                <li>
+                                    <em><?php echo $this->translate("Parent Category");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php $parent = $this->category->getParent(); echo is_a($parent,'Category') ?  "<a href='$baseUrl/admin/category/view/id/$parent->id'>".$parent->title."</a>" :  $this->category->getParent(); ?>
+                                </li>
+                                <li>
+                                    <em><?php echo $this->translate("Owner");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php $owner = $this->category->getOwner();echo ("<a href='$baseUrl/user/profile/view/$owner->id'>".$owner."</a>"); ?>
+                                </li>
+                                <li>
+                                    <em><?php echo $this->translate("Access Type");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->category->getAccessType()); ?>
+                                </li>
+                                <li>
+                                    <em><?php echo $this->translate("Date Created");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->category->getDateCreated()); ?>
+                                </li>
+                             </ul>
+                            
+                            </div>
+<br/><br/>
+<?php ?>
+     <?php 
+     	$subCategorys  = $this->category->getCategoryChildren(false);
+     	if($subCategorys)
+     	{
+     		echo "<br/>	<br/>";
+     		echo $this->translate("Sub-Category(s)");
+     		echo "<br/>	<br/>";
+	     	echo "<table border='1' width='100%'>";
+	     	echo  "<tr>";
+	     	echo "<th>".$this->translate('Name')."</th><th>".$this->translate('Description')."</th><th>".$this->translate('Date Created')."</th><th></th><th></th>";
+	     	echo "</tr>";
+     	}
+     	foreach($subCategorys as $category)
+     	{
+     		echo  "<tr>";
+	     	echo "<td>{$category->title}</td>
+	     	<td>{$category->description}</td>
+	     	<td>{$category->getDateCreated()}</td>
+	     	<td><a href='$baseUrl/admin/category/view/id/{$category->id}'>".$this->translate('View')."</a></td>
+	     	<td><a href='$baseUrl/admin/category/edit/id/{$category->id}'>".$this->translate('Edit')."</a></td>";
+	     	echo "</tr>";
+     	}
+     	echo "</table>";
+ ?>  
+<br/>	<br/>
+ <div class="buttons">  	
+	<a rel="facebox" href="<?php echo $this->baseUrl()."/admin/category/addcontent/id/{$this->category->id}";?>" class="mild" ><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/>  <?php echo $this->translate("Add Contents");?></a>&nbsp;&nbsp;
+</div>	
+ 	<?php 	
+		$contents  = $this->category->getContentChildren(false);
+     	if(count($contents))
+     	{
+     		echo "<br/>	<br/>";
+     		echo $this->translate("Content(s)");
+     		echo "<br/>	<br/>";
+			echo "<table border='1' width='100%'>";
+	     	echo  "<tr>";
+	     	echo "<th>".$this->translate('Title')."</th><th>".$this->translate('Added By')."</th><th>".$this->translate('Last Updated')."</th><th></th><th></th><th></th>";
+	     	echo "</tr>";
+     	}
+     	
+     	foreach($contents as $content)
+     	{
+     		echo  "<tr>";
+	     	echo "<td>{$content->getTitle()}</td>
+	     	<td>{$content->getFullName()}</td>
+	     	<td>{$content->getDateLastUpdated()}</td>
+	     	<td><a href='$baseUrl/cms/view/details/c_id/{$content->getId()}'>".$this->translate('View')."</a></td>
+	     	<td><a href='$baseUrl/cms/edit/edit/c_id/{$content->getId()}'>".$this->translate('Edit')."</a></td>
+	     	<td><a href='$baseUrl/admin/category/remove/id/{$this->category->id}/c_id/{$content->getId()}'>".$this->translate('Remove')."</a></td>";
+	     	echo "</tr>";
+     	}
+echo "</table>";
+
+     ?>  
+     
+     <?php 
+     if(count($contents)==0 && count($subCategorys)==0)
+     {
+     	echo "<div id='noRecords'>".$this->translate('This category is empty.')." <br/> <a href='".$this->baseUrl()."/admin/category/addcontent/id/{$this->category->id}' rel='facebox'>".$this->translate('Click here to add contents')."</a> </div>";
+     }
+     else if(count($contents)==0)
+     {
+     	echo "<div id='noRecords'>".$this->translate('No Intranet Content in this Category yet.')." <br/> <a href='".$this->baseUrl()."/admin/category/addcontent/id/{$this->category->id}' rel='facebox'>".$this->translate('Click here to add contents')."</a> </div>";
+     }
+     
+    if($this->category->isShared())
+    { 
+    	echo $this->action('groups', 'category','admin',array('id'=>$this->category->id));
+    }
+     ?>
+                           

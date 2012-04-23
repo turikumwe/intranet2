@@ -1,0 +1,250 @@
+<?php 
+
+require_once('contact/models/Contacts.php'); 
+require_once('contact/models/vo/Contact.php'); 
+?>
+
+<?php 
+$var = new Contacts();
+?>
+<div id="contactsHolder" >
+	
+    <div class="leftside">
+    
+    <div class="buttons">
+		<a href="<?php echo $this->baseUrl();?>/contact/index/add" rel="facebox[]" class="positive">
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/contacts_add.png" alt=""/> 
+        	<?php echo $this->translate("Add New Contact");?>
+    	</a>
+        
+        	<a href="<?php echo $this->baseUrl();?>/contact/list/upload" rel="facebox[]" >
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/arrow_down.png" alt=""/> 
+        	<?php echo $this->translate("Import Contacts");?>
+    	</a>
+        
+        <a href="<?php echo $this->baseUrl();?>/contact/list/export" rel="facebox">
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/arrow_up.png" alt=""/> 
+        	<?php echo $this->translate("Export Contacts");?>
+    	</a>
+	</div>
+    
+    </div>
+    <div class="rightside">
+<!-- 	<form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    	<div style="width: 100%" id="searchResult">-->
+<!--    	-->
+<!--    	</div>-->
+<!--    </form>-->
+    </div>
+ </div>
+ <div id="contacts_main">
+ 
+ 		 <div id="contacts_a">
+         	
+            <a href="#" rel="<?php echo Contacts::TYPE_ALL; ?>" class="selected" ><?php echo $this->translate("All Contacts");?>  <span class="rightside"> [<?php echo $var->getCount(Contacts::TYPE_ALL); ?>]</span></a>
+           <a href="#" rel="<?php echo Contacts::TYPE_MY; ?>" id="myContacts" ><?php echo $this->translate("My Contacts");?>  <span class="rightside"> [<?php echo $var->getCount(Contacts::TYPE_MY); ?>] </span></a>
+            <a href="#"  rel="<?php echo Contacts::TYPE_SHARED; ?>" ><?php echo $this->translate("Shared Contacts");?>  <span class="rightside"> [<?php echo $var->getCount(Contacts::TYPE_SHARED); ?>] </span></a>
+             <a href="#"  rel="<?php echo Contacts::TYPE_CO; ?>" ><?php echo $this->translate("Coworkers");?>  <span class="rightside"> [<?php echo $var->getCount(Contacts::TYPE_CO); ?>] </span></a>		<div id="loading" ><br /><br />
+                    
+                    	<?php echo $this->translate("Loading Contacts");?>
+                    </div> </div>
+         
+<div id="contacts_b">
+         		<div class="contentPad" >
+                	
+                	<div id="contactsDiv">
+                    <div id="contacts_body">
+                        	<div class="contentPad">
+                            
+                            </div>
+                          </div>
+               		</div>
+            </div>
+		 </div>
+         
+          <div id="contacts_c">
+         		<div class="contentPad" id="contactPage">
+                    
+                 
+                </div>
+              
+		 </div>
+
+ </div>
+ 
+ <script type="text/javascript">
+	$(document).ready(function()
+	{
+		   $('#loading').hide();
+		   $('#contactButtons').hide();
+		//load "All Contacts" as default
+		
+		var page  = "<?php echo $this->baseUrl();?>/contact/list/all/type/" + <?php echo '"'. Contacts::TYPE_ALL. '"' ; ?> ;
+		$("#loading").show();
+			loadContacts(page);
+		<?php
+		if(isset($this->id))
+			echo "var vpage  = '{$this->baseUrl()}/contact/index/view/id/".$this->id."/type/".$this->type."';
+			$('#contactPage').load(vpage,{} , function()
+			{
+					$('#vcard_loading').hide();
+		  			
+			});
+			";
+		
+		?>
+		//handle clicking on pages
+		$('#pager a').live('click', function()  {
+			$(this).css('outline','none');
+			
+			//alert ("test");
+			
+			var page  = "<?php echo $this->baseUrl();?>/contact/list/all/type/" + $(this).attr("id") + "/page/" + $(this).attr("rel");
+		
+			$("#loading").show();
+		//	$("#contacts_b").hide('slow');
+			loadContacts(page);
+	     	
+			
+			
+		
+			return false;
+			
+			
+			
+		});
+
+		 // click on the menu						   
+		$('#contacts_a a').click(function() {
+			$(this).css('outline','none');
+			$('#contacts_a .selected').removeClass('selected');
+		
+			$(this).addClass('selected');
+			
+			var page  = "<?php echo $this->baseUrl();?>/contact/list/all/type/" + $(this).attr("rel");
+		
+			$("#loading").show();
+		//	$("#contacts_b").hide('slow');
+			loadContacts(page);
+	     	
+			
+			
+		
+			return false;
+			
+			
+			
+		});
+
+		
+		
+		// click on the contacts					   
+		$('.tableBody').live('click', function() {
+			$('.current').removeClass('current');
+			
+				
+			$(this).addClass('current');
+
+			tag = $(this).attr("tag");
+
+		    vpage =  '<?php echo $this->baseUrl();?>/contact/index/view/id/' + ($(this).attr("id")) + '/type/' + tag;
+
+			$("#vcard_loading").show();
+			
+			$("#contactPage").load(vpage,{} , function()
+			{
+					$("#vcard_loading").hide();
+					$('#contactButtons').show();
+		  			
+			}); 
+		
+			return false;
+			
+			
+			
+		});
+		
+		
+		//handle clicking on add
+		$('#addContact').live('click', function()  {
+			
+			//alert ($("#addForm").serialize());
+			$.post("<?php echo $this->baseUrl();?>/contact/index/submit", $("#addForm").serialize(),
+	  function(data){
+	    alert(data);
+	  }, "text");
+
+
+			
+			$("#loading").show();
+			loadContacts("<?php echo $this->baseUrl();?>/contact/list/all/type/"+ <?php echo '"'. Contacts::TYPE_MY. '"' ; ?> + "/page/1");
+			$('#contacts_a .selected').removeClass('selected');
+			$('#myContacts').addClass('selected');
+			jQuery(document).trigger('close.facebox');
+			return false;
+			
+			
+			
+		});
+		//edit
+		$('#editContact').live('click', function()  {
+
+			tag = $(this).attr("tag");   
+			if(tag != <?php echo Contacts::TYPE_MY ?>)
+			{
+				alert ('<?php echo $this->translate('You can only edit from "My Contacts"');?>');
+				return false;
+			}
+			
+			url = $(this).attr("href") ;
+			jQuery.facebox({ ajax: url });
+			return false;
+		});
+		
+		//handle clicking on delete
+		$('#deleteContact').live('click', function()  {
+			
+			tag = $(this).attr("tag");   
+			if(tag != <?php echo Contacts::TYPE_MY ?>)
+			{
+				alert ('<?php echo $this->translate('You can only delete from "My Contacts"');?> ');
+				return false;
+			}
+
+	         if (confirm('<?php echo $this->translate('Are you sure you want to delete this contact?');?>'))
+						 {
+				
+				$.post("<?php echo $this->baseUrl();?>/contact/index/delete/", {id:$(this).attr("rel") },
+		  function(data){
+			alert(data);
+		  }, "text");
+
+			$("#loading").show();
+			loadContacts("<?php echo $this->baseUrl();?>/contact/list/all/type/"+ <?php echo '"'. Contacts::TYPE_MY. '"' ; ?> + "/page/1");
+			$('#contacts_a .selected').removeClass('selected');
+			$('#myContacts').addClass('selected');
+			jQuery(document).trigger('close.facebox');
+			
+			
+			}
+			return false;
+			
+			
+			
+		});
+
+	
+	});
+
+	function loadContacts (page)
+	{
+		$("#contactsDiv").load(page,{} , function()
+		{
+				$("#loading").hide();
+	  			//$("#contactsDiv").show();
+		}); 
+	}
+</script>
+ 
+ 

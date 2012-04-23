@@ -1,0 +1,218 @@
+<script type="text/javascript">
+$(document).ready(function() {
+	   
+	$('#done').click(function()  {	
+				var thelist = <?php echo $this->id; ?>;
+				
+				$('.selectedList').each(function() {
+                
+					if (thelist.length != 0)
+					{
+						thelist = thelist + ',';
+					}
+						
+					var thelength = $(this).attr("id").length - 9;
+				 
+					var userid = $(this).attr("id").substr(9,thelength )	;
+					thelist = thelist +  userid;
+				});
+				
+			
+				/*
+				This will post a comma delimited string of selected user_ids to the 
+				call back function. NOTE that the first item in the list is the unique id 
+				of whatever Value Object you are using this component for. This means
+				if there is no selected user, the list will still contain one item, which 
+				is the id. eg content_id, event_id..
+				
+				*/
+					
+					$.post("<?php echo $this->callback; ?>", { users: thelist},
+					  function(data){
+						  if(trim(data) != "")
+								eval(data);
+						 jQuery(document).trigger('close.facebox');
+					  }, "text");
+					
+					
+							
+							return false;
+							
+							
+	 });
+	
+	$('.searchBox_type').live('keyup', function()  {
+			var filterVal = $(this).attr("value").toLowerCase();
+			
+			
+			$('ul#filter li').each(function() {
+				
+				nameval = $(this).attr("title").toLowerCase();
+				//alert (nameval.indexOf(filterVal));
+				if(nameval.indexOf(filterVal) < 0) {
+				//	alert (nameval);
+					$(this).fadeOut('normal').addClass('hidden');
+				} else {
+					$(this).fadeIn('slow').removeClass('hidden');
+				}
+			});
+			
+	});
+	
+										
+											
+	$('#inviteBtns a').live('click', function()  {
+		$(this).css('outline','none');
+		$('#inviteBtns a').addClass('mild');
+		
+		 $(this).removeClass('mild');
+		
+		var filterVal = $(this).text().toLowerCase().replace(' ','-');
+				
+		if(filterVal == 'all') {
+			$('ul#filter li.hidden').fadeIn('slow').removeClass('hidden');
+		} else {
+			
+			$('ul#filter li').each(function() {
+				if(!$(this).hasClass(filterVal)) {
+					$(this).fadeOut('normal').addClass('hidden');
+				} else {
+					$(this).fadeIn('slow').removeClass('hidden');
+				}
+			});
+		}
+	
+		return false;
+	});
+	
+	
+	$('ul#filter li').live('click', function()  {
+		$(this).css('outline','none');
+		
+		userid = $(this).attr ("id")
+		if ($(this).hasClass('selected') )
+		{
+			$(this).removeClass('selected');
+			targetDiv = '#selected_' + userid;
+		//	alert (targetDiv) ;
+			$(targetDiv).remove();
+		}
+		else 
+		{
+		$(this).addClass('selected');
+		fullname = $(this).attr ("title");
+		
+		divcode = "<div id='selected_" + userid + "' class='selectedList'> " + fullname + " <span class='textLinks'><a href='#' rel='" + userid + "'>[remove]</a></span> </div>";
+		$('.selectedPad').append(divcode);
+		}
+		
+		
+	
+		return false;
+	});
+	
+	
+	$('.selectedList a').live('click', function()  {
+		 
+		 targetDiv = '#' + $(this).attr("rel") ; 
+		 thisDiv = '#selected_' + $(this).attr("rel");
+		 $(targetDiv).removeClass('selected');
+		 $(thisDiv).remove();
+	
+		return false;
+	});
+
+});
+function trim(str, chars) {
+	return ltrim(rtrim(str, chars), chars);
+}
+ 
+function ltrim(str, chars) {
+	chars = chars || "\\s";
+	return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
+}
+ 
+function rtrim(str, chars) {
+	chars = chars || "\\s";
+	return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
+}
+function preselect(userid,fullname)
+{
+	var divid = '#'+ userid ;
+	$(divid).addClass('selected');
+	
+	divcode = "<div id='selected_" + userid + "' class='selectedList'> " + fullname + " <span class='textLinks'><a href='#' rel='" + userid + "'>[remove]</a></span> </div>";
+	$('.selectedPad').append(divcode);
+	
+}
+
+
+</script>
+<form id="form1" name="form1" method="post" action="">
+  <!-- window panel -->
+ <div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Select People");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+ 		
+
+    
+        
+           <br /><strong><?php echo $this->translate("Start by typing a name");?>: </strong> <br /> <br />
+<input type="text" class="searchBox searchBox_type"  value="" />   
+<div id="inviteBg">
+ <div  id="inviteBtns" class="buttons">
+		<a href="#"  ><?php echo $this->translate("All");?></a>
+ <?php $groups  = $this->userView()->currentUser()->getGroups();
+  foreach($groups as $group):?>
+    	<a href="#" class="mild"><?php echo $group->title; ?></a>
+    <?php endforeach; ?>
+   
+</div>
+<div id="selectBg">
+     <ul id="filter">
+     <?php foreach($this->employees as $user):?>
+     <?php $groupStr = '';foreach($user->getGroups() as $group){
+     $groupStr .= $group->getUnspacedTitle().' ';
+     
+     }?>
+			<li class="<?php echo $groupStr;?>" title="<?php echo $user->getFullName();?>" id="<?php echo $user->getId();?>"> <img src="<?php echo $this->baseUrl().$user->getProfilePicture();?>" /> <?php echo $user->getFirstName(); ?><br /> <?php echo $user->getLastName(); ?> <br /> <span class="textLinks"> <?php echo $user->getLocation();?></span> </li>
+	<?php endforeach;?>		
+			
+     </ul>
+     
+    </div>
+    
+    <div id="selectedBg">
+		<div class="header">
+        	<?php echo $this->selectLabel;?>
+        </div>
+        <div class="selectedPad">
+            
+            
+            
+            </div>
+        </div>
+    
+     </div>
+     
+    <div class="buttons contentPad"  id="done">
+        <button type="submit" class="positive">
+            <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+            <?php echo $this->translate("Done");?>
+        </button>
+
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>
+</form>
+<?php foreach($this->selectedUsers as $user):?>
+	<script type="text/javascript">
+		preselect(<?php echo $user['user_id'].',"'.$user['full_name'].'"';?>);
+	</script>
+<?php endforeach;?>

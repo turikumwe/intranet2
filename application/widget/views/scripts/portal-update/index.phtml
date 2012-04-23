@@ -1,0 +1,15 @@
+<style>
+.temp{;margin:0px 10px 20px 10px; overflow:auto;background-color: #ECEFF5;}
+</style> 
+<?php 
+    		$updates = $this->userView()->currentUser()->getAllPortalActivites($this->activityLimit);
+    		?>
+    		<?php 
+			$this->partialLoop()->setObjectKey('activity');
+			echo $this->partialLoop('partial_activity.phtml',$updates);
+			?>
+    		
+       
+  		<div  class="listLine indent"><span class="nameText"><a href="<?php echo $this->baseUrl();?>/index/home/l/<?php echo $this->activityLimit + 20; ?>"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/upload.png" border="0" /><br />
+		    <?php echo $this->translate("Read More");?></a></span>
+		</div>     

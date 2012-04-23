@@ -1,0 +1,20 @@
+<div class="dashboardLine">
+        	<div class="dashboardModule">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle();?>/images/icons/users.png"  /><a href="#"><?php echo $this->translate("Staff");?>       </a>
+             </div>
+             <div class="dashboardContent">
+             					 
+           <div class="listLine contentPad_5">
+           	<img src="<?php echo $this->baseUrl().$this->model->profile_picture?>" align="left" height="50" width="50"> 
+           		<span class="nameText">
+           			<a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $this->model->getDocument()->getFieldValue('id');?>"><?php echo $this->model->fullname?></a>
+           		</span> (<?php echo $this->model->location?>) <br> <span class="textLinks"><?php echo $this->model->title?>: <a href="#"><?php echo $this->model->department?></a><br> 
+           		<a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $this->model->getDocument()->getFieldValue('id');?>">
+           		<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle();?>/images/arrow_small.gif" id="arrow"> 
+           		<?php echo $this->translate("View Complete Profile");?> </a> .
+           		<a href="javascript:void(0)" onclick='javascript:chatWith("<?php echo substr($this->model->fullname,0,stripos($this->model->fullname, ' '))?>")'>
+           		<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle();?>/images/arrow_small.gif" id="arrow">  
+           		<?php echo $this->translate("Chat with");?> <?php echo substr($this->model->fullname,0,stripos($this->model->fullname, ' '))?></a>.    </span> </div> 
+                                              
+             </div>
+        </div>

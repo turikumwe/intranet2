@@ -1,0 +1,57 @@
+  
+  <?php 
+	require_once 'Zend/Paginator.php';
+	$paginator = Zend_Paginator::factory($this->hits);
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage(5);
+	$this->paginator = $paginator;
+?>
+ <?php if(count($this->hits)):?>
+<?php //echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+ 
+  <div id="contentDiv">
+    	 <?php echo $this->translate("Your search returned").' '.count($this->hits).' '.$this->translate("results")?>.
+    	<?php
+					$this->partial ()->setObjectKey ( 'model' );
+					foreach ( $this->hits as $item  ) 
+					{
+						$partialScript = "";
+						if ($item->module == 'task')
+							$partialScript = 'partial_task.phtml';
+
+						if ($item->module == 'event' )
+							$partialScript = 'partial_event.phtml';
+						
+						if ($item->module == 'cms' )
+							$partialScript = 'partial_content.phtml';
+						
+						if ($item->module == 'contact' )
+							$partialScript = 'partial_contact.phtml';
+						
+						if ($item->module == 'employee' )
+							$partialScript = 'partial_employee.phtml';
+							
+						$qry = Zend_Search_Lucene_Search_QueryParser::parse($this->query);
+						
+						if($partialScript != "")
+						{
+							$str = @$qry->htmlFragmentHighlightMatches($this->partial ( $partialScript, $item ));
+							echo $str;
+						}
+					}
+					?>
+        
+         
+    </div>
+
+<?php else:?>
+	<div id="noRecords">
+      <?php echo $this->translate("Your search returned no results.");?> <br />
+      <p style="margin-top: 1em;"><?php echo $this->translate("Suggestions");?>:</p>
+      <ul>
+      	<li><?php echo $this->translate("Make sure all words are spelled correctly");?>.</li>
+      	<li><?php echo $this->translate("Try different keywords");?>.</li>
+      	<li><?php echo $this->translate("Try more general keywords");?>.</li>
+      </ul>
+    </div>
+<?php endif?>

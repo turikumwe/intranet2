@@ -1,0 +1,67 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/others/jquery.quicksearch.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#id_search').quicksearch('#table_example tbody tr');
+	});
+	
+	</script>	
+
+<form  method="post" action="<?php echo $this->baseUrl(); ?>/admin/category/submitaddcontent">
+  <input type="hidden" name="category_id" value="<?php echo $this->category->id?>"/>
+  <!-- window panel -->
+ <div class="eventsWindow" style="width: 700px;">
+ 	<div  class="titleWindow">
+           <div  id="titleText"><?php echo $this->translate("Add Contents to '{$this->category->title}' Category");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+    	<form action="#">
+			<fieldset>
+				<input name="search" value="" id="id_search" type="text">
+				<?php echo $this->translate("Quick Search");?>
+			</fieldset>
+		</form>
+		
+          <br />
+       <div style="height:200px;overflow: auto;">  
+       <table id="table_example" class="workflow_table">
+			<thead>
+				<tr>
+					<th></th>
+					<th><?php echo $this->translate("Title");?></th>
+					<th><?php echo $this->translate("Created By");?></th>
+					<th><?php echo $this->translate("Last Updated");?></th>
+				</tr>
+			</thead>
+			 
+			<tbody>
+       			<?php 
+					require_once('cms/models/MyContents.php');
+					$myContents = new MyContents();
+					$contents = $myContents->getAll();
+					foreach($contents as $content)
+					{
+						echo "<tr>";
+						echo "<td><input type='checkbox' name='ids[]' id='ids[]' value='{$content->getId()}'   onclick='selectAll(this)'></td>";
+						echo "<td>{$content->getTitle()}</td>";
+						echo "<td>{$content->getFullName()}</td>";
+						echo "<td>{$content->getDateLastUpdated()}</td>";
+						echo "</tr>";
+					}
+				?>
+    		</tbody>
+    	</table>
+    	</div>
+    	<br/><br/>
+   <div class="buttons">
+    <button type="submit" class="standout">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Add Contents");?>
+    </button>
+     </div>
+ 
+ </div>          	
+       		
+ <!-- end window panel --></div>
+</form> 

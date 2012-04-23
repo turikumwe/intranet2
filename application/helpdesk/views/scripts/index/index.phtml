@@ -1,0 +1,51 @@
+<?php
+$helpdeskemail = "helpdesk@foodconceptsplc.com";
+$sysaidlink = "http://fcl-dc.foodconcept.lan:8091";
+
+
+?>
+<div id="helpdeskHolder" >
+
+	
+    <div class="leftside">
+    
+    <div class="buttons">
+		<a href="<?php echo $this->baseUrl();?>/helpdesk/index/form"class="positive">
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/email_go.png" alt=""/> 
+        	Fill Help Request Form
+    	</a>
+        
+        	<a href="<?php echo($sysaidlink) ?>"  target="_blank">
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/application_go.png" alt=""/> 
+        	Go to SYS AID
+    	</a>
+        
+        
+	</div>
+    
+    </div>
+
+ </div>
+ <div id="helpdesk_main">
+ 
+ 		
+         
+<div id="helpdesk">
+         		<div class="contentPad" >
+                	<span class="helpDeskHeader"> Help Desk </span>
+                
+                    <div id="helpdesk_body">
+                        	<div class="contentPad"><br />
+
+                            	<p>A message from the IT Department Comes here, this includes service times, service policy, availability, contact details, e.t.c</p>
+                            	<p> <a href="<?php echo $this->baseUrl();?>/helpdesk/index/form">Click here to fill help request form</a></p>
+                            	<p><a href="<?php echo($sysaidlink) ;?>"  target="_blank"">Click here to go directly to the SYSAID link</a></p>
+                        	</div>
+                         
+               		</div>
+            </div>
+		 </div>
+         
+         
+
+ </div>

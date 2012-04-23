@@ -1,0 +1,189 @@
+<script type="text/javascript">
+    _editor_url  = "<?php echo $this->baseUrl();?>/library/xinha/"  // (preferably absolute) URL (including trailing slash) where Xinha is installed
+    _editor_lang = "en";      // And the language we need to use in the editor.
+    _editor_skin = "silva";   // If you want use a skin, add the name (of the folder) here
+  </script>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/xinha/XinhaCore.js"></script>
+<script type="text/javascript">
+xinha_editors = null;
+xinha_init    = null;
+xinha_config  = null;
+xinha_plugins = null;
+xinha_init = xinha_init ? xinha_init : function()
+{
+	xinha_editors = xinha_editors ? xinha_editors :
+		  [
+		    'contentBody'
+		  ];
+	xinha_plugins = xinha_plugins ? xinha_plugins :
+		  [
+		   'ContextMenu',
+		   'TableOperations'
+		  ];
+	 if(!Xinha.loadPlugins(xinha_plugins, xinha_init)) return;
+	 
+	 xinha_config = xinha_config ? xinha_config() : new Xinha.Config();
+	   
+	  //this is the standard toolbar, feel free to remove buttons as you like
+	  xinha_config.toolbar =
+	  [
+	    ["popupeditor"],
+	    ["separator","formatblock","fontname","fontsize","bold","italic","underline","strikethrough"],
+	    ["separator","forecolor","hilitecolor","textindicator"],
+	    ["separator","subscript","superscript"],
+	    ["linebreak","separator","justifyleft","justifycenter","justifyright","justifyfull"],
+	    ["separator","insertorderedlist","insertunorderedlist","outdent","indent"],
+	    ["separator","inserthorizontalrule","createlink","insertimage","inserttable"],
+	    ["linebreak","separator","undo","redo","selectall","print"], (Xinha.is_gecko ? [] : ["cut","copy","paste","overwrite","saveas"]),
+	    ["separator","killword","clearfonts","removeformat","toggleborders","splitblock","lefttoright", "righttoleft"],
+	    ["separator","htmlmode","showhelp","about"]
+	  ];
+		 
+	  xinha_config.pageStyleSheets = [ _editor_url + "examples/files/full_example.css" ];
+		  
+	  xinha_editors   = Xinha.makeEditors(xinha_editors, xinha_config, xinha_plugins);
+	  Xinha.startEditors(xinha_editors);
+}
+
+Xinha._addEvent(window,'load', xinha_init); // this executes the xinha_init function on page load 
+			
+</script>	
+
+<div  id="tab" class="appTabs">
+
+ <div class="completeText" id="application_controlBar"><strong>
+ <?php echo Precurio_Date::now()->get(Precurio_Date::DATE_LONG);?> </strong></div>
+
+
+<!-- window panel -->
+ <div class="eventsWindow">
+
+    <div class="windowContent">
+         <div >
+        <h3><?php echo $this->translate("Edit Content");?></h3>
+                    <div  id="form_content">
+				<form method="post" action="<?php echo $this->baseUrl();?>/cms/add/submit" id="form" enctype="multipart/form-data">
+	<input type="hidden" name="content_id" value="<?php echo $this->content['id'];?>"/>
+	<p>
+		<label for="title" ><?php echo $this->translate("Title");?></label>
+		<input type="text" id="title" name="title" value="<?php echo $this->content['title'];?>"/>
+	</p>
+
+
+<p><label for="contentBody" ><?php echo $this->translate("Content Body");?></label>
+	<div>
+    	<textarea rows="20" id="contentBody" name="body" style="width:80%"><?php echo $this->content['body']; ?></textarea>
+    </div>
+</p>
+
+<?php $groups  = $this->userView()->currentUser()->getGroups();?>
+
+<?php if($groups->count() > 0):?>
+<p><label >&nbsp;</label><em class="readmore"><?php echo $this->translate("Add to departmental resources");?> (<?php echo $this->translate("may require approval");?>)</em> </p>
+<?php endif;?> 
+ <?php    
+  foreach($groups as $group): ?>
+    	<p><label>&nbsp;</label>
+    		<input type="checkbox" <?php if($this->content->belongsToGroup($group->id))echo ' disabled="disabled" checked="checked"';?> name="group_id[]" id="group<?php echo $group->id; ?>" value="<?php echo $group->id; ?>" /><?php echo $group->title; ?>
+    	</p>
+  <?php endforeach; ?>
+  
+
+<?php $myCategorys  = $this->userView()->currentUser()->getCategorys();?>  
+
+<?php if(count($myCategorys) > 0):?>
+  <p><label >&nbsp;</label><em class="readmore"><?php echo $this->translate("Content Catgory(s)");?></em> </p>
+ <?php endif;?>    
+<?php 
+  foreach($myCategorys as $category): ?>
+    	<p><label>&nbsp;</label>
+    		<input type="checkbox" <?php if($category->hasContent($this->content->getId()))echo ' disabled="disabled" checked="checked"';?> name="category_id[]" id="category<?php echo $category->id; ?>" value="<?php echo $category->id; ?>" /><?php echo $category->title; ?>
+    	</p>
+  <?php endforeach; ?>      
+    
+    <p><label for="keyword" ><?php echo $this->translate("Keywords");?></label>
+		<input type="text" id="keyword" name="keyword" value="<?php echo $this->content['keyword']; ?>" />
+	</p>
+
+    
+    <p><label for="file" ><?php echo $this->translate("Upload Image");?></label>
+		<input type="file"  name="file"  id="file" value="<?php echo $this->content['image_path']; ?>"/>
+	</p>
+    
+  
+    
+    
+    <p><label for="url" ><?php echo $this->translate("External URL");?>(<?php echo $this->translate("if any");?>)</label>
+		<input type="text" id="url" name="url" value="<?php echo $this->content['url']; ?>"/>
+	</p>
+    
+    <p><label >&nbsp;</label><em class="readmore"><?php echo $this->translate("Options");?></em> </p>
+    <p><label >&nbsp;</label>
+		
+        
+        <input type="checkbox" value="1" name="is_featured" <?php if($this->content->isArticle())echo ' disabled="disabled" checked="checked"';?>/><?php echo $this->translate("Set as featured content");?>  (<?php echo $this->translate("will remove existing featured content");?>)
+        
+	</p>
+    
+    <p><label  >&nbsp;</label>
+		
+        
+        <input type="checkbox" value="1" name="is_news" <?php if($this->content->isNews())echo ' disabled="disabled" checked="checked"';?>/> <?php echo $this->translate("Add to company news");?>
+        
+	</p>
+    
+        <p><label >&nbsp;</label>
+		
+        
+        <input type="checkbox"  value="1" name="is_advert" <?php if($this->content->isAdvert())echo ' disabled="disabled" checked="checked"';?>/> <?php echo $this->translate("Advertorial Content");?>
+        
+	</p>
+	<p><label  >&nbsp;</label>
+		
+        
+        <input type="checkbox" value="1" name="is_public" <?php if($this->content->isPublic())echo ' checked="checked"';?>/> <?php echo $this->translate("Content can be viewed by everyone");?>
+        
+	</p>
+	<p><label for="summary" ><?php echo $this->translate("Excerpt");?> (<?php echo $this->translate("Summary");?>)</label>
+		<textarea rows="5" id="summary" name="summary"  style="width:80%"><?php echo $this->content->getSummary(); ?></textarea>
+	</p>
+  
+    
+<!--     <p><label for="lname" >&nbsp;</label>-->
+<!--		-->
+<!--        -->
+<!--        <input type="checkbox"  /> Disable Comments-->
+<!--        -->
+<!--	</p>-->
+<!--        -->
+<!--     <p><label for="lname" >&nbsp;</label>-->
+<!--		-->
+<!--        -->
+<!--        <input type="checkbox"  /> Remove User Ratings-->
+<!--        -->
+<!--	</p>-->
+    
+  
+    
+    
+	   <p><label  >&nbsp;</label>    <div class="buttons">
+		 <button type="submit" class="standout">
+        	
+        	<?php echo $this->translate("Update Content");?>
+    	</button>
+	</div>
+</form>
+       	   </div>
+     </div>
+           
+         
+       </div>          	
+       		
+ <!-- end window panel --></div>
+ 
+
+
+
+
+  <br style="clear:both"/>		
+</div>

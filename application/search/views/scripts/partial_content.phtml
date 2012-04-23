@@ -1,0 +1,40 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.comments').each(function(){
+		tempChild = $(this).children().eq(0);
+		x = $(this).children().eq(0).children().size();
+		
+		if(x==0)$(this).hide();
+	});
+  });
+
+</script>	
+<div class="dashboardLine">
+        	<div class="dashboardModule">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle();?>/images/icons/content.png"  /><a href="#"><?php echo $this->translate(PrecurioStrings::MOD_CMS);?></a>
+             </div>
+             <div class="dashboardContent">	
+	<div  class="profileLine contentPad_5">
+	<?php $root = Zend_Registry::get('root');?>
+      	   <?php if(is_file($root.'/public/'.$this->model->image_path)):?>
+	
+            	 <img src="<?php echo $this->baseUrl().$this->model->image_path;?>" width="50"  align="left" />
+           <?php else:?>
+            <img src="<?php echo $this->baseUrl().(Precurio_Image::getPath(UserUtil::getUser($this->model->user_id)->getProfilePicture(),Precurio_Image::IMAGE_ICON));?>" height="50" width="50" align="left" />
+           <?php endif;?>
+	
+            	 <span class="nameText"><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($this->model->user_id); ?>"><?php echo ($this->model->fullname); ?> </a>
+            	 </span><br />    
+            	 <span class="textLinks "> <?php echo $this->translate("Date Added");?> : <?php echo ($this->model->date);?> </span>
+  	</div>
+  	 <div  class="profileGap">
+                 	  <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $this->model->getDocument()->getFieldValue('id');?>"><?php echo ($this->model->title);?></a><br />
+                      &quot;
+                      <em>
+                      <?php echo ($this->model->summary);?>
+                      </em>
+                      &quot; ... 
+                      <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $this->model->getDocument()->getFieldValue('id');?>"><span class="readmore"><?php echo $this->translate("Read more");?></span></a>
+     </div> 
+        </div>
+        </div>

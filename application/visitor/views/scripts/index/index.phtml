@@ -1,0 +1,367 @@
+
+<script type='text/javascript'>
+<?php 
+require_once('visitor/models/Appointments.php');
+$is_receptionist = VisitorUtil::isReceptionist($this->user->id);
+?>
+
+$(document).ready(function()
+{
+	<?php
+	if(isset($this->a_id))
+	{	
+		$appointments = new Appointments();
+		$appointment = $appointments->getAppointment($this->a_id) ;
+		$a_type = $appointment->getAppointmentType();
+
+	?>
+	page =  '<?php echo $this->baseUrl();?>/visitor/appointment/view/id/' + <?php echo $this->a_id; ?> + '/type/' + <?php echo $a_type; ?> + '/mine/1';
+	loadPage(page);
+	<?php 
+	}else{
+	?>
+	loadPage(<?php echo ($is_receptionist) ? "'{$this->baseUrl()}/visitor/list/currentappointment/mine/1'" :"'{$this->baseUrl()}/visitor/list/upcomingappointment/mine/1'"?>);
+	<?php
+	}
+	?>
+	$('#visitors_a a').click(function()
+	{
+		if($(this).hasClass('selected')) return;
+		
+		$("#visitors_a a.selected").removeClass("selected");		
+		$(this).addClass('selected');
+		
+		$('#loading').show();
+		
+		switch($.trim($(this).text()))
+		{
+			case "<?php echo $this->translate('Appointments') ?>":
+				loadPage(<?php echo ($is_receptionist) ? "'{$this->baseUrl()}/visitor/list/currentappointment/mine/1'" :"'{$this->baseUrl()}/visitor/list/upcomingappointment/mine/1'"?>);
+				break;
+			case "<?php echo $this->translate('Visitors') ?>":
+				loadPage(<?php echo "'{$this->baseUrl()}/visitor/list/visitor/mine/1'"?>);
+				break;
+			case "<?php echo $this->translate('Staff Diary') ?>":
+				loadPage(<?php echo "'{$this->baseUrl()}/visitor/index/viewsdiary/'"?>);
+				break;
+			case "<?php echo $this->translate('Telephone Messages') ?>":
+				loadPage(<?php echo "'{$this->baseUrl()}/visitor/list/telmessages/mine/1'"?>);
+				break;
+			case "<?php echo $this->translate("Who's In") ?>":
+				loadPage(<?php echo "'{$this->baseUrl()}/visitor/list/whoisin'"?>);
+				break;			
+		}
+				
+	});
+	
+	$('.telLine').live('click', function() {
+		
+	page =  '<?php echo $this->baseUrl();?>/visitor/telephone/view/id/' + ($(this).attr("id"));
+		
+	jQuery.facebox({ ajax: page });
+	return false;
+});
+
+	$('#addAppointment').live('click', function() {
+		$("#loading").show();
+		loadPage(<?php echo "'{$this->baseUrl()}/visitor/appointment/register'"?>);
+		return false;
+	});
+	
+	$('.appointmentLine').live('click', function() {
+		
+	    page =  '<?php echo $this->baseUrl();?>/visitor/appointment/view/id/' + ($(this).attr("id"))+ '/type/' + $(this).attr("tag");
+		
+		jQuery.facebox({ ajax: page });
+		return false;
+	});
+	
+	$('.visitorLine').live('click', function() {
+		
+		$('#loading').show();
+	    page =  '<?php echo $this->baseUrl();?>/visitor/index/view/id/' + ($(this).attr("id")) + '/type/' + $(this).attr('tag');
+		loadPage(page);
+		return false;
+	});
+	
+	
+	
+	$('.loginLine, .visLine, .logoutLine, #searchVisitor, #addContact').live('click', function()  {
+	
+		//alert('hi');
+		url = $(this).attr("href") ;
+		jQuery.facebox({ ajax: url });
+		return false;
+	});
+	
+	
+	
+	$('#addParticipants, #selectHost').live('click', function()  {
+
+			
+		url = $(this).attr("href") ;
+		$.post(url, {},
+			  function(data){				
+				loadSelectPopup();
+			  }, "text");
+			  return false;
+	});
+	
+	
+	
+	$('#selectReceptionist').live('click', function()  {
+
+		url = "<?php echo $this->baseUrl();?>/user/index/selectreceptionist" ;
+		jQuery.facebox({ ajax: url });
+		return false;
+	});
+	
+	
+	
+	$('.bookAppointment').live('click', function()
+	{
+		url = "<?php echo $this->baseUrl() ?>/visitor/appointment/register/contact_id/"+$(this).attr('tag');
+		loadPage(url);
+		return false;
+	});
+	
+	$('#editAppointment, #addTelMessage').live('click', function(){
+		$("#loading").show();
+		url = $(this).attr("href") ;
+		loadPage(url);
+		return false;
+	});
+	
+	$('#cancelAppointment').live('click', function()  {
+		
+		
+         if (confirm('Are you sure you want to delete this appointment?'))
+		 {
+			$.post("<?php echo $this->baseUrl();?>/visitor/appointment/delete/", {id:$(this).attr("rel") },
+			  function(data){
+				alert(data);
+				location.reload();
+			  });	
+		
+		}
+		return false;		
+	});
+	
+	$('#endAppointment').live('click', function()  {
+		
+		
+         if (confirm('Are you sure you want to end this appointment?'))
+		 {
+			$.post("<?php echo $this->baseUrl();?>/visitor/appointment/end/", {id:$(this).attr("rel") },
+			  function(data){
+				alert(data);
+				location.reload();
+			  });	
+		
+		}
+		return false;		
+	});
+	
+		//handle clicking on add
+	$('#saveAppointment').live('click', function()  {
+		
+		
+		$.post("<?php echo $this->baseUrl();?>/visitor/appointment/submit", $("#registerAppointmentForm").serialize(),
+  function(data){
+    alert(data);
+    location.reload();
+  }, "text");
+
+	
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});
+	
+	$('#saveTelephoneMessage').live('click', function()  {
+		
+		
+		$.post("<?php echo $this->baseUrl();?>/visitor/telephone/submit", $("#registerTelephoneMessageForm").serialize(),
+  function(data){
+    alert(data);
+    location.reload();
+  }, "text");
+
+	
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});
+	
+	$('#addVisitor').live('click', function()  {
+		
+		
+		$.post("<?php echo $this->baseUrl();?>/visitor/index/submit", $("#addVisitorForm").serialize(),
+  function(data){
+    alert(data);
+    location.reload();
+  }, "text");
+
+	
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});
+	
+	$('#doSearch').live('click', function() {
+	$.post("<?php echo $this->baseUrl();?>/visitor/index/dosearch/", $("#visitorSearchForm").serialize(),
+  function(data){
+   // alert(data);
+    //location.reload();
+	$("#visitorDiv").html(data);
+	
+	}, "text");
+	jQuery(document).trigger('close.facebox');
+	return false;
+	});
+	
+	
+	
+	$('#login').live('click', function()  {
+		
+		
+		$.post("<?php echo $this->baseUrl();?>/visitor/appointment/loginsubmit/", $("#loginVisitorForm").serialize(),
+  function(data){
+    alert(data);
+    location.reload();
+  }, "text");
+
+	
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});
+	
+	$('#logout').live('click', function()  {
+		
+		
+		$.post("<?php echo $this->baseUrl();?>"+$(this).attr('tag'), $("#logoutVisitorForm").serialize(),
+  function(data){
+    alert(data);
+    location.reload();
+  }, "text");
+
+	
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});	
+	
+	
+	$('#getSDiary').live('click',  function() 
+	{
+		$('#loading').show();
+		url = $(this).attr("href")+'/staff_id/'+ $('#staff_id').val();
+		$("#details_box").load(url,{} , function()
+		{	
+			$("#loading").hide();			
+		});
+		return false;
+	});
+});
+function loadPage (page)
+{
+	$("#visitorDiv").load(page,{} , function()
+	{
+			$("#loading").hide();			
+	}); 
+}
+		
+function loadSelectPopup()
+{
+	url = "<?php echo $this->baseUrl();?>/user/index/select" ;
+	jQuery.facebox({ ajax: url });
+	return false;
+}
+
+
+
+</script>
+<div id="visitorHolder" >
+	
+    <div class="leftside">
+    
+    <div class="buttons">
+		<a href="<?php echo $this->baseUrl();?>/visitor/appointment/register" id='addAppointment' class="positive">
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/calendar_add.png" alt=""/> 
+        	<?php echo $this->translate('Add Appointment');?>
+		</a>
+		
+				
+		<?php if( VisitorUtil::isReceptionist($this->user->id) ) 
+		      {
+		      //echo $this->is_receptionist;
+		 ?>
+		<a href="<?php echo $this->baseUrl();?>/visitor/telephone/register" id='addTelMessage' class="positive">
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/cms_small.png" alt=""/> 
+        	<?php echo $this->translate('Log Telephone Message');?>
+		</a>
+		<?php
+			}
+		?>
+		
+		<?php if( !VisitorUtil::isReceptionist($this->user->id) && Precurio_Utils::isNull(VisitorUtil::getReceptionist($this->user->id)) ) 
+		      {
+		      //echo $this->is_receptionist;
+		 ?>
+		<a href="<?php echo $this->baseUrl();?>/visitor/index/selectreceptionist" id='selectReceptionist' class="mild">
+        	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+        	<?php echo $this->translate('Select Receptionist');?>
+		</a>
+		<?php
+			}
+		?>
+	</div>
+	
+	</div>
+</div>
+	
+	<div id="visitors_main">
+ 
+ 	 <div id="visitors_a">
+         
+            <a href="#" class="selected" > <?php echo $this->translate('Appointments') ?></span></a>
+			<a href="#"> <?php echo $this->translate('Visitors'); ?></span></a>
+			<?php if( VisitorUtil::isReceptionist($this->user->id) ) 
+			{		      
+			?>
+			<a href="#"><?php echo $this->translate("Who's In"); ?></span></a>
+			<a href="#"> <?php echo $this->translate('Staff Diary'); ?></span></a>
+			<?php
+			}
+			?>
+			<a href="#"> <?php echo $this->translate('Telephone Messages'); ?></span></a>
+             
+          <div id="loading" ><br /><br />
+                    
+                    <?php echo $this->translate('Loading'); ?>            </div> 
+     </div>
+         
+	 <div id="visitors_b">
+         <div class="contentPad" >
+                
+                <div id="visitorDiv">
+                    <div id="visitor_body">
+                        <div class="contentPad">
+                        </div>
+                    </div>
+               	</div>
+            </div>	
+	</div>
+	
+	</div>

@@ -1,0 +1,155 @@
+
+<?php 
+
+require_once('visitor/models/Visitors.php'); 
+require_once('visitor/models/vo/Visitor.php'); 
+require_once('visitor/models/VisitorStrings.php'); 
+
+?>
+<?php 
+$visitors = new Visitors();
+$visitor_id = $this->visitor_id ; 
+$visitor = $visitors->getVisitor($visitor_id) ;
+
+$type = $this->type;
+
+if( ! isset($type) )
+$this->type = VisitorStrings::USER;
+
+$visits = $visitor->getVisits($type);
+
+?>
+
+
+<div id="tasksHolder">
+ <div class="taskDetail_Header"> <?php echo $this->translate('Visitor Details'); ?> </div> 
+
+                        
+               			<div id="task_body">
+                        <div class="task_Pad">
+                       	 
+					
+                               
+                         <div id="details_box">
+                               <p><em> <?php echo $this->translate('Name'); ?>:</em><br /> <?php echo ($visitor->full_name); ?></p>
+                          	<p><em><?php echo $this->translate('From'); ?>:</em><br /> <?php echo ($visitor->company); ?></p>                      
+                      
+					<div class="buttons" id="task_controlBar">
+                      		              
+                    <a href="#" class="bookAppointment" title="<?php echo $this->translate("Book another appointment with this visitor");?>" tag="<?php echo $visitor->contact_id ?>" class="mild" >
+			             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/users.png" alt=""/> 
+			             <?php echo $this->translate("Book Appointment");?></a>
+			                                                  
+			        <a href="#"  class="negative"  onClick='deleteVisitor()'>
+			             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/delete.png" alt=""/> 
+			             <?php echo $this->translate("Delete Visitor");?>    </a>
+                                   
+					</div>
+                                                     
+		<br/>
+			<font class="nameText" ><?php echo $this->translate('Previous Visits');?> (<?php echo count($visits); ?>)</font><br/>
+<div class="workflow_table">
+			
+			<table width='100%' align='center' >
+		<tr>
+	
+		<th>
+		<?php echo $this->translate('Date'); ?>
+		</th>
+		<th>
+		<?php echo $this->translate('Time'); ?>
+		</th>
+		<?php 
+		if($type == VisitorStrings::RECEPTIONIST)
+		{
+			echo "<td style='background-color:#CCC'>".$this->translate('Host')."</td>";
+		}
+		?>
+		<th>
+		<?php echo $this->translate('Appointment') ?>
+		</th>		
+		
+	</tr>
+	
+	<?php
+		foreach($visits as $visit)
+		{
+			$time_in = $visit->getTimeIn();
+			$time_out = $visit->getTimeOut();
+			$date = $visit->getVisitDate();
+			$toSee = $visitors->getVisit($visit->id)->getToSee();
+				
+			switch($type)
+			{
+				case VisitorStrings::USER :
+					echo "<tr>
+				<td>{$date}</td>
+				<td>{$visit->getVisitTime()}</td>
+				<td>{$visit->title}</td>
+				</tr>";
+				break;
+				case VisitorStrings::RECEPTIONIST :
+					echo "<tr>
+				<td>{$date}</td>
+				<td>{$visit->getVisitTime()}</td>
+				<td>{$toSee}</td>
+				<td>{$visit->title}</td>
+				</tr>";
+			}
+			
+		}
+	?>
+	</table>
+	</div>		
+  </div>                                    
+						
+
+<div id="details_bar">
+    <ul>
+    <!-- this should be whererever u're coming from. i.e if u're coming frm pending tasks, it shld be return to pending tasks -->
+     
+		<li> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/back.png" /><a href="#" onClick='back()'> Back</a> </li> 
+
+        <li> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/printer.png" /><a href="#" onclick="window.print();return false;"> Print Visitor Card</a></li>
+
+    </ul>
+</div> 
+                                    
+                                    
+                                    
+                                 
+                           
+                           </div> 
+                            
+		                            </div>
+                       
+                        
+                     
+</div> 
+
+<script type='text/javascript'>
+function back()
+{
+	$('#loading').show();
+	 page =  '<?php echo $this->baseUrl();?>/visitor/list/visitor/mine/1';
+	loadPage(page);
+	return false;
+}
+
+function deleteVisitor()
+{
+	if(confirm('Are you sure you want to delete this visitor?'))
+	{
+		url = '<?php echo $this->baseUrl();?>/visitor/index/deletevisitor/id/<?php echo $visitor_id ?>' ;
+		$.post(url, {},
+			  function(data){
+				alert(data);
+				back();
+			  });
+			  return false;
+	}
+}
+</script>
+   
+
+               

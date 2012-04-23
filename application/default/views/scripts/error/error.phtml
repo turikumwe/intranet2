@@ -1,0 +1,45 @@
+
+<head>
+	<title><?php echo $this->company_name; ?> <?php echo $this->translate("Intranet");?></title>
+	<script type="text/javascript">
+	function gotoHome()
+	{
+		window.location = '<?php echo $this->baseUrl().'/login';?>';
+		return false;
+	}
+	</script>
+</head>
+<?php
+if(!isset($this->showThankYou))
+	$this->showThankYou  = true;
+
+?>
+
+<?php if ($this->message && !$this->isSessionError): ?>
+<div id="noRecords" align="center" style="width:600px">
+	<?php echo $this->translate("Oooops!!! Something has gone wrong");?>. <br /> 
+	
+<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/warning.png"   /><br />
+	<?php 
+		$baseUrl = Zend_Controller_Front::getInstance()->getRequest()->getBaseUrl();	
+//		 if ($this->showThankYou)
+//			echo 'Thank you for noticing, we have logged the error and will resolve it very soon <br/> <br/>';
+		
+		echo $this->translate('Error message').' : <br/>';
+		echo $this->message.'<br/><br/>'; 
+		echo "<a href='$baseUrl/user/profile/view'>".$this->translate('click here')."</a> ".$this->translate('to go to your page').' '.$this->translate('OR')." ";
+		echo "<a href='#' onClick='javascript:history.back();return false;'>".$this->translate('click here')."</a> ".$this->translate("to go back");
+	?>	
+</div>
+<?php else: ?>
+<?php echo $this->headLink();?>
+		<div  id="pageBody" class="row5"> 
+			
+		
+				  <div id="noRecords" align="center" style="width:600px">
+				  		<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/warning.png"   /><br />
+				  		<?php echo $this->message; ?>
+				  	
+				  </div>
+		</div>
+<?php endif; ?>

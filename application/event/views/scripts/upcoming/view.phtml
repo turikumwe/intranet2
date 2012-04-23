@@ -1,0 +1,76 @@
+<script>
+	$(document).ready(function(){
+		$('.searchBox').autofill({
+			value: 'Search Within Events'
+		});
+	});
+</script>
+
+<div id="holder" >
+	
+    <div class="rightside">
+<!-- 	<form>-->
+<!--    	<input type="text" id="searchText"  class="searchBox"/>-->
+<!--    </form>-->
+    </div>
+</div>
+
+<?php $selected = 'upcoming' ?>
+<div  id="tab" class="appTabs">
+<?php require_once('event/views/scripts/tabs.phtml'); require_once 'user/models/UserUtil.php';?>
+ 
+<?php 
+	require_once 'Zend/Paginator.php';
+	$paginator = Zend_Paginator::factory($this->eventGroups);
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage(5);
+	$this->paginator = $paginator;
+?>
+<?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+ <!--<div id="details_info"><span style="padding-left: 20"><?php echo $this->nav;?> </span></div>
+ --><div  id="app_sidebar"> 
+	<div class="contentPad">
+
+      <p><span class="maroon_text"><strong>By Event Type</strong></span><br />
+             <span class="maroon_text" <?php if($this->w === '1')echo 'style="font-weight: bold"';?> >
+             		<a href="<?php echo $this->baseUrl().'/event/'.$selected.'/view/w/1'; ?>">Official Events</a><br />
+         	</span>
+         	<span class="maroon_text" <?php if($this->w === '0')echo 'style="font-weight: bold"';?>>
+         		  <a href="<?php echo $this->baseUrl().'/event/'.$selected.'/view/w/0'; ?>">Personal Events</a>
+         	</span>	 
+      </p>
+      
+      <p><span class="maroon_text"><strong>By Location</strong></span><br />
+      <?php 
+      		$userUtils = new UserUtil();
+			$locations = $userUtils->getLocations();
+			foreach($locations as $location)
+			{
+				echo '<span class="maroon_text"'.($this->l_id == $location->getId() ? 'style="font-weight: bold"' : '').'>';
+				echo '<a href="'.$this->baseUrl().'/event/'.$selected.'/view/l_id/'.$location->getId().'">'.$location->getTitle().'</a><br />';
+				echo '</span';
+			}
+      ?>
+ 
+        <br/>
+         </p>
+	</div>
+ </div>
+  <?php if($this->paginator->getTotalItemCount()):?>
+ <div id="app_main">
+	<?php  
+		
+		$this->partialLoop()->setObjectKey('eventGroup');
+		echo $this->partialLoop('partial_list.phtml',$this->paginator->getCurrentItems());
+	 
+	?>
+	<?php if($this->paginator->count() > 1 && count($this->paginator->getCurrentItems()) > 1)echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+ </div>
+ <?php else:?>
+	<div id="noRecords">
+      You have no event in this category. <br />
+      <a href="<?php echo $this->baseUrl();?>/event/my/new">Please click here to add a new event</a> 
+    </div>
+<?php endif?>
+  <br style="clear:both"/>		
+</div>

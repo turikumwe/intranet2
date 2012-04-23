@@ -1,0 +1,39 @@
+ 							<div id="details_info">
+                            <ul>
+                                <li>
+                                    <em><?php echo $this->translate("Process");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->display_name); ?>
+                                </li>
+                                
+                                <li>
+                                      <em><?php echo $this->translate("Description");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->description); ?>
+                                </li>
+                                
+                                <li>
+                                    <em><?php echo $this->translate("Department");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->getDepartmentName()); ?>
+                                </li>
+                             </ul>
+                            
+                            </div>
+<br/><br/>
+<?php echo $this->translate("Sections");?>
+<br/>	<br/>
+     <?php 
+     $baseUrl = Zend_Controller_Front::getInstance()->getRequest()->getBaseUrl();
+     	$states  = $this->process->getStates();
+     	echo "<table border='1' width='100%'>";
+     	echo  "<tr>";
+     	echo "<th>".$this->translate('Name')."</th><th>".$this->translate('Position')."</th><th>".$this->translate('SLA')."</th><th></th><th></th>";
+     	echo "</tr>";
+     	foreach($states as $state)
+     	{
+     		echo  "<tr>";
+	     	echo "<td>{$state->display_name}</td>
+	     	<td>{$state->position}</td>
+	     	<td>{$state->duration}".$this->translate('Hours')." </td>
+	     	<td><a href='$baseUrl/admin/workflow/editstate/id/{$state->id}'>".$this->translate('Edit')."</a></td>
+	     	<td><a href='$baseUrl/admin/".($state->position == 0 ? 'request' : 'approval')."/index/id/{$state->id}'>".$this->translate('Manage Access')."</a></td>";
+	     	echo "</tr>";
+     	}
+echo "</table>";
+     ?>  
+                           

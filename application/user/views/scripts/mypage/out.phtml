@@ -1,0 +1,70 @@
+
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Use the form below to");?> <?php $x = isset($this->out_id) ? 'edit' : 'set'; echo $this->translate("$x ");?>
+           <?php echo $this->translate("an 'Out of office' status");?> .</div>
+           <div id="titleBtns">
+             
+                <a href="#" class=""  onclick=" jQuery(document).trigger('close.facebox');"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_close.jpg"   /></a> 
+            </div>
+       	               
+    </div>       
+    <div  id="windowContent">
+ 		
+<div  id="form">
+<form method="post" action="<?php echo $this->baseUrl();?>/user/mypage/setout" id="addForm"  name="addForm">
+	<?php echo $this->form->id; ?>
+	<?php echo $this->form->user_id; ?>
+	<p><label for="start_month" ><?php echo $this->translate("Start Date");?></label>
+			<?php echo $this->form->start_month; ?>
+        <?php echo $this->form->start_day; ?>
+             
+        <?php echo $this->form->start_year; ?>
+	</p>
+
+	<p><label for="end_month" ><?php echo $this->translate("End Date");?></label>
+			<?php echo $this->form->end_month; ?>
+        <?php echo $this->form->end_day; ?>
+             
+        <?php echo $this->form->end_year; ?>
+	</p>
+
+
+<p><label for="description" ><?php echo $this->translate("Out of Office Message");?></label>
+		<?php echo $this->form->summary; ?>
+	</p>
+
+
+
+    
+      <p><label for="user_id" ><?php echo $this->translate("Delegate");?><br/> <?php echo $this->translate("Duties To");?>  </label>
+		<?php echo $this->form->proxy_id; ?>
+		<div id="results" ></div>
+	</p>
+    
+    
+     <p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+             <button type="submit" class="positive" id="setOOF">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+              <?php $x = isset($this->task_id) ? 'Edit' : 'Submit'; echo $this->translate("$x");?> 
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                <?php echo $this->translate("Cancel");?>
+               
+            </button>
+            </div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>

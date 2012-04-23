@@ -1,0 +1,32 @@
+<?php $selected = 'birthdays' ?>
+<div  id="tab" class="appTabs">
+ <?php require_once('employee/views/scripts/tabs.phtml'); ?>
+ 
+ <div class="completeText" id="application_controlBar">
+ 	<?php echo $this->translate("Below are your colleagues whose birthday occur in");?> <?php echo Precurio_Date::getMonthStr($this->month) ?></div>
+
+<div id="app_main">
+	<?php $this->employeeView()->getBirthdays();?>
+	<?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+    <?php if (count($this->paginator)): ?>
+	<?php foreach ($this->paginator as $item) echo $item; ?>
+	<?php endif; ?>
+    
+    
+</div>
+
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad">
+
+   <span class="maroon_text"><strong><?php echo $this->translate("Month");?></strong></span><br />
+	   <?php for($i=1;$i<=12;$i++):?>
+		   <span class="maroon_text" <?php if($this->month == $i)echo 'style="font-weight: bold"';?> >
+		   		<a href="<?php echo $this->baseUrl();?>/employee/staff/birthdays/month/<?php echo $i;?>"><?php echo Precurio_Date::getMonthStr($i)?></a><br />
+		   </span>
+	   <?php endfor;?>
+   </div>
+ </div>
+
+  <br style="clear:both"/>		
+</div>

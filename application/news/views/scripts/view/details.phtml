@@ -1,0 +1,140 @@
+<script>
+			$(document).ready(function(){
+				$('.searchBox').autofill({
+					value: 'Search News Items'
+				});
+			});
+		</script>
+<div  id="tab" class="appTabs">
+
+ <div class="completeText" id="application_controlBar"><strong>
+ 	<?php echo Precurio_Date::now()->get(Precurio_Date::DATE_LONG);?>   </strong>
+<!-- 	 - <a href="<?php echo $this->baseUrl();?>/news">back to news page</a>--></div>
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad">
+<!--  <form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    </form>-->
+    <span class="maroon_text"><strong> <?php echo $this->translate('Recent News');?>     </strong></span>
+    <div id="news_sideList">
+     		<?php $result = $this->newsView()->getRecent(5);?>
+        	 <?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div><br />
+     
+     <span class="maroon_text"><strong><?php echo $this->translate("Most Read News");?>   </strong></span><br/>
+    <div id="news_sideList">
+     	
+            <?php $result = $this->newsView()->getMostRead(5);?>
+        	 <?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div>
+     <br />
+     <span class="maroon_text"><strong><?php echo $this->translate("Most Discussed News");?>    </strong></span><br/>
+    <div id="news_sideList">
+     	
+              <?php $result = $this->newsView()->getMostCommented(5);?>
+        	<?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div>
+    </div>
+    
+    
+    
+</div>
+<div id="app_main">
+<!-- window panel -->
+
+    
+       <div id="news_detail">
+         <p>
+         <?php $root = Zend_Registry::get('root');?>
+       <?php if(is_file($root.'/public/'.$this->news->getImagePath(Content::WIDTH_IMAGE_271))):?>
+         <img src="<?php echo $this->baseUrl().$this->news->getImagePath(Content::WIDTH_IMAGE_271); ?>" />
+         <?php endif;?><br />
+
+           <span class="nameText"><a href="#"><?php echo $this->news->getHeadline();?><br />
+           </a></span><span class="textLinks"><?php echo $this->news->getDatePublished();?> </span> by <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $this->news->getUserId();?>"><?php echo $this->news->getAuthor();?></a><br />
+         <div class="buttons button_holder">
+    
+    <a  href="<?php echo $this->baseUrl();?>/user/index/select"  rel="facebox">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/share_this.png" alt=""/> 
+        <?php echo $this->translate("Share this content");?>
+    </a>
+    
+    
+    <a href="#" onclick="window.print()">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/print.png" alt=""/> 
+        <?php echo $this->translate("Print");?> 
+    </a>
+
+   
+</div>
+           <br /><br />
+      <?php echo $this->news->getBody();?>
+        <br /><br />
+       </div>
+       <div class="buttons button_holder">
+        	<a href="<?php echo $this->baseUrl();?>/cms/edit/edit/c_id/<?php echo $this->news->getContentId();?>">
+		        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" alt=""/> 
+		        <?php echo $this->translate("Edit this news");?>
+		    </a>
+        </div>
+        <br/><br />
+    	<!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Comments");?></div>
+           
+    </div>       
+   
+      <div   class="eventComment">  		
+
+  		<div id="<?php echo ('comment'.$this->news->getContentId());?>"> 
+	    <?php 
+			$this->partialLoop()->setObjectKey('comment');
+			echo $this->partialLoop('partial_comment.phtml',$this->news->getComments());
+		?>
+	  	
+	  	</div>
+ 
+  
+  
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($this->news->getContentId().','.$this->userView()->currentUser()->getId().',1' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$this->news->getContentId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($this->news->getContentId()) ?>)"> <?php echo $this->translate("Write something");?></textarea>
+    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+        </div>
+  	</form>
+  </div>  		
+ <!-- end window panel --></div>
+       		
+ <!-- end window panel --></div>
+ 
+ 
+
+</div>
+
+  <br style="clear:both"/>		

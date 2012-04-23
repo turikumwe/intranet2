@@ -1,0 +1,13 @@
+   <div id="advertorial">
+   		<?php 
+   			
+   			$advert = $this->contentView()->getAdvert();
+   			if($advert !== null):	
+   		?>
+   			<a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $advert->getContentId();?>"><img src="<?php echo $this->baseUrl().$advert->getImagePath(Content::WIDTH_IMAGE_251); ?>" /></a>
+   			<?php else:?>
+   			<div id="noRecords">
+   				<?php echo $this->translate("There are no adverts at this time");?>.
+   			</div>
+			<?php endif;?>
+       	</div>	

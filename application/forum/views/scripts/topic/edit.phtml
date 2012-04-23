@@ -1,0 +1,49 @@
+<?php
+	require_once('forum/models/Topics.php');
+	
+	$topic = Topics::getTopic($this->topic_id);
+?>
+
+
+
+<script type='text/javascript'>
+
+$('#saveTopic').live('click', function()  
+{	
+	
+	$.post("<?php echo $this->baseUrl();?>/forum/topic/submit", {title: $('#t_title').val(), id: <?php echo $this->topic_id ?>},
+	function(data)
+	{
+		alert(data);
+		location.reload();
+	}, "text");
+});
+</script>
+
+<div  class="titleWindow "> 
+	<div id="titleText">
+    	<span> <?php echo $this->translate('Edit Topic'); ?></span> 
+	</div>
+</div>
+<div>
+<table class="popup_table" cellspacing='0' cellpadding='10' width="300px">
+			<tr>	
+				<td>
+					<div class="post-author">
+					  <label><?php echo $this->translate('Topic'); ?></label></div>
+				</td>
+				<br/>
+				<td class="alt"><input id="t_title" value="<?php echo $topic->getTitle(); ?>" type="text"/></td>
+				
+			</tr>
+			
+		
+			<tr>
+			  <td>&nbsp;</td>
+			  <td class="alt"><br/><div id="saveTopic" class="buttons"><a href="javascript:void(0)"> 
+			  <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/>
+			  <?php echo $this->translate('Save'); ?></a></div></td>
+  </tr>
+			
+			</table>
+	</div>

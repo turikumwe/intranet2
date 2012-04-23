@@ -1,0 +1,124 @@
+
+<script>
+	$(document).ready(function(){
+		$('.searchBox').autofill({
+			value: 'Search Within Events'
+		});
+		
+
+
+	});
+</script>
+<div id="holder" >
+    <div class="rightside">
+<!-- 	<form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    </form>-->
+    </div>
+</div>
+<?php $selected = 'my'; ?>
+<div  id="tab" class="appTabs">
+<?php require_once('event/views/scripts/tabs.phtml'); require_once 'user/models/UserUtil.php';?>
+ 
+	<div id="app_main">
+	<a href="<?php echo $this->baseUrl();?>/event/my/"><?php echo $this->translate("back to my events");?></a>
+	<!-- window panel -->
+ <div class="eventsWindow">
+        <h3><?php echo $this->translate("Event Details");?></h3>
+   <div  id="form">
+<form action="<?php echo $this->baseUrl();?>/event/my/submit" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->id; ?>
+	<p><label for="title" ><?php echo $this->translate("Title");?></label>
+		<?php echo $this->form->title; ?>
+	</p>
+	<p><label for="summary" ><?php echo $this->translate("Short Summary");?></label>
+		<?php echo $this->form->summary; ?>
+	</p>
+    <p><label for="host" ><?php echo $this->translate("Host");?></label>
+		<?php echo $this->form->host; ?>
+	</p>
+    <p><label for="location_id" ><?php echo $this->translate("Location");?></label>
+		<?php echo $this->form->location_id; ?>
+	</p>
+    
+     <p><label for="venue" ><?php echo $this->translate("Venue");?></label>
+		<?php echo $this->form->venue; ?>
+	</p>
+    <p><label for="start_month" ><?php echo $this->translate("Start Date");?></label>
+			<?php echo $this->form->start_month; ?>
+        <?php echo $this->form->start_day; ?>
+             
+        <?php echo $this->form->start_year; ?>
+	</p>
+
+	<p><label for="end_month" ><?php echo $this->translate("End Date");?></label>
+			<?php echo $this->form->end_month; ?>
+        <?php echo $this->form->end_day; ?>
+             
+        <?php echo $this->form->end_year; ?>
+	</p>
+
+<p><label for="start_time" ><?php echo $this->translate("Time");?></label>
+		<?php echo $this->form->start_time; ?>
+	</p>
+
+<p><label for="description" ><?php echo $this->translate("Description");?></label>
+		<?php echo $this->form->description; ?>
+	</p>
+
+
+<p><label for="is_open" ><?php echo $this->translate("Event Type");?></label>
+		<?php echo $this->form->is_open; ?>
+</p>
+<p><label for="work_related" ><?php echo $this->translate("Work Related");?></label>
+		<?php echo $this->form->work_related; ?>
+</p>		 
+      
+    <p><label for="restrict_content_access" >&nbsp;</label>
+		
+        
+        <?php echo $this->form->restrict_content_access; ?><?php echo $this->translate("Allow only admin to post photos and resources");?> 
+        
+	</p>
+    
+     <p><label for="disable_content_access" >&nbsp;</label>
+		
+        
+        <?php echo $this->form->disable_content_access; ?> <?php echo $this->translate("Disable photos and resources");?>
+        
+	</p>
+    
+     <p><label for="open_list" >&nbsp;</label>
+		
+        
+        <?php echo $this->form->open_guest_list; ?><?php echo $this->translate("Allow everyone see confirmed guests");?>
+        
+	</p>
+   
+    	
+<p><label for="logo" ><?php echo $this->translate("Upload Event Banner");?></label>
+		<?php echo $this->form->logo; ?>
+	</p>
+    
+    
+    
+    
+	   <p><label  >&nbsp;</label>    
+	   <div class="buttons">
+		 <?php echo $this->form->submit; ?>
+
+	</div>
+</form>
+       	   </div>
+           
+         
+       		
+ <!-- end window panel --></div>
+ 
+
+ </div>
+
+
+
+  <br style="clear:both"/>		
+</div>

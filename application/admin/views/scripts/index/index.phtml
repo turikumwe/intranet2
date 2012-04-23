@@ -1,0 +1,138 @@
+<?php 
+$page = '';
+?>
+<div id="taskHolder" >
+	<div >	<br/>
+<table width="100%" align="center" cellspacing="10" cellpadding="0">
+   <tr align="center">
+      <td style="width: 25%;">
+          <a href="<?php echo $this->baseUrl();?>/admin/fact" <?php if($page =='fact' )echo 'class="textlink"';?> >
+          	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/facts.png" />
+         <br/> <?php echo $this->translate("Facts");?> </a>   
+      </td>
+      <td style="width: 25%;">
+         <a href="<?php echo $this->baseUrl();?>/admin/link" <?php if($page =='link' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/links.png" />
+         <br/>
+         <?php echo $this->translate("Links");?></a>
+      </td>
+      <td style="width: 25%;">
+         <a href="<?php echo $this->baseUrl();?>/admin/poll" <?php if($page =='poll' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/poll.png" />
+         <br/><?php echo $this->translate("Polls");?> </a>
+      </td>
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/role" <?php if($page =='role' || $page=='rule' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/roles.png" />
+         <br/><?php echo $this->translate("Roles");?> </a>
+      </td>
+   </tr>
+   <tr align="center">
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/location" <?php if($page =='location' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/location.png" />
+         <br/><?php echo $this->translate("Locations");?> </a>
+      </td>
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/department" <?php if($page =='department' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/department.png" />
+         <br/><?php echo $this->translate("Departments");?> </a>
+      </td>
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/rss" <?php if($page =='rss' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/rss.png" />
+         <br/><?php echo $this->translate("RSS");?> </a>
+      </td>
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/user" <?php if($page =='user' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/user_managment.png" />
+         <br/> <?php echo $this->translate("User Management");?></a>
+      </td>
+   </tr>
+   <tr align="center">
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/group" <?php if($page =='group' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/groups.png" />
+         <br/><?php echo $this->translate("Groups");?></a>
+      </td>
+      <td>
+        <a href="<?php echo $this->baseUrl();?>/admin/content" <?php if($page =='content' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/content_approval.png" />
+         <br/><?php echo $this->translate("Content Approval");?></a>
+      </td>
+      <td>
+        <a href="<?php echo $this->baseUrl();?>/admin/category" <?php if($page =='content' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/admin_category.png" />
+         <br/><?php echo $this->translate("Content Category(s)");?></a>
+      </td>
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/forum" <?php if($page =='forum' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/forum.png" />
+         <br/><?php echo $this->translate("Forums");?></a>
+      </td>
+   </tr>   
+   <tr align="center">
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/workflow" <?php if($page =='workflow' || $page=="approval" || $page=="request" )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/workflow.png" />
+         <br/><?php echo $this->translate("Workflow Management");?></a>
+      </td>
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/notification" <?php if($page =='notification' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/notifation.png" />
+         <br/><?php echo $this->translate("Notification Settings");?></a>
+      </td>
+      
+      <td>
+        <a href="<?php echo $this->baseUrl();?>/admin/theme" <?php if($page =='theme' )echo 'class="positive"';?> >
+         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/themes.png" />
+         <br/><?php echo $this->translate("Themes");?></a>
+      </td>
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/logo" <?php if($page =='logo' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/comapny_logo.png" />
+         <br/><?php echo $this->translate("Company Logo");?></a>
+      </td>
+   </tr>
+   <tr align="center">
+      <td>
+      	<a rel="facebox" href="<?php echo $this->baseUrl();?>/admin/upgrade" <?php if($page =='upgrade' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/upgrade.png" />
+         <br/><?php echo $this->translate("Upgrade");?></a>
+      </td>
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/backup" <?php if($page =='backup' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/backup.png" />
+         <br/><?php echo $this->translate("Backup");?> / <?php echo $this->translate("Restore");?></a>
+      </td>
+      
+      <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/setting" <?php if($page =='setting' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/system_settings.png" />
+         <br/><?php echo $this->translate("System Settings");?></a>
+      </td>
+     
+   </tr>
+      
+   <tr align="center"><!--
+      <td>
+      	<a href="<?php echo $this->baseUrl();?>/admin/visitor" <?php if($page =='visitor' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/visitor.png" />
+         <br/><?php echo $this->translate("Visitor Management");?></a>
+      </td>
+     <td>
+         <a href="<?php echo $this->baseUrl();?>/admin/bug" <?php if($page =='bug' )echo 'class="positive"';?> >
+          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/bug.png" />
+         <br/><?php echo $this->translate("Report Bugs");?> / <br/> <?php echo $this->translate("Feature Request");?></a>
+      </td>
+      --><td>
+      </td>
+      <td>
+      </td>
+   
+   </tr>
+      
+     
+</table>
+</div>
+</div>

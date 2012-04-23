@@ -1,0 +1,11 @@
+<?php 
+ $selected = $this->page == '' || $this->page == 'index' ? 'phrase' : $this->page;
+?>
+<div  id="tab" class="appTabs">
+	<div >
+		<?php require_once('search_tab.phtml'); ?>
+	 </div>
+	 <div >
+	 <?php require_once($selected .'.phtml'); ?> 
+	 </div>
+ </div> 

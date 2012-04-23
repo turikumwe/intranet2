@@ -1,0 +1,33 @@
+ 							<div id="details_info">
+                            <ul>
+                                <li>
+                                    <em><?php echo $this->translate("Process");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->display_name); ?>
+                                </li>
+                                
+                                <li>
+                                      <em><?php echo $this->translate("Description");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->description); ?>
+                                </li>
+                                
+                                <li>
+                                    <em><?php echo $this->translate("Department");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->getDepartmentName()); ?>
+                                </li>
+                                <br/>
+                                <li>
+                                    <em><?php echo $this->translate("State");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->state->getDisplayName()); ?>
+                                </li>
+                                <li>
+                                    <em><?php echo $this->translate("Position");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->state->getPosition()); ?>
+                                </li>
+                                <?php if($this->state->position != 0):?>
+                                <li>
+                                    <em><?php echo $this->translate("Duration");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->state->getDuration()); ?>
+                                </li>
+                                <?php endif;?>
+                             </ul>
+                            
+                            </div>
+                            <br/>
+                            <br/>
+<?php 
+	 echo $this->form;
+?>

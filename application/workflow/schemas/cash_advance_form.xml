@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+				<process xmlns:local="schema">
+<header>
+		<description></description>
+		<label value='Cash Advance Form'/>
+	</header>
+<fields>
+<field>
+	<label>Amount Requested</label>
+	<name>amount</name>
+	<type>currency</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>1</position>
+	<componentid>47</componentid>
+</field>
+<field>
+	<label>Purpose / Justification</label>
+	<name>purpose</name>
+	<type>varchar</type>
+	<control>textarea</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>2</position>
+	<componentid>48</componentid>
+</field>
+<field>
+	<label>Date needed</label>
+	<name>date</name>
+	<type>date</type>
+	<control>text</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>3</position>
+	<componentid>49</componentid>
+</field>
+<field>
+	<label>Date to be returned</label>
+	<name>date_to</name>
+	<type>date</type>
+	<control>text</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>4</position>
+	<componentid>50</componentid>
+</field>
+<field>
+	<label>signature</label>
+	<name>signature</name>
+	<type>signature</type>
+	<control>hidden</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>5</position>
+	<componentid>51</componentid>
+</field>
+<field>
+	<label>signature</label>
+	<name>signature_2</name>
+	<type>signature</type>
+	<control>hidden</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>6</position>
+	<componentid>52</componentid>
+</field>
+<field>
+	<label>Amount Issued</label>
+	<name>amount_issued</name>
+	<type>currency</type>
+	<control>text</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>7</position>
+	<componentid>53</componentid>
+</field>
+<field>
+	<label>Date Issued</label>
+	<name>date_issued</name>
+	<type>date</type>
+	<control>text</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>8</position>
+	<componentid>54</componentid>
+</field>
+</fields></process>

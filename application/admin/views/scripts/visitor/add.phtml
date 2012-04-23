@@ -1,0 +1,130 @@
+<script type='text/javascript'>
+var visitor = 0;
+
+$().ready(function()
+{
+
+$("#full_name").autocomplete("<?php echo $this->baseUrl();?>/visitor/ajax/autocompletecontact/u_id/"+$('#contact').val(), {
+	width: 260		
+});
+	
+		
+$("#full_name").result(function(event, data, formatted) {
+	//alert('data');
+	$('#company').val(data[2]);
+	visitor = data[1];
+	$('.positive').show();
+	//alert('hry');
+});
+
+
+
+$("#full_name").emptyResult(function() {
+	visitor = 0;
+	$('#company').val('');
+	$('.positive').show();
+	
+	//alert('returned empty data');
+});
+
+$("#full_name").changed(function() {
+	$('.positive').hide();
+	//alert('returned empty data');
+});
+
+
+$('#selectContact').live('click', function()
+{
+	url = $(this).attr("href") ;
+		$.post(url, {},
+			  function(data){
+				loadSelectPopup();
+			  }, "text");
+			  return false;
+});
+
+});
+
+// If contact is changed, function sets the selected contact
+function setContact(str)
+{
+	user = str.split(",");
+	
+	$('#contact').val(user[0]);
+	$('#contact_name').val(user[1]);
+	
+	/* Since new contacts would have to be fecthed for the new host, clear the currently selected contact */
+	visitor = 0
+	$('#full_name').val('');
+	$('#company').val('');
+	
+	$("#full_name").flushCache();
+	$("#full_name").setOptions({url: "<?php echo $this->baseUrl();?>/visitor/ajax/autocompletecontact/u_id/"+$('#contact').val()});	
+	
+}
+
+
+
+
+function loadSelectPopup()
+{
+	url = "<?php echo $this->baseUrl();?>/user/index/select" ;
+	jQuery.facebox({ ajax: url });
+	return false;
+}
+</script>
+
+<div  id="form">
+<form method="post"  id="addVisitorForm" action="<?php echo $this->baseUrl();?>/admin/visitor/submitnew" name="addVisitorForm">
+	<input type='hidden' id='visitor' name='visitor'/>	
+	<p >
+	<label for="" > <?php echo $this->translate('Host'); ?></label>
+	<?php echo $this->form->contact_name; ?>
+	 <a class="buttons" href="<?php echo $this->baseUrl();?>/admin/visitor/selectcontact" id='selectContact'>
+	   <?php echo $this->translate('Select Host');?></a>
+	<?php echo $this->form->contact; ?>
+	</p>
+
+	<p><label for="full_name" > <?php echo $this->translate('Full Name'); ?></label>
+		<input type='text' name='full_name' id='full_name'/>
+	</p>
+	
+	<p><label for="company" > <?php echo $this->translate('Company'); ?></label>
+		<input type='text' name='company' id='company'/>
+	</p><!--
+	
+	<p><label for="dob_month" > <?php  echo $this->translate('Birth Date'); ?></label>
+		<?php echo $this->form->dob_month; ?>
+		<?php echo $this->form->dob_day; ?>
+		<?php echo $this->form->dob_year; ?>
+	</p>
+	
+	--><p><label for="emergency_contact" > <?php echo $this->translate('Emergency Contact'); ?></label>
+		<?php echo $this->form->emergency_contact; ?> 
+	</p>
+	
+	<p><label for="car_reg_num" > <?php echo $this->translate('Car Number'); ?></label>
+		<?php echo $this->form->car_reg_number; ?> 
+	</p>
+	
+	
+    
+	
+    
+     <p>
+     <label> &nbsp;</label>
+     <div class="buttons">
+				             <button type="submit" id='addVisitor' class="positive">
+				               <?php echo $this->translate("Submit");?>
+				            </button>	
+				          </div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>

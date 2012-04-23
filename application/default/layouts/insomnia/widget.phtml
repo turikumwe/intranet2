@@ -1,0 +1,21 @@
+ <!-- calling page must define a variable $widget of type Precurio_Widget --> 
+ <div class="window" id="div<?php echo $widget->getName(); ?>" tag='<?php echo $widget->getOrder(); ?>'>
+ 	<div  class="titleWindow ">
+    	<div  id="titleText"><?php echo $this->translate($widget->getTitle());?></div>
+        <div id="titleBtns">
+        	<a title="<?php echo $this->translate('settings');?>" href="<?php echo $this->baseUrl();?>/widget/<?php echo $widget->getName() ?>/configure" rel="facebox" class="widget_setup"  rel="div<?php echo $widget->getName(); ?>">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_setup.jpg"   />
+        	</a>
+        	<a title="<?php echo $this->translate('minimize');?>" href="#" class="minimize"  rel="div<?php echo $widget->getName(); ?>">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_minimize.jpg"   />
+        	</a>
+        	<a title="<?php echo $this->translate('close');?>" href="#" class="widget_close"  rel="div<?php echo $widget->getName(); ?>" alt="opinion polls">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_close.jpg"   />
+        	</a> 
+        </div>
+    </div>    
+    		   
+    <div class="windowContent contentPad" id="div<?php echo $widget->getName(); ?>_content">
+      <?php echo $this->action('index',$widget->getName(),'widget');?>
+    </div>          	    		
+</div>

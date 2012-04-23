@@ -1,0 +1,35 @@
+<?php 
+$date = $this->element->getValue();
+$date = new Precurio_Date($date);
+
+$year = $date->get(Precurio_Date::YEAR);
+$month = $date->get(Precurio_Date::MONTH_SHORT);
+$day = $date->get(Precurio_Date::DAY);
+$hour = $date->get(Precurio_Date::HOUR);
+$minute = $date->get(Precurio_Date::MINUTE);
+?>
+<dt>
+    <?php echo $this->formLabel($this->element->getName(), $this->element->getLabel()); ?>
+</dt>
+<dd>
+	<?php 
+	echo $this->formSelect($this->element->getName()."[]",$month,array('class'=>'oneThirdSelect'),Precurio_FormElement::getOptionsArray(Precurio_Date::getAllMonths(),'value','label'));
+	echo $this->formSelect($this->element->getName()."[]",$day,array('class'=>'oneThirdSelect'),Precurio_FormElement::getOptionsArray(Precurio_Date::getAllDays(),'value','label'));
+	echo $this->formSelect($this->element->getName()."[]",$year,array('class'=>'oneThirdSelect'),Precurio_FormElement::getOptionsArray(Precurio_Date::getAllYears(),'value','label'));
+	if($this->element->showTime)
+	{
+		echo "<br/><br/>";
+		echo $this->formSelect($this->element->getName()."[]",$hour,array('class'=>'oneThirdSelect'),Precurio_FormElement::getOptionsArray(Precurio_Date::getAllHours(),'value','label'));
+		
+		echo " : ";
+		echo $this->formSelect($this->element->getName()."[]",$minute,array('class'=>'oneThirdSelect'),Precurio_FormElement::getOptionsArray(Precurio_Date::getAllMinutes(),'value','label'));
+		echo $this->translate("24HR");
+	}
+	
+	?>
+
+ 
+    <?php if(count($this->element->getMessages()) > 0): ?>
+        <?php echo $this->formErrors($this->element->getMessages()); ?>
+    <?php endif; ?>
+</dd>

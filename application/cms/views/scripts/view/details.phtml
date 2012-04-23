@@ -1,0 +1,186 @@
+<?php if($this->content == null)
+{
+	echo "<div id = 'noRecords'>".$this->translate("The content you are trying to view does not exists anymore").".</div>";
+	return;
+}
+
+?>
+
+<div  id="tab" class="appTabs">
+
+ <div class="completeText" id="application_controlBar"><strong>
+ 	<?php echo Precurio_Date::now()->get(Precurio_Date::DATE_LONG);?>   </strong>
+<!-- - <a href="<?php echo $this->baseUrl();?>/cms">back to contents</a>--></div>
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad">
+      <div   class="buttons">
+		
+            <a href="<?php echo $this->baseUrl();?>/cms/add/" class="positive"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/>  <?php echo $this->translate("Add new content");?></a>
+   
+</div>
+<br /> <br />
+<!--  <form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    </form>-->
+    
+      <span class="maroon_text"><strong> <?php echo $this->translate('Recent Content');?>     </strong></span>
+    <div id="news_sideList">
+     		<?php $result = $this->contentView()->getMostRecent();?>
+        	 <?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div><br />
+     
+     <span class="maroon_text"><strong><?php echo $this->translate("Most Popular Content");?>   </strong></span><br/>
+    <div id="news_sideList">
+     	
+            <?php $result = $this->contentView()->getMostRead();?>
+        	 <?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div>
+     <br />
+     <span class="maroon_text"><strong><?php echo $this->translate("Most Discussed Content");?>    </strong></span><br/>
+    <div id="news_sideList">
+     	
+              <?php $result = $this->contentView()->getMostCommented();?>
+        	<?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div>
+    </div>
+</div>
+<div id="app_main">
+<!-- window panel -->
+
+    
+       <div id="news_detail">
+       <?php $root = Zend_Registry::get('root');?>
+       <?php if(is_file($root.'/public/'.$this->content->getImagePath(Content::WIDTH_IMAGE_271))):?>
+         <img src="<?php echo$this->baseUrl().$this->content->getImagePath(Content::WIDTH_IMAGE_271); ?>" />
+         <?php endif;?><br />
+           <span class="nameText"><a href="<?php echo $this->content->getUrl();?>" target="_blank"><?php echo $this->content->getTitle();?><br />
+           </a></span><span class="textLinks"><?php echo $this->content->getDateAdded();?></span> 
+           <?php if($this->content->getUserId() != 0):?> <?php echo $this->translate("by");?> <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $this->content->getUserId();?>"><?php echo $this->content->getFullName();?></a><?php endif;?><br />
+         <div class="buttons button_holder">
+    		<?php if($this->content->is_document):?>
+   			<a href="<?php echo $this->baseUrl();?>/document/view/download/c_id/<?php echo $this->content->getContentId();?>" target="_blank">
+		        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/arrow_down.png" alt=""/> 
+		        <?php echo $this->translate("Download");?>
+		    </a>
+		    <?php endif;?>
+		    <a href="<?php echo $this->baseUrl();?>/user/index/select"  rel="facebox">
+		        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/share_this.png" alt=""/> 
+		        <?php echo $this->translate("Share this content");?>
+		    </a>
+		    <a href="#" onclick="window.print();return false;">
+		        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/print.png" alt=""/> 
+		        <?php echo $this->translate("Print");?> 
+		    </a>
+		
+		   
+		</div>
+           <br /><br />
+     <?php echo $this->content->getBody();?>
+     <br /><br />
+
+       </div>
+               <div class="buttons button_holder">
+        	<a href="<?php echo $this->baseUrl();?>/cms/edit/edit/c_id/<?php echo $this->content->getContentId();?>">
+		        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" alt=""/> 
+		        <?php echo $this->translate("Edit this content");?>
+		    </a>
+        </div>
+       <br/><br />
+     <?php if(!$this->content->userHasRated(Precurio_Session::getCurrentUserId())):?>
+       <div class="contentHelpful" id="contentHelpful">
+	       	<strong><?php echo $this->translate("Was this information helpful?");?></strong>
+	        <br />
+	        <div class="buttons contentPad" >
+	         <a href="#" onclick="rateContent(event,<?php echo $this->content->getId(); ?>,1);return false;" class="mild">
+	       
+	        <?php echo $this->translate("Yes");?>
+	  		 </a>
+		    
+		    
+		    <a href="#" onclick="rateContent(event,<?php echo $this->content->getId(); ?>,-1);return false;" class="mild">
+		        
+		        <?php echo $this->translate("No");?>
+		    </a>
+		     <a href="#" onclick="rateContent(event,<?php echo $this->content->getId(); ?>,0);return false;" class="mild">
+		        
+		       <?php echo $this->translate("I dont Know");?>
+		    </a>
+		    </div>
+       </div>
+    <?php endif;?>
+<!-- window panel  -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Comments");?></div>
+           
+    </div>       
+   
+      <div   class="eventComment">  		
+
+  		<div id="<?php echo ('comment'.$this->content->getId());?>"> 
+	    <?php 
+			$this->partialLoop()->setObjectKey('comment');
+			echo $this->partialLoop('partial_comment.phtml',$this->content->getComments());
+		?>
+	  	
+	  	</div>
+  
+  
+	  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($this->content->getId().','.$this->userView()->currentUser()->getId().',1' ); ?>)">
+	    	<div align="right">
+	    	  <textarea id="<?php echo ('textarea'.$this->content->getId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($this->content->getId()) ?>)"> <?php echo $this->translate("Write something");?></textarea>
+	    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+	        </div>
+	  	</form>
+	  </div> 
+ <!-- end window panel --></div>
+       		
+ <!-- end window panel --></div>
+ 
+ 
+
+
+  <br style="clear:both"/>		
+</div>
+<script>
+			$(document).ready(function(){
+				$('.searchBox').autofill({
+					value: 'Search News Items'
+				});
+			});
+			function rateContent(event,c_id,rate)
+			{
+				params = {'value':rate,'c_id':c_id};
+				$.post('<?php echo $this->baseUrl();?>/cms/view/rate', params, function(data) {
+					$('#contentHelpful').html("<strong><?php echo $this->translate("Thank you for rating this content");?>.</strong>");
+				});
+				event.preventDefault();
+				return false;
+			}
+				
+</script>

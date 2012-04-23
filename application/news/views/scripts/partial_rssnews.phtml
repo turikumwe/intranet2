@@ -1,0 +1,32 @@
+
+
+	<div class="rssLine">
+		<a href="<?php echo $this->rssnews->getUrl();?>" target="_blank" onclick="indexRSS(<?php echo $this->rssnews->getId(); ?> );"><?php echo $this->rssnews->getTitle();?> </a><br />
+		<span  class="rss_text"><?php echo $this->rssnews->getSummary();?></span><br />
+     <?php $comments = $this->rssnews->getComments();?>
+      <span class="textLinks"><?php echo $this->rssnews->getDateAdded();?>.<a href="#" id="alink" onclick="toggleMe(event,<?php echo $this->rssnews->getId();?>);return false;"> <?php echo (count($comments) ? count($comments): $this->translate('No') ).' '.(count($comments) == 1 ? $this->translate('Comment') : $this->translate('Comments')); ?></a></span>
+    	<span class="textLinks">. <a href="<?php echo $this->baseUrl();?>/user/index/select/c_id/<?php echo $this->rssnews->getId();?>" rel="facebox"><?php echo $this->translate("share this");?></a></span>
+    </div>
+   
+	
+	    
+	<div   class="comments" id="<?php echo ('comments'.$this->rssnews->getId());?>"> 
+		<div id="<?php echo ('comment'.$this->rssnews->getId());?>">
+		    <?php 
+				$this->partialLoop()->setObjectKey('comment');
+				echo $this->partialLoop('partial_comment.phtml',$comments);
+			?>
+		  	
+		 </div>
+  <?php 
+		$this->partialLoop()->setObjectKey('rssnews');
+	?>
+  	
+  
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($this->rssnews->getId().','.$this->userView()->currentUser()->getId().',1' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$this->rssnews->getId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($this->rssnews->getId()) ?>)"> <?php echo $this->translate("Write something");?></textarea>
+    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+        </div>
+  	</form>
+  </div>

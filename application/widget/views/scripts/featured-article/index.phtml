@@ -1,0 +1,24 @@
+<?php 
+require_once ('cms/models/MyContents.php');
+		$contents = new MyContents();
+		$article =  $contents->getFeaturedArticle(0);
+		if(Precurio_Utils::isNull($article))
+		{
+			echo "<div id='noRecords'>
+	                               	".$this->translate('No featured article has been set.')."<br />
+	                               </div>";
+			return;
+		}
+		$root = Zend_Registry::get('root');
+?>
+<div class="featuredBg">
+<?php if(is_file($root.'/public/'.$article->getImagePath())):?>
+	<img src='<?php echo $this->baseUrl().$article->getImagePath();?>' height='150'/>
+<?php endif;?>
+<?php echo $article->getSummary();?>
+<br /> 
+<p align='right'> 
+<span class='readmore'>
+	<a href='<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $article->getId()?>'><?php echo $this->translate('read more')."...";?></a>
+</span></p>
+</div>

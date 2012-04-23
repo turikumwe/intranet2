@@ -1,0 +1,20 @@
+<div class="contentPad_5">
+<form enctype="application/x-www-form-urlencoded" action="/workflow/process/submitreject" method="post">
+<input type="hidden" name="id" value="<?php echo $this->id?>" id="id"> <!-- this is user_process_id -->
+<table class="workflow_table" cellspacing="0" cellpadding="10"> 
+<tr><th class="nobg" colspan="10"> 
+</th></tr> 
+<tr><th class="nobg" colspan="10"> 
+<?php echo $this->translate("Reason for disapproval");?></th></tr> 
+
+<tr class="alt" ><td class="alt"></td> 
+<td class="alt">  
+<textarea name="comment" id="comment" rows="3" cols="57"></textarea></td></tr> 
+
+<tr><td ><td colspan="3"><div class="buttons"> 
+<span >
+<button type="submit" class="standout"> 
+        <?php echo $this->translate("Submit");?> 
+    </button> 
+    </span></div></td></td></tr></table></form>
+</div>

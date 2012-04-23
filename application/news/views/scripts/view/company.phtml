@@ -1,0 +1,104 @@
+<script>
+			$(document).ready(function(){
+				$('.searchBox').autofill({
+					value: 'Search News Items'
+				});
+			});
+		</script>
+			<style>
+.temp{;margin:0px 10px 20px 10px; overflow:auto;background-color: #ECEFF5;}
+</style>
+<div  id="tab" class="appTabs">
+
+ <div class="completeText" id="application_controlBar"><strong>
+ 	<?php echo Precurio_Date::now()->get(Precurio_Date::DATE_LONG);?>   </strong>
+<!-- 	 - <a href="<?php echo $this->baseUrl();?>/news">back to news page</a>--></div>
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad">
+<!--  <form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    </form>-->
+    <span class="maroon_text"><strong> <?php echo $this->translate('Recent News');?>     </strong></span>
+    <div id="news_sideList">
+     		<?php $result = $this->newsView()->getRecent(5);?>
+        	 <?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div><br />
+     
+     <span class="maroon_text"><strong><?php echo $this->translate("Most Read News");?>   </strong></span><br/>
+    <div id="news_sideList">
+     	
+            <?php $result = $this->newsView()->getMostRead(5);?>
+        	 <?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div>
+     <br />
+     <span class="maroon_text"><strong><?php echo $this->translate("Most Discussed News");?>    </strong></span><br/>
+    <div id="news_sideList">
+     	
+              <?php $result = $this->newsView()->getMostCommented(5);?>
+        	<?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/news/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?><br/>
+             </a>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+     </div>
+    </div>
+    
+    
+    
+</div>
+<div id="app_main">
+
+<div id="news_window">
+	<div class="rssHolder">
+		<?php 
+		$allNews = $this->newsView()->getRecent(1000);
+		if(count($allNews))
+		{
+			require_once 'Zend/Paginator.php';
+			$cPage = Zend_Controller_Front::getInstance()->getRequest()->getParam('cpage',1);
+			
+			
+			$paginator = Zend_Paginator::factory($allNews);
+			$paginator->setItemCountPerPage(5);
+			$paginator->setCurrentPageNumber($cPage);
+			echo $this->paginationControl($paginator, 'Elastic','page_control.phtml');
+	     	$this->partialLoop()->setObjectKey('content');
+			echo $this->partialLoop('partial_content.phtml',$paginator->getCurrentItems());
+		}
+		else
+		{
+			echo "<div id='noRecords'>". $this->translate("There is no company related news").".</div>";
+		} 
+	     ?>
+	    
+	     <!-- end rss panel -->
+	    </div>
+	    </div>
+	</div>
+ 
+ 
+
+</div>
+
+  <br style="clear:both"/>		

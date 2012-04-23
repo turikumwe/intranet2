@@ -1,0 +1,26 @@
+	<?php 
+	
+	require_once ('event/models/vo/Event.php');
+	require_once ('event/models/Events.php');
+	require_once ('employee/models/Employees.php');
+	
+	$birthdays  = Employees::getBirthdays(0,10);
+	$outs = Employees::getOutofOffice();
+	$currentUser = $this->userView()->currentUser();
+	$upcomingEvents = Events::getEvents($currentUser->getId(),null,true,false)
+	?>
+	<div class="contentPad"> 
+      <p><strong><?php echo $this->translate("Birthdays");?></strong><br />
+          <?php foreach($birthdays as $user):?>
+          <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $user->getId(); ?>"><?php echo $user->getFullName();?></a> (<?php echo $user->getLocation();?>) -	<span class="textLinks"><?php echo $user->getDOB();?> </span><br />
+        <?php endforeach;?>
+      <p><strong><?php echo $this->translate("Out Of Office");?></strong><br />
+      	<?php foreach($outs as $user):?>
+           <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $user->getId(); ?>"><?php echo $user->getFullName();?></a> (<?php echo $user->getLocation();?>) - <span class="textLinks">till <?php $x = $user->outOfOffice(); if(!Precurio_Utils::isNull($x))echo $x->getReturnDate();?> </span><br />
+        <?php endforeach;?>
+      <p><strong><?php echo $this->translate("Events");?></strong><br />
+        <?php foreach($upcomingEvents as $event):?>
+           <a href="<?php echo $this->baseUrl();?>/event/upcoming/details/e_id/<?php echo $event->id ;?>"><?php echo $event->getTitle(); ;?></a> (<?php echo $event->getLocation();?>) - <span class="textLinks"><?php echo $event->getDate();?> </span><br />
+        <?php endforeach;?>
+        </p>
+    </div>

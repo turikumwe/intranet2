@@ -1,0 +1,287 @@
+<?php 
+require_once('visitor/models/Appointments.php'); 
+require_once('visitor/models/vo/Appointment.php'); 
+require_once('visitor/models/VisitorUtil.php'); 
+?>
+<?php 
+$appointments = new Appointments();
+$appointment_id = $this->appointment_id ; 
+$type = $this->type;
+$appointment = $appointments->getAppointment($appointment_id) ;
+$mine = $this->mine;
+
+?>
+
+<script type='text/javascript'>
+
+$('#appointment_back').click( function()  {
+		
+		 <?php 
+			switch($type)
+			{
+				case Appointments::PAST:
+					$page = '/visitor/list/pastappointment';
+					break;
+				case Appointments::UPCOMING:
+					$page = '/visitor/list/upcomingappointment';
+					break;
+				case Appointments::CURRENT:
+					$page = '/visitor/list/currentappointment';
+					break;
+				default:
+					$page = '/visitor/list/upcomingappointment';
+					break;
+			}
+			if( ! Precurio_Utils::isNull($this->mine) ) // if user is coming from his personal listings 
+			$page.='/mine/1';
+			$page = $this->baseUrl().$page; ?>
+		var page  = "<?php echo $page; ?>";		
+	
+		$("#loading").show();
+	
+		loadPage(page);	
+	
+		return false;		
+		
+});
+
+$('.partLine').click(function()
+{
+	if(!confirm("<?php echo $this->translate('Are you sure you want to delete?') ?>")) return;		
+	$.post("<?php echo $this->baseUrl();?>/visitor/appointment/removeparticipant/",{id:$(this).attr('tag')},
+  function(data){    
+      
+    page =  "<?php echo $this->baseUrl();?>/visitor/appointment/view/id/<?php echo $appointment->id ?>/type/<?php echo $type; ?>";
+		
+	$("#loading").show();
+		
+	loadPage(page);
+ 
+  }, "text");
+
+});
+
+$('.contLine').click(function()
+{
+	if(!confirm("<?php echo $this->translate('Are you sure you want to delete?') ?>") ) return;	
+	$.post("<?php echo $this->baseUrl();?>/visitor/appointment/contacts/f/remove",{id:$(this).attr('tag')},
+  function(data){
+    
+      
+    page =  "<?php echo $this->baseUrl();?>/visitor/appointment/view/id/<?php echo $appointment->id ?>/type/<?php echo $type; ?>";
+		
+	$("#loading").show();
+		
+	loadPage(page);
+   
+  }, "text");
+
+});
+
+
+
+
+</script>                  
+
+
+<?php
+
+switch($type)
+{
+	case Appointments::UPCOMING:
+		$header = $this->translate('Upcoming Appointment');
+		break;
+		
+	case Appointments::PAST:
+		$header = $this->translate('Past Appointment');
+		break;
+		
+	case Appointments::CURRENT:
+		$header = $this->translate('Appointment');
+		break;
+	
+}
+?>
+<div id="tasksHolder">
+ <div class="taskDetail_Header"> <?php echo $header; ?> </div> 
+
+                        
+               			<div id="task_body">
+                        <div class="task_Pad">
+                       	 
+						 <div id="details_info">
+                            <ul>
+                                <li>
+                                    <em> <?php echo $this->translate('Appointment Date'); ?> </em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($appointment->getAppointmentDate()); ?>
+                                </li>
+                                
+                                <li>
+                                      <em> <?php echo $this->translate('Appointment Time'); ?> </em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($appointment->getAppointmentTime()); ?>
+                                </li>
+				
+				 <li>
+                                      <em> <?php echo $this->translate('Date Created'); ?> </em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($appointment->getCreationDate()); ?>
+                                </li>
+								
+							                                
+                              
+                             </ul>
+                            
+                            </div>
+                           
+                            	
+                                
+                                
+                               
+                         <div id="details_box">
+                          <p><span class="details_header"> <?php echo $this->translate($appointment->title) ?>  </span></p>
+                              								
+				<p><em> <?php echo $this->translate('Host'); ?> :</em><br /> <?php echo ucfirst($appointment->getHost()); ?></p>
+				<p><em> <?php echo $this->translate('Creator'); ?> :</em><br /> <?php echo ucfirst($appointment->getCreator()); ?></p>
+				<p><em> <?php echo $this->translate('Purpose'); ?>:</em><br /> <?php echo $appointment->purpose ?></p>
+				<p><em> <?php echo $this->translate('Purpose Detail'); ?> :</em><br /> <?php echo $appointment->purpose_detail ?></p>
+				<p><em> <?php echo $this->translate('Visitors'); ?> :</em><br /> </p>
+				
+				<?php 
+					$contacts = $appointment->getContacts(); 
+					//echo $participants;
+									
+					foreach($contacts as $contact)
+					{	
+						$log = '';
+						if ($appointment->isToday() )
+						{
+							if($contact->isOut() )
+							$log = ' --left';
+							else if( ! $contact->isIn() && VisitorUtil::isReceptionist($this->user->id) )
+							$log = " -- <a href='{$this->baseUrl()}/visitor/appointment/login/vname/{$contact->full_name}/v_id/{$contact->id}' class='loginLine'>{$this->translate('Check in')}</a>";							
+							else if( VisitorUtil::isReceptionist($this->user->id) )
+							$log = " -- <a href='{$this->baseUrl()}/visitor/appointment/logout/vname/{$contact->full_name}/v_id/{$contact->id}' class='logoutLine'>{$this->translate('Check out')}</a>";	
+						}											
+						elseif($type ==  Appointments::PAST)
+						{
+							if( $contact->isOut() ) 
+							$log =  ' --' . $this->translate('present');
+							else $log = ' --' . $this->translate('absent');
+						}
+						
+						
+						
+						
+						$remove = ( $type != Appointments::PAST ) ? " -- <img src='{$this->baseUrl()}/library/css/{$this->themestyle}/images/icons/delete.png' tag='{$contact->id}' class='contLine'/>" : '';
+						echo " {$contact->full_name} ({$contact->company})". $remove. $log. '<br/>'; 
+					}
+				      ?>
+				
+				</p>
+				
+				<p><em> <?php echo $this->translate('Other Participants'); ?>:</em><br /> 
+				
+				<?php 
+					$participants = $appointment->getParticipants(); 
+															
+					foreach($participants as $participant)
+					{
+						$date = new Precurio_Date($participant['date_created']);
+						$dateCreated = $date->get(Precurio_Date::DATE_SHORT).'('.$date->get(Precurio_Date::TIME_SHORT).')';
+						
+						$remove = ( $type == Appointments::PAST ) ? '' : " -- <a tag='{$participant['id']}' class='partLine'>{$this->translate('Remove')}</a>";
+											
+						
+						echo "<a href='{$this->baseUrl()}/user/profile/view/{$participant['user_id']}'>".ucfirst($participant['last_name']. ' '.$participant['first_name']) .'</a>'. ' '. $this->translate('Added on') . ' '. $dateCreated. $remove. '<br/>'; 
+					}
+				      ?>
+				
+				</p>				
+                      
+		      <?php 
+		      if( $type != Appointments::PAST )
+		      {
+		      ?>
+                      <div class="buttons" id="task_controlBar">
+                      		
+                                                       
+			                   
+					      
+			                    <a href="<?php echo $this->baseUrl();?>/visitor/appointment/edit/id/<?php echo $appointment_id; ?>" id="editAppointment" >
+			                     <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" alt=""/> 
+			                      <?php echo $this->translate('Edit'); ?>    </a>
+					      
+					       <a href="<?php echo $this->baseUrl();?>/visitor/appointment/addcontact/a_id/<?php echo $appointment_id; ?>/host/<?php echo $appointment->host ?>/type/<?php echo $type ?>" id="addContact" >
+			                     <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/> 
+			                     <?php echo $this->translate('Add Contact'); ?> </a>
+					      
+					       <a href="<?php echo $this->baseUrl();?>/visitor/appointment/selectparticipants/edit/1" id="addParticipants" >
+			                     <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/> 
+			                     <?php echo $this->translate('Add Participant'); ?>    </a>
+			                                
+			                    
+                                 
+                      </div>
+		      <?php
+		      }
+		      ?>
+                                                     
+ <p><strong><?php echo $this->translate("Comments");?></strong></p>     					
+ <div class="taskComments"> 
+    <div id="<?php echo ('comment'.$appointment->getActivityId());?>"  >
+     <?php 
+		$comments = $appointment->getComments();
+		
+		$this->partialLoop()->setObjectKey('comment');
+		echo $this->partialLoop('partial_comment.phtml',$appointment->getComments());
+	?>
+  	</div>
+  
+    	
+  <div  class="taskComments">
+  
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($appointment->getActivityId().','.$this->userView()->currentUser()->getId().',0' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$appointment->getActivityId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($appointment->getActivityId()) ?>)"> <?php echo $this->translate("Write Something");?></textarea>
+    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+        </div>
+  	</form>
+  </div>
+  
+  </div>
+  
+  </div>                                    
+						
+
+
+  
+
+						
+<div id="details_bar">
+    <ul>
+    
+     
+    	<li id="appointment_back"> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/back.png" /><a href="#" rel="<?php echo $type; ?>"> <?php echo $this->translate('Back'); ?></a> </li> 
+
+	<?php 
+	if( $appointment->isCurrent() )
+	{
+	?>
+		 <li> <img  src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" /><a id="endAppointment" href="#" rel="<?php echo $appointment_id; ?>"> <?php echo $this->translate('End Appointment'); ?></a></li>
+	   
+	  <?php
+	  }
+	  ?>
+	   <li> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/delete.png" /><a id="cancelAppointment" href="#" rel="<?php echo $appointment_id; ?>"> <?php echo $this->translate('Delete Appointment'); ?></a></li>
+        <li> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/printer.png" /><a href="#" onclick="window.print();return false;"> <?php echo $this->translate('Print Appointment'); ?></a></li>
+
+    </ul>
+</div> 
+                                    
+                                    
+                                    
+                                 
+                           
+                           </div> 
+                            
+		                            </div>
+                       
+                        
+                     
+</div>    

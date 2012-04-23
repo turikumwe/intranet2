@@ -1,0 +1,9 @@
+<ul id="tabnav">
+	<li <?php if ($selected == 'phrase') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/report/search/phrase"><?php echo $this->translate("Phrase Analysis");?></a>    </li>
+   
+    <li <?php if ($selected == 'content') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/report/search/content"><?php echo $this->translate("Content Analysis");?></a></li>
+
+ 	                             
+</ul>

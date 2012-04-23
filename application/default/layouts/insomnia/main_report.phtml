@@ -1,0 +1,51 @@
+<?php
+/**
+ * Report Layout
+ *  
+ * @author Klein Devort
+ * @version 2
+ */
+echo '<?xml version="1.0" encoding="UTF-8" ?>';
+echo $this->doctype();
+?>
+<html>
+
+  <?php require_once('header.phtml'); ?>
+ <div  id="pageBody" class="row5"> 
+  	<!-- Left Bar -->
+	<div id="left_bar">
+  	
+  	</div>
+  	<!-- End Left Bar -->
+  	
+	<div id="app_bar" style="width: 100%">
+		<div id="navHolder">
+			<?php require_once('nav.phtml'); ?>
+		</div>
+		<div class="box_D">
+			<div class="appPad" >
+				
+				<?php echo $this->layout()->content ?>
+			</div>
+		</div>
+	</div>
+	
+	<!-- right Bar -->
+	<div id="right_bar"> 
+	
+	</div>
+	<!-- End right Bar -->
+
+  </div>
+            </div>  
+		  
+        </div>
+        
+        </div>
+        
+        
+
+
+<?php require_once 'footer.phtml';?>
+
+</html>

@@ -1,0 +1,137 @@
+<?php
+require_once('visitor/models/Appointments.php');
+
+$appointments = new Appointments();
+$appointment = $appointments->getAppointment($this->appointment_id);
+
+$ids = array();
+$participants  = $appointment->getParticipants();
+
+while (list ($key, $val) = each ($participants))
+array_push($ids, $key); // the user_id was used as the key
+
+array_push($ids, $this->host); //add the host is so his contacts would be fetched
+ 
+$type = $this->type;
+?>
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"> <?php echo $this->translate('Add Contact'); ?></div>
+           <div id="titleBtns">
+             
+                <a href="#" class=""  onclick=" jQuery(document).trigger('close.facebox');"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_close.jpg"   /></a> 
+            </div>
+	    
+	    </div>
+	    
+	    
+	    <div  id="windowContent">
+ 		
+<div  id="form">
+	    
+	    <form method="post" action="#" id="addContactForm"  name="registerForm">
+		
+		
+		<span id='status'></span>
+	
+		<p><label for="" > <?php echo $this->translate('Contact Name'); ?></label>
+		<input type='text' id='contact_name' name='full_name'/> </p>
+		
+		<p><label for="" > <?php echo $this->translate('Contact Company'); ?> </label>
+		<input type='text' id='contact_company' name='company'> </p>
+		
+		
+		
+	  <p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+             <button type="submit" class="positive" id="addCont">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+            <?php echo $this->translate('Add'); ?>
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate('Cancel'); ?>
+            </button>
+            </div>
+	</p>
+		
+		</form>
+		
+	
+       	               
+    </div>
+
+</div> 
+
+</div>   
+
+<script type='text/javascript'>
+var contact_id = 0;
+var newcontact = ''// in the case that a new contact is to be created
+
+$("#contact_name").autocomplete("<?php echo $this->baseUrl();?>/visitor/ajax/autocompletecontact", {
+	width: 260		
+});
+	
+		
+$("#contact_name").result(function(event, data, formatted) {
+	
+	$('#contact_company').val(data[2]);
+	contact_id = data[1];
+	$('#addCont').show();
+	
+});
+
+
+
+$("#contact_name").emptyResult(function() {
+	contact_id = 0;
+	$('#contact_company').val('');
+	$('#addCont').show();	
+});
+
+$("#contact_name").changed(function() {
+	$('#addCont').hide();	
+});
+
+
+
+
+$('#addCont').click(function()
+{
+	if($.trim($('#contact_company').val()) == '')
+	{
+		alert("<?php echo $this->translate('Contact Company cannot be empty') ?>");		
+	}
+	else
+	{
+		if(contact_id == 0)
+		{
+			alert("<?php echo $this->translate('Entry would be created as a new contact'); ?>");
+			newcontact = $('#contact_name').val()+','+$('#contact_company').val();
+		}
+	}
+	
+	
+	page =  '<?php echo $this->baseUrl();?>/visitor/appointment/contacts/f/add';
+		
+	
+		
+	$.post(page, 
+	{
+		a_id: <?php echo $this->appointment_id ?>,
+		newcontact: newcontact,
+		contact_id: contact_id,
+		host: <?php echo $this->host ?>		
+	},
+	function(html){
+	loadPage('<?php echo $this->baseUrl();?>/visitor/appointment/view/id/<?php echo $this->appointment_id ?>/type/<?php echo $type ?>');
+	jQuery(document).trigger('close.facebox');
+	return false;
+	});
+	return false;
+});
+
+
+</script>

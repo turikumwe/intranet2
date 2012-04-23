@@ -1,0 +1,75 @@
+<?php 
+
+require_once('contact/models/Contacts.php'); 
+require_once('contact/models/vo/Contact.php'); 
+?>
+<?php 
+$contacts = new Contacts();
+$contact_id = $this->contact_id ; 
+$type = $this->type;
+$contact = $contacts->getContactDetails($contact_id,$type) ;
+?>
+<div id="vcard">
+                    	<div id="vcard_pattern">
+                        </div>
+                    	<div id="vcard_details">
+                        
+                        	<div class="contentPad">
+                            	<p>
+                                <span class="nameText"><?php echo $contact->full_name; ?></span><br />
+                                
+								<?php if ($contact->job_title <> "" ) echo $contact->job_title; ?>
+                                
+                                </p>
+                           	  <p><?php if ($contact->address <> "" ) echo $contact->address; ?><br />
+                            	  <br />
+                                  <?php if ($contact->mobile_phone <> "" )
+								  { ?>
+                                  <span class="textLinks"><?php echo $this->translate('Mobile');?></span><br />
+                                  <?php echo $contact->mobile_phone; ?><br/>
+                                  <?php }?>
+                                  
+                                   <?php if ($contact->work_phone <> "" )
+								  { ?>
+                                  <span class="textLinks"><?php echo $this->translate('Work');?></span><br />
+                                  <?php echo $contact->work_phone; ?><br />
+                                  <?php }?>
+                                  <br />
+                                  <?php if ($contact->email <> "" )
+								  { ?>
+                            	  <span class="textLinks"><?php echo $this->translate('email');?></span><br />
+                            	  <a href="mailto:<?php echo $contact->email; ?>" title="Send an email to : <?php echo $contact->email; ?>"><?php echo substr($contact->email,0,30); ?></a><br /><br />
+                                  <?php } ?>
+                                  
+                                  <?php if ($contact->website <> "" )
+								  { ?>
+                           	      <span class="textLinks"><?php echo $this->translate('website');?></span><br />
+                       	      <?php echo $contact->website; ?>
+                              
+                              	<?php } ?>
+                              </p>
+                                <div id="vcard_loading">
+                                </div>
+                        	</div>
+                        </div>
+                    </div>
+                    <div class="buttons contactsBtn">
+                        
+                    
+                        <a href="<?php echo $this->baseUrl();?>/contact/index/edit/id/<?php echo $contact_id; ?>" id="editContact" class="positive" tag='<?php echo $type; ?>'>
+                            <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/vcard_edit.png" alt=""/> 
+                            <?php echo $this->translate('Edit');?> 
+                        </a>
+                    
+                        <a href="<?php echo $this->baseUrl();?>/contact/index/vcard/id/<?php echo $contact_id; ?>"  id="vcardContact" rel="<?php echo $contact->id; ?>" >
+                            <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/vcard.png" alt=""/> 	
+                           <?php echo $this->translate('VCard');?>
+                        </a>
+                        
+                        
+                        <a href="#" tag='<?php echo $type; ?>'  class="negative" id="deleteContact" rel="<?php echo $contact->id; ?>">
+                             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/delete.png" alt=""/> 	
+                           <?php echo $this->translate('Delete');?>
+                        </a>
+                        
+                  </div>

@@ -1,0 +1,161 @@
+<script type="text/javascript">
+$(document).ready(function() {
+	  
+			
+	// click on the menu						   
+	$('#tabnav li a').click(function() {
+
+			$(this).css('outline','none');
+			$('#tabnav li a .selected').addClass('selected');
+		
+			//$(this).addClass('selected');
+			
+			var page  = $(this).attr("rel");
+		
+			$("#loading").show();
+			loadPage(page);
+		
+			return false;
+			
+		});
+	//handle clicking on add
+	$('#addContact').live('click', function()  {
+		
+		//alert ($("#addForm").serialize());
+		$.post("<?php echo $this->baseUrl();?>/contact/index/submit", $("#addForm").serialize(),
+  function(data){
+    alert(data);
+  }, "text");
+
+
+		
+		
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});
+	//handle clicking on add
+	$('#addTask').live('click', function()  {
+		
+		//alert ($("#addForm").serialize());
+		$.post("<?php echo $this->baseUrl();?>/task/index/submit", $("#addForm").serialize(),
+  function(data){
+    alert(data);
+  }, "text");
+
+	
+		jQuery(document).trigger('close.facebox');
+		return false;
+		
+		
+		
+	});
+	$('#updateStatus').live('click',function(){
+		
+		msg = $('#txtArea').val();
+		if(trim(msg) == "")return false;
+		$.post("<?php echo $this->baseUrl();?>/user/mypage/newstatus", {'message': msg},
+				  function(data){
+			  		$('#contentDiv').prepend(data);
+			  		$('#txtArea').val('');
+				  }, "text"); 
+		return false;
+	});
+		
+});
+function trim(s)
+{
+	var l=0; var r=s.length -1;
+	while(l < s.length && s[l] == ' ')
+	{	l++; }
+	while(r > l && s[r] == ' ')
+	{	r-=1;	}
+	return s.substring(l, r+1);
+}
+
+function loadPage (page)
+{
+	$("#contentDiv").load(page,{} , function()
+	{
+			$("#loading").hide();
+	}); 
+}
+</script>
+<div class="buttons" id="task_controlBar"><a
+	href='<?php echo $this->baseUrl();?>/user/mypage/uploadphoto' rel="facebox" class="mild"> <img
+	src="<?php echo $this->baseUrl();?>/library/css/<?php
+	echo $this->themestyle;
+	?>/images/icons/photo.png"
+	alt="" /> <?php echo $this->translate("Upload Photo");?></a> <a href="<?php echo $this->baseUrl();?>/event/my/new" class="mild"> <img
+	src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/calendar_add.png"
+	alt="" /><?php echo $this->translate("Create Event");?> </a> <a href="<?php echo $this->baseUrl();?>/contact/index/add"
+	rel="facebox[]" class="mild"> <img
+	src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/contacts_add.png"
+	alt="" /><?php echo $this->translate("Add Contact");?>  </a>
+<!--	 <a href="<?php //echo $this->baseUrl();?>/helpdesk/index/form"-->
+<!--	class="mild"> <img-->
+<!--	src="<?php //echo $this->baseUrl();?>/library/css/<?php //echo $this->themestyle;?>/images/icons/helpdesk.png" alt="" />-->
+<!--Request Help </a> -->
+	<a href="<?php echo $this->baseUrl();?>/task/index/add" rel="facebox[]" class="mild"> 
+	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/time_add.png" alt="" />
+<?php echo $this->translate("Create Task");?> </a>
+	<a href="<?php echo $this->baseUrl();?>/user/profile/view" class="mild"> 
+	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/discuss.png" alt="" />
+<?php echo $this->translate("My Profile");?> </a>
+</div>
+
+<div id="myPage">
+<div class="bigText"><?php echo $this->translate("What are you doing?");?> 
+<!--  
+<select name="">
+	<option>Everyone</option>
+	<option>IT</option>
+	<option>Lagos</option>
+	<option>Kano</option>
+</select>
+-->
+</div>
+<textarea name="" cols="" rows="" id="txtArea"></textarea>
+<div class="rightFloat">
+<div class="buttons"><a href="#"  id="updateStatus"> <img
+	src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/application_go.png"
+	alt="" /> <?php echo $this->translate("Update");?> </a></div>
+</div>
+
+<div id="buttonHolder">
+<!--	<a href="#">attach a file </a>-->
+
+</div>
+
+<div id="tab" class="myPageBar">
+	<?php
+	$user_id = Precurio_Session::getCurrentUserId ();
+	?>
+    <div id="contentDiv">
+    	 
+    	<?php
+					$stuffs = $this->myPage ()->getImportantStuffs ();
+					$this->partial ()->setObjectKey ( 'model' );
+					foreach ( $stuffs as $stuff ) {
+						if (is_a ( $stuff, 'Task' ))
+							$partialScript = 'partial_task.phtml';
+						if (is_a ( $stuff, 'Event' ))
+							$partialScript = 'partial_event.phtml';
+						if (is_a ( $stuff, 'UserStatus' ))
+							$partialScript = 'partial_status.phtml';
+						echo $this->partial ( $partialScript, $stuff );
+					}
+					?>
+        
+        
+        
+    	
+        
+         
+    	
+        
+    </div>
+</div>
+</div>

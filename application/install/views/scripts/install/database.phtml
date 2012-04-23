@@ -1,0 +1,75 @@
+<form id="dbForm" action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+	<p>
+		<?php echo $this->form->host; ?>
+	</p>
+	<p>
+		<?php echo $this->form->port; ?>
+	</p>
+    <p>
+		<?php echo $this->form->username; ?>
+	</p>
+	<p>
+		<?php echo $this->form->password; ?>
+	</p>
+	<p>
+		<?php echo $this->form->dbname; ?>
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+    	    	<a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/general">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/arrow-left.gif" alt=""/> 
+	              <?php echo $this->translate("Back");?>
+	            </a>
+		  	  	<a type="submit" class="negative" id="testdb" href="#">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/time.png" alt=""/> 
+	              <?php echo $this->translate("Test Connection");?>
+	            </a>
+	             <button type="submit" class="positive">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	               <?php echo $this->translate("Save");?>
+	            </button>
+	       
+            </div>
+	</p><!--
+	
+	<p class="topMargin"><label >&nbsp;</label>
+		    	<a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/general">
+	                
+	              &laquo;  <?php echo $this->translate("Back");?>  
+	            </a>
+				&nbsp;				&nbsp;
+				
+				     <a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/<?php $config = Zend_Registry::get('config');if ($config->auth_mech == 'LdapAuth')echo 'ldap';else echo 'live';?>">
+	               
+	               <?php echo $this->translate("Next");?>&raquo;
+	            </a></p>
+--></form>
+<p>
+	 <div id="loading" style="width: 500;" >
+      
+    </div>
+	</p>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#loading")//this should be a progrss bar.
+	.ajaxStart(function(){
+		$(this).show();
+	})
+	.ajaxComplete(function(){
+		$(this).hide();
+	});
+	//handle clicking on add
+	$('#testdb').live('click', function()  {
+		
+		$.post("<?php echo $this->baseUrl();?>/install/install/testdb", $("#dbForm").serialize(),
+		  function(data){
+		    alert(data);
+		  }, "text");
+		return false;
+		
+	});
+});
+</script>
+           

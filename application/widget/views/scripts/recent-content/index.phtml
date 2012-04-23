@@ -1,0 +1,13 @@
+<?php $result = $this->contentView()->getMostRecent(4);?>
+        	 <?php foreach($result as $news):?>
+           
+             <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $news->getContentId(); ?>">
+             <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/bullet_feed.png" width="16" height="16" align="left"/>
+             <?php echo $news->getShortHeadline(); ?>
+             </a>
+             <br/>
+             <span class="textLinks"><?php echo $news->getDateAdded(); ?></span><br/>
+           <?php endforeach;?>
+           <br />
+		          
+		   <a href="<?php echo $this->baseUrl();?>/news/view/all"><?php echo $this->translate("View all");?> </a>

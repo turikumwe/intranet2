@@ -1,0 +1,77 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#loading").hide();
+	});
+	function ajaxFileUpload()
+	{
+		$("#loading")//this should be a progrss bar.
+		.ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+			$(this).text("<?php echo $this->translate("Installation Complete");?>");
+		});
+		
+		$.ajaxFileUpload
+		(
+			{
+				url:baseUrl + '/admin/theme/install',
+				secureuri:false,
+				fileElementId:'file',
+				dataType: 'text',
+				success: function (data, status)
+				{
+					if(typeof(data) != 'undefined')
+					{
+						alert(data);
+						jQuery(document).trigger('close.facebox');
+						location.reload();
+					}
+				},
+				error: function (data, status, e)
+				{
+					alert (data);
+					alert (status);
+					alert('Error' + e);
+				}
+			}
+		)
+		return false;
+		
+	}
+	</script>	
+
+<form id="themeForm" name="themeForm" method="post" action="">
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Install a new theme");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+    <span class="textLinks"><?php echo $this->translate("Installing a theme usually takes a while, please be patient");?> </span>
+          <br />
+    
+              <br />
+       <?php echo $this->translate("Select theme ZIP file");?>  <input type="file" name="file" id="file" />
+          <br />
+          <br />
+       
+    
+   <div class="buttons">
+    <button type="submit" class="standout" onclick="return ajaxFileUpload();">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Install");?>
+    </button>
+   </div>
+ 
+ </div>          	
+       		
+ <!-- end window panel --></div>
+</form> 
+  <div id="loading" style="width: 300;display: none; " >
+      
+    </div>
+    *<a href="http://www.precurio.com" target="_blank"><?php echo $this->translate("Click here to buy custom theme");?></a>*

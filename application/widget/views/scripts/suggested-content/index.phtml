@@ -1,0 +1,8 @@
+    	<?php $contents = $this->contentView()->getSuggestedContents();
+    			foreach($contents as $content):
+    	?>
+    	
+			<div id="contentList"><a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $content->getId();?>"><?php echo $content->getTitle(); ?><span class="textLinks"><br />
+		    <?php echo $content->getSinceWhen(); ?></span></a></div>
+
+        <?php endforeach;?>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $this->company_name; ?> <?php echo $this->translate("Intranet");?></title>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/jquery/jquery.js"></script>
+<?php 
+echo ($this->headScript());
+echo ($this->headLink());
+?>
+<!--[if lte IE 7]> <link href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/theme_ie6.css" rel="stylesheet" type="text/css" /> <![endif]-->
+</head>
+
+<body>
+<div id="headerGradient">
+
+  	<div id="information_container" >
+	  	<div id="logoPlaceHolder" >
+	    <div  id="logoContainer" >
+	    	<a href="<?php echo $this->baseUrl();?>/">a</a>
+	    </div> 
+	    </div>	
+	
+	    <div id="topLink" >
+	      <ul >
+	        <li class="rightBorder"><a href="<?php echo $this->baseUrl();?>/" > <?php echo $this->translate("Home");?> </a></li>
+	      </ul>
+	    </div>
+
+	</div>
+</div>
+<div id="headerLinks">
+  <div id="linksContainer">
+   <div id="links_text" class="buttons">
+    <a href="<?php echo $this->baseUrl();?>/employee"><?php echo $this->translate(PrecurioStrings::MOD_EMPLOYEE);?></a>    <a href="<?php echo $this->baseUrl();?>/event"><?php echo $this->translate(PrecurioStrings::MOD_EVENT);?></a>
+    <a href="<?php echo $this->baseUrl();?>/contact"><?php echo $this->translate(PrecurioStrings::MOD_CONTACT);?></a>    <a href="<?php echo $this->baseUrl();?>/task"><?php echo $this->translate(PrecurioStrings::MOD_TASK);?></a> 
+    <a href="<?php echo $this->baseUrl();?>/news"><?php echo $this->translate(PrecurioStrings::MOD_NEWS);?></a> <a href="<?php echo $this->baseUrl();?>/cms"><?php echo $this->translate(PrecurioStrings::MOD_CMS);?></a><br />
+   </div>
+   
+      </div>
+</div>
+<div id="headerBottom">
+  <div id="container">      
+        <?php echo $this->layout()->content ?>
+  
+  </div>
+</div>  
+		  
+</body>
+</html>

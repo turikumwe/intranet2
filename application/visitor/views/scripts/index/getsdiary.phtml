@@ -1,0 +1,113 @@
+
+<?php
+
+
+require_once('visitor/models/vo/Appointment.php');
+require_once('visitor/models/Appointments.php');
+require_once('visitor/models/Visitors.php');
+?>
+<?php
+$appointments = new Appointments();
+$visitors = new Visitors();
+
+$rsAppointments = $appointments->getStaffAppointments($this->staff_id) ;
+
+$arowCount = 0;
+$totalRows_rsAppointments = count($rsAppointments);
+
+?>
+
+
+
+<p><span class="details_header">  </span></p>
+							<!-- <p><em>Contact Name:</em> </p> -->
+                          		
+								
+
+
+<div  id="visitors_body">
+
+		
+		<span class="listHeader"> <?php echo $this->translate('Upcoming Appointments'); ?>  </span>
+		<div class="contentPad">
+
+      <?php  
+								
+			//confirm that there are records, otherwise , display message
+			if ($totalRows_rsAppointments > 0)
+			{
+		?>
+                                
+                                
+         <div class="tableHeader">
+                <div class="leftside" >
+                      <div class="rightPadding">
+                                <a href="#"> <?php echo $this->translate('Title'); ?>
+                        </a></div>
+                 </div>
+                                      
+                                      
+							
+				<div class="leftside" >
+                       <div class="rightPadding">
+                            <?php echo $this->translate('Appointment Date'); ?>
+                        </div>
+				</div>
+         </div>  
+		 
+		 <?php 
+			while (isset($rsAppointments[$arowCount])):
+			$row_rsAppointments = $rsAppointments[$arowCount];
+			
+			//echo $row_rsAppointments['full_name'];
+		?>
+							
+									<!-- start table body -->  
+                              <div tag="<?php echo $type; ?>" id="<?php echo ($row_rsAppointments['id']); ?>" class="tableBody appointmentLine <?php if ($rowCount % 2 == 0) echo ("even"); ?>">
+                               	<div class="leftside" >
+                               		<div class="rightPadding" >
+                                       	<a href="#" ><?php echo ($row_rsAppointments['title']); ?>
+                                    </a></div>
+                                </div>
+                                      
+                                                                    
+								 
+                                      <div class="leftside" >
+                                		<div class="rightPadding">
+                                        	<?php 
+											
+											
+											echo $row_rsAppointments->getAppointmentDate().'('.$row_rsAppointments->getAppointmentTime().')'; 
+											
+											?>
+                                        </div>
+                                      </div>
+							</div>
+							
+							
+                            <!-- end table body -->
+									
+									<?php $arowCount++; endwhile; ?>
+									
+									</div>
+						</div>
+							<?php		
+				}
+								else
+								{
+								
+								 ?>
+                               <div id="noRecords">
+                               <?php echo $this->translate('Staff has no upcoming appointments') ?>. <br />
+                              
+                                 
+                               <?php
+								 }
+								 ?>			
+                                     
+      
+	
+ 
+	
+</div>
+		</div>

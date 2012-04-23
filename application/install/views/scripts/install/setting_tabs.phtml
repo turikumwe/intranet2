@@ -1,0 +1,30 @@
+<?php $selected = $selected == 'index' ? 'general' : $selected;?>
+<ul id="tabnav">
+<?php 
+$config = Zend_Registry::get('config');
+if(!Bootstrap::isHosted()):
+?> 
+	<li <?php if ($selected == 'general') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/install/install/general"><?php echo $this->translate("General Settings");?></a>    </li>
+  
+    <li <?php if ($selected == 'database') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/install/install/database"><?php echo $this->translate("Database");?></a></li>
+	<?php 
+	if ($config->auth_mech == 'LdapAuth'):?>
+ 	<li <?php if ($selected == 'ldap') echo 'class="selectedTab"' ?>>
+  		<a href="<?php echo $this->baseUrl();?>/install/install/ldap"><?php echo $this->translate("Active Directory");?></a></li>
+ 	<?php endif;?>         
+    <li <?php if ($selected == 'live') echo 'class="selectedTab"' ?>>
+  		<a href="<?php echo $this->baseUrl();?>/install/install/live"><?php echo $this->translate("Live Server");?></a></li>
+  	
+  	<li <?php if ($selected == 'mail') echo 'class="selectedTab"' ?>>
+  		<a href="<?php echo $this->baseUrl();?>/install/install/mail"><?php echo $this->translate("Mail Settings");?></a></li>
+<?php
+endif;
+?>         
+ 	<li <?php if ($selected == 'module') echo 'class="selectedTab"' ?>>
+  		<a href="<?php echo $this->baseUrl();?>/install/install/module"><?php echo $this->translate("Module Settings");?></a></li>
+ 
+ 	                             
+</ul>
+    

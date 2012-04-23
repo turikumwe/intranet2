@@ -1,0 +1,39 @@
+<div class="rssHolder">
+	<style>
+.temp{;margin:0px 10px 20px 10px; overflow:auto;background-color: #ECEFF5;}
+</style>
+    <div  id="news_rss">
+    
+      <a href="<?php echo $this->rss->getUrl();?>"><img src="<?php echo $this->rss->getLogo();?>" /></a>        	
+      <span class="textLinks"><?php echo $this->translate('Last Updated').': '.$this->rss->getLastUpdated();?> </span>    
+    </div>
+     <?php $temp = $this->rss->getNews(20);
+    	if($temp->count()):
+    ?>
+     <?php 
+     	$this->partialLoop()->setObjectKey('rssnews');
+		echo $this->partialLoop('partial_rssnews.phtml',$temp); 
+     ?>
+      
+      <?php else:?>
+	<div id="noRecords">
+      <?php echo $this->translate("RSS feeds are still being fetched");?> <br />
+      <a href="<?php echo $this->baseUrl();?>/"><?php echo $this->translate("Please check back later");?></a> 
+    </div>
+    <?php endif;?>
+     <!-- end rss panel -->
+</div>
+<?php 
+		$this->partialLoop()->setObjectKey('rss');
+	?>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.comments').each(function(){
+		tempChild = $(this).children().eq(0);
+		x = $(this).children().eq(0).children().size();
+		
+		if(x==0)$(this).hide();
+	});
+  });
+
+</script>

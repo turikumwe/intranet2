@@ -1,0 +1,4 @@
+<?php 
+$this->partialLoop()->setObjectKey('activity');
+echo $this->partialLoop('partial_activity.phtml',$this->user->getRecentActivity());
+?>

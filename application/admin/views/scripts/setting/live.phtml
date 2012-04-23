@@ -1,0 +1,20 @@
+<form action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+<span class="textLinks"><?php echo $this->translate("The live server is responsible for the chat and live feeds features");?>. <br/><?php echo $this->translate("Please visit the Administrator's manual on how to properly configure the live server");?>.  </span>
+	<p>
+		<?php echo $this->form->domain; ?>
+	</p>
+	<p>
+		<?php echo $this->form->service; ?>
+		
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+	             <button type="submit" class="positive" id="addTask">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	              <?php echo $this->translate("Save");?>
+	            </button>
+            </div>
+	</p>
+</form>
+           

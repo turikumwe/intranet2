@@ -1,0 +1,17 @@
+<?php $selected = $selected == '' ? 'upcoming' : $selected; ?>
+<ul id="tabnav">
+	<li <?php if ($selected == 'my') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/event/my/"><?php echo $this->translate("My Events");?></a>
+    </li>
+	<li <?php if ($selected == 'upcoming') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/event/upcoming/"><?php echo $this->translate("Upcoming Events");?></a>
+    </li>
+    <li <?php if ($selected == 'past') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/event/past/"><?php echo $this->translate("Past Events");?></a>
+    </li>
+  
+	<li <?php if ($selected == 'ongoing') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/event/ongoing/"><?php echo $this->translate("Ongoing Events");?></a>
+    </li>
+
+</ul>

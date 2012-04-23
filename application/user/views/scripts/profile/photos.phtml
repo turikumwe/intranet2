@@ -1,0 +1,22 @@
+<?php 
+	require_once 'Zend/Paginator.php';
+	$photos = $this->user->getPhotos();
+	$paginator = Zend_Paginator::factory($photos);
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage(6);
+	$this->paginator = $paginator;
+   // $this->paginationControl(); 
+?>
+<?php echo $this->paginationControl($this->paginator, 'Elastic','page_control.phtml'); ?> 
+	 <?php if(Precurio_Session::getCurrentUserId() == $this->user->getId()): ?>
+		<br/> <a href="<?php echo $this->baseUrl();?>/user/mypage/uploadphoto" style="text-decoration: underline;" rel="facebox"><?php echo $this->translate("Add Photo");?></a>
+	 <?php endif;?>
+<div id="profilePhotoHolder">
+	<?php foreach($this->paginator as $key=>$photo):?>
+		<a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($this->user->getId()); ?>/photo_details/<?php echo ($key+1); ?>"><img alt="<?php echo ($photo->getTitle()); ?>" src="<?php echo $this->baseUrl().($photo->getImagePath()); ?>" /></a>
+	<?php endforeach;?>
+</div>
+
+                
+                   
+  

@@ -1,0 +1,87 @@
+
+<?php 
+
+require_once('visitor/models/TelMessages.php'); 
+require_once('visitor/models/vo/TelMessage.php'); 
+?>
+<?php 
+$telMessages = new TelMessages();
+$msg_id = $this->msg_id ; 
+$mine = $this->mine;
+echo $mine;
+$msg = $telMessages->getTelMessage($msg_id) ;
+//echo $appointment;
+//if(!$task->canAccess(Precurio_Session::getCurrentUserId())){echo "You do not have access to this task"; return;}
+?>
+
+
+<div id="tasksHolder">
+ <div class="taskDetail_Header"> <?php echo $this->translate('Telephone Message') ?> </div> 
+
+                        
+               			<div id="task_body">
+                        <div class="task_Pad">
+                       	 
+						 <div id="details_info">
+                            <ul>
+                               
+								
+								
+									<li>
+                                      <em> <?php echo $this->translate('Day Logged') ?></em>  <span class='arrow'>&nbsp; &nbsp; </span> <?php echo $msg->getlogDate(); ?>
+									</li>
+									
+									<li>
+                                      <em> <?php echo $this->translate('Time Logged') ?></em>  <span class='arrow'>&nbsp; &nbsp; </span> <?php echo $msg->getLogTime(); ?>
+									</li>
+										
+									
+                                
+                              
+                             </ul>
+                            
+                            </div>
+                           
+                            	
+                                
+                                
+                               
+                         <div id="details_box">
+                          <p><span class="details_header"> <?php echo $this->translate('Message Details') ?>  </span></p>
+                               <p><em><?php echo $this->translate('Contact Name') ?>:</em> <?php echo ($msg->full_name); ?></p>
+                          		<p><em> <?php echo $this->translate('From') ?>:</em><br /> <?php echo ($msg->company); ?></p>
+								
+								
+								<p><em> <?php echo $this->translate('Logged By') ?>:</em><br /> <?php echo ucfirst($msg->getMessageAttendant()); ?></p>
+								<p><em> <?php echo $this->translate('Logged For') ?>:</em><br /> <?php echo ucfirst($msg->getMessageTarget()); ?></p>
+								
+								<p><em> <?php echo $this->translate('Content') ?>:</em><br /> <?php echo $msg->content; ?></p>
+                       
+                   
+  
+  </div>                                    
+						</div>
+
+<div id="details_bar">
+    <ul>
+    <!-- this should be whererever u're coming from. i.e if u're coming frm pending tasks, it shld be return to pending tasks -->
+     
+    	
+        <li> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/printer.png" /><a href="#" onclick="window.print();return false;"> Print Message</a></li>
+
+    </ul>
+</div> 
+                                    
+                                    
+                                    
+                                 
+                           
+                           </div> 
+                            
+		                            </div>
+                       
+                        
+                     
+</div>    
+
+          

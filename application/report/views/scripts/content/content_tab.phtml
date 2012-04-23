@@ -1,0 +1,11 @@
+<ul id="tabnav">
+	<li <?php if ($selected == 'top') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/report/content/top"><?php echo $this->translate("Top Contents");?></a>    </li>
+   
+    <li <?php if ($selected == 'user') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/report/content/user"><?php echo $this->translate("Top Contributors");?></a></li>
+<li <?php if ($selected == 'activity') echo 'class="selectedTab"' ?>>
+  		<a href="<?php echo $this->baseUrl();?>/report/content/activity"><?php echo $this->translate("Activity Chart");?></a></li>
+
+ 	                             
+</ul>

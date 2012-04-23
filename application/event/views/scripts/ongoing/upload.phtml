@@ -1,0 +1,81 @@
+<script type="text/javascript">
+	function ajaxFileUpload()
+	{
+		$("#loading")//this should be a progrss bar.
+		.ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+		});
+
+		$.ajaxFileUpload
+		(
+			{
+				url:'/event/content/add/id/<?php echo $this->event_id;?>',
+				secureuri:false,
+				fileElementId:'file',
+				dataType: 'json',
+				success: function (data, status)
+				{
+					if(typeof(data.error) != 'undefined')
+					{
+						if(data.error != '')
+						{
+							alert(data.error);
+						}
+						else //everything was fine
+						{
+							$('#imgHolder').prepend('<a href="#"><img src="' + data.filePath + '" /></a>');
+							$('#profilePhotoHolder').prepend('<a href="#"><img src="' + data.filePath + '" /></a>');
+						}
+					}
+				},
+				error: function (data, status, e)
+				{
+					alert(e);
+				}
+			}
+		)
+		
+		return false;
+
+	}
+	</script>	
+	<style>
+#imgHolder img { padding:5px; border:1px solid #E5E7E9; margin:0px 10px 10px 0px; }
+	</style>
+<form id="form1" name="form1" method="post" action="">
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Upload a Photo to the event");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+ 		
+<?php echo $this->translate("Please select a photo to upload");?>
+    
+          <br />
+          
+	<span class="textLinks"><?php echo $this->translate("Maximum size of 1MB. JPG, GIF, PNG.");?> </span>
+    <br />
+      <input type="file" name="file" id="file" />
+          <br />
+          <br />
+         <div class="buttons">
+    <button type="submit" class="standout" onclick="return ajaxFileUpload();">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Upload Photo");?>
+    </button>
+
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>
+</form>
+<div id="imgHolder">
+	
+</div>

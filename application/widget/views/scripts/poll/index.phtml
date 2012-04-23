@@ -1,0 +1,62 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  
+	var page  = "contacts/contacts_list.php?type=-1" ;
+
+	
+	$('#voteBtn').live('click', function()  {
+		
+		//alert ($("#addForm").serialize());
+		$.post("<?php echo $this->baseUrl();?>/poll/index/submitvote", $("#voteForm").serialize(),
+  function(data){
+    alert(data);
+  }, "text");
+
+
+		
+		loadPage('<?php echo $this->baseUrl();?>/poll/index/result/id/'+($(this).attr("alt")));
+		return false;
+		
+		
+		
+	});
+	
+	//click on view result
+	$('#viewResult').live('click', function()  {
+		loadPage('<?php echo $this->baseUrl();?>/poll/index/result/id/'+($(this).attr("rel")));
+		return false;
+	});
+	//click on back 'return to poll'
+	$('#viewReturn').live('click', function()  {
+		loadPage('<?php echo $this->baseUrl();?>/poll/index/vote/id/' + ($(this).attr("rel")));
+		return false;
+	});
+
+	
+});
+function loadPage (page)
+{
+	$("#contentPad").load(page,{} , function()
+	{
+			//$("#loading").hide();
+  			//$("#contactsDiv").show();
+	}); 
+}
+</script>
+<div id="contentPad">
+	<?php echo $this->m; if($this->poll == null):?>
+	 <div id="noRecords">
+	     <?php echo $this->translate("There is no active poll at this time");?> <br />
+	 </div>
+	 <?php elseif($this->poll->userHasVoted(Precurio_Session::getCurrentUserId())):?>
+	 <script type="text/javascript">
+	 	loadPage('<?php echo $this->baseUrl();?>/poll/index/result/id/' +  <?php echo "'". $this->poll->id . "'";?>);
+	 </script>
+	
+	 <?php else:?>
+	  <script type="text/javascript">
+	 	loadPage('<?php echo $this->baseUrl();?>/poll/index/vote/id/' + <?php echo "'".$this->poll->id."'";?>);
+	 </script>
+	
+	 <?php endif;?>
+ </div>

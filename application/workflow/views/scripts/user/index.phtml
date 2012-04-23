@@ -1,0 +1,151 @@
+<?php 
+	require_once 'workflow/models/ProcessManager.php';
+	//$s  == showCompleted. i.e flag to determine if user wants to view completed request/approval or not
+	
+	$s = Zend_Controller_Front::getInstance()->getRequest()->getParam('s',1);
+	$userProcesses = ProcessManager::getMyProcesses();
+	
+	$requests = array();
+	$approvals = array();
+	
+	foreach($userProcesses as $userProcess)
+	{
+		if(!$s)
+		{
+			if($userProcess->completed == Task::STATUS_COMPLETE)continue;
+		}
+		
+		if($userProcess->getTaskId())
+		{
+			$approvals[] = $userProcess;
+		}		
+		else
+		{
+			$requests[] = $userProcess;
+		}
+	}
+	
+	require_once 'Zend/Paginator.php';
+	$type = Zend_Controller_Front::getInstance()->getRequest()->getParam('t');	
+	$cPage = Zend_Controller_Front::getInstance()->getRequest()->getParam('cpage',1);
+	
+	
+	$approvalPaginator = Zend_Paginator::factory($approvals);
+	$approvalPaginator->setItemCountPerPage(7);
+	if($type == 1)$approvalPaginator->setCurrentPageNumber($cPage);
+	$approvals = $approvalPaginator->getCurrentItems();
+	
+	
+	$requestPaginator = Zend_Paginator::factory($requests);
+	$requestPaginator->setItemCountPerPage(7);
+	if($type == 0)$requestPaginator->setCurrentPageNumber($cPage);
+	$requests = $requestPaginator->getCurrentItems();
+	?>
+	
+
+ <div id="task_main" >
+ 
+ 		
+         
+		<div id="workflow_list" style="background-color: #ffffff ;" >
+         		<div class="contentMargin_5" >
+					<div class="rightside">
+						<div class="buattons" ><a href="<?php echo $this->url(array('s'=>($s ? 0 : 1))); ?>" class="textLinks"><?php echo ($s ? $this->translate("Don't show completed") : $this->translate('Show Completed'));?> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/bullet_arrow_<?php echo ($s ? 'up' : 'down'); ?>.png"	alt="" /> </a></div> 
+					</div>
+                	<div > 
+                	<span class="textLinks"> 
+                		 <?php $type = 1;echo $this->paginationControl($approvalPaginator, 'Elastic','page_control.phtml',array('type'=>$type,'s'=>$s)); ?>
+                	</span>
+                	<br/>
+                	   <div  class="titleWindow "> 
+						
+						 <div id="titleText"> <?php echo $this->translate("Waiting for my approval");?>
+						  </div>
+					   </div>
+						
+						  <div >
+						  <?php if(count($approvals) == 0):?>
+						                       	           
+	                         <div id="noRecords">
+	                               <?php echo $this->translate("There are currently no approvals that require your attention");?><br />
+                             </div>
+                          <?php else:?>
+                         	 <table cellspacing="0" class="workflow_table">
+								  <tr>
+								    <th class="nobg"><?php echo $this->translate("ID");?></th>
+								    <th class="nobg"><strong><?php echo $this->translate("Form");?></strong></th>
+								    <th class="nobg"><strong><?php echo $this->translate("Date");?></strong></th>
+								    <th class="nobg"><strong><?php echo $this->translate("Status");?></strong></th>
+								    <th class="nobg"><strong><?php echo $this->translate("Requested By");?></strong></th>
+								  </tr>
+									
+								
+								 <?php foreach($approvals as $userProcess):?>
+								  <tr>
+								    <th class='spec' ><span class="<?php echo $userProcess->getColourCode();?>"><a href="<?php echo $this->baseUrl();?>/workflow/view/<?php echo $userProcess->getId(); ?>"><?php echo $userProcess->getFormCode();?></a></span></th>
+								     <td ><a style="color:#4f6b72;" href="<?php echo $this->baseUrl();?>/workflow/view/<?php echo $userProcess->getId(); ?>"><?php echo $userProcess->getDisplayName();?></a></td>
+								    <td ><?php echo $userProcess->getDate();?></td>
+								    <td><?php echo $userProcess->getStatus();?></td>
+								    <td><?php echo $userProcess->getOwner();?></td>
+								  </tr>
+								<?php endforeach;?>
+							</table>
+                         <?php endif;?>
+						  </div>
+						<br/><br/>
+						                               
+						                        
+						               		
+						</div>                      
+						
+						<div > 
+						<span class="textLinks">  
+							<?php $type = 0;echo $this->paginationControl($requestPaginator, 'Elastic','page_control.phtml',array('type'=>$type,'s'=>$s)); ?>
+						</span>
+						 	<br/>
+						 <div  class="titleWindow "> 
+							 <div  id="titleText"> <?php echo $this->translate("My Requests");?>   
+	<!--						 	<span class="textLinks"> 1  to 5 of 20 </span>  <a href="#" class="textLinks"> show completed requests</a>-->
+							 </div>
+						</div>
+						  <div >
+						                      	           
+		                         <?php if(count($requests) == 0):?>
+						                       	           
+	                         <div id="noRecords">
+	                               <?php echo $this->translate("You have no pending requests");?><br />
+                             </div>
+                          <?php else:?>
+                         	 <table cellspacing="0" class="workflow_table">
+								  <tr>
+								    <th class="nobg"><?php echo $this->translate("ID");?></th>
+								    <th class="nobg"><strong><?php echo $this->translate("Form");?></strong></th>
+								    <th class="nobg"><strong><?php echo $this->translate("Date");?></strong></th>
+								    <th class="nobg"><strong><?php echo $this->translate("Status");?></strong></th>
+								    <th class="nobg"><strong><?php echo $this->translate("Next Approver");?></strong></th>
+								  </tr>
+									
+								<?php foreach($requests as $userProcess):?>
+								  <tr>
+								  <th class='spec'><span class="<?php echo $userProcess->getColourCode();?>"><a href="<?php echo $this->baseUrl();?>/workflow/view/<?php echo $userProcess->getId(); ?>"><?php echo $userProcess->getFormCode();?></a></span></th>
+								     <td ><a style="color:#4f6b72;" href="<?php echo $this->baseUrl();?>/workflow/view/<?php echo $userProcess->getId(); ?>"><?php echo $userProcess->getDisplayName();?></a></td>
+								    <td ><?php echo $userProcess->getDate();?></td>
+								    <td><?php echo $userProcess->getStatus();?></td>
+								    <td class='spec' ><?php echo $userProcess->getCurrentApprover();?></td>
+								  </tr>
+								<?php endforeach;?>
+							</table>
+                         <?php endif;?>
+						
+						  </div>
+						                        
+						               		
+						</div>                      
+
+
+            </div>
+		 </div>
+		 <?php 
+		 require_once 'workflow/views/scripts/rightframe.phtml';
+		 ?>
+ </div>

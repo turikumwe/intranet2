@@ -1,0 +1,9 @@
+<ul id="tabnav">
+	<li <?php if ($selected == 'module') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/report/portal/module"><?php echo $this->translate("Module Report");?></a>    </li>
+    <li <?php if ($selected == 'visitor') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/report/portal/visitor"><?php echo $this->translate("Visitors Report");?></a></li>
+ 	 <li <?php if ($selected == 'activity') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/report/portal/activity"><?php echo $this->translate("Activity Report");?></a></li>
+ 	                             
+</ul>

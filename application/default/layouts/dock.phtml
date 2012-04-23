@@ -1,0 +1,82 @@
+
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/tipsy/jquery.tipsy.js"></script>
+<div id="dock" >
+    <div class="contentPad">
+	
+	<div id="bottomLink">
+	
+<?php 
+$config = Zend_Registry::get('config');
+if($config->module->mod_chat == 1):
+?>
+		 <div id="chatBtn">
+	     <div class="contentPad">
+				<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/chat.png" /><strong><?php echo $this->translate("Chat");?></strong> (<span id="onlineMsg"></span> )
+	        </div>
+		</div>
+	    <div id="chatHolder">
+		<div id="chatStatus" >
+	    	<div id="statusHolder">
+	    	<strong>Status: <span id="currentStatus">Online</span> <a href="#" id="changeStatus">[change]</a> <a href="#" id="closeStatus">[<?php echo $this->translate("close");?>]</a> </strong>        </div>
+	    	<div id="statusToggle">
+	        	<ul>
+	            	<li class="online" id="onlineStatus"><?php echo $this->translate("Online");?></li>
+	                <li class="offline" id="offlineStatus"><?php echo $this->translate("Offline");?></li>
+	                <li class="invisible" id="invisibleStatus"><?php echo $this->translate("Invisible");?></li>
+	        	</ul>
+	        </div>
+	    </div>
+	    <div id="chatInfo" class="contentPad">
+	   
+	    </div>
+	    <div id="onlineUsers">
+	    	<ul id="onlineList">
+	        </ul>
+	    </div>
+		
+		
+	    </div>
+<?php endif;?>
+		<?php if (!Bootstrap::isHosted()):?>
+		<div  id="bottomcopy" >
+					<a href="http://www.precurio.com" target="_blank"><?php echo $this->translate("Powered by");?> Precurio</a>
+		</div>
+		<?php endif;?>
+		<ul>
+    	 <li> <strong><?php echo $this->translate("Shortcuts");?>:	</strong></li>
+	        <?php 
+		  	 
+		  	class Dock
+		  	{ 
+		  	  /**
+		  	  * This function handles the display of each module item and MUST be implemented in a class of  any script including 'modules.phtml'
+		  	  * @param PrecurioModule $module
+		  	  * @param string $baseUrl - application base url
+		  	  * @param string $pathToIcons - web url path to icons 
+		  	  * @return null
+		  	  */
+		  	 function displayModule($module,$baseUrl,$pathToIcons)
+		  	 {
+		  	 	if($pathToIcons === FALSE)return ;
+		  	 	if(!$module->isStandAlone())return;
+		  	 	$moduleName = $module->getName();
+   				$label = $module->getShortTitle();
+   				$url = $baseUrl.'/'.$module->getName();
+   				$iconFile = $pathToIcons.$moduleName.'_small.png';
+   				$tr = Zend_Registry::get('Zend_Translate');
+		  	 	$label = $tr->translate($label);
+		  	 	echo(" <li> <a href='$url' title='$label' id='dock_{$moduleName}'><img src='$iconFile' /></a></li>");
+		  	 	echo("<script type='text/javascript'>$('#dock_{$moduleName}').tipsy({gravity: 's'});</script> ");
+		  	 }
+		  	}
+		  	$module = new Dock();//an object of a class implementing displayModule must be named '$module'
+		  	include('modules.phtml');
+		  	
+		   ?>
+		
+	    </ul>
+    <p>&nbsp;</p>
+	</div> 
+
+</div>
+</div>

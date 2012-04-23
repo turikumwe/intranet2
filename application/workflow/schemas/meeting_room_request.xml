@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+				<process xmlns:local="schema">
+<header>
+		<description></description>
+		<label value='Meeting Room Request'/>
+	</header>
+<fields>
+<field>
+	<label>Room</label>
+	<name>room</name>
+	<type>varchar</type>
+	<control>select</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>1</position>
+	<componentid>55</componentid>
+	<data>
+		<option>Conference Room 1</option>
+		<option> Conference Room 2</option>
+	</data>
+</field>
+<field>
+	<label>Purpose</label>
+	<name>purpose</name>
+	<type>varchar</type>
+	<control>textarea</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>2</position>
+	<componentid>56</componentid>
+</field>
+<field>
+	<label>Date</label>
+	<name>date</name>
+	<type>date</type>
+	<control>text</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>3</position>
+	<componentid>57</componentid>
+</field>
+<field>
+	<label>Time</label>
+	<name>time</name>
+	<type>varchar</type>
+	<control>text</control>
+	<required>true</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>4</position>
+	<componentid>58</componentid>
+</field>
+<field>
+	<label>Duration (hours)</label>
+	<name>duration</name>
+	<type>varchar</type>
+	<control>text</control>
+	<required>false</required>
+	<default>1hr</default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>5</position>
+	<componentid>59</componentid>
+</field>
+<field>
+	<label>Recurring</label>
+	<name>recurring</name>
+	<type>varchar</type>
+	<control>select</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>6</position>
+	<componentid>60</componentid>
+	<data>
+		<option>None</option>
+		<option>Weekly</option>
+		<option>Monthly</option>
+	</data>
+</field>
+<field>
+	<label>Additional Equipment Needed</label>
+	<name>additional</name>
+	<type>varchar</type>
+	<control>textarea</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td" class="alt"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>7</position>
+	<componentid>61</componentid>
+</field>
+<field>
+	<label>signature</label>
+	<name>signature</name>
+	<type>signature</type>
+	<control>hidden</control>
+	<required>false</required>
+	<default></default>
+	<options>
+		<validators>
+			<validator></validator>
+		</validators>
+		<filters></filters>
+		<display>
+			<decorator>
+				<name value="ViewHelper"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="Errors"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="Label"></name>
+				<options></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="label"></name>
+				<options tag="td"></options>
+			</decorator>
+			<decorator>
+				<name value="HtmlTag" alias="row"></name>
+				<options tag="tr"></options>
+			</decorator>
+		</display>
+	</options>
+	<position>8</position>
+	<componentid>62</componentid>
+</field>
+</fields></process>

@@ -1,0 +1,51 @@
+<form action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+	<p>
+		<?php echo $this->form->company_name; ?>
+	</p>
+	<p>
+		<?php echo $this->form->base_url; ?>
+		<br/><label >&nbsp;</label><span class="textLinks"><?php echo $this->translate("This should be what you have before");?> '/install/install/..' <?php echo $this->translate("on your address bar now");?>. <br/>eg http://kdl/intranet </span>
+	</p>
+    <p>
+		<?php echo $this->form->auth_mech; ?>
+	</p>
+	<p>
+		<?php echo $this->form->email_domain; ?>
+		<br/><label >&nbsp;</label><span class="textLinks"><?php echo $this->translate("This is the email domain of your company, for example, @mycompany.com");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->domain; ?>
+		<br/><label >&nbsp;</label><span class="textLinks"><?php echo $this->translate("When using LDAP Authentication, the domain corresponds to the directory structure");?>. <br/><?php echo $this->translate("Although this will typically be the same as your email domain");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->welcome_text; ?>
+		<br/><label >&nbsp;</label><span class="textLinks"><?php echo $this->translate("NOTE : This text will only appear on the login page if your current theme allows it");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->default_locale; ?>
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+	             <button type="submit" class="positive" id="addTask">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	               <?php echo $this->translate("Save");?>
+	            </button>
+	           
+            </div>
+			
+            
+	</p><!--
+	
+	<p class="topMargin"><label >&nbsp;</label>
+		    	 <a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/database">
+	               
+	                <?php echo $this->translate("Next");?> &raquo;
+	            </a>
+			
+            
+	</p>
+	
+
+--></form>
+           

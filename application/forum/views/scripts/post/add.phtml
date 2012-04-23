@@ -1,0 +1,147 @@
+<?php
+	require_once('forum/models/Topics.php');
+	require_once('forum/models/Topics.php');
+	
+	$topic = Topics::getTopic($this->topic_id);
+	
+	$qid = 0;
+	
+	$content = '';
+	if( !Precurio_Utils::isNull( $this->qid ) )
+	{
+		$qid  = $this->qid;
+		$content = '{re}'. formatContent(Posts::getPost($qid)->getContent()).'{/re}';		
+	}
+?>
+
+
+
+<script type="text/javascript">
+    _editor_url  = "<?php echo $this->baseUrl();?>/library/xinha/";  // (preferably absolute) URL (including trailing slash) where Xinha is installed
+    _editor_lang = "en";      // And the language we need to use in the editor.
+    _editor_skin = "silva";   // If you want use a skin, add the name (of the folder) here
+  </script>
+  
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/xinha/XinhaCore.js"></script>
+
+
+<script type="text/javascript">
+xinha_editors = null;
+xinha_init    = null;
+xinha_config  = null;
+xinha_plugins = null;
+xinha_init = xinha_init ? xinha_init : function()
+{
+	xinha_editors = xinha_editors ? xinha_editors :
+		  [
+		    'contentBody'
+		  ];
+	xinha_plugins = xinha_plugins ? xinha_plugins :
+		  [
+		   'ContextMenu',
+		   'TableOperations'
+		  ];
+	 if(!Xinha.loadPlugins(xinha_plugins, xinha_init)) return;
+	 
+	 xinha_config = xinha_config ? xinha_config() : new Xinha.Config();
+	   
+	  //this is the standard toolbar, feel free to remove buttons as you like
+	  xinha_config.toolbar =
+	  [
+	    ["popupeditor"],
+	    ["separator","formatblock","fontname","fontsize","bold","italic","underline","strikethrough"],
+	    ["separator","forecolor","hilitecolor","textindicator"],
+	    ["separator","subscript","superscript"],
+	    ["linebreak","separator","justifyleft","justifycenter","justifyright","justifyfull"],
+	    ["separator","insertorderedlist","insertunorderedlist","outdent","indent"],
+	    ["separator","inserthorizontalrule","createlink","inserttable"],
+	    ["linebreak","separator","undo","redo","selectall","print"], (Xinha.is_gecko ? [] : ["cut","copy","paste","overwrite","saveas"]),
+	    ["separator","killword","clearfonts","removeformat","toggleborders","splitblock","lefttoright", "righttoleft"],
+	    ["separator","htmlmode","showhelp","about"]
+	  ];
+		 
+	  xinha_config.pageStyleSheets = [ _editor_url + "examples/files/full_example.css" ];
+		  
+	  xinha_editors   = Xinha.makeEditors(xinha_editors, xinha_config, xinha_plugins);
+	  Xinha.startEditors(xinha_editors);
+	  
+	  var editor = xinha_editors["contentBody"];
+	  editor.whenDocReady (function() {editor.setEditorContent("<?php echo strip_tags($content); ?>");});
+}
+
+	//Xinha._addEvent(window,'load', xinha_init); // this executes the xinha_init function on page load 
+			
+</script>
+
+
+
+<script type='text/javascript'>
+$().ready(function()
+{
+	xinha_init();
+});
+</script>
+
+<script type='text/javascript'>
+
+$('#savePost').live('click', function()  
+{	
+	var editor = xinha_editors["contentBody"];
+	var content = editor.getEditorContent();
+	
+	$.post("<?php echo $this->baseUrl();?>/forum/post/submit", {content: content, topic_id: <?php echo $this->topic_id ?>},
+	function(data)
+	{
+		alert(data);
+		location.reload();
+	}, "text");
+});
+</script>
+
+<style>
+	.htmlarea{border:1px solid white}
+</style>
+
+<div  class="titleWindow "> 
+	<div id="titleText">
+    	<span> <?php echo $this->translate('New Post'); ?>:</span> <?php echo $topic->getTitle(); ?>
+	</div>
+</div>
+<div>
+<table class="popup_table" cellspacing='10' cellpadding='0' width="700px" height="330px">
+			<tr>	
+				<td valign="top">
+				  <div class="post_body">
+                        <div>
+                            <textarea rows="15"  id="contentBody" name="body" style="width:700px"> </textarea>
+                        </div>
+                    </div>
+				</td>
+			</tr>
+			
+			
+			<tr>
+			  <td class="alt"><div class="buttons" id="savePost"><a href="javascript:void(0)">
+			  <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/>
+			   <?php echo $this->translate('Submit post'); ?></a></div></td>
+  			</tr>
+			
+			</table>
+	</div>
+
+<?php	
+function formatContent($content)
+{				
+	while ( strpos($content, '{re}') !== false )
+	{
+		$startpos = strpos($content, '{re}');
+		$endpos = strpos($content, '{/re}');
+						
+		$quote = substr($content, $startpos+4, $endpos-4);
+		
+		$content = str_replace('{re}'.$quote.'{/re}', '', $content);			
+	}		
+		
+	return $content;
+}
+?>

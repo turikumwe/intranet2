@@ -1,0 +1,324 @@
+<style>
+#holder
+{
+	margin-left:auto;
+	margin-right:auto;
+	padding:20px;
+	background-color:#fff;
+	border:0px inset;
+	color:#333;
+	height: 400px
+}
+
+.setting
+{
+	width:520px;
+	padding:10px;
+	font-size:13px;
+	line-height:18px;
+	border:1px solid #CCC;
+	background-color:#f9f9fa;
+}
+
+.setting img
+{
+	float:left;
+}
+
+.title
+{
+	clear:both;
+	margin-bottom:10px;
+	font-weight:bold;
+}
+
+.desc
+{
+	width:430px;
+	margin-left:40px;
+}
+
+input[type="checkbox"]
+{
+	float:right;
+	margin-top:-50px;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+
+$('#deleteOut').live('click', function()  {
+
+		if (confirm('<?php echo $this->translate("Are you sure you are back to work?");?>'))
+		 {
+			$.post("<?php echo $this->baseUrl();?>/user/mypage/deleteout/", {id:$(this).attr("rel") },
+			  function(data){
+				  alert(data);
+				  location.reload();
+			  }, "text");
+		}
+		return false;
+		
+	});
+
+});
+</script>
+<div id="app_main" style="width:650px;">
+<div class="contentPad">
+<!-- window panel -->
+	<div class="window">
+	<?php echo $this->errorMessages;?>
+		<div class="titleWindow ">
+			<div id="titleText"><?php echo $this->translate("Select your preferred language");?></div>
+		
+		</div>
+		<div class="windowContent">
+		
+			<div id="form">
+				<form method="post" action="<?php echo $this->baseUrl();?>/user/mypage/updatesettings" id="addForm" name="addForm">
+					<input type="hidden" name="fn" value="locale"/>
+					<p><label for="cp">&nbsp;</label> <select	name="locale"  >
+					<?php 
+					$s = new UserSetting(Precurio_Session::getCurrentUserId());
+					$myLocale = $s->getLocale();
+					$languages = Bootstrap::getLanguages();
+					foreach($languages as $lang)
+					{
+						$label = $lang->getLabel();
+						$locale = $lang->getLocaleString();
+						if($myLocale == $locale)
+							echo "<option label='$label' value='$locale' selected='selected'>$label</option>";
+						else
+							echo "<option label='$label' value='$locale'>$label</option>";
+					}
+					
+					?>
+					</select></p>
+					
+					<label>&nbsp;</label>
+					
+					
+					<div class="buttons">
+					<button type="submit" class="positive"><img
+						src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt="" /><?php echo $this->translate("Submit");?> </button>
+					</div>
+					<br />
+					<br />
+					<br />
+					<br />
+				
+				</form>
+			
+			</div>
+		</div>
+<!-- end window panel --></div>
+<?php 
+if(Bootstrap::usesDatabase()):
+?>
+<!-- window panel -->
+	<div class="window">
+	<?php echo $this->errorMessages;?>
+		<div class="titleWindow ">
+			<div id="titleText"><?php echo $this->translate("Change Password");?></div>
+		
+		</div>
+		<div class="windowContent">
+		
+			<div id="form">
+				<form method="post" action="<?php echo $this->baseUrl();?>/user/mypage/changepassword" id="addForm" name="addForm">
+					<p><label for="cp"><?php echo $this->translate("Current Password");?></label> <input type="password"
+						name="cp" id="cp" /></p>
+					<p><label for="np"><?php echo $this->translate("New Password");?></label> <input type="password"
+						id="np" name="np" /></p>
+					
+					<p><label for="np2"><?php echo $this->translate("Confirm Password");?></label> <input type="password"
+						id="np2" name="np2" /></p>
+					
+					
+					
+					<label>&nbsp;</label>
+					
+					
+					<div class="buttons">
+					<button type="submit" class="positive" id="addContact"><img
+						src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" alt="" /><?php echo $this->translate("Change Password");?> </button>
+					
+					
+					</div>
+					<br />
+					<br />
+					<br />
+					<br />
+				
+				</form>
+			
+			</div>
+		</div>
+<!-- end window panel --></div>
+<?php endif;?>
+
+<!-- window panel -->
+<div class="window">
+<div class="titleWindow ">
+<div id="titleText"><?php echo $this->translate("Out of Office");?></div>
+
+</div>
+<div class="windowContent">
+<div class="contentPad">
+	<?php $outObj  = $this->userView()->currentUser()->outOfOffice();if($outObj == null):?>
+		<strong><?php echo $this->translate("You are currently not out of office.");?></strong><br/><br/>
+		<div id="form">
+			<label>&nbsp;</label>
+			<div class="buttons">
+				<a class="positive" href="<?php echo $this->baseUrl();?>/user/mypage/out"  rel="facebox" >
+				<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/clock_go.png" alt="" />
+					 <?php echo $this->translate("Set out of office");?>
+				</a>
+			</div>
+		</div>
+	<?php else:?>
+	<div id="form">
+		<p><label for="fullname"><?php echo $this->translate("Start");?> </label> <?php echo $outObj->getLeaveDate();?></p>
+		<p><label for="fullname"><?php echo $this->translate("Return");?> </label> <?php echo $outObj->getReturnDate();?></p>
+		<p><label for="fullname"><?php echo $this->translate("Message");?> </label> <?php echo $outObj->getMessage();?></p>
+		<p><label for="fullname"><?php echo $this->translate("Delegate");?> </label> <?php echo $outObj->getProxy()->getFullName();?></p>
+		<label for="fullname">&nbsp;</label>
+			<div class="buttons">
+				 <a href="<?php echo $this->baseUrl();?>/user/mypage/out/id/<?php echo $outObj->id;?>"  rel="facebox" class="positive">
+				<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" alt="" /> <?php echo $this->translate("Edit Details");?>
+				</a>
+				
+				<a href="#" rel="<?php echo $outObj->id;?>" id="deleteOut" rel="facebox" class="mild">
+				<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt="" /> <?php echo $this->translate("Am Back");?>
+				</a>
+			</div>
+	</div>
+	<?php endif;?>
+	<br /><br/><br/>
+</div>
+</div>
+</div><!-- end window panel -->
+
+
+<!-- window panel -->
+<div class="window">
+<?php 
+/**
+ * Checks if a user has enabled a widget for display on his dashboard
+ * @param $widget Precurio_Widget
+ * @return boolean
+ */
+function widget_enabled($widget)
+{
+	$widgets = UserUtil::getUser(Precurio_Session::getCurrentUserId())->getSettings()->getWidgets();
+	foreach($widgets as $item)
+	{
+		if($item->getName() == $widget->getName())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+?>
+
+<form method="post" action="<?php echo $this->baseUrl();?>/user/mypage/updatesettings"  name="settingForm">
+	<input type="hidden" name="fn" value="widgets"/>
+	<div class="titleWindow ">
+		<div id="titleText"><?php echo $this->translate("My Dashboard Tools");?></div>
+	</div>
+	<div class="windowContent">
+		<div class="contentPad">
+			<?php echo $this->translate("Please enable the pods you want to see on the start page.");?>
+		</div>	
+	</div>
+
+		<div id="holder">
+		<?php 
+			$widgets = Bootstrap::getWidgets(true);
+			foreach($widgets as $widget):
+		?>
+		<?php 
+			$iconFile = $this->baseUrl(). '/library/css/'.$this->themestyle.'/images/icons/'.$widget->getName().'.png';	
+			$test = Zend_Registry::get('root').'/public/library/css/'.$this->themestyle.'/images/icons/'.$widget->getName().'.png';
+			if(!file_exists($test))
+			{
+				$iconFile = $this->baseUrl(). '/library/css/'.$this->themestyle.'/images/icons/widget.png';
+			}
+		?>	
+	        <div class="setting">
+	        	<div class="title"><?php echo $this->translate($widget->getTitle());?></div>
+	            <img src="<?php echo $iconFile;?>" width="32" height="32" />
+	          <div class="desc"> <?php echo $this->translate($widget->getDescription());?></div>
+	          <div style="float: right;"><input type="checkbox" name="widgets[]" <?php echo ( widget_enabled($widget) ? "checked='checked'" : "");?> value="<?php echo $widget->getName();?>" id="<?php echo $widget->getName();?>"/></div>
+	            <div class="clear"></div>
+	        </div>
+		    <hr/>
+		<?php 
+		endforeach;
+		?>
+		</div>
+
+
+
+<div class="buttons" style="margin-left: 20px;margin-bottom: 20px">
+<button type="submit" class="positive"><img
+	src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/layout_sidebar.png" alt="" /> <?php echo $this->translate("Update");?></button>
+
+
+</div>
+<br />
+
+</form>
+
+
+</div>
+<!-- end window panel -->
+
+<!-- window panel -->
+<div class="window">
+<div class="titleWindow ">
+<div id="titleText"><?php echo $this->translate("Privacy Settings");?></div>
+
+</div>
+<div class="windowContent">
+<?php  $blockedUsers = $this->blockedUsers; ?>
+<div class="contentPad"><?php echo $this->translate("If you block someone, they will not be notified of your activities on the portal.");?> <br />
+<strong><?php echo $this->translate("Currently blocking");?> <?php echo count($blockedUsers) == 0 ? $this->translate('no one') : count($blockedUsers).' '.(count($blockedUsers) > 1 ? $this->translate("employees"):$this->translate("employee"))?> </strong>
+</div>
+<div id="form">
+<form method="post" action="#" action="<?php echo $this->baseUrl();?>/user/mypage/updatesettings"  name="settingForm2">
+<input type="hidden" name="fn" value="users"/>
+<div style="margin: 10px;
+	line-height: 16px; ">
+   <?php foreach ($blockedUsers as $user)
+   {
+   		echo ($user['full_name']. ' &emsp;');
+   }
+   ?>
+
+   
+            </div>
+<label>&nbsp;</label>
+
+
+<div class="buttons">
+ <a href="<?php echo $this->baseUrl();?>/user/index/select"  rel="facebox" class="positive">
+<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/users.png" alt="" /> <?php echo $this->translate("Click to block people");?>
+</a>
+
+
+</div>
+<br />
+<br />
+<br />
+<br />
+
+</form>
+
+</div>
+</div>
+<!-- end window panel --></div>
+
+</div>
+</div>

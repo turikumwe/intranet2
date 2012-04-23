@@ -1,0 +1,99 @@
+<form id="mailForm" action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+	<p>
+		<?php echo $this->form->server; ?>
+	</p>
+	<p>
+		<?php echo $this->form->port; ?>
+	</p>
+    <p>
+		<?php echo $this->form->admin_name; ?>
+	</p>
+	<p>
+		<?php echo $this->form->admin_email; ?>
+	</p>
+	<p>
+		<?php echo $this->form->use_auth; ?>
+		<br/><span class="textLinks"><?php echo $this->translate("You can ignore the other settings below, if not using authentication");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->auth; ?>
+		<br/><span class="textLinks"><?php echo $this->translate("NOTE : LOGIN is most commonly used");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->username; ?>
+	</p>
+	<p>
+		<?php echo $this->form->password; ?>
+	</p>
+	<p>
+		<?php echo $this->form->use_secure; ?>
+		<br/><span class="textLinks"><?php echo $this->translate("Ignore the protocol setting below if not using secure protocol");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->ssl; ?>
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+		    	<a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/live">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/arrow-left.gif" alt=""/> 
+	              <?php echo $this->translate("Back");?>
+	            </a>
+				 <a type="submit" class="negative" id="testmail" href="#">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/time.png" alt=""/> 
+	              <?php echo $this->translate("Send Test Mail");?>
+	             </a>
+	             
+	             <button type="submit" class="positive" id="addTask">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	              <?php echo $this->translate("Save");?>
+	            </button>
+	            <a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/module">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/arrow-right.gif" alt=""/> 
+	              <?php echo $this->translate("Skip");?>
+	            </a>
+	          
+            </div>
+	</p><!--
+	
+	<p class="topMargin"><label >&nbsp;</label>
+		    	<a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/live">
+	                
+	              &laquo; <?php echo $this->translate("Back");?>  
+	            </a>
+				&nbsp;				&nbsp;
+				
+				     <a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/module">
+	               
+	              <?php echo $this->translate("Next");?>&raquo;
+	            </a>
+				</p>
+--></form>
+	<p>
+	 <div id="loading" style="width: 500;" >
+      
+    </div>
+	</p>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#loading")//this should be a progrss bar.
+	.ajaxStart(function(){
+		$(this).show();
+	})
+	.ajaxComplete(function(){
+		$(this).hide();
+	});
+	//handle clicking on add
+	$('#testmail').live('click', function()  {
+		
+		$.post("<?php echo $this->baseUrl();?>/admin/setting/testmail", $("#mailForm").serialize(),
+		  function(data){
+		    alert(data);
+		  }, "text");
+		return false;
+		
+	});
+});
+</script>
+           

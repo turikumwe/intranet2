@@ -1,0 +1,34 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="workflow_table">
+    <tr>
+      <th><?php echo $this->translate('More information about Allowing Guest Users');?></th>
+    </tr>
+    <tr>
+    <td width="100%">
+    <div style="width: 605px;border: solid; height: 300px;overflow: auto;padding: 10px;margin: 10px;">
+      	<pre>
+To make certain aspects of your intranet accessible without the need for users
+to login, simply enable the "Allow Guest Users" option.
+
+Once you enable the "Allow Guest User" option, you should set your intranet   
+address to http://[intranet server]/precurio/public/index/home instead of 
+http://[intranet server]/precurio/public/. This is very important, as the later 
+url will still lead users to a login page.
+      
+By default, enabling "Allow Guest Users" gives an anonymous user full access to 
+every part of your intranet, especially if you have not setup your role based 
+access control rules.
+      
+So, to make sure the "Allow Guest Users" option works as expected, you will have 
+to assign the "Guest" user to a role (which you are going to create, and may
+be called 'Guests').
+
+Note that the 'Guest' user is created automatically once the 'Allow Guest User'
+option is enabled. Simply search your user list for 'guest', to find this user.
+
+Once you have assigned the 'Guest' user to a role, you can now configure your
+desired access rules on that role.
+     	</pre>
+     </div> 	
+     </td>
+     </tr>
+</table>

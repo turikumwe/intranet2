@@ -1,0 +1,15 @@
+<?php $selected = $selected == '' ? 'recent' : $selected;?>
+<ul id="tabnav">
+	<li <?php if ($selected == 'recent') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo($this->user->getId()); ?>/recent"><?php echo $this->translate("Recent Activity");?></a>    </li>
+   
+    <li <?php if (substr($selected,0,5) == 'photo') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo($this->user->getId()); ?>/photos"><?php echo $this->translate("Photos");?></a></li>
+
+ 	<li <?php if ($selected == 'shared') echo 'class="selectedTab"' ?>>
+  		<a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo($this->user->getId()); ?>/shared"><?php echo $this->translate("Shared Items");?></a></li>
+          
+    <li <?php if ($selected == 'content') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo($this->user->getId()); ?>/content"><?php echo $this->user->getFirstName(true).' '. $this->translate("Content"); ?></a></li>
+</ul>
+    

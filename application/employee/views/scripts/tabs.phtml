@@ -1,0 +1,20 @@
+<?php $selected = $selected == '' ? 'find_people' : $selected;?>
+<ul id="tabnav">
+	<li <?php if ($selected == 'find_people') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/employee/staff/find"><?php echo $this->translate("Find People");?></a>
+    </li>
+    <li <?php if ($selected == 'staff_list') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/employee/staff/list"><?php echo $this->translate("Staff List");?></a>
+    </li>
+    <li <?php if ($selected == 'recent_changes') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/employee/staff/recent"><?php echo $this->translate("Recent Changes");?></a>
+    </li>
+    <li <?php if ($selected == 'whos_out') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/employee/staff/out"><?php echo $this->translate("Out of Office");?></a>
+    </li>
+    <li <?php if ($selected == 'birthdays') echo 'class="selectedTab"' ?>>
+    	<a href="<?php echo $this->baseUrl();?>/employee/staff/birthdays"><?php echo $this->translate("Birthdays");?></a>
+    </li>
+
+
+</ul>

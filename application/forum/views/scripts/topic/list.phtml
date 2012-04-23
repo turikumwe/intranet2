@@ -1,0 +1,139 @@
+
+
+<?php 
+	require_once 'Zend/Paginator.php';
+	require_once('forum/models/Topics.php');
+	require_once('forum/models/Forums.php');
+	
+	$rowsPerPage = 10;
+	$forum = Forums::getForum($this->forum_id);
+	$topics = new Topics();	
+	
+	$paginator = Zend_Paginator::factory($topics->getTopics($this->forum_id));
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage($rowsPerPage);  
+	$this->paginator = $paginator;
+	
+	$rsTopics = $paginator->getCurrentItems();	
+?>
+
+<script type='text/javascript'>
+
+$(document).ready(function()
+{
+	$('.addTopic').live('click', function()  
+	{
+		url = $(this).attr("href") ;
+		jQuery.facebox({ ajax: url });
+		return false;
+	});
+	
+	$('#jumpToTopic').click(function()
+	{
+		if($('#topicSelect').val() == null)
+		{
+			alert("<?php echo $this->translate('You have not selected a topic'); ?>");
+			return false;
+		}
+		window.location.href = "<?php echo $this->baseUrl() ?>/forum/post/index/tid/" + $('#topicSelect').val();
+	});
+	
+});
+
+</script>
+
+	
+	
+<div id="forums_main"> 
+         		<div class="contentMargin_5" >  
+                	<div> 
+                   <div id="forums_controlbar"> 
+                    <div class="buttons">
+		    
+                        <a href="<?php echo $this->baseUrl();?>/forum/topic/add/fid/<?php echo $this->forum_id ?>" class="addTopic mild" > 
+                        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/> 
+                        <?php echo $this->translate('Create New Topic'); ?> 
+                        </a>
+                    </div>
+                    
+                    <div class="inner_bar">
+                        <select id='topicSelect'>
+				<?php $allTopics =  $topics->getTopics($this->forum_id) ?>
+                            <?php foreach($allTopics as $topic)
+				echo "<option value='{$topic->getId()}'>{$topic->getTitle()}</option>";
+			    ?>
+                        </select>
+                        <div class="buttons"><a id="jumpToTopic" href="javascript:void(0)"> <?php echo $this->translate('GO'); ?></a></div>  
+                    </div>
+                    </div>
+                	   <div  class="titleWindow"> 
+						<div id="titleText"> <?php echo $forum->getTitle(); ?></div>
+                      <div class="forum_paginationControl"> 
+                        <?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+                        
+                     </div> 
+					  </div>
+				    </div>
+                      <div id="forum_desc"><p><?php echo $forum->getDescription(); ?> </p></div>
+                      <?php  
+								
+			//confirm that there are records, otherwise , display message
+				if ($paginator->getCurrentItemCount())
+				{
+				?>
+					 <div>
+                      	<table class="forum_topic_table" width="100%" cellspacing="0">
+                        	<tr>
+                                <th colspan="2"><?php echo $this->translate('Topics'); ?></th>
+                                <th width="8%"><?php echo $this->translate('Replies'); ?></th>
+                                <th width="15%"><?php echo $this->translate('Started By'); ?></th>
+                                <th width="23%"><?php echo $this->translate('Last Action'); ?></th>
+                                <th width="8%"><?php echo $this->translate('Options'); ?></th>
+                            </tr>
+                             <?php 
+				foreach($rsTopics as $row_rsTopics)
+				{
+				?>			 
+                            <tr>
+                            	<td class="alt"><?php if ( $row_rsTopics->hasNewPost() ) { ?><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/new_post.png" width="16" height="16" alt=""/> <?php }else {?> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/no_post.png" width="16" height="16" alt=""/> <?php } ?></td>
+                            	<td class="alt"><a href="<?php echo $this->baseUrl() ?>/forum/post/index/tid/<?php echo $row_rsTopics->getId(); ?>"><h4><?php echo $row_rsTopics->getTitle(); ?></h4></a></td>
+                                <td class="alt"><?php echo $row_rsTopics->getNumberOfReplies(); ?></td>
+                                <td class="alt"><a href="<?php echo $this->baseUrl() ?>/user/profile/view/<?php echo $row_rsTopics->getCreatorId(); ?>"><?php echo $row_rsTopics->getCreator(); ?></a></td>
+                                <td class="alt"><?php echo  Precurio_Utils::isNull($row_rsTopics->getLastPost()) ? $this->translate('none') : $row_rsTopics->getLastPost()->getDatePosted(); ?></td>
+                                <td class="alt"><a href="<?php echo $this->baseUrl() ?>/forum/post/index/tid/<?php echo $row_rsTopics->getId(); ?>"><?php echo $this->translate('View'); ?></a></td>
+                            </tr>
+			    
+			      <?php } ?>
+                        </table>
+                      </div>
+					  <?php		
+		}
+		else
+		{
+		?>
+			<div style="padding: 40px; font-weight:bold">
+                            <?php echo $this->translate('There are currently no topics in this forum'); ?> <br />
+                              
+                           </div>     
+                <?php
+		}
+		?>
+                      <div class="completeText" id="application_controlBar_bottom"> 
+                       <div class="forum_paginationControl"> 
+                        <?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+                        
+                     </div> 
+                            
+                    </div>
+                      <div id="forums_controlbar"> 
+	
+		
+    
+						<br/> 
+						                               
+						                        
+						               		
+				  </div>
+				  
+         		</div>
+         		</div>

@@ -1,0 +1,25 @@
+
+<?php $selected = 'staff_list' ?>
+<div  id="tab" class="appTabs">
+ <?php require_once('employee/views/scripts/tabs.phtml'); ?>
+ 
+ <div class="completeText" id="application_controlBar">
+ </div>
+<div id="app_full" style="height:500px;	">
+ 	<ul id="myList"> 
+    	<?php echo $this->employeeView()->getAllAsList();?>
+ 
+   </ul>
+    
+</div>
+
+
+
+  <br style="clear:both"/>		
+</div>
+
+<script type="text/javascript"> 
+    $(function(){ 
+      $('#myList').listmenu(); 
+    }); 
+  </script>

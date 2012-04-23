@@ -1,0 +1,30 @@
+<div class="dashboardLine">
+        	<div class="dashboardModule">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle();?>/images/icons/vcard.png"  /><a href="#"><?php echo $this->translate("Contact");?>        </a>
+             </div>
+             <div class="dashboardContent">
+             					 
+            <div  id="<?php echo $this->model->getDocument()->getFieldValue('id');?>" class="tableBody">
+                               <div class="leftside" >
+                               <div class="rightPadding" >
+                                       <a href="<?php echo $this->baseUrl();?>/contact" ><?php echo ($this->model->fullname); ?>
+                                    </a></div>
+                                </div>
+                                      
+                                      
+                                      
+                                      <div class="leftside" >
+                                <div class="rightPadding">
+                                        <?php echo ($this->model->mobile); ?><br/>
+                                        <?php echo ($this->model->work); ?><br/>
+                                        <?php echo ($this->model->email); ?><br/>
+                                        </div>
+                                      </div>
+                            </div>                                    
+                                         
+            <div id="task_due">
+                 <em><?php echo $this->translate("Company");?>:  </em><?php echo ($this->model->company); ?> <br />     
+            </div>     
+                                              
+             </div>
+        </div>

@@ -1,0 +1,89 @@
+<?php 
+ function isReportAllowed($resource)//this function has a clone in default/layouts/modules.phtml
+ {
+ 	try
+ 	{
+ 		$ignoreAcl = Zend_Registry::get('ignoreAcl');//this is set in performAcl()::Initializer.php
+ 		if($ignoreAcl)return true;
+ 	}
+ 	catch(Exception $e)
+ 	{
+ 		
+ 	}
+ 	
+ 	$resource = new Precurio_Resource($resource);
+
+	$userRoles = UserUtil::getUser(Precurio_Session::getCurrentUserId())->getRoles();
+    
+    $acl = Precurio_Acl::getInstance();
+    $acl->initialise(array($resource),$userRoles);
+    
+ 	if(!$acl->has($resource))return true;
+	 foreach($userRoles as $role)
+	  {
+	  	if (!$acl->hasRole($role)) {
+	  	    continue;									
+	  	}
+	  	if ($acl->isAllowed($role, $resource,'view'))
+	  	{
+	  		return true;//if the user belongs to a role that is allowed access, then he can
+	  		//access the resource even if he belongs to roles that have been denied access
+	  	}
+	 }
+	 return false;
+ }
+
+?>
+
+<?php 
+$page = '';
+?>
+<div id="taskHolder" >
+	<div >	<br/>
+<table width="100%" align="center" cellspacing="10" cellpadding="0">
+  
+   <tr align="center">
+     <?php if(isReportAllowed('report_user')):?>
+	      <td>
+	         <a href="<?php echo $this->baseUrl();?>/report/user" >
+	         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/user_managment.png" />
+	         <br/> <?php echo $this->translate("User Reports");?></a>
+	      </td>
+      <?php endif;?>
+       <?php if(isReportAllowed('report_content')):?>
+   		<td>
+	        <a href="<?php echo $this->baseUrl();?>/report/content" >
+	         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/content_approval.png" />
+	         <br/><?php echo $this->translate("Content Reports");?></a>
+	      </td>
+      <?php endif;?>
+       <?php if(isReportAllowed('report_workflow')):?>
+	      <td>
+	         <a href="<?php echo $this->baseUrl();?>/report/workflow"  >
+	          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/workflow.png" />
+	         <br/><?php echo $this->translate("Workflow Reports");?></a>
+	      </td>
+      <?php endif;?>
+   </tr>
+   <tr align="center">
+	   <?php if(isReportAllowed('report_portal')):?>
+	      <td>
+	         <a href="<?php echo $this->baseUrl();?>/report/portal"  >
+	          <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/system_settings.png" />
+	         <br/><?php echo $this->translate("Portal Reports");?></a>
+	      </td>
+	    <?php endif;?>
+	    <?php if(isReportAllowed('report_search')):?>
+	      <td>
+	        <a href="<?php echo $this->baseUrl();?>/report/search">
+	         <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle; ?>/images/icons/location.png" />
+	         <br/><?php echo $this->translate("Search Reports");?></a>
+	      </td>
+       <?php endif;?>
+      <td>
+      </td>
+   </tr>
+
+</table>
+</div>
+</div>

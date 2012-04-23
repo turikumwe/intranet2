@@ -1,0 +1,103 @@
+<?php $selected = $this->page; ?>
+
+<div  id="tab" class="appTabs">
+ <?php if(!$this->isMyPage):?>
+ <div  id="app_profileBar" > 
+ 
+	<div class="contentPad">
+
+   <img src="<?php echo $this->baseUrl().$this->user->getProfilePicture(); ?>" class="image" />
+   		<div id="nav_menu"><a href="mailTo:<?php echo $this->user->getEmail();?>"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/mail.png" align="left" /><?php echo $this->translate('Send').' '. $this->user->getFirstName().' '. $this->translate('a Message'); ?></a></div>
+        <div id="nav_menu"><a href="javascript:void(0)" onClick="javascript:chatWith('<?php echo $this->user->getFirstName(); ?>')"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/chat.png" align="left" /><?php echo $this->translate('Chat with').' '.$this->user->getFirstName(); ?></a> </div>
+        <div id="nav_menu"><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo($this->user->getId()); ?>/photos"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/photo.png" align="left" /><?php echo $this->translate('View Photos of').' '. $this->user->getFirstName(); ?> </a></div>
+        <div id="nav_menu"><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo($this->user->getId()); ?>/shared"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/share.png" align="left" /><?php echo $this->translate('View').' '. $this->user->getFirstName(true).' '. $this->translate('Shared Items'); ?></a></div>
+   </div>
+   
+     <!-- window panel -->
+ <div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Information");?></div>
+         
+    </div>       
+    <div class="windowContent">
+         <div class="contentPad"  id="details_info" style="padding-left: 10px;">
+          
+           <p><em><?php echo $this->translate("Work Phone");?>:</em><br />
+	             <?php echo $this->user->getWorkPhone(); ?></p>
+	           <p><em><?php echo $this->translate("Mobile Phone");?>:</em><br />
+	           <?php echo $this->user->getMobilePhone(); ?></p>
+	           <p><em><?php echo $this->translate("Birthday");?>:</em><br />
+	           <?php echo $this->user->getDOB(); ?></p>
+	           <p><em><?php echo $this->translate("Job Title");?>:</em><br />
+	           <?php echo $this->user->getJobTitle(); ?></p>
+	           <p><em><?php echo $this->translate("My Job");?>:</em><br />
+	           <?php echo $this->user->getJobDescription(); ?> </p>
+	           <p><em><?php echo $this->translate("My Skills");?>:</em><br />
+	             <?php echo $this->user->getSkills(); ?>.<br />
+	           </p>
+        </div>
+      </div>          	
+       		
+ <!-- end window panel --></div>
+ 
+ 
+</div>
+ <?php else:?>
+  <div  id="app_sidebar" style="border-left:0px solid "> 
+	           <br/><br/><br/><br/>
+           <div  id="titleText"><?php echo $this->translate("My Information");?>:</div>
+	         <br />
+	         <div class="contentPad"  id="details_info">
+	          
+	           <p><em><?php echo $this->translate("Work Phone");?>:</em><br />
+	             <?php echo $this->user->getWorkPhone(); ?></p>
+	           <p><em><?php echo $this->translate("Mobile Phone");?>:</em><br />
+	           <?php echo $this->user->getMobilePhone(); ?></p>
+	           <p><em><?php echo $this->translate("Birthday");?>:</em><br />
+	           <?php echo $this->user->getDOB(); ?></p>
+	           <p><em><?php echo $this->translate("Job Title");?>:</em><br />
+	           <?php echo $this->user->getJobTitle(); ?></p>
+	           <p><em><?php echo $this->translate("My Job");?>:</em><br />
+	           <?php echo $this->user->getJobDescription(); ?> </p>
+	           <p><em><?php echo $this->translate("My Skills");?>:</em><br />
+	             <?php echo $this->user->getSkills(); ?>.<br />
+	           </p>
+	      </div>          	
+	
+  </div> 
+  <?php endif;?> 
+<div id="app_profile">
+
+<span class="nameText "><?php echo $this->user->getFullName(); ?></span><br />
+<?php echo $this->user->getJobTitle(); ?>
+<div id="details_info">
+<ul>
+	<li>
+		<em><?php echo $this->translate("Location");?></em>  <span class="detailsArrow">&nbsp; &nbsp; </span><?php echo $this->user->getLocation(); ?>
+    </li>
+    
+    <li>
+          <em><?php echo $this->translate("Department");?></em>  <span class="detailsArrow">&nbsp; &nbsp; </span><?php echo $this->user->getDepartment(); ?>
+    </li>
+    
+  
+ </ul>
+</div>
+<br />
+<div class="completeText" id="application_controlBar">
+ </div>
+<br />
+<?php require_once('profile_tabs.phtml'); ?>
+<br />
+ 
+ <?php require_once($selected .'.phtml'); ?> 
+  
+ 
+                 
+</div>
+
+
+
+  <br style="clear:both"/>		
+
+</div>

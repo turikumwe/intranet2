@@ -1,0 +1,15 @@
+<?php 
+function getRoles()
+{
+	$request = Zend_Controller_Front::getInstance()->getRequest();
+	$group_id = $request->getParam('id');
+	$table = new Zend_Db_Table(array('name'=>PrecurioTableConstants::ROLES,'rowClass'=>'Role'));
+	return $table->fetchAll($table->select()->where('group_id = ?',$group_id));
+}
+
+?>
+			<?php 
+				 echo $this->form;
+			?>
+			<?php require_once 'admin/views/scripts/access.phtml';?>	
+			<?php require_once 'admin/views/scripts/members.phtml';?>	

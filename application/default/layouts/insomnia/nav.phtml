@@ -1,0 +1,8 @@
+<div id="breadcrumbs">
+	  <?php echo $this->navigation()->breadcrumbs()->setLinkLast(false)->setMinDepth(0)->setSeparator(' - ' . PHP_EOL)->render(); ?>
+	  &nbsp;&nbsp;&nbsp;
+	  <div style="float:right; padding: 0px 0px 0px 10px ">
+		<a href="#" onClick="javascript:history.back();return false;"><?php echo $this->translate("Back");?></a> | 
+		<a href="#" onClick="javascript:history.forward();return false;"><?php echo $this->translate("Forward");?></a>
+	  </div>
+</div>

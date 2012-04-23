@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $this->company_name; ?> <?php echo $this->translate("Intranet");?>::<?php echo $this->translate('login');?></title>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/jquery/jquery.js"></script>
+<?php 
+echo ($this->headScript());
+echo ($this->headLink());
+?>
+<!--[if lte IE 7]> <link href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/theme_ie6.css" rel="stylesheet" type="text/css" /> <![endif]-->
+
+ <script type="text/javascript">
+	$(document).ready(function(){
+		$('.clearField').autofill({
+					value: 'Username'
+				});
+		
+	});	
+</script>
+</head>
+
+<body>
+<div id="topbar" class="row1"> 
+		<div id="container_login"><h1><a href="<?php echo $this->baseUrl();?>/"><?php echo $this->company_name; ?> </a></h1> 
+
+  </div>
+        
+    	<div id="container_login">
+        <div id="mainPage_login"> 
+          
+          
+        <div  id="pageBody" class="row5"> 
+		
+
+      		<?php echo $this->contentView()->getWelcomeAdvert(); ?>
+      
+   		<div id="loginFormBox">
+        	<div id="loginformbox_left">
+        		
+               
+                 <form action= '<?php echo $this->baseUrl()?>/login/submit' method='post'>
+				  <span> <strong><?php echo($this->translate('Login to the portal'))?> </strong></span><br /><span class="invalid"><?php echo ($this->loginError)?> </span><br /><br />
+                 
+                     <input name="username" type="text" id="username" class="clearField" /> 
+                
+                    <input name="password" type="password" id="password"  />
+                   
+                    <input type="submit" name="submit" id="submit" value="<?php echo($this->translate('Submit'))?>" />
+                    <br />
+                    <br />
+<!--                    <input type="checkbox" id="autoSignIn"  name="autoSignIn"  style="margin-right:0px"/>-->
+                    <?php // echo($this->translate('Keep me signed in automatically.'))?>
+                    <br />
+                    <br />
+                    <!--<a href="#" class="forgotText"> <?php echo($this->translate('Forgot password?'))?> </a>
+                    
+                    
+                --></form>
+           </div>
+           <div id="loginformbox_right">
+              	
+           </div>
+        </div>
+              
+        <div id="product_bar" >
+              <?php echo $this->contentView()->getSlidingAdverts(); ?>
+        </div>
+              
+
+		 </div>
+  
+  </div>
+            </div>  
+		  
+        </div> 
+ 
+
+
+
+
+
+</body>
+</html>

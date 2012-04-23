@@ -1,0 +1,127 @@
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><?php echo $this->company_name; ?> <?php echo $this->translate("Intranet");?></title>
+	<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/tipsy/jquery.tipsy.js"></script>
+	<?php echo $this->headLink();?>
+	<link rel="stylesheet"   type="text/css"   media="print" href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/print.css" />
+	<!--[if lte IE 7]> <link href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/theme_ie6.css" rel="stylesheet" type="text/css" /> <![endif]-->
+	<script type="text/javascript">
+		function handleError() {
+		      return true;
+		}
+		
+		//window.onerror = handleError;
+	</script>
+</head>
+<body>	
+<?php $user = $this->userView()->currentUser();?>
+<!-- Header -->
+<div id="headerGradient">
+
+  <div id="information_container" >
+  	<div id="logoPlaceHolder" >
+    	<a href="<?php echo $this->baseUrl();?>/">
+    	<?php 
+    	$root = Zend_Registry::get('root');
+    	if(file_exists($root.'/public/library/css/'.$this->themestyle.'/images/logo.jpg')):?>
+    		<img width:510px; height:89px; src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/logo.jpg" />
+		
+    	<?php else:?>
+    		<?php echo $this->company_name; ?>
+    	<?php endif;?>
+    	</a>
+		<div id="topRight">
+    	 <div id="searchForm"  >
+			<form method="post" action="<?php echo $this->baseUrl();?>/search/index/index">
+					<input type="text" name="qry" class="header_search"/>
+			</form>
+
+		</div>
+		<a href="<?php echo $this->baseUrl();?>/login/logout" >  <?php echo $user->isAnonymous() ? $this->translate('Login') : $this->translate("Logout");?></a></li>
+		<a href="<?php echo $this->baseUrl();?>/user/mypage/settings" >  <?php echo $this->translate("Settings");?> </a>
+     
+    </div>   
+    </div>	
+   
+</div>
+</div>
+
+  <div id="linksContainer">
+  <div id="nav">
+   <ul>
+    <li ><a class="first" href="<?php echo $this->baseUrl();?>/index/home" > <?php echo $this->translate("Home");?> </a></li>
+      <li> <a href="<?php echo $this->baseUrl();?>/user/mypage" ><?php echo $this->translate("My Page");?></a> </li>
+	   
+	  
+	   
+   <?php
+    
+  	 class Header
+  	 {
+	    var $_count = 0;
+		var $dump_module = '';
+		var $dump_more = '';
+		
+	  	 /**
+	  	  * This function handles the display of each module item and MUST be implemented in a class of  any script including 'modules.phtml'
+	  	  * @param Precurio_Module $module
+	  	  * @param string $baseUrl - application base url
+	  	  * @param string $pathToIcons - web url path to icons 
+	  	  * @return null
+	  	  */	
+	  	 function displayModule($module,$baseUrl,$pathToIcons)
+	  	 {
+	  	 	
+			$tr = Zend_Registry::get('Zend_Translate');
+			$count = $this->_count;
+			$max = 960 ;
+			$chr_width = 10;
+			$padding = 40;
+			$initial_length = (strlen($tr->translate('Home')) * $chr_width) + $padding + (strlen($tr->translate('My Page') * $chr_width)) + $padding +(strlen($tr->translate('more...') * $chr_width)) + $padding;
+			$max = $max - $initial_length;
+			if(!$module->isStandAlone())return;
+	  	 	$moduleName = $module->getName();
+	  	 	$label = $module->getShortTitle();
+			
+   			$url = $baseUrl.'/'.$module->getName();
+   			$tr = Zend_Registry::get('Zend_Translate');
+		  	$label = $tr->translate($label);
+			$count = $count + (strlen($label) * $chr_width) + $padding;
+			
+			$currentModule = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+			$select = '';
+			if ($currentModule == $moduleName)
+				$select = " class='selected' ";
+			
+			if ($count < $max)
+			{
+				$this->dump_module = $this->dump_module.""."<li><a href='$url' $select/>$label </a></li>";
+			}
+			else
+			{
+				$this->dump_more = $this->dump_more.""."<li><a href='$url' $select />$label </a></li>";
+			}
+		  	
+			$this->_count = $count;
+	  	 	
+	  	 	
+	  	 }
+  	 }
+  	 $module = new Header(); //an object of a class implementing displayModule must be named '$module' 
+  	 include('modules.phtml');
+	 echo $module->dump_module;
+	
+   ?>
+   
+   <li class="more"><a href='#'  class="last" />More... </a> <ul class="sub_menu">
+		<?php echo $module->dump_more; ?>
+    </ul> </li>
+  
+	
+   </ul>
+  </div>
+</div>
+  
+  

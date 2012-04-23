@@ -1,0 +1,65 @@
+         
+<div id="workflow_summary" >
+
+			<div class="contentPad" >
+<!--                	<p><strong>Workflow Summary</strong>-->
+<!--                      <br />-->
+<!--              Pending - 2      <br />-->
+<!--              Over due - 4<br />-->
+<!--              Completed - 6<br />-->
+<!--              Approved - 4<br />-->
+<!--              Denied - 5</p>-->
+              
+              
+              
+
+                	<p><strong><?php echo $this->translate("Create New Request");?></strong>
+                	
+                	<?php 
+                	
+                		$workflows = ProcessManager::getAllWorkflows();
+                		if(count($workflows) == 0)
+                		{
+                			echo "<div id='noRecords'>
+						                              ".$this->translate("You have not been given access to any workflow") ."<br />
+						                               </div>";
+                		}
+                		else
+                		{
+                			$baseUrl = Zend_Controller_Front::getInstance()->getRequest()->getBaseUrl();
+                			$temp = array_shift($workflows);
+                			echo "<div class='workflow_{$temp->getColourCode()} rounded'>
+                						<strong>{$temp->getDepartmentName()}</strong><br />
+                						<a href='$baseUrl/workflow/new/{$temp->getId()}'>{$temp->getDisplayName()}</a><br />";
+                			while(count($workflows))
+                			{
+	                			$process = array_shift($workflows);
+                				if($temp->department_id == $process->department_id)
+                				{
+                					$temp = $process;
+                					echo "<a href='$baseUrl/workflow/new/{$temp->getId()}'>{$temp->getDisplayName()}</a><br />";
+                				}
+                				else
+                				{
+              
+                					$temp = $process;
+                					echo '</div>';
+                					echo "<div class='workflow_{$temp->getColourCode()} rounded'>
+                						<strong>{$temp->getDepartmentName()}</strong><br />
+                						<a href='$baseUrl/workflow/new/{$temp->getId()}'>{$temp->getDisplayName()}</a><br />";
+                				}
+                			}
+                			echo '</div>';
+                			
+                		}
+                		
+                		
+                	?>
+              
+               </p>
+           	  <p>&nbsp;</p>
+                	<p><br />
+              	    </p>
+			</div>
+
+</div>

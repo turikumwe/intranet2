@@ -1,0 +1,7 @@
+   <?php 
+   $groups  = UserUtil::getUser(Precurio_Session::getCurrentUserId())->getGroups();
+   foreach($groups as $group):
+   ?>
+   <?php if(!$group->hasContent())continue;?>
+    	<a href="<?php echo $this->baseUrl();?>/cms/view/index/g_id/<?php echo $group->getGroupId();?>/p/1"><?php echo $group->title; ?></a><br/>
+   <?php endforeach; ?>

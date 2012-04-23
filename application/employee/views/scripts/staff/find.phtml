@@ -1,0 +1,31 @@
+<?php $selected = 'find_people' ?>
+<div  id="tab" class="appTabs">
+ <?php require_once('employee/views/scripts/tabs.phtml'); ?>
+ 
+
+<div id="app_main">
+
+	<?php $this->employeeView()->getAll();?>
+	<?php echo $this->paginationControl($this->paginator, 'Elastic','page_control_b.phtml'); ?>
+    <?php if (count($this->paginator)): ?>
+	<?php foreach ($this->paginator as $item) echo $item; ?>
+	<?php endif; ?>
+    
+
+   
+</div>
+ <div  id="app_sidebar"> 
+	<div class="contentPad">
+
+   <span class="maroon_text"><strong><?php echo $this->translate("By Department");?></strong></span><br />
+  	 <?php echo $this->employeeView()->getDepartments($this->d_id);?>
+   <p>   
+   <span class="maroon_text"><strong><?php echo $this->translate("By Location");?></strong></span><br />
+   	<?php echo $this->employeeView()->getLocations($this->l_id);?>
+   </p>
+   </div>
+</div>
+
+
+  <br style="clear:both"/>		
+</div>

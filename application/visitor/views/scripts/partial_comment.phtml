@@ -1,0 +1,5 @@
+  	<div class="commentLine" id="aComment<?php echo $this->comment->id; ?>">
+    	<a href="<?php echo $this->baseUrl().'/user/profile/view/'.$this->comment->user_id;?>"><?php echo ($this->comment->getFullName());?>:</a> <?php echo ($this->comment->getMessage());?><br />
+  	    <span class="textLinks"><?php echo ($this->comment->getSinceWhen()); ?></span> <div align="right" ><a href="#" onclick="deleteComment(event,<?php echo $this->comment->id; ?>)">Delete</a></div> 
+     </div>
+  

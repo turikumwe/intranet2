@@ -1,0 +1,153 @@
+
+<?php 
+
+require_once('visitor/models/Visitors.php'); 
+require_once('visitor/models/Appointments.php'); 
+ 
+?>
+
+<?php 
+
+$page =  1;
+$rowsPerPage = 5;
+
+
+
+if (isset($this->page)) {
+  $page = $this->page;
+}
+
+//$visitors = 
+//$type = $this->type;
+
+
+
+$firstRec = ($page-1)*$rowsPerPage + 1  ;
+
+
+$total = 0;//$visitors->getCount();
+$rowCount = 0;
+$rsVisitors = Visitors::getSearchSummary($this->contactName, $this->purpose, $this->startTime, $this->endTime, $page);
+//echo $rsVisitors; return;
+//echo $rsVisitors[1]['contact_fullname'];
+$totalRows_rsVisitors = count($rsVisitors);
+//echo $totalRows_rsVisitors;
+?>
+
+<div id="holder" >
+	
+    <div class="rightside">
+	<!--<form>
+    	<input type="text" id="who"  class="searchBox"/>    
+		</form>-->
+    </div>
+</div>
+
+<?php //$selected = 'past'; ?>
+<div  id="tab" class="appTabs">
+<?php require_once('visitor/views/scripts/index/tabs.phtml');?>
+
+<span class="listHeader"> <?php echo $this->translate('Visitors'); ?>  </span> <?php if($total):?><span class="textLinks"> Showing <?php 
+ echo ($firstRec);?>  to  <?php echo ($firstRec + $totalRows_rsVisitors - 1) ;?> of <?php echo  $total;?> </span><?php endif;?>
+   
+ 
+				
+							
+							
+                      		
+                                  <a href="<?php echo $this->baseUrl();?>/visitor/index/search" id='searchVisitor' style="float:right" class="positive">
+			                     <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+			                      <?php echo $this->translate('Search'); ?>   </a>
+ <div  id="visitors_body"> 
+ 
+	<div class="contentPad">
+
+      <?php  
+								
+			//confirm that there are records, otherwise , display message
+			if ($totalRows_rsVisitors > 0)
+			{
+		?>
+                                
+                                
+         <div class="tableHeader">
+                <div class="leftside" >
+                      <div class="rightPadding">
+                                <a href="#"> <?php echo $this->translate("Visitor's Name"); ?>
+                        </a></div>
+                 </div>
+                                      
+                                      
+				<div class="leftside" >
+                       <div class="rightPadding">
+                              <?php echo $this->translate('To see'); ?>
+                        </div>
+				</div>
+         
+				<div class="leftside" >
+                       <div class="rightPadding">
+                              <?php echo $this->translate('Time In'); ?>
+                        </div>
+				</div>
+		 </div>  
+		 
+		 <?php 
+			while ($rowCount < $rowsPerPage && isset($rsVisitors[$rowCount])):
+			$row_rsVisitors = $rsVisitors[$rowCount];
+			
+			//echo $row_rsAppointments['full_name'];
+		?>
+							
+									<!-- start table body -->  
+                              <div tag="<?php echo $type; ?>"  id="<?php echo ($row_rsVisitors['id']); ?>" class="tableBody visitorLine <?php if ($rowCount % 2 == 0) echo ("even"); ?>">
+                               	<div class="leftside" >
+                               		<div class="rightPadding" >
+                                       	<a href="#" ><?php echo ($row_rsVisitors['contact_fullname']); ?>
+                                    </a></div>
+                                </div>
+                                      
+                                      
+                                      
+                                      <div class="leftside" >
+                                		<div class="rightPadding">
+                                        	<?php echo $row_rsVisitors->getToSee(); ?>
+                                        </div>
+                                      </div>
+                            
+								<div class="leftside" >
+                                		<div class="rightPadding">
+                                        	<?php echo $row_rsVisitors->getTimeIn(); ?>
+                                        </div>
+                                      </div>
+									  
+								
+							</div>
+							
+							                            <!-- end table body -->
+									
+									<?php $rowCount++; endwhile; ?>
+									
+									</div>
+						</div>
+
+				<?php		}
+								else
+								{
+								
+								 ?>
+                               <div id="noRecords">
+                              <?php echo $this->translate('Your searched matched no result') ?>. <br />
+                              
+                                 
+                               <?php
+								 }
+								 ?>			
+                                     
+      
+	</div>
+ </div>
+ 
+ </div>
+ 
+	
+

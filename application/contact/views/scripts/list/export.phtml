@@ -1,0 +1,38 @@
+<script type="text/javascript">
+		</script>	
+
+<form id="form1" name="form1" method="post" action="<?php echo $this->baseUrl();?>/contact/list/doexport">
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Export your contacts");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+ 		
+<?php echo $this->translate("Please select contact category");?>
+    
+          <br />
+          
+	 <p>
+      <input type="radio" name="contactType" value="my" checked="checked" id="my" />
+    <label for="my" ><?php echo $this->translate("My Contacts");?></label>
+    </p>
+     <p>
+      <input type="radio" name="contactType" value="co" id="co"/>
+    <label for="co" ><?php echo $this->translate("Co-Workers");?></label>
+    </p>
+         <div class="buttons">
+    <button type="submit" class="standout" onclick="jQuery(document).trigger('close.facebox');">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+     <?php echo $this->translate("Export");?>
+    </button>
+
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>
+</form>
+

@@ -1,0 +1,118 @@
+ 						
+ 						
+ 						
+ 							<div id="details_info">
+                            <ul>
+                                <li>
+                                    <em><?php echo $this->translate("Process");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->display_name); ?>
+                                </li>
+                                
+                                <li>
+                                      <em><?php echo $this->translate("Description");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->description); ?>
+                                </li>
+                                
+                                <li>
+                                    <em><?php echo $this->translate("Department");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->process->getDepartmentName()); ?>
+                                </li>
+                                <br/>
+                                <li>
+                                    <em><?php echo $this->translate("State");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->state->getDisplayName()); ?>
+                                </li>
+                                <li>
+                                    <em><?php echo $this->translate("Position");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->state->getPosition()); ?>
+                                </li>
+                                <?php if($this->state->position != 0):?>
+                                <li>
+                                    <em><?php echo $this->translate("Duration");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($this->state->getDuration()); ?>
+                                </li>
+                                <?php endif;?>
+                             </ul>
+                            
+                            </div>
+                            <br/>
+                            <br/>
+        
+
+	<?php 
+	
+	function generateTable($arr,$header,$state_id)
+	{
+		$str = "<table border='1' width='100%'>";
+
+		
+		$str .= "<tr>";
+		foreach($header as $i)
+		{
+			$str .= "<th>$i </th>";
+		}
+		$str .= "<th><input type='checkbox' name='id' id='id'   onclick='selectAll(this)'>
+		</th>";
+		$str .= "</tr>";
+		
+		foreach($arr as $value)
+		{
+			$str .= "<tr>";
+			$key = $value['id'];
+			foreach($value as $prop=>$j)
+			{
+				if($prop === "id")continue;
+				$str .= "<td>$j </td>";
+			}
+			$str .= "<td><input type='checkbox' name='ids[]' id='ids[]'  value='$key'></td>";
+			$str .= "</tr>";
+		}
+		$str .= "</table>";
+		return $str;
+	}
+
+	?>
+
+	<?php 
+	$pathToController = $this->pathToController;
+
+	require_once 'Zend/Paginator.php';
+	$paginator = Zend_Paginator::factory($this->list);
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage(10);
+	$this->paginator = $paginator;
+	?>
+	
+	<form method="post" name="searchListForm" id="searchListForm" action="<?php echo $pathToController."index/id/".$this->state->id ?> ">
+		<table class="ewBasicSearch">
+			<tbody><tr>
+				<td>
+					<input name="search" id="search" size="20" value="<?php echo $this->searchText;?>" type="text">
+					<input name="Submit" id="Submit" value="<?php echo $this->translate("Search");?> (*)" type="Submit">&nbsp;
+					<a href="<?php echo $this->pathToController."index/id/".$this->state->id;?>"><?php echo $this->translate("Show all");?></a>&nbsp;
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+		
+	<span id="adminList">
+		<div class="buttons">
+		<a href="<?php echo $pathToController."add/t/0/id/".$this->state->id?>" class="mild"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/>  <?php echo $this->translate("Add Group");?></a>&nbsp;&nbsp;
+		<a href="<?php echo $pathToController."add/t/1/id/".$this->state->id?>" class="mild"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/>  <?php echo $this->translate("Add User");?></a>&nbsp;&nbsp;
+		<a href="" onclick="if (!keySelected(document.listForm)) alert('<?php echo $this->translate("No records selected");?>'); else {document.listForm.action='<?php echo $pathToController."delete" ?>';document.listForm.submit();};return false;" class="mild"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/delete.png" alt=""/>  <?php echo $this->translate("Delete Selected Records");?></a>&nbsp;&nbsp;
+		
+		</div>
+	</span>
+	<br />  <br /> 
+	
+	<div id="adminTable"> 
+	
+	<?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+	<form action="" name="listForm" id="listForm" method="post"> 
+		<?php 
+			if($paginator->getCurrentItemCount())
+			{
+			 	echo generateTable($paginator->getCurrentItems(),$this->header,$this->state->id);
+			}
+			else
+			{
+				echo "<div id='noRecords'>".$this->translate('No records found')." <br/></div>";
+			}
+		?>
+	</form>  
+	</div>          

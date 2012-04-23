@@ -1,0 +1,16 @@
+<div id="news_detail">
+         <p><br />
+           <span class="nameText"><a href="#"><?php echo $this->content->getTitle();?><br />
+           </a></span><span class="textLinks"><?php echo $this->content->getDateAdded();?></span> <?php echo $this->translate("by");?> <a href="#"><?php echo $this->content->getFullName();?></a><br />
+
+ 		<br />
+     <?php echo $this->content->getBody();?>
+    
+       </div>
+       <br/>
+        <div class="buttons bottomPadding ">
+     <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate("Close");?>
+            </button>
+     </div>

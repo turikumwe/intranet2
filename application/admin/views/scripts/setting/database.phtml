@@ -1,0 +1,58 @@
+<form id="dbForm" action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+	<p>
+		<?php echo $this->form->host; ?>
+	</p>
+	<p>
+		<?php echo $this->form->port; ?>
+	</p>
+    <p>
+		<?php echo $this->form->username; ?>
+	</p>
+	<p>
+		<?php echo $this->form->password; ?>
+	</p>
+	<p>
+		<?php echo $this->form->dbname; ?>
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+		  	  	<a type="submit" class="negative" id="testdb" href="#">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/time.png" alt=""/> 
+	              <?php echo $this->translate("Test Connection");?>
+	            </a>
+	             <button type="submit" class="positive">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	              <?php echo $this->translate("Save");?>
+	            </button>
+            </div>
+	</p>
+</form>
+<p>
+	 <div id="loading" style="width: 500;" >
+      
+    </div>
+	</p>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#loading")//this should be a progrss bar.
+	.ajaxStart(function(){
+		$(this).show();
+	})
+	.ajaxComplete(function(){
+		$(this).hide();
+	});
+	//handle clicking on add
+	$('#testdb').live('click', function()  {
+		
+		$.post("<?php echo $this->baseUrl();?>/admin/setting/testdb", $("#dbForm").serialize(),
+		  function(data){
+		    alert(data);
+		  }, "text");
+		return false;
+		
+	});
+});
+</script>
+           

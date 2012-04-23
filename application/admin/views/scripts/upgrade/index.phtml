@@ -1,0 +1,77 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#loading").hide();
+	});
+	function ajaxFileUpload()
+	{
+		$("#loading")//this should be a progrss bar.
+		.ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+			$(this).text("<?php echo $this->translate("Upgrade Complete");?>");
+		});
+		
+		$.ajaxFileUpload
+		(
+			{
+				url:baseUrl + '/admin/upgrade/upgrade',
+				secureuri:false,
+				fileElementId:'file',
+				dataType: 'text',
+				success: function (data, status)
+				{
+					if(typeof(data) != 'undefined')
+					{
+						if(data != "")alert(data);
+						jQuery(document).trigger('close.facebox');
+					}
+				},
+				error: function (data, status, e)
+				{
+					alert (data);
+					alert (status);
+					alert('Error' + e);
+				}
+			}
+		)
+		return false;
+		
+	}
+	</script>	
+
+<form id="themeForm" name="themeForm" method="post" action="">
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Upgrade Precurio");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+    <span class="textLinks"><?php echo $this->translate("Performing an upgrade usually takes a while, please be patient");?> </span>
+          <br />
+    
+              <br />
+       <?php echo $this->translate("Select Upgrade ZIP file");?>  <input type="file" name="file" id="file" />
+          <br />
+          <br />
+       
+    
+   <div class="buttons">
+    <button type="submit" class="standout" onclick="return ajaxFileUpload();">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Upgrade");?>
+    </button>
+     </div>
+ 
+ </div>          	
+       		
+ <!-- end window panel --></div>
+  <span class="textLinks"> <?php echo $this->translate("Your current Precurio version is");?> : v<?php $config = Zend_Registry::get('config');echo $config->license->version;?>
+ </span>
+</form> 
+  <div id="loading" style="width: 300;display: none; " >
+      
+    </div>

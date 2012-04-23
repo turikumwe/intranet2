@@ -1,0 +1,106 @@
+
+
+	<?php 
+	
+	
+/**
+ * Access View Page
+ *  
+ * IMPORTANT To use this page, the calling parent page must define a function getRoles();
+ * 
+ * @author Klein Devort
+ * @version 2
+ */
+	global $themeStyle;
+	$roles = getRoles();//function defined by parent script
+	
+	$themeStyle = $this->themestyle;
+	
+	;
+	function generatePrivileges()
+	{
+		$table = new Zend_Db_Table(array('name'=>PrecurioTableConstants::PRIVILEGES));
+		$rows = $table->fetchAll();
+		
+		$headers = array();
+		foreach($rows as $row)
+		{
+			$headers[] = $row->privilege;
+		}
+		return $headers;
+	}
+
+	function generateAccessTable($roles,$privileges,$baseUrl)
+	{
+		global $themeStyle;
+		$resources = Precurio_Resource::getAll();
+		
+		$acl = Precurio_Acl::getInstance();
+    	$acl->initialise($resources,$roles);
+    	
+    	$translate = Zend_Registry::get('Zend_Translate');
+		
+		$str = "<table border='1' width='100%'>";
+
+		
+		$str .= "<tr>";
+		$str .= "<th> </th>";
+		foreach($privileges as $privilege)
+		{
+			$str .= "<th>$privilege </th>";
+		}
+		$str .= "<th></th>";
+		$str .= "</tr>";
+		
+		foreach($resources as $resource)
+		{
+			$str .= "<tr>";
+			$str .= "<td>{$resource}</td>";
+			$privilegeCount = 0;
+			foreach($privileges as $privilege)
+			{
+				$granted = false;//reset acess flag
+				foreach($roles as $role)
+		  		{
+		  			if ($acl->isAllowed($role, $resource, (string)$privilege))
+		  			{
+		  				$privilegeCount++;
+		  				$granted = true;//this role is granted.
+		  				break;
+		  			}
+		  		}
+		  		if($granted)
+				{
+					$str .= "<td><img src='$baseUrl/library/css/{$themeStyle}/images/icons/accept.png' /></td>";
+				}
+				else
+				{
+					$str .= "<td><img src='$baseUrl/library/css/{$themeStyle}/images/icons/remove.png' /></td>";
+				}
+			}
+			if(count($roles) == 1)//you can only edit if you are view access rules of only one role.
+			{
+				$allPrivileges = $privilegeCount == count($privileges) ? 1 : 0; //determines if a role is given all privileges to a particular resource
+				$str .= "<td><a href='$baseUrl/admin/rule/edit/r_id/{$role->id}/r/{$resource->getResourceId()}/a/{$allPrivileges}'>".$translate->translate('Edit')."</a></td>";
+			}
+
+			$str .= "</tr>";
+		}
+		$str .= "</table>";
+		return $str;
+	}
+	?>
+<br/><br/>
+<?php echo $this->translate("Access Rules");?>
+<br/>	<br/>
+	<?php 
+	$pathToController = $this->pathToController;
+
+	?>
+
+	<form action="" name="listForm" id="form" method="post"> 
+		<?php 
+			echo generateAccessTable($roles,generatePrivileges(),$this->baseUrl());
+		?>
+	</form>  
+		

@@ -1,0 +1,80 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/others/jquery.quicksearch.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#id_search').quicksearch('#table_example tbody tr');
+	});
+	
+	</script>	
+
+<form  method="post" action="<?php echo $this->baseUrl(); ?>/admin/category/submitaddgroup">
+  <input type="hidden" name="category_id" value="<?php echo $this->category->id?>"/>
+  <!-- window panel -->
+ <div class="eventsWindow" style="width: 350px;">
+ 	<div  class="titleWindow">
+           <div  id="titleText"><?php echo $this->translate("Share '{$this->category->title}' with the following groups.");?></div>
+    </div>       
+    <div  id="event_Description">
+    	<form action="#">
+			<fieldset>
+				<input name="search" value="" id="id_search" type="text">
+				<?php echo $this->translate("Quick Search");?>
+			</fieldset>
+		</form>
+		
+          <br />
+          <div class='textLinks'><?php echo $this->translate('Note: Groups already given access, will not be shown below.');?></div><br/>
+       <div style="height:200px;overflow: auto;">  
+       <table id="table_example" class="workflow_table">
+			<thead>
+				<tr>
+					<th></th>
+					<th><?php echo $this->translate("Group");?></th>
+				</tr>
+			</thead>
+			 
+			<tbody>
+       			<?php 
+					require_once('user/models/UserUtil.php');
+       				$userUtil = new UserUtil();
+					$groups = $userUtil->getGroups();
+					
+					/**
+					 *@var $shared -> contains groups that already have access to
+					 *the category. We don't want this groups to show in the list.
+					 */
+					$shared = $this->category->getGroups();
+					foreach($groups as $group)
+					{
+						$found = false;
+						foreach($shared as $item)
+						{
+							if($item->getGroupId() == $group->getGroupId())
+							{
+								$found = true;
+								break;
+							}
+						}
+						if(!$found)
+						{
+							echo "<tr>";
+							echo "<td style='width:12px;'><input type='checkbox' name='ids[]' id='ids[]' value='{$group->getGroupId()}'   onclick='selectAll(this)'></td>";
+							echo "<td>&nbsp;&nbsp;{$group->getTitle()}</td>";
+							echo "</tr>";
+						}
+					}
+				?>
+    		</tbody>
+    	</table>
+    	</div>
+    	<br/>
+   <div class="buttons">
+    <button type="submit" class="standout">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Share");?>
+    </button>
+     </div>
+ 
+ </div>          	
+       		
+ <!-- end window panel --></div>
+</form> 

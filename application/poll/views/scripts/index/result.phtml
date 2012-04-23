@@ -1,0 +1,17 @@
+<?php $poll = $this->poll;?>
+
+<p><strong><?php echo $poll->getQuestion();?></strong>        </p>
+		<?php $options = $poll->getOptions();$i=0?>
+        <?php for ($i=0;$i<3;$i++){$option = $options[$i];?>
+        <div class="pollBg">
+        	<span><?php echo $option->label;?>. <?php echo $poll->getPercentageOfTotal($option);?>%  (<?php echo $option->num_votes; ?> <?php echo $this->translate("votes");?>) </span>
+            <div class="pollBarBg">
+            
+               	 <div class="pollBar" style="width:<?php echo $poll->getPercentageOfTotal($option);?>%"> </div>
+             </div>
+        </div>
+        <?php }?>
+         
+        <?php if(!$poll->userhasVoted(Precurio_Session::getCurrentUserId())):?>
+        	<a href="#" id="viewReturn" rel="<?php echo $poll->id; ?>"> <?php echo $this->translate("Return to poll");?> </a>
+      	<?php endif;?>

@@ -1,0 +1,225 @@
+
+<?php 
+	require_once 'Zend/Paginator.php';
+	require_once('forum/models/Topics.php');
+	require_once('forum/models/Posts.php');
+	
+	$topic = Topics::getTopic($this->topic_id);
+	
+	$rowsPerPage = 4;
+	$posts = new Posts();	
+	
+	$paginator = Zend_Paginator::factory($posts->getPosts($this->topic_id));
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage($rowsPerPage);  
+	$this->paginator = $paginator;
+	
+	$rsPosts = $paginator->getCurrentItems();	
+	
+?>
+
+
+
+<script type='text/javascript'>
+
+$(document).ready(function()
+{
+	$('.addPost').live('click', function()  
+	{
+		url = $(this).attr("href") ;
+		jQuery.facebox({ ajax: url });
+		return false;
+	});
+	
+	$('#deletePost').live('click', function()  
+	{
+		if( ! confirm("<?php echo $this->translate('Are you sure you want to delete this post')?>") )
+		return false;
+		
+		$.post("<?php echo $this->baseUrl();?>/forum/post/delete", {id: $(this).attr('tag')},
+		function(data)
+		{
+			alert(data);
+			location.reload();
+		}, "text");
+	});
+	
+});
+
+</script>
+
+
+<div id="forums_main"> 
+         		<div class="contentMargin_5" >
+                   <div id="forums_controlbar"> 
+                    <div class="buttons">
+                      <a href="<?php echo $this->baseUrl();?>/forum/post/add/tid/<?php echo $this->topic_id ?>" class="addPost mild" > 
+                       <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/> 
+                        <?php echo $this->translate('New Post'); ?> 
+                        </a>
+                    </div>
+                    
+                    
+                    </div>
+                        
+                	   <div  class="titleWindow "> 
+						
+						 <div id="titleText">
+                         	<span><?php echo $this->translate('Forum Topic'); ?>:</span> <?php echo $topic->getTitle(); ?>
+					     </div>
+                          <div class="forum_paginationControl"> 
+                        <?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+                        
+                         </div>
+					   </div> 
+						
+						  <div >
+						   <?php
+							foreach($rsPosts as $row_rsPosts)
+							{			
+								if( ! $row_rsPosts->hasBeenViewed() )
+									if( $row_rsPosts->user_id != Precurio_Session::getCurrentUserId() )
+										$row_rsPosts->markAsViewed();
+							?>
+						    <table class="post_table" cellspacing='0' cellpadding='10' width='100%'>
+							<tr>	
+								<td>
+									<div class="post-author">
+										<div class="author_name"><a href="<?php echo $this->baseUrl() ?>/user/profile/view/<?php echo $row_rsPosts->getCreatorId(); ?>"><?php echo $row_rsPosts->getCreator(); ?></a></div>
+										<div class="author_pic"> <img src="<?php echo $this->baseUrl().$row_rsPosts->getCreatorImagePath(); ?>" /></div>
+									</div>
+									
+									
+									
+								</td>
+				
+								<td>
+									
+									<div class="subject_con"><span class="post_subject"></span> <span class="post_time"><?php echo $row_rsPosts->getDatePosted(); ?></span></div>
+									<div class="post_body"><?php echo formatContent($row_rsPosts->getContent()); ?>
+								</div>
+								<div class="bottom_menu">
+									<a href="#"><?php echo $this->translate('Back to Top'); ?></a> | 
+									<a href="<?php echo $this->baseUrl();?>/forum/post/add/tid/<?php echo $this->topic_id ?>/qid/<?php echo $row_rsPosts->getId(); ?>" class="addPost"> <?php echo $this->translate('Quote'); ?></a>
+									
+									<?php 
+									if( $row_rsPosts->canAlter() || isAllowed('admin_index') )
+									{
+									?>
+									|
+									<a href="javascript:void()" id="deletePost" tag="<?php echo $row_rsPosts->getId(); ?>" ><?php echo $this->translate('Delete'); ?></a>
+									<?php
+									}
+									?>
+								
+								</div>
+				
+								</td>
+				
+			</tr>
+			
+			</table>
+			 <?php } ?>
+		        </div>
+                      
+	</div> 
+                      
+                      <div class="completeText" id="application_controlBar_bottom"> 
+                        <div class="forum_paginationControl"> 
+                        <?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+                        
+                         </div>
+                      </div>
+                      
+                      <div id="forums_controlbar"> 
+	
+		
+	
+		
+	
+	</div>
+						<br/> 
+						                               
+						                        
+						               		
+				  </div>
+				  
+<?php
+	function formatContent($content)
+	{
+				
+		while ( strpos($content, '{re}') !== false )
+		{
+			$startpos = strpos($content, '{re}');
+			$endpos = strpos($content, '{/re}');
+			
+			
+			$quote = substr($content, $startpos+4, $endpos-4);
+			//$quote = Posts::getPost($qid)->getContent();
+			
+			//$content =  $quote;
+			$content = str_replace('{re}'.$quote.'{/re}', "<div class='post_Quote'>".$quote.'</div>', $content);
+			//return $content;
+		}
+		
+		
+		return $content;
+
+	}
+	
+	function isAllowed($resource)//this function has a clone in report/views/scripts/index/index.phtml
+ {
+ 	try
+ 	{
+ 		$ignoreAcl = Zend_Registry::get('ignoreAcl');//this is set in performAcl()::Initializer.php
+ 		if($ignoreAcl)return true;
+ 	}
+ 	catch(Exception $e)
+ 	{
+ 		
+ 	}
+ 	
+ 	
+ 	$resource = new Precurio_Resource($resource);
+
+	$userRoles = UserUtil::getUser(Precurio_Session::getCurrentUserId())->getRoles();
+    
+	
+    $acl = Precurio_Acl::getInstance();
+    $acl->initialise(array($resource),$userRoles);
+    
+ 	if(!$acl->has($resource))return true;
+	 foreach($userRoles as $role)
+	  {
+	  	if (!$acl->hasRole($role)) {
+	  	    continue;									
+	  	}
+	  	if ($acl->isAllowed($role, $resource,'view'))
+	  	{
+	  		return true;//if the user belongs to a role that is allowed access, then he can
+	  		//access the resource even if he belongs to roles that have been denied access
+	  	}
+	 }
+ 
+  	$table = new Zend_Db_Table(array('name'=>PrecurioTableConstants::ROLES));
+  	if($table->fetchAll()->count() > 1)//if there is more than one available role, then set error
+  	{
+  		//ok, the administrator has created atleast 2 roles, let's check if he has assign rules to them
+  		$table = new Zend_Db_Table(array('name'=>PrecurioTableConstants::RULES));
+  		if($table->fetchAll()->count() > 0)//atleast, a rule has been set on one of the roles, then throw acess error
+  		{
+  			return false;
+  		}
+  		else
+  		{
+  			return true;
+  		}
+  	}//else, allow access to all resources since there aren't enough roles or rules to successfully implement the role based acess control.
+  	else
+  	{
+  		return true;
+  	}	
+		  	
+	 return false;
+ }
+?>

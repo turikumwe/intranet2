@@ -1,0 +1,80 @@
+	<style>
+#imgHolder img { padding:5px; border:1px solid #E5E7E9; margin:0px 10px 10px 0px; }
+	</style>
+<form id="form1" name="form1" method="post" action="">
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Upload a Contacts CSV file");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+ 		
+<?php echo $this->translate("Please select a csv file");?>
+    
+          <br />
+          
+	<span class="textLinks"><?php echo $this->translate("Maximum size of 1MB");?>. </span>
+    <br />
+      <input type="file" name="file" id="file" />
+          <br />
+          <br />
+         <div class="buttons">
+    <button type="submit" class="standout" onclick="return ajaxFileUpload();">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Upload");?>
+    </button>
+
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>
+</form>
+<script type="text/javascript">
+	function ajaxFileUpload()
+	{
+		
+		.ajaxStart(function(){
+			$("#loading").show();
+		})
+		.ajaxComplete(function(){
+			$("#loading").hide();
+		});
+
+		$.ajaxFileUpload
+		(
+			{
+				url:'/contact/list/import',
+				secureuri:false,
+				fileElementId:'file',
+				dataType: 'json',
+				
+				success: function (data, status)
+				{
+					if(typeof(data.error) != 'undefined')
+					{
+						if(data.error != '')
+						{
+							//alert(data.error);
+						}
+						else //everything was fine
+						{
+							var page  = "<?php echo $this->baseUrl();?>/contact/list/all/type/" + <?php echo '"'. Contacts::TYPE_MY. '"' ; ?> ;
+							loadContacts(page);
+							jQuery(document).trigger('close.facebox');
+						}
+					}
+				},
+				error: function (data, status, e)
+				{
+					alert(e);
+				}
+			}
+		)
+		
+		return false;
+
+	}
+	</script>

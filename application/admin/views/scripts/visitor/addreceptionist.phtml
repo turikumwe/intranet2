@@ -1,0 +1,110 @@
+<script type='text/javascript'>
+var visitor = 0;
+
+$().ready(function()
+{
+	$('#addReceptionist').live('click', function()
+{
+	group_no = <?php echo count($this->groups); ?>;
+	if( group_no == 0)
+	{
+		alert('<?php echo $this->translate('You have not selected a group');?>');
+		return false;
+	}
+	
+	url = $(this).attr("href") ;
+		$.post(url+$('#groups').val(), {},
+			  function(data){
+				loadSelectPopup();
+			  }, "text");
+			  return false;
+});
+
+$('#addGroup').live('click', function()
+{
+	if( $('#group').val() == '') 
+	{
+		alert('<?php echo $this->translate('You have not entered group name');?>');
+		return false;
+	}
+	//alert('hi'); return false;
+	url = $(this).attr("href") ;
+		$.post(url, {g_name: $('#group').val()},
+			  function(data){
+				//alert(data);
+				alert('<?php echo $this->translate('Receptionist Group has been registered');?>');
+				location.reload();
+			  }, "text");
+			  
+			  return false;
+});
+
+
+});
+
+function loadSelectPopup()
+{
+	url = "<?php echo $this->baseUrl();?>/user/index/select" ;
+	jQuery.facebox({ ajax: url });
+	return false;
+}
+</script>
+
+<div  id="form">
+<form method="post"  id="addVisitorForm" action="<?php echo $this->baseUrl();?>/admin/visitor/submitnew" name="addVisitorForm">
+	<input type='hidden' id='visitor' name='visitor'/>	
+	
+	
+	<?php if(count($this->groups) > 0)
+	{
+	?>
+	
+	<p><label for="groups" ><?php echo $this->translate('Groups');?></label>
+		<select id='groups'>
+			<?php
+				foreach($this->groups as $group)
+					echo "<option value={$group->id}>{$group->title}</option>";
+			?>
+		</select>
+		
+		<a href="<?php echo $this->baseUrl();?>/admin/visitor/selectreceptionist/g_id/" id='addReceptionist'>
+	  <?php echo $this->translate('Click to select users');?></a>
+	</p>
+
+	<?php
+	}
+	?>
+	
+	<?php if(count($this->groups) == 0)
+	{
+	?>
+	<font style="color: #B5B5B6;">
+	<?php echo $this->translate("No group has been given a 'share' privilege access to the 'Visitors / Appointment' resource.");?>
+	<a href="<?php echo $this->baseUrl();?>/admin/role/"><?php echo $this->translate('click here');?></a> <?php echo $this->translate('to edit the access rules for your existing groups, or enter the name of a new group below.');?> 
+	
+	</font><br/><br/>
+	<table width="100%">
+	<tr>
+		<td width="100px"><label for="group" style="width: 150px" ><?php echo $this->translate("New 'Receptionist' Group");?></label></td>
+		<td><input type='text' name='group' id='group'/></td>
+	</tr>
+		<td>&nbsp;</td>
+		<td>
+		<div class="buttons">
+		<a class="positive" href="<?php echo $this->baseUrl();?>/admin/visitor/addgroup" id='addGroup'>
+	  <?php echo $this->translate('Submit');?></a>
+	  	</div>
+	  	</td>
+	</table>
+	<?php
+	}
+	?>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>

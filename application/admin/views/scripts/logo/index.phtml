@@ -1,0 +1,58 @@
+	<style>
+#imgHolder img { padding:5px; border:1px solid #E5E7E9; margin:0px 10px 10px 0px; }
+	</style>
+<form id="form" name="form1" method="post" action="<?php echo $this->baseUrl(); ?>/admin/logo/submit" enctype="multipart/form-data">
+  <!-- window panel -->
+ <div class="eventsWindow">    
+  <font style="text-decoration: underline" color="#FF0000"><?php echo $this->error; ?></font>
+    <div  id="event_Description">
+ 		
+<?php echo $this->translate("Please select a photo to upload");?>
+    
+          <br />
+          
+	<span class="textLinks"><?php echo $this->translate("Maximum size of 1MB");?>. <?php echo $this->translate("JPG  ONLY");?>. </span>
+    <br />
+    <input type="file" name="file" id="file"/>
+          <br />
+          <br />
+     <font style="text-decoration: underline"><?php echo $this->translate("Please select which styles you want to apply this logo to");?>.</font>
+     <?php 
+     $themes = new Precurio_Themes();
+     $styles = $themes->getThemeStyles($this->theme);
+     foreach($styles as $styleId=>$style):
+     ?>
+     <p>
+    	<input type="checkbox"  name="<?php echo $styleId; ?>" id="<?php echo $styleId; ?>" value="<?php echo $style;?>" />
+    	 <label for="<?php echo $style; ?>" ><?php echo $style; ?></label>
+    </p>
+     <?php endforeach;?>
+      
+         <div class="buttons">
+    <button type="submit" class="standout">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Apply Logo");?>
+    </button>
+
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>
+</form>
+<div id="imgHolder">
+	<?php 
+	$root = Zend_Registry::get('root');
+	foreach($styles as $style)
+	{
+	 	$logo  = '/library/css/'.$this->theme.'/'.$style.'/images/logo.jpg';
+		if(is_file($root.'/public/'.$logo))
+	 		echo ('<a href="#"><img src="'.$this->baseUrl().$logo. '" title="'.$style.'" /></a>');	
+	}
+	?>
+	
+</div>
+<br/>
+<span class="textLinks"><?php echo $this->translate("Please note that irrespective of whatever you see here, your company logo will only be displayed if it is allowed by your current theme");?>.</span>
+<br/>
+

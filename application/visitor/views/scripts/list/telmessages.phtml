@@ -1,0 +1,293 @@
+<?php 
+
+require_once('visitor/models/TelMessages.php'); 
+require_once('visitor/models/vo/TelMessage.php'); 
+?>
+
+<?php 
+
+$telMessages = new TelMessages();
+$type = $this->type;
+
+$page =  1;
+$rowsPerPage = 10;
+$mine = ! Precurio_Utils::isNull($this->mine);
+
+
+if (isset($this->page)) {
+  $page = $this->page;
+}
+
+$firstRec = ($page-1)*$rowsPerPage + 1  ;
+
+
+$total = ( $mine ) ? $telMessages->getCount(true) : $telMessages->getCount();
+$rowCount = 0;
+$rsTelMessages = ( $mine ) ? $telMessages->getTelephoneMessageSummary($page, true) : $telMessages->getTelephoneMessageSummary($page);
+
+//echo $rsTelMessages;
+//return;
+$totalRows_rsTelMessages = count($rsTelMessages);
+//echo $totalRows_rsTelMessages;
+?>
+
+<div id="holder" >
+	
+    <div class="rightside">
+<!-- 	<form>-->
+<!--    	<input type="text" id="searchText"  class="searchBox"/>-->
+<!--    </form>-->
+    </div>
+</div>
+
+
+<div  id="tab" class="appTabs">
+
+<?php 
+
+if( VisitorUtil::isReceptionist($this->user->id) )
+require_once('visitor/views/scripts/telephone/tabs.phtml');
+?>
+<span class="listHeader"> <?php echo $this->translate('Telephone Messages'); ?>  </span> <?php if($total):?><span class="textLinks"> Showing <?php 
+ echo ($firstRec);?>  to  <?php echo ($firstRec + $totalRows_rsTelMessages - 1) ;?> of <?php echo  $total;?> </span><?php endif;?>
+   
+	
+	
+	<?php
+  if( VisitorUtil::isReceptionist($this->user->id) ) 
+  {
+  ?>
+   
+
+<span id='a'> <?php if($mine) echo '(Yours)'; else echo '(All)'; ?> </span>
+<a id='checker' href='#'> <?php if($mine) echo 'Click to fetch all telephone messages'; else echo 'Click to fetch all your telephone messages'; ?>   	 	
+	
+	</a>
+
+
+<?php } ?>
+    
+ <div  id="visitors_body"> 
+ 
+	<div class="contentPad">
+
+      <?php  
+								
+			//confirm that there are records, otherwise , display message
+			if ($totalRows_rsTelMessages > 0)
+			{
+		?>
+                                
+                                
+         <div class="tableHeader">
+                <div class="leftside" >
+                      <div class="rightPadding">
+                                <a href="#"> <?php echo $this->translate("Contact's Name") ?>
+                        </a></div>
+                 </div>
+                                      
+                                      
+				<div class="leftside" >
+                       <div class="rightPadding">
+			<?php if ( Precurio_Utils::isNull($this->mine) ) 
+				echo $this->translate('For');
+				else echo $this->translate('By');
+			?>
+                              
+                        </div>
+				</div>
+				
+								
+				                       
+				<div class="leftside" >
+                       <div class="rightPadding">
+                              <?php echo $this->translate('Date Logged') ?>
+                        </div>
+				</div>
+         </div>  
+		 
+		 <?php 
+			while ($rowCount < $rowsPerPage && isset($rsTelMessages[$rowCount])):
+			$row_rsTelMessages = $rsTelMessages[$rowCount];
+			
+			//echo $row_rsAppointments['full_name'];
+		?>
+							
+									<!-- start table body -->  
+                              <div  id="<?php echo ($row_rsTelMessages['id']); ?>" class="tableBody telLine <?php if ($rowCount % 2 == 0) echo ("even"); ?>">
+                               	<div class="leftside" >
+                               		<div class="rightPadding" >
+                                       	<a href="#" ><?php echo $row_rsTelMessages['full_name']; ?>
+                                    </a></div>
+                                </div>
+                                      
+                                      
+                                      
+                                      <div class="leftside" >
+                                		<div class="rightPadding">
+                                        	<?php 
+						if ( Precurio_Utils::isNull($this->mine) ) 
+						echo $row_rsTelMessages->getMessageTarget(); 
+						else echo $row_rsTelMessages->getMessageAttendant();?>
+                                        </div>
+                                      </div>
+									 
+                            
+								<div class="leftside" >
+                                		<div class="rightPadding">
+                                        	<?php echo $row_rsTelMessages->getLogDate().'('.$row_rsTelMessages->getLogTime().')'; ?>
+                                        </div>
+                                      </div>
+									  
+								
+							</div>
+							
+							                            <!-- end table body -->
+									
+									<?php $rowCount++; endwhile; ?>
+									
+									</div>
+						</div>
+						
+							<div id="pager" class="buttons">
+                         <?php
+						 //paging script 
+						 
+						 $maxPage = ceil($total/$rowsPerPage);
+						
+						// print the link to access each page
+						//$self = $_SERVER['PHP_SELF'];
+						$nav  = '';
+						$currentpage = $page ; 
+						
+						$startpager = 1 ;
+						
+						$pagerTotal = $maxPage; 
+						$showfirst = false;
+						$showlast = false;
+						if ($maxPage > 5 )
+						{
+							$pagerTotal = 5 ; 
+							$startpager = $currentpage - 2; 
+							$showfirst = true;
+							$showlast = true;
+							if ($currentpage < 3)
+							{
+								$startpager = 1;
+								$showfirst = false;
+							}						
+							
+							if ($maxPage - $currentpage < 3 )
+							{
+								$startpager = $maxPage - 4; 
+								$showfirst = true;
+								$showlast = false;
+							}
+							
+							if ($maxPage - $currentpage < 5 )
+							{
+								$showlast = false;
+							}
+						}
+						
+						
+						$count = 1; 
+					 
+						
+					    
+						for($page = $startpager; $count <= $pagerTotal; $page++)
+						
+						{
+						   
+						   
+						   if ($page == $currentpage)
+						   {
+							  $nav .= "<span> $page </span> "; // no need to create a link to current page, create span instead
+						   }
+						   else
+						   {
+							  $nav .= " <a href=\"#$page\" id=\"$type\" rel=\"$page\">$page</a> ";
+						   }
+						   $count++;
+						}
+						 
+						if ($currentpage > 1 and $showfirst)
+						{
+						   $page  = $currentpage - 1;
+						
+							$next = '&nbsp;';//
+						   $prev  = '&nbsp;';
+						   $first = " <a href=\"#$page\" id=\"$type\" rel=\"1\">First</a> ";
+						}
+						else
+						{
+							$next = '&nbsp;';
+						   $prev  = '&nbsp;'; // we're on page one, don't print previous link
+						   $first = '&nbsp;'; // nor the first page link
+						}
+						
+						if ($currentpage < $maxPage and $showlast)
+						{
+						   $page = $currentpage + 1;
+						   $next = '&nbsp;';//
+						   $prev  = '&nbsp;';
+						
+						   $last = " <a href=\"#$page\" id=\"$type\" rel=\"$maxPage\">Last</a> ";
+						}
+						else
+						{
+						   $next = '&nbsp;'; // we're on the last page, don't print next link
+						   $last = '&nbsp;'; // nor the last page link
+						}
+						
+						// print the navigation link
+						echo $first . $prev . $nav . $next . $last;
+
+
+						 ?>
+                       
+                        </div>
+
+				<?php		}
+								else
+								{
+								
+								 ?>
+                               <div id="noRecords">
+                             <?php echo $this->translate('You have no telephone messages') ?>. <br />
+                              
+                                 
+                               <?php
+								 }
+								 ?>			
+                                     
+      
+	</div>
+ </div>
+ 
+	
+</div>
+<script type='text/javascript'>
+$('#pager a').click(function()  {
+		$(this).css('outline','none');
+		
+		<?php
+		$page = '/visitor/list/telmessages/';
+		if($mine) $page.='mine/1/';
+		?>
+		
+		var page  = "<?php echo $this->baseUrl().$page?>page/" + $(this).attr("rel");
+	
+		$("#loading").show();
+	//	$("#contacts_b").hide('slow');
+		loadPage(page);
+     	
+		
+		
+	
+		return false;
+		
+		
+		
+	}); 
+</script>

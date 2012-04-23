@@ -1,0 +1,23 @@
+<?php $selected = 'whos_out' ?>
+<div  id="tab" class="appTabs">
+ <?php require_once('employee/views/scripts/tabs.phtml'); ?>
+<?php $temp = $this->employeeView()->getOutOfOffice();?>
+ 
+ <div class="completeText" id="application_controlBar">
+ 	<?php echo count($temp).' '.$this->translate('People are currently out of office');?></div>
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad"></div>
+ </div>
+<div id="app_main">
+	<?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+    <?php if (count($this->paginator)): ?>
+	<?php foreach ($this->paginator as $item) echo $item; ?>
+	<?php endif; ?>
+    
+    
+</div>
+
+
+  <br style="clear:both"/>		
+</div>

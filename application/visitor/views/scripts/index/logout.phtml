@@ -1,0 +1,52 @@
+
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"> <?php echo $this->translate('Log Visitor Out'); ?> (<?php echo $this->visitors_name; ?>)</div>
+           <div id="titleBtns">
+             
+                <a href="#" class=""  onclick=" jQuery(document).trigger('close.facebox');"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_close.jpg"   /></a> 
+            </div>
+       	               
+    </div>       
+    <div  id="windowContent">
+ 		
+<div  id="form">
+<form method="post" action="#" id="logoutVisitorForm"  name="registerForm">
+		
+	<?php echo $this->form->visitor_id; ?>
+	
+		    
+    <p><label for="in_hour" > <?php echo $this->translate('Time Out'); ?></label>
+		<?php echo $this->form->timeout_hour; ?> : 
+		<?php echo $this->form->timeout_minute; ?>
+		<?php echo $this->translate('24hrs format'); ?>
+	</p>
+    
+    
+	
+    
+     <p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+             <button type="submit" class="positive" id="logout" tag="/visitor/index/logoutsubmit/">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+              <?php echo $this->translate('LogOut'); ?>
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate('Cancel'); ?>
+            </button>
+            </div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $this->company_name; ?> <?php echo $this->translate("Intranet");?></title>
+<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/jquery/jquery.js"></script>
+<?php 
+echo ($this->headScript());
+echo ($this->headLink());
+?>
+<!--[if lte IE 7]> <link href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/theme_ie6.css" rel="stylesheet" type="text/css" /> <![endif]-->
+</head>
+
+<body>
+
+<div id="topbar" class="row1"> 
+		<div id="container_login"><h1><a href="<?php echo $this->baseUrl();?>/">Precurio </a></h1> 
+
+  </div>
+        
+    	<div id="container_login">
+        <div id="mainPage_login"> 
+          
+          
+        <?php echo $this->layout()->content ?>
+  
+  </div>
+            </div>  
+		  
+        </div> 
+ 
+
+
+
+
+
+</body>
+</html>

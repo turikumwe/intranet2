@@ -1,0 +1,58 @@
+<head>
+	<title><?php echo $this->company_name; ?>  <?php echo $this->translate("Intranet");?></title>
+	<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/jquery/jquery.js"></script>
+	
+	<?php echo $this->headLink();?>
+
+</head>
+<?php $selected = $this->page;?>
+<body class="install_body">
+
+<div class="wrapper " align="center">
+
+	<div id="install_container" >
+ 
+	<div id="full_bar">
+		<div class="box_D_noMargin rounded" style="height: 250px;">
+			<div class="appPad">
+				 <div id="helpdesk_main">
+					 <img src="<?php echo $this->baseUrl();?>/uploads/logo.png" alt="Precurio"/><br/>
+					 <span style="font-weight: bold;font-size: 11px;padding: 0px 0px 0px 20px;">
+					 ....your complete intranet solution
+					 </span>
+			         	<div class="contentPad_noLineHeight" >
+			         		
+			                
+			                    <div id="admin_body">
+			                        <div class="contentPad_noLineHeight">
+										<div  id="tab" class="appTabs">
+											<table width="100%" align="center" cellspacing="10" cellpadding="0">
+											   <tr align="center">
+											      <td >
+											          <a href="<?php echo $this->baseUrl();?>/login" >
+											          	<img src="<?php echo $this->baseUrl();?>/uploads/upgrade.png" />
+											         <span style="font-weight: bold;font-size: 14px;padding: 0px 0px 0px 20px;">
+											         <br/> <?php echo $this->translate("Upgrade Complete");?>
+											          </span> </a>   
+											      </td>
+											    </tr>
+											    <tr align="center">
+											    	<td>
+											     		<span class="textLinks" > <?php echo $this->translate("Your current Precurio version is");?> : v<?php $root = Zend_Registry::get('root');
+		$config = new Zend_Config_Ini($root.'/application/configs/precurio.ini');echo $config->license->version;?></span>
+													</td>
+												</tr>
+											 </table>
+											
+									 	</div> 
+			                        </div>
+			                         
+			            </div>
+				 </div>
+			</div>
+		</div>
+	</div>
+	</div>    
+</div>         
+</body>
+	<?php echo $this->headScript();?>

@@ -1,0 +1,80 @@
+<style>
+
+#holder
+{
+	margin-left:auto;
+	margin-right:auto;
+	padding:20px;
+	background-color:#fff;
+	border:0px inset;
+	color:#333;
+	height: 400px
+}
+
+.setting
+{
+	width:600px;
+	padding:10px;
+	font-size:13px;
+	line-height:18px;
+	border:1px solid #CCC;
+	background-color:#f9f9fa;
+}
+
+.setting img
+{
+	float:left;
+}
+
+.title
+{
+	clear:both;
+	margin-bottom:10px;
+	font-weight:bold;
+}
+
+.desc
+{
+	width:500px;
+	margin-left:40px;
+}
+
+input[type="checkbox"]
+{
+	float:right;
+	margin-top:-50px;
+}
+
+</style>
+<form action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+<div id="holder">
+<?php 
+$modules = Bootstrap::getModules(false);
+foreach($modules as $module):
+?>
+<?php $iconFile = $this->baseUrl(). '/library/css/'.$this->themestyle.'/images/icons/'.$module->getName().'.png';	?>	
+    <a>
+        <div class="setting">
+        	<div class="title"><?php echo $this->translate($module->getTitle());?></div>
+            <img src="<?php echo $iconFile;?>" width="32" height="32" />
+          <div class="desc"> <?php echo $this->translate($module->getDescription());?></div>
+          <input type="checkbox" name="<?php echo 'mod_'.$module->getName();?>" <?php echo ( $module->getStatus() ? "checked='checked'" : "");?> value="1"/>
+            <div class="clear"></div>
+        </div>
+    </a>
+    <hr/>
+<?php 
+endforeach;
+?>
+</div>
+<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+	             <button type="submit" class="positive" id="addTask">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	              <?php echo $this->translate("Save");?>
+	            </button>
+            </div>
+	</p>
+</form>
+           

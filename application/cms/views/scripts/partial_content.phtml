@@ -1,0 +1,130 @@
+	<?php if(!function_exists('isAllowed'))
+ {
+ function isAllowed($resource)//this function has a clone in report/views/scripts/index/index.phtml
+ {
+ 	try
+ 	{
+ 		$ignoreAcl = Zend_Registry::get('ignoreAcl');//this is set in performAcl()::Initializer.php
+ 		if($ignoreAcl)return true;
+ 	}
+ 	catch(Exception $e)
+ 	{
+ 		
+ 	}
+ 	
+ 	
+ 	$resource = new Precurio_Resource($resource);
+
+	$userRoles = UserUtil::getUser(Precurio_Session::getCurrentUserId())->getRoles();
+    
+	
+    $acl = Precurio_Acl::getInstance();
+    $acl->initialise(array($resource),$userRoles);
+    
+ 	if(!$acl->has($resource))return true;
+	 foreach($userRoles as $role)
+	  {
+	  	if (!$acl->hasRole($role)) {
+	  	    continue;									
+	  	}
+	  	if ($acl->isAllowed($role, $resource,'view'))
+	  	{
+	  		return true;//if the user belongs to a role that is allowed access, then he can
+	  		//access the resource even if he belongs to roles that have been denied access
+	  	}
+	 }
+ 
+  	$table = new Zend_Db_Table(array('name'=>PrecurioTableConstants::ROLES));
+  	if($table->fetchAll()->count() > 1)//if there is more than one available role, then set error
+  	{
+  		//ok, the administrator has created atleast 2 roles, let's check if he has assign rules to them
+  		$table = new Zend_Db_Table(array('name'=>PrecurioTableConstants::RULES));
+  		if($table->fetchAll()->count() > 0)//atleast, a rule has been set on one of the roles, then throw acess error
+  		{
+  			return false;
+  		}
+  		else
+  		{
+  			return true;
+  		}
+  	}//else, allow access to all resources since there aren't enough roles or rules to successfully implement the role based acess control.
+  	else
+  	{
+  		return true;
+  	}	
+		  	
+	 return false;
+ }
+ } ?>
+	<div class="rssLine">
+		<a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $this->content->getId();?>"><?php echo $this->content->getTitle();?> </a><br />
+		<span  class="rss_text"><?php echo $this->content->getSummary();?></span><br />
+     <?php $comments = $this->content->getComments();?>
+      <span class="textLinks">
+     <?php  echo $this->content->getDateAdded();?>
+     &nbsp;
+     <a href="#" onclick="toggleMe(event,<?php echo $this->content->getId();?>);return false;"><?php echo (count($comments) ? count($comments): $this->translate('No') ).' '.(count($comments) == 1 ? $this->translate('Comment') : $this->translate('Comments')); ?></a>
+      &nbsp;&nbsp;&nbsp;
+      <a href="<?php echo $this->baseUrl();?>/cms/edit/edit/c_id/<?php echo $this->content->getId();?>"><?php echo $this->translate("edit");?></a>. &nbsp;
+	  <a href="#" rel="<?php echo $this->content->getId();?>" tag="<?php echo ($this->content->user_id == Precurio_Session::getCurrentUserId() || isAllowed('admin_index'));?>" id="deleteContent"><?php echo $this->translate("delete");?></a>
+      </span>
+    <div   class="temp" id="<?php echo ('comments'.$this->content->getId());?>"> 
+		<div id="<?php echo ('comment'.$this->content->getId());?>">
+		    <?php 
+				$this->partialLoop()->setObjectKey('comment');
+				echo $this->partialLoop('partial_comment.phtml',$comments);
+			?>
+		  	
+		 </div>
+  
+  <?php 
+		$this->partialLoop()->setObjectKey('content');
+	?>
+  	
+  
+  </div>
+    </div>
+    <?php 
+		$this->partialLoop()->setObjectKey('content');
+	?>
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.temp').each(function(){
+		tempChild = $(this).children().eq(0);
+		x = $(this).children().eq(0).children().size();
+		
+		if(x==0)$(this).hide();
+	});
+	
+	//handle clicking on delete
+	$('#deleteContent').live('click', function()  {
+		
+		tag = $(this).attr("tag");   
+		if(!tag)
+		{
+			alert("<?php echo $this->translate("You don't have enough permission to delete this content");?>");
+			return false;	
+		}
+
+         if (confirm('<?php echo $this->translate("Are you sure you want to delete this content?");?>'))
+		 {
+			$.post("<?php echo $this->baseUrl();?>/cms/delete/delete/", {'c_id':$(this).attr("rel") },
+			  function(data){
+				window.location = "<?php echo $this->baseUrl();?>/cms"
+
+			  }, "text");
+
+		
+		
+		}
+		return false;
+		
+		
+		
+	});
+
+	
+  });
+
+</script>

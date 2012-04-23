@@ -1,0 +1,71 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#loading").hide();
+		$("#loading")//this should be a progrss bar.
+		.ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+		});
+
+		$('#resetBtn').click(function()  {
+			$.post("<?php echo $this->baseUrl();?>/admin/user/submitreset", $("#resetForm").serialize(),
+	  function(data){
+	    alert(data);
+	    location.reload();
+	  }, "text");
+
+		
+			jQuery(document).trigger('close.facebox');
+			return false;
+			
+			
+			
+		});
+	});
+</script>	
+<form id="resetForm" name="resetForm" method="post" >
+  <input type="hidden" value="<?php echo $this->user_id;?>" id="user_id" name="user_id" />
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Reset User Password");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+    <span class="textLinks">
+    	<?php echo $this->translate("Depending on whether your notification service is running, the user may or may not get a notification of the new password");?> 
+    </span>
+          <br />
+    
+     <div id="form">         
+		<p><label for="np"><?php echo $this->translate("New Password");?></label> <input type="password"
+			id="np" name="np" /></p>
+		
+		<p><label for="np2"><?php echo $this->translate("Confirm Password");?></label> <input type="password"
+			id="np2" name="np2" /></p>
+		
+		
+		
+		<p><label>&nbsp;</label>
+		
+		
+		<div class="buttons">
+		<button type="submit" class="positive" id="resetBtn"><img
+			src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt="" /><?php echo $this->translate("Submit");?> </button>
+		
+		
+		</div>
+		</p>
+		<br />
+	</div>		
+ 
+ </div>          	
+       		
+ <!-- end window panel --></div>
+</form> 
+  <div id="loading" style="width: 300;display: none; " >
+      
+    </div>

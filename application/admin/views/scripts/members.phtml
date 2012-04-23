@@ -1,0 +1,126 @@
+
+
+	<?php 
+	$group_id = $this->form->id->getValue();
+	$users = Group::getUsers($group_id);
+	$members = generateList($group_id,$this->searchText);
+	$header = array('',$this->translate('Name'),$this->translate('Type'));
+	function generateList($group_id,$searchText) 
+	{
+		
+		$arr = array();
+		
+		$group = UserUtil::getGroup($group_id);
+		$i = 1;
+
+		$items = $group->getGroupMembers();
+		foreach($items as $item)
+		{
+			if(!Precurio_Utils::isNull($searchText))
+			{
+				if(stripos($item->title,$searchText)===FALSE)
+				{
+					continue;
+				}
+				
+			}
+			$arr[] = array($i++,'full_name'=>$item->title,'type'=>$item->getType(),'id'=>$item->id);
+		}
+		
+		
+		$items = $group->getUserMembers();
+		foreach($items as $item)
+		{
+			if(!Precurio_Utils::isNull($searchText))
+			{
+				if(stripos($item->getFullName(),$searchText)===FALSE)
+				{
+					continue;
+				}
+				
+			}
+			
+			$arr[] = array($i++,'full_name'=>$item->getFullName(),'type'=>'User','id'=>$item->id);
+		}
+		return $arr;
+	}
+	function generateTable($arr,$header,$group_id,$baseUrl)
+	{
+		$translate = Zend_Registry::get('Zend_Translate');
+		$str = "<table border='1' width='100%'>";
+
+		
+		$str .= "<tr>";
+		foreach($header as $i)
+		{
+			$str .= "<th>$i </th>";
+		}
+		$str .= "<th></th>";
+		$str .= "</tr>";
+		
+		foreach($arr as $value)
+		{
+			$str .= "<tr>";
+			$key = $value['id'];
+			foreach($value as $prop=>$j)
+			{
+				if($prop === "id")continue;
+				$str .= "<td>$j </td>";
+			}
+			//f i.e function  = remove,
+			//t i.e type = u i.e user (other option is "g" for group)
+			if($value['type'] === 'User' )
+				$str .= "<td><a href='$baseUrl/admin/group/members/f/remove/g_id/{$group_id}/id/{$key}/t/u'>".$translate->translate('Remove')." </a></td>";
+			else
+				$str .= "<td><a href='$baseUrl/admin/group/members/f/remove/g_id/{$group_id}/id/{$key}/t/g'>".$translate->translate('Remove')." </a></td>";
+			$str .= "</tr>";
+		}
+		$str .= "</table>";
+		return $str;
+	}
+
+	?>
+<br/><br/>
+<?php echo $this->translate("Group Members");?>
+<br/>	<br/>
+	<?php 
+	$pathToController = $this->pathToController;
+
+	require_once 'Zend/Paginator.php';
+	$paginator = Zend_Paginator::factory($members);
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage(10);
+	$this->paginator = $paginator;
+	?>
+	
+	<form method="post" name="searchListForm" id="searchListForm" action="<?php echo $this->baseUrl();?>/admin/group/view/id/<?php echo $group_id;?>" >
+		<input id="table" name="table" value="<?php echo $this->table;?>" type="hidden">
+		<table class="ewBasicSearch">
+			<tbody><tr>
+				<td>
+					<input name="search" id="search" size="20" value="<?php echo $this->searchText;?>" type="text">
+					<input name="Submit" id="Submit" value="<?php echo $this->translate("Search");?> (*)" type="Submit">&nbsp;
+					<a href="<?php echo $this->baseUrl();?>/admin/group/view/id/<?php echo $group_id;?>"><?php echo $this->translate("Show all");?></a>&nbsp;
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+	<span>
+		<a href="<?php echo $this->baseUrl();?>/user/index/select"  rel="facebox""><?php echo $this->translate("Add");?></a>&nbsp;&nbsp;
+	</span>
+	<?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+	<div id="adminTable"> 
+	<form action="" name="listForm" id="form" method="post"> 
+		<?php 
+			if(count($members))
+			{
+				echo generateTable($paginator->getCurrentItems(),$header,$group_id,$this->baseUrl());
+			}
+			else
+			{
+				echo "<div id='noRecords'>".$this->translate('No records found')." <br/> <a href='".$this->baseUrl()."/user/index/select' rel='facebox'>".$this->translate('Add Members')."</a> </div>";
+			}
+		?>
+	</form>  
+	</div>	

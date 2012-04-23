@@ -1,0 +1,10 @@
+<div class="dashboardLine">
+        	<div class="dashboardModule">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle();?>/images/icons/new_post.png"  /><a href="#"> <?php echo $this->translate('New Post'); ?>    </a>
+             </div>
+             <div class="dashboardContent">
+			<p> <?php echo $this->translate('A new post has added to the'); ?> <?php echo $this->model->getTitle(); ?> <a href="<?php echo $this->baseUrl(); ?>/forum/post/index/tid/<?php echo $this->model->getId(); ?>"> <?php echo $this->translate('Click here to view'); ?> </a></p>
+             	          
+                                              
+             </div>
+        </div>

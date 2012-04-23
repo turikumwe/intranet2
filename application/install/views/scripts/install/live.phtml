@@ -1,0 +1,43 @@
+<form action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+<span class="textLinks"><?php echo $this->translate("The live server is responsible for the chat and live feeds features");?>. <br/><?php echo $this->translate("Please visit the Administrator's manual on how to properly configure the live server");?>.  </span>
+	<p>
+		<?php echo $this->form->domain; ?>
+	</p>
+	<p>
+		<?php echo $this->form->service; ?>
+		
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+		    	<a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/<?php $config = Zend_Registry::get('config');if ($config->auth_mech == 'LdapAuth')echo 'ldap';else echo 'database';?>">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/arrow-left.gif" alt=""/> 
+	              <?php echo $this->translate("Back");?>
+	            </a>    	
+	             <button type="submit" class="positive" id="addTask">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	              <?php echo $this->translate("Save");?>
+	            </button>
+	            <a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/mail">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/arrow-right.gif" alt=""/> 
+	              <?php echo $this->translate("Skip");?>
+	            </a>
+	         
+            </div>
+	</p>
+	<!--
+	
+	<p class="topMargin"><label >&nbsp;</label>
+		    	<a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/<?php $config = Zend_Registry::get('config');if ($config->auth_mech == 'LdapAuth')echo 'ldap';else echo 'database';?>">
+	                
+	              &laquo; <?php echo $this->translate("Back");?>  
+	            </a>
+				&nbsp;				&nbsp;
+				
+				     <a type="submit" class="mild" href="<?php echo $this->baseUrl();?>/install/install/mail">
+	               
+	              <?php echo $this->translate("Next");?>&raquo;
+	            </a>
+				</p>
+--></form>
+           

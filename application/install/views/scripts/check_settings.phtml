@@ -1,0 +1,48 @@
+<?php
+$arr = array();
+    $prefix = (PHP_SHLIB_SUFFIX == 'dll') ? 'php_' : '';	 
+if (!extension_loaded('curl'))
+{ 
+    $ext = new stdClass();
+    $ext->name = "cURL";
+    $ext->lib = $prefix . 'curl.' . PHP_SHLIB_SUFFIX;
+    $arr[] = $ext;
+}
+if (!extension_loaded('gd') && !extension_loaded('gd2'))
+{ 
+    $ext = new stdClass();
+    $ext->name = "gd / gd2";
+    $ext->lib = $prefix . 'gd.' . PHP_SHLIB_SUFFIX;
+    $arr[] = $ext;
+}
+
+if(count($arr) > 0 ){
+$baseUrl =  $this->baseUrl();
+$themeStyle = $this->themeStyle;
+?>
+<span style="font-weight: bold;font-size: 13px;padding: 0px 0px 0px 20px;">
+<?php echo $this->translate("Please enable the following extensions on your php server (php.ini)");?>
+</span>
+<table cellspacing="0" class="workflow_table">
+	  <tr>
+	    <th class="nobg"><?php echo $this->translate("Extension");?></th>
+	    <th class="nobg"><strong><?php echo $this->translate("library");?></strong></th>
+	    <th class="nobg"><strong><?php echo $this->translate("Status");?></strong></th>
+	  </tr>
+		
+	
+	 <?php foreach($arr as $ext):?>
+	  <tr>
+	    <th class='spec' ><?php echo $ext->name;?></th>
+	     <td ><?php echo $ext->lib;?></td>
+	    <td><img alt="<?php echo $this->translate("not enabled");?>" src='<?php echo "$baseUrl/library/css/insomnia/blue/images/icons/remove.png";?>' /></td>
+	  </tr>
+	<?php endforeach;?>
+</table>
+<span style="font-weight: bold;font-size: 9px;padding: 0px 0px 0px 20px;">
+*<?php echo $this->translate("Remember you have to restart your web server to completely enable an extension");?>
+</span>
+<br/><br/>
+<a style="button" href="javascript:location.reload(true)"><?php echo $this->translate("Click here to continue");?></a>
+<br/>
+<?php exit();}?>

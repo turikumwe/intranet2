@@ -1,0 +1,4 @@
+<?php 
+$this->partialLoop()->setObjectKey('content');
+echo $this->partialLoop('partial_content.phtml',$this->user->getMyContents());
+?>

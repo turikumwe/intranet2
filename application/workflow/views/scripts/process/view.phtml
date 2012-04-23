@@ -1,0 +1,15 @@
+<div class="buttons button_holder">
+    <a href="#" onclick="$('#toPrint').jqprint({ operaSupport: true });">
+        <img src="<?php echo $this->baseUrl();?>/library/css/midnight/light/images/icons/print.png" alt=""> 
+        <?php echo $this->translate("Print");?> 
+    </a>
+</div>
+<div id="toPrint">
+<br/> 
+<?php 
+echo $this->header;
+$this->partialLoop()->setObjectKey('form');
+echo $this->partialLoop('partial_form.phtml',$this->forms);
+
+?>
+</div>

@@ -1,0 +1,44 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.comments').each(function(){
+		tempChild = $(this).children().eq(0);
+		x = $(this).children().eq(0).children().size();
+		
+		if(x==0)$(this).hide();
+	});
+  });
+
+</script>
+<?php $baseUrl = Zend_Controller_Front::getInstance()->getRequest()->getBaseUrl(); //this is important.?>
+<div  class="profileLine contentPad_5">
+            	 <img src="<?php echo $baseUrl.(Precurio_Image::getPath($this->activity->getProfilePicture(),Precurio_Image::IMAGE_ICON));?>" height="50" width="50" align="left" /><span class="nameText"><a href="<?php echo $this->activity->getObjectUrl(); ?>"><?php echo ($this->activity->getFullName()); ?> </a></span><?php echo ($this->activity->getMessage());?>   
+            	 <span class="textLinks "> <?php echo ($this->activity->getSinceWhen());?> 
+            	  <?php $comments = $this->activity->getComments();?>
+            	 	<?php if($this->activity->type !=  Precurio_Activity::ADD_COMMENT):?>
+	            	 	<a href="#" onclick="toggleMe(event,<?php echo $this->activity->id;?>);return false;"><?php echo (count($comments) ? count($comments): ' ' ).' '.(count($comments) > 1 ? $this->translate('Comments') : $this->translate('Comment')); ?></a> 
+	            	 <?php endif;?> 
+            	 </span>
+  </div> 
+  <div   class="comments" id="<?php echo ('comments'.$this->activity->id);?>"> 
+  <div id="<?php echo ('comment'.$this->activity->id);?>">
+    <?php 
+		$this->partialLoop()->setObjectKey('comment');
+		echo $this->partialLoop('partial_comment.phtml',$comments);
+	?>
+  	
+  
+  </div>
+  <?php 
+		$this->partialLoop()->setObjectKey('activity');
+	?>
+  	
+  <div  >
+  
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($this->activity->id.','.$this->userView()->currentUser()->getId().',0' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$this->activity->id);?>" class="commentTextArea" onclick="clearMe(<?php echo ($this->activity->id) ?>)"> <?php echo $this->translate("Write Something");?></textarea>
+    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+        </div>
+  	</form>
+  </div>
+  </div>

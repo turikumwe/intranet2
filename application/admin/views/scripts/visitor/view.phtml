@@ -1,0 +1,137 @@
+<script type='text/javascript'>
+$().ready(function()
+{
+$('#selectContact').live('click', function()
+{
+	url = $(this).attr("href") ;
+		$.post(url, {},
+			  function(data){
+				loadSelectPopup();
+			  }, "text");
+			  return false;
+});
+
+});
+
+// If contact is changed, function sets the selected contact
+function setContact(str)
+{
+	user = str.split(",");
+	
+	$('#user_id').val(user[0]);
+	$('#contact_name').val(user[1]);
+	
+	
+	
+}
+
+function loadSelectPopup()
+{
+	url = "<?php echo $this->baseUrl();?>/user/index/select" ;
+	jQuery.facebox({ ajax: url });
+	return false;
+}
+</script>
+	<?php
+	require_once('visitor/models/VisitorStrings.php'); 
+	$visitor = $this->visitor;	
+	$visits = $visitor->getVisits(VisitorStrings::ADMIN);
+	//$dob =  new Zend_Date($visitor->DOB);
+	
+	?>
+	
+		    <div id="form">
+			<form id="addForm" name="addForm" action="<?php echo $this->baseUrl();?>/admin/visitor/submit" method="post">
+			<input type="hidden" id="id" name="id" value="<?php echo $visitor->id;?>" />
+			<input type="hidden" id="contact_id" name="contact_id" value="<?php echo $visitor->contact_id;?>" />
+			<input type="hidden" id="user_id" name="user_id" value="<?php echo $visitor->user_id;?>" />
+			<p>
+			<label for="" > <?php echo $this->translate('Host'); ?></label>
+		<?php echo $this->form->contact_name; ?>
+		<?php if(isset($this->edtop)):?>
+		<a href="<?php echo $this->baseUrl();?>/admin/visitor/selectcontact" id='selectContact'>
+		<?php echo $this->translate('Select Host');?></a>
+		<?php endif;?>
+		<?php echo $this->form->contact; ?>
+		
+			</p>
+			
+			<p><label for="full_name" > <?php echo $this->translate('Full Name'); ?></label>
+		<input type='text' name='full_name' id='full_name' value="<?php echo $visitor->full_name;?>"/>
+	</p>
+	
+	<p><label for="company" > <?php echo $this->translate('Company'); ?></label>
+		<input type='text' name='company' id='company' value="<?php echo $visitor->company;?>"/>
+	</p>
+	
+	<p>
+	<label for="first_name"><?php echo $this->translate("Emergency Contact");?></label>
+	<input type="text" id="emergency_contact" name="emergency_contact" value="<?php echo $visitor->emergency_contact;?>" />
+	</p>
+			
+				
+	<p>
+	<label for="last_name"><?php echo $this->translate("Car registration Number");?> </label>
+	<input type="text" id="car_reg_number" name="car_reg_number" value="<?php echo $visitor->car_reg_number;?>"/>
+	</p>
+	
+				<?php if(isset($this->edtop)):?>
+				<p><label>&nbsp;</label>
+					    <div class="buttons" align='center'>
+				             <button type="submit" class="positive">
+				               <?php echo $this->translate("Submit");?>
+				            </button>	
+				          </div>
+				     <br/>
+				 </p>
+				<?php endif;?>
+				
+				<br/>
+				
+				<p>
+				<font class="nameText" style="text-transform: uppercase"><?php echo $this->translate('Visits');?> (<?php echo count($visits); ?>)</font><br/>
+<div class="workflow_table">
+				<table width='100%' align='center'  >
+		<tr>
+	
+		<th>
+		<?php echo $this->translate('Date');?>
+		</th>
+		
+		<th>
+		<?php echo $this->translate('Time In');?>
+		</th>
+		
+		<th>
+		<?php echo $this->translate('Time Out');?>
+		</th>
+		
+		<th>
+		<?php echo $this->translate('Appointment Title');?>
+		</th>		
+		
+		</tr>
+				<?php
+		foreach($visits as $visit)
+		{
+			$time_in = $visit->getTimeIn();
+			$time_out = $visit->getTimeOut();
+			$date = $visit->getVisitDate();
+					
+			
+			echo "<tr>
+				<td>{$date}</td>
+				<td>{$time_in}</td>
+				<td>{$time_out}</td>				
+				<td>{$visit->title}</td>
+				</tr>";
+			
+			
+		}
+	?>
+			</table>
+</div>
+</p>			
+			</form>
+			</div>
+	

@@ -1,0 +1,72 @@
+<div id="holder" >
+	
+    <div class="rightside">
+ 	<form>
+    	<input type="text" id="searchText"  class="searchBox"/>
+    </form>
+    </div>
+ </div>
+
+<?php $selected = $this->page; ?>
+<div  id="tab" class="appTabs">
+<?php require_once('event/views/scripts/tabs.phtml'); require_once 'user/models/UserUtil.php';?>
+  <div class="completeText" id="application_controlBar">
+ 	<a href="<?php echo $this->baseUrl();?>/event/<?php echo $selected;?>/details/e_id/<?php echo $this->event->getId();?>">go back to <?php echo $this->event->getTitle(); ?> events   </a></div>
+ <div  id="app_sidebar"> 
+ 
+	<div class="contentPad">
+		<img src="<?php echo $this->event->logo;?>"  /><br/>
+      <span class="maroon_text"><strong>Confirmed Guests</strong></span><br />
+      <?php 
+      foreach($this->event->getUsersAttending() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/>
+       <span class="maroon_text"><strong>Not Sure</strong></span><br />
+      <?php 
+      foreach($this->event->getUsersNotSure() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/>
+       <span class="maroon_text"><strong>Not Attending</strong></span><br />
+      <?php 
+      foreach($this->event->getUsersNotAttending() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/>
+
+    </div>
+  </div>
+	<div id="app_main">
+	<?php 
+		require_once 'Zend/Paginator.php';
+		$photos = $this->event->getPhotos();
+		$paginator = Zend_Paginator::factory($photos);
+		$paginator->setCurrentPageNumber($this->cpage);
+		$paginator->setItemCountPerPage(6);
+		$this->paginator = $paginator;
+	   // $this->paginationControl(); 
+	?>
+	<?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+	<div id="profilePhotoHolder">
+		<?php foreach($this->paginator as $key=>$photo):?>
+			<a href="<?php echo $this->baseUrl();?>/event/content/viewphoto/e_id/<?php echo ($this->event->getId()); ?>/pos/<?php echo ($key+1); ?>"><img alt="<?php echo ($photo->getTitle()); ?>" src="<?php echo ($photo->getImagePath()); ?>" /></a>
+		<?php endforeach;?>
+	</div>
+	</div>
+  <br style="clear:both"/>		
+</div>                
+<script>
+	$(document).ready(function(){
+		$('.searchBox').autofill({
+			value: 'Search Within Events'
+		});
+	});
+</script>                  
+  

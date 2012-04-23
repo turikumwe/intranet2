@@ -1,0 +1,168 @@
+
+<script type="text/javascript">
+			
+	$(document).ready(function(){
+		settings = {
+          antiAlias: true,
+          autoPad: true,
+          validTags: ["div", "input"]
+      };
+	      
+		$(".rounded").corner(settings);
+		
+	});	
+</script>
+
+<!-- center Bar -->
+<?php $currentUser = $this->userView()->currentUser(); ?>
+
+	<div class="contentPad">
+  <div>
+ 	<span class="nameText"> 	<?php echo $this->translate("Please take a moment to set up your account, this information will be displayed on the Intranet.");?></span>
+                  <br /><br />
+    
+          <div class="box_D_noMargin ">
+          	<span class="completeText"> <?php echo $this->translate("Your profile is");?> <?php echo $currentUser->getPercentageComplete(); ?>% <?php echo $this->translate("Complete");?></span>
+               	 <div class="maroon" style="width:<?php echo abs($currentUser->getPercentageComplete()-1); ?>%">
+               	 
+               	 </div>
+          </div>
+ <!-- end window panel --></div>       
+       <!-- window panel -->
+	 <div class="window"  >
+	 	<div  class="titleWindow ">
+	           <div  id="titleText"><?php echo $this->translate("Personal Information");?></div>
+	           
+	    </div>       
+	    <div class="windowContent" >
+                    <div  id="form">
+				<form method="post" action="<?php echo $this->baseUrl();?>/user/profile/update" enctype="multipart/form-data" >
+	<p><label for="first_name" ><?php echo $this->translate("First Name");?></label>
+		<input type="text" id="first_name" name="first_name" value="<?php echo $currentUser->getFirstName();?>" />
+	</p>
+	<p><label for="last_name" ><?php echo $this->translate("Last Name");?></label>
+		<input type="text" id="last_name" name="last_name" value="<?php echo $currentUser->getLastName();?>"/>
+	</p>
+    <p><label for="work_phone" ><?php echo $this->translate("Work Phone");?></label>
+		<input type="text" id="work_phone" name="work_phone" value="<?php echo $currentUser->getWorkPhone();?>"/>
+	</p>
+    <p><label for="mobile_phone" ><?php echo $this->translate("Mobile Phone");?></label>
+		<input type="text" id="mobile_phone"  name="mobile_phone" value="<?php echo $currentUser->getMobilePhone();?>" />
+	</p>
+    
+       <p><label for="birth_day" ><?php echo $this->translate("Birthday");?></label>
+		<select name="birth_day" id="birth_day"  class="halfSelect">
+                <option value='0'><?php echo $this->translate("Day");?></option>
+               <?php echo $this->userView()->getDates($currentUser->getBirthDay());?>
+             </select>
+        <select name="birth_month" id="birth_month"  class="halfSelect" >
+                <option value='0'><?php echo $this->translate("Month");?></option>
+               <?php echo $this->userView()->getMonths($currentUser->getBirthMonth());?>
+             </select>     
+	</p>
+    
+      <p><label for="gender" ><?php echo $this->translate("Gender");?></label>
+		<select name="gender" id="gender" >
+               <option value='<?php echo $this->translate("Male");?>' <?php echo (($currentUser->getGender() == $this->translate('Male')) ? ' selected="selected"' : ' ' ) ?>>Male</option>
+               <option value='<?php echo $this->translate("Female");?>' <?php echo (($currentUser->getGender() == $this->translate('Female')) ? ' selected="selected"' : ' ' ) ?>>Female</option>
+             </select>
+         
+	</p>
+
+ 		
+      </div>          	
+       		</div>
+ <!-- end window panel --></div>
+ 
+       		 <!-- window panel -->
+ <div class="window"  >
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Profile Picture");?></div>
+           
+    </div>       
+    <div class="windowContent" >
+         <div class="contentPad">
+         
+    		<?php echo $this->translate("You can upload a JPG, GIF or PNG file. This picture will be shown beside your name");?>  
+    		<div  id="form">
+	<p><label for="profile_pic" ><?php echo $this->translate("Upload Picture");?></label>
+		<?php echo $this->formFile('profile_pic');?>
+<!--		<input type="file" name="profile_pic" id="profile_pic" / >-->
+	</p>
+	
+	   <p><label  >&nbsp;</label> <input type="submit" value="<?php echo $this->translate("Upload");?>" id="sendbutton"/></p>
+      </div>   
+	
+    
+
+
+ 		</div>
+      </div>          	
+ <!-- end window panel --></div>
+ 	
+ 	 <!-- window panel -->
+ <div class="window"  >
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Work Information");?></div>
+           
+    </div>       
+    <div class="windowContent" >
+         
+                    <div  id="form">
+                
+                <p><label for="location_id" ><?php echo $this->translate("Location");?></label>
+		<select name="location_id" id="location_id" >
+               <option value='0'><?php echo $this->translate("Please Select");?></option>
+               <?php echo $this->userView()->getLocations();?>
+             </select>
+         
+	</p>
+	<p><label for="job_title" ><?php echo $this->translate("Job title");?></label>
+		<input type="text" id="job_title" name="job_title" value="<?php echo $currentUser->getJobTitle();?>"/>
+	</p>
+   <p>
+
+	<p>
+	<label for="department_id" ><?php echo $this->translate("Department");?></label>
+		 <select name="department_id" id="department_id" >
+               <option value='0'><?php echo $this->translate("Please Select");?></option>
+               <?php echo $this->userView()->getDepartments();?>
+             </select>
+	</p>
+ 
+    
+    <p><label for="job_description" > <?php echo $this->translate("My Job");?> </label>
+		<textarea id="job_description"  name="job_description"><?php echo trim($currentUser->getJobDescription());?></textarea>
+	</p>
+    <p><label for="skills" ><?php echo $this->translate("My Skills");?></label>
+		<textarea id="skills" name="skills"><?php echo trim($currentUser->getSkills());?></textarea>
+	</p>
+    
+       
+     		
+      </div>          	
+       		</div>
+ <!-- end window panel --></div>
+<div class="window"  >
+ 	
+    <div class="windowContent" >
+               <div id="form">
+  <p><label >&nbsp;</label>
+		    <div class="buttons">
+             <button type="submit" class="positive">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" alt=""/> 
+               <?php echo $this->translate("Update Profile");?>
+            </button>
+            </div>
+	</p>
+            
+   
+     </div>  
+        
+       		</div>
+ <!-- end window panel --></div>
+</form>               
+       </div>
+   
+    
+

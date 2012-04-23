@@ -1,0 +1,57 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.comments').each(function(){
+		tempChild = $(this).children().eq(0);
+		x = $(this).children().eq(0).children().size();
+		
+		if(x==0)$(this).hide();
+	});
+  });
+
+</script>	
+	
+	<div  class="profileLine contentPad_5">
+	<?php $root = Zend_Registry::get('root');?>
+       <?php if(is_file($root.'/public/'.$this->content->getImagePath(Content::IMAGE_ICON))):?>
+	
+            	 <img src="<?php echo $this->baseUrl().($this->content->getImagePath(Content::IMAGE_ICON));?>" width="50"  align="left" />
+           <?php else:?>
+            <img src="<?php echo $this->baseUrl().(Precurio_Image::getPath(UserUtil::getUser($this->content->user_id)->getProfilePicture(),Precurio_Image::IMAGE_ICON));?>" height="50" width="50" align="left" />
+           <?php endif;?>
+            	 <span class="nameText"><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $this->content->getUserId();?>"><?php echo ($this->content->getFullName()); ?> </a></span><br />    
+            	 <span class="textLinks "> <?php echo ($this->content->getSinceWhen());?> </span>
+  	</div>
+  	 <div  class="profileGap">
+                 	  <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $this->content->getId();?>"><?php echo ($this->content->getTitle());?></a><br />
+                      &quot;
+                      <em>
+                      <?php echo ($this->content->getSummary());?>
+                      </em>
+                      &quot; ... 
+                      <a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $this->content->getId();?>"><span class="readmore"><?php echo $this->translate("Read more");?></span></a>
+                        <?php $comments = $this->content->getComments();?>
+                       &nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="#" onclick="toggleMe(event,<?php echo $this->content->getId();?>);return false;"><?php echo (count($comments) ? count($comments): ' ' ).' '.(count($comments) > 1 ? $this->translate('Comments') : $this->translate('Comment'));  ?></a>
+     </div> 
+     
+	<div   class="comments" id="<?php echo ('comments'.$this->content->getId());?>"> 
+		<div id="<?php echo ('comment'.$this->content->getId());?>">
+		    <?php 
+				$this->partialLoop()->setObjectKey('comment');
+				echo $this->partialLoop('partial_comment.phtml',$comments);
+			?>
+		  	
+		 </div>
+  
+  <?php 
+		$this->partialLoop()->setObjectKey('content');
+	?>
+  	
+  
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($this->content->getId().','.$this->userView()->currentUser()->getId().',1' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$this->content->getId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($this->content->getId()) ?>)"> <?php echo $this->translate("Write something");?></textarea>
+    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+        </div>
+  	</form>
+  </div>

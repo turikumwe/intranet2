@@ -1,0 +1,77 @@
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#loading").hide();
+});
+function startRestore(archiveName)
+	{
+		title = $('#title').val();
+		 $('#lbl').html("<?php echo $this->translate("You are now restoring Precurio from a previous backup");?>");
+		$("#loading")//this should be a progrss bar.
+		.ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+			$(this).text("<?php echo $this->translate("Restore Complete");?>");
+		});
+
+		$.post("<?php echo $this->baseUrl();?>/admin/backup/dorestore", {'id' : archiveName},
+			  function(data){
+			    alert(data);
+			    location.reload();
+				jQuery(document).trigger('close.facebox');
+			  }, "text"
+			  );
+
+	
+		return false;
+
+	}
+	</script>	
+<?php 
+$id = $this->id;
+$filename = preg_replace("/(.*)\.([^.]+)$/","\\1", $id);
+$arr = explode('_',$filename );
+$date = new Precurio_Date($arr[1]);
+?>
+<form id="backupForm" name="backupForm" method="post" action="">
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Restore from a Backup");?></div>
+           
+       	               
+    </div>       
+    <div  id="event_Description">
+    <span class="textLinks"><?php echo $this->translate("A restore operation usually takes a while, please be patient");?> </span>
+          <br />
+    
+             
+     <p id="lbl">
+    <?php echo $this->translate("Are you sure you want to restore Precurio from backup dated");?> <br/><?php echo $date;?>
+    </p>
+<!--    -->
+<!--    <p>-->
+<!--    <input type="checkbox" name="db" id="db" value="1" checked="checked"/>-->
+<!--    <label for="db" > Database</label>-->
+<!--    </p>-->
+<!---->
+<!--	<p>-->
+<!--    <input type="checkbox" name="fs" id="fs" value="1" checked="checked"/>-->
+<!--    <label for="fs" > FileSystem</label>-->
+<!--    </p>-->
+    
+   <div class="buttons">
+    <button type="submit" class="standout" onclick="return startRestore();">
+        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+       <?php echo $this->translate("Restore!");?>
+    </button>
+   </div>
+ 
+ </div>          	
+       		
+ <!-- end window panel --></div>
+</form> 
+  <div id="loading" style="width: 300;" >
+      
+    </div>

@@ -1,0 +1,104 @@
+	<?php 
+	function generateTable($arr,$header)
+	{
+		$translate = Zend_Registry::get('Zend_Translate');
+		$str = "<table border='1' width='100%'>";
+
+		$baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl();
+		$str .= "<tr>";
+		foreach($header as $i)
+		{
+			$str .= "<th>$i </th>";
+		}
+		$str .= "<th></th>";
+		$str .= "<th></th>";
+		$str .= "</tr>";
+		
+		foreach($arr as $value)
+		{
+			$str .= "<tr>";
+			$key = $value['id'];
+			foreach($value as $prop=>$j)
+			{
+				if($prop === "id")continue;
+				$str .= "<td>$j </td>";
+			}
+			$str .= "<td><a rel='facebox' href='".$baseUrl."/admin/poll/editoption/id/{$key}'>".$translate->translate('Edit')." </a></td>";
+			$str .= "<td><a href='".$baseUrl."/admin/poll/deleteoption/id/{$key}'>".$translate->translate('Delete')." </a></td>";
+			$str .= "</tr>";
+		}
+		$str .= "</table>";
+		return $str;
+	}
+	?>
+	
+	<div id="task_body">
+        <div class="contentPad">
+	     
+			<form method="post" action="<?php echo $this->baseUrl()?>/admin/poll/submit" id="form"  name="addForm">
+				<?php echo $this->form->id;
+				echo $this->form->user_id;  
+				echo $this->form->date_created; 
+				echo $this->form->active; ?>
+				<p>
+					<?php echo $this->form->title; ?>
+				</p>
+				<p>
+					<?php echo $this->form->multiple_answers; ?>
+				</p>
+				<p>
+					<?php echo $this->form->randomise_options; ?>
+				</p>
+				<p><label for="end_month" ><?php echo $this->translate("Expires");?></label>
+					<?php echo $this->form->end_month; ?>
+					<?php echo $this->form->end_day; ?>
+					<?php echo $this->form->end_year; ?>
+				</p>
+			    
+			    <p><label for="end_hour" >&nbsp;</label>
+					<?php echo $this->form->end_hour; ?> : 
+					<?php echo $this->form->end_minute; ?>
+					<?php echo $this->translate("24hrs format");?>
+				</p>
+			    
+			<?php if(isset($this->form->submit)):?>
+			    <p>
+					<?php echo $this->form->submit?> 
+				</p>
+			<?php else:?>	
+				<p>
+					<?php echo $this->form->user; ?>
+				</p>
+				<p>
+					<?php echo $this->form->date; ?>
+				</p>
+			<?php endif;?>
+			    
+			     
+			
+			</form>
+		</div>
+		<br/>
+		<?php $baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl(); ?>
+	<strong><?php echo $this->translate("Poll Options");?> </strong><br/>	<br/>
+	<span>
+		<a rel="facebox" href="<?php echo $this->baseUrl();?>/admin/poll/addoption/id/<?php echo $this->form->id->getValue();?>"><?php echo $this->translate("Add Options");?></a>&nbsp;&nbsp;
+	</span>
+	<div id="adminTable"> 
+	<form action="" name="listForm" id="form" method="post"> 
+		<?php 
+			if(count($this->list))
+			{
+			 	
+				echo generateTable($this->list,$this->header);
+			}
+			else
+			{
+				echo "<div id='noRecords'>".$this->translate('No records found')." <br/> <a href='$baseUrl/admin/poll/addoption/id/{$this->form->id->getValue()}' rel='facebox'>".$this->translate('Add Options')."</a> </div>";
+			}
+		?>
+	</form>  
+	</div>	
+		
+	</div>
+	

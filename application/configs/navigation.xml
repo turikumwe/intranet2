@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+	<admin>
+				<label>Administrator Tools</label>
+				<module>admin</module>
+				<pages>
+					<fact>
+						<label>Facts</label>
+						<module>admin</module>
+						<controller>fact</controller>
+						<pages>
+							<add>
+								<label>Add new fact</label>
+								<module>admin</module>
+								<controller>fact</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit fact</label>
+								<module>admin</module>
+								<controller>fact</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Fact Details</label>
+								<module>admin</module>
+								<controller>fact</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</fact>
+					
+					<link>
+						<label>Links</label>
+						<module>admin</module>
+						<controller>link</controller>
+						<pages>
+							<add>
+								<label>Add new link</label>
+								<module>admin</module>
+								<controller>link</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit link</label>
+								<module>admin</module>
+								<controller>link</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Link Information</label>
+								<module>admin</module>
+								<controller>link</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</link>
+					
+					<poll>
+						<label>Polls</label>
+						<module>admin</module>
+						<controller>poll</controller>
+						<pages>
+							<add>
+								<label>Add new poll</label>
+								<module>admin</module>
+								<controller>poll</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit poll</label>
+								<module>admin</module>
+								<controller>poll</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Poll Details</label>
+								<module>admin</module>
+								<controller>poll</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</poll>
+					
+					<rss>
+						<label>RSS</label>
+						<module>admin</module>
+						<controller>rss</controller>
+						<pages>
+							<add>
+								<label>Add new RSS</label>
+								<module>admin</module>
+								<controller>rss</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit RSS</label>
+								<module>admin</module>
+								<controller>rss</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>RSS Information</label>
+								<module>admin</module>
+								<controller>rss</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</rss>
+					
+					<group>
+						<label>Groups</label>
+						<module>admin</module>
+						<controller>group</controller>
+						<pages>
+							<add>
+								<label>Add new group</label>
+								<module>admin</module>
+								<controller>group</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit group</label>
+								<module>admin</module>
+								<controller>group</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Group Details</label>
+								<module>admin</module>
+								<controller>group</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</group>
+					
+					<location>
+						<label>Locations</label>
+						<module>admin</module>
+						<controller>location</controller>
+						<pages>
+							<add>
+								<label>Add new location</label>
+								<module>admin</module>
+								<controller>location</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit location</label>
+								<module>admin</module>
+								<controller>location</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Location Details</label>
+								<module>admin</module>
+								<controller>location</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</location>
+					
+					<department>
+						<label>Departments</label>
+						<module>admin</module>
+						<controller>department</controller>
+						<pages>
+							<add>
+								<label>Add new department</label>
+								<module>admin</module>
+								<controller>department</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit department</label>
+								<module>admin</module>
+								<controller>department</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Department Details</label>
+								<module>admin</module>
+								<controller>department</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</department>
+					
+					<role>
+						<label>Roles</label>
+						<module>admin</module>
+						<controller>role</controller>
+						<pages>
+							<add>
+								<label>Add new role</label>
+								<module>admin</module>
+								<controller>role</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit role</label>
+								<module>admin</module>
+								<controller>role</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Role Details</label>
+								<module>admin</module>
+								<controller>role</controller>
+								<action>view</action>
+							</view>
+							<editrule>
+								<label>Edit Access Rule</label>
+								<module>admin</module>
+								<controller>rule</controller>
+								<action>edit</action>
+							</editrule>
+						</pages>
+					</role>
+					
+					<user>
+						<label>Users</label>
+						<module>admin</module>
+						<controller>user</controller>
+						<pages>
+							<add>
+								<label>Add new user</label>
+								<module>admin</module>
+								<controller>user</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit user</label>
+								<module>admin</module>
+								<controller>user</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>User Details</label>
+								<module>admin</module>
+								<controller>user</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</user>
+					
+					<content>
+						<label>Content Approval</label>
+						<module>admin</module>
+						<controller>content</controller>
+						<pages>
+							<add>
+								<label>Add new approval access</label>
+								<module>admin</module>
+								<controller>content</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edd new approval access</label>
+								<module>admin</module>
+								<controller>content</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Approval Details</label>
+								<module>admin</module>
+								<controller>content</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</content>
+					<category>
+						<label>Category(s)</label>
+						<module>admin</module>
+						<controller>category</controller>
+						<pages>
+							<add>
+								<label>Add new Category</label>
+								<module>admin</module>
+								<controller>category</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit Category</label>
+								<module>admin</module>
+								<controller>category</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>View Category</label>
+								<module>admin</module>
+								<controller>category</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</category>
+					<workflow>
+						<label>Workflow Management</label>
+						<module>admin</module>
+						<controller>workflow</controller>
+						<pages>
+							<edit>
+								<label>Edit Process</label>
+								<module>admin</module>
+								<controller>workflow</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Process Details</label>
+								<module>admin</module>
+								<controller>workflow</controller>
+								<action>view</action>
+								<pages>
+									<request>
+										<label>Manage Request Access</label>
+										<module>admin</module>
+										<controller>request</controller>
+										<action>index</action>
+										<pages>
+											<add>
+												<label>New Request Access</label>
+												<module>admin</module>
+												<controller>request</controller>
+												<action>add</action>
+											</add>
+										</pages>
+									</request>
+									<approval>
+										<label>Manage Approval Access</label>
+										<module>admin</module>
+										<controller>approval</controller>
+										<action>index</action>
+										<pages>
+											<add>
+												<label>New Approval Access</label>
+												<module>admin</module>
+												<controller>approval</controller>
+												<action>add</action>
+											</add>
+										</pages>
+									</approval>
+								</pages>
+							</view>
+							<publish>
+								<label>Publish Process</label>
+								<module>admin</module>
+								<controller>workflow</controller>
+								<action>publish</action>
+							</publish>
+						</pages>
+					</workflow>
+					
+					<notification>
+						<label>Notification Settings</label>
+						<module>admin</module>
+						<controller>notification</controller>
+						<pages>
+							<add>
+								<label>Add new notification</label>
+								<module>admin</module>
+								<controller>notification</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit notification</label>
+								<module>admin</module>
+								<controller>notification</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>notification Details</label>
+								<module>admin</module>
+								<controller>notification</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</notification>
+					
+					<backup>
+						<label>Backup / Restore</label>
+						<module>admin</module>
+						<controller>backup</controller>
+						<pages>
+							<add>
+								<label>Add new backup</label>
+								<module>admin</module>
+								<controller>backup</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit backup</label>
+								<module>admin</module>
+								<controller>backup</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>backup Details</label>
+								<module>admin</module>
+								<controller>backup</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</backup>
+					
+					<theme>
+						<label>Themes</label>
+						<module>admin</module>
+						<controller>theme</controller>
+						<pages>
+							<add>
+								<label>Install theme</label>
+								<module>admin</module>
+								<controller>theme</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit theme</label>
+								<module>admin</module>
+								<controller>theme</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Theme styles</label>
+								<module>admin</module>
+								<controller>style</controller>
+							</view>
+						</pages>
+					</theme>
+					
+					
+					<setting>
+						<label>System Settings</label>
+						<module>admin</module>
+						<controller>setting</controller>
+						<pages>
+							<general>
+								<label>General</label>
+								<module>admin</module>
+								<controller>setting</controller>
+								<action>general</action>
+							</general>
+							<database>
+								<label>Database</label>
+								<module>admin</module>
+								<controller>setting</controller>
+								<action>database</action>
+							</database>
+							<ldap>
+								<label>Active Directory</label>
+								<module>admin</module>
+								<controller>setting</controller>
+								<action>ldap</action>
+							</ldap>
+							<live>
+								<label>Live Server</label>
+								<module>admin</module>
+								<controller>setting</controller>
+								<action>live</action>
+							</live>
+							<mail>
+								<label>Mail Settings</label>
+								<module>admin</module>
+								<controller>setting</controller>
+								<action>mail</action>
+							</mail>
+							<module>
+								<label>Module Settings</label>
+								<module>admin</module>
+								<controller>setting</controller>
+								<action>module</action>
+							</module>
+						</pages>
+					</setting>
+					<logo>
+						<label>Company logo</label>
+						<module>admin</module>
+						<controller>logo</controller>
+					</logo>
+					<bug>
+						<label>Bug Report / Feature Request</label>
+						<module>admin</module>
+						<controller>bug</controller>
+						<pages>
+							<add>
+								<label>Add new</label>
+								<module>admin</module>
+								<controller>bug</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit</label>
+								<module>admin</module>
+								<controller>bug</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Details</label>
+								<module>admin</module>
+								<controller>bug</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</bug>
+					<visitor>
+						<label>Visitor Management</label>
+						<module>admin</module>
+						<controller>visitor</controller>
+						<pages>
+							<add>
+								<label>Add Visitor</label>
+								<module>admin</module>
+								<controller>visitor</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit Visitor</label>
+								<module>admin</module>
+								<controller>visitor</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Visitor Details</label>
+								<module>admin</module>
+								<controller>visitor</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</visitor>
+					<forum>
+						<label>Forum Management</label>
+						<module>admin</module>
+						<controller>forum</controller>
+						<pages>
+							<add>
+								<label>Add Forum</label>
+								<module>admin</module>
+								<controller>forum</controller>
+								<action>add</action>
+							</add>
+							<edit>
+								<label>Edit Forum</label>
+								<module>admin</module>
+								<controller>forum</controller>
+								<action>edit</action>
+							</edit>
+							<view>
+								<label>Forum Details</label>
+								<module>admin</module>
+								<controller>forum</controller>
+								<action>view</action>
+							</view>
+						</pages>
+					</forum>
+				</pages>
+			</admin><nav>
+		<label>Home</label>
+		<contoller>index</contoller>
+		<action>home</action>
+		<pages>
+			<mypage>
+				<label>My Page</label>
+				<module>user</module>
+				<controller>mypage</controller>
+				<action>index</action>			
+			</mypage>
+			<employee>
+				<label>Staff Directory</label>
+				<module>employee</module>
+				<pages>
+					<find>
+						<label>Find People</label>
+						<module>employee</module>
+						<controller>staff</controller>
+						<action>find</action>	
+					</find>
+					<list>
+						<label>Staff list</label>
+						<module>employee</module>
+						<controller>staff</controller>
+						<action>list</action>	
+					</list>
+					<recent>
+						<label>Recent</label>
+						<module>employee</module>
+						<controller>staff</controller>
+						<action>recent</action>
+					</recent>
+					<out>
+						<label>Out of Office</label>
+						<module>employee</module>
+						<controller>staff</controller>
+						<action>out</action>
+					</out>
+					<birthday>
+						<label>Birthdays</label>
+						<module>employee</module>
+						<controller>staff</controller>
+						<action>birthdays</action>
+					</birthday>
+				</pages>
+			</employee>
+			<user>
+				<label>Profile page</label>
+				<module>user</module>
+				<controller>profile</controller>
+				<action>view</action>
+				<pages>
+					<edit>
+						<label>Edit Profile</label>
+						<module>user</module>
+						<controller>profile</controller>
+						<action>edit</action>	
+					</edit>
+					<settings>
+						<label>Settings</label>
+						<module>user</module>
+						<controller>mypage</controller>
+						<action>settings</action>	
+					</settings>
+					<recent>
+						<label>Recent Activity</label>
+						<module>user</module>
+						<controller>profile</controller>
+						<action>view</action>	
+						<params>
+							<page>recent</page>
+						</params>
+					</recent>
+					<photos>
+						<label>Photos</label>
+						<module>user</module>
+						<controller>profile</controller>
+						<action>view</action>	
+						<params>
+							<page>photos</page>
+						</params>
+					</photos>
+					<shared>
+						<label>Shared Items</label>
+						<module>user</module>
+						<controller>profile</controller>
+						<action>view</action>	
+						<params>
+							<page>shared</page>
+						</params>
+					</shared>
+					<content>
+						<label>Contents</label>
+						<module>user</module>
+						<controller>profile</controller>
+						<action>view</action>	
+						<params>
+							<page>content</page>
+						</params>
+					</content>
+				</pages>	
+			</user>
+			<event>
+				<label>Events</label>
+				<module>event</module>
+				<pages>
+					<my>
+						<label>My Events</label>
+						<module>event</module>
+						<controller>my</controller>
+						<pages>
+							<details>
+								<label>Event Details</label>
+								<module>event</module>
+								<controller>my</controller>
+								<action>details</action>
+							</details>
+						</pages>						
+					</my>
+					<upcoming>
+						<label>Upcoming Events</label>
+						<module>event</module>
+						<controller>upcoming</controller>
+						<pages>
+							<details>
+								<label>Event Details</label>
+								<module>event</module>
+								<controller>upcoming</controller>
+								<action>details</action>
+							</details>
+						</pages>						
+					</upcoming>
+					<past>
+						<label>Past Events</label>
+						<module>event</module>
+						<controller>past</controller>
+						<pages>
+							<details>
+								<label>Event Details</label>
+								<module>event</module>
+								<controller>past</controller>
+								<action>details</action>
+							</details>
+						</pages>						
+					</past>
+					<ongoing>
+						<label>Ongoing Events</label>
+						<module>event</module>
+						<controller>ongoing</controller>
+						<pages>
+							<details>
+								<label>Event Details</label>
+								<module>event</module>
+								<controller>ongoing</controller>
+								<action>details</action>
+							</details>
+						</pages>						
+					</ongoing>
+				</pages>
+			</event>
+			<contact>
+				<label>Contacts</label>
+				<module>contact</module>
+			</contact>
+			<task>
+				<label>Tasks</label>
+				<module>task</module>
+			</task>
+			<news>
+				<label>News</label>
+				<module>news</module>
+				<pages>
+					<details>
+						<label>details</label>
+						<module>news</module>
+						<controller>view</controller>
+						<action>details</action>
+					</details>
+					<company>
+						<label>Company News</label>
+						<module>news</module>
+						<controller>view</controller>
+						<action>company</action>
+					</company>
+				</pages>
+			</news>
+			<cms>
+				<label>Intranet Contents</label>
+				<module>cms</module>
+				<pages>
+					<index>
+						<label>Contents</label>
+						<module>cms</module>
+						<controller>view</controller>
+						<action>index</action>
+					</index>
+					<details>
+						<label>Content Details</label>
+						<module>cms</module>
+						<controller>view</controller>
+						<action>details</action>
+					</details>
+					<add>
+						<label>Add Content</label>
+						<module>cms</module>
+						<controller>add</controller>
+					</add>
+					<edit>
+						<label>Edit Content</label>
+						<module>cms</module>
+						<controller>edit</controller>
+						<action>edit</action>
+					</edit>
+				</pages>
+			</cms>
+			<workflow>
+				<label>Workflow</label>
+				<module>workflow</module>
+				<controller>index</controller>
+				<action>index</action>
+				<pages>
+					<new>
+						<label>New Request</label>
+						<module>workflow</module>
+						<controller>process</controller>
+						<action>new</action>
+					</new>
+					<view>
+						<label>View Request</label>
+						<module>workflow</module>
+						<controller>process</controller>
+						<action>view</action>
+					</view>
+				</pages>
+			
+			</workflow>
+			
+			<forum>
+				<label>Forums</label>
+				<module>forum</module>
+				<pages>
+					<topic>
+						<label>Topics</label>
+						<module>forum</module>
+						<controller>topic</controller>
+						<action>list</action>
+						<pages>
+							<add>
+								<label>Discussion Thread</label>
+								<module>forum</module>
+								<controller>post</controller>
+								<action>index</action>
+							</add>
+						</pages>
+					</topic>
+				</pages>
+			</forum>
+			
+		</pages>	
+	
+	
+	
+	</nav>
+	<report>
+		<label>Report</label>
+		<module>report</module>
+		<pages>
+			<workflow>
+				<label>Workflow</label>
+				<module>report</module>
+				<controller>workflow</controller>
+				<pages>
+					<view>
+						<label>View Report</label>
+						<module>report</module>
+						<controller>workflow</controller>
+						<action>view</action>
+					</view>
+				</pages>
+			</workflow>
+			<content>
+				<label>Content</label>
+				<module>report</module>
+				<controller>content</controller>
+				<pages>
+					<top>
+						<label>Top Contents</label>
+						<module>report</module>
+						<controller>content</controller>
+						<action>top</action>
+					</top>
+					<user>
+						<label>Top Contributors</label>
+						<module>report</module>
+						<controller>content</controller>
+						<action>user</action>
+					</user>
+					<activity>
+						<label>Activity Chart</label>
+						<module>report</module>
+						<controller>content</controller>
+						<action>activity</action>
+					</activity>
+				</pages>
+			</content>
+			<search>
+				<label>Search</label>
+				<module>report</module>
+				<controller>search</controller>
+				<pages>
+					<phrase>
+						<label>Phrase Analysis</label>
+						<module>report</module>
+						<controller>search</controller>
+						<action>phrase</action>
+					</phrase>
+					<content>
+						<label>Content Analysis</label>
+						<module>report</module>
+						<controller>search</controller>
+						<action>content</action>
+					</content>
+				</pages>
+			</search>
+			<portal>
+				<label>Portal</label>
+				<module>report</module>
+				<controller>portal</controller>
+				<pages>
+					<module>
+						<label>Module Report</label>
+						<module>report</module>
+						<controller>portal</controller>
+						<action>module</action>
+					</module>
+					<visitor>
+						<label>Visitors Report</label>
+						<module>report</module>
+						<controller>portal</controller>
+						<action>visitor</action>
+					</visitor>
+					<activity>
+						<label>Activity Report</label>
+						<module>report</module>
+						<controller>portal</controller>
+						<action>activity</action>
+					</activity>
+				</pages>
+			</portal>
+			<user>
+				<label>Users</label>
+				<module>report</module>
+				<controller>user</controller>
+				<pages>
+					<view>
+						<label>User Report</label>
+						<module>report</module>
+						<controller>user</controller>
+						<action>view</action>
+					</view>
+				</pages>
+			</user>
+		</pages>
+	</report>
+</configdata>

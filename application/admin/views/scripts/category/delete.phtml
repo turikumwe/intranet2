@@ -1,0 +1,35 @@
+
+<div id="noRecords" align="center" style="width:600px">
+	<?php echo $this->translate("Warning!!!");?>. <br /> 
+	
+<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/warning.png"   /><br />
+	<?php 
+		$baseUrl = Zend_Controller_Front::getInstance()->getRequest()->getBaseUrl();		
+		echo $this->translate('The following Category(s) are not empty').' : <br/>';
+		echo '<br/><br/>'; 
+		foreach($this->nonEmptyCategorys as $category)
+		{
+			echo $category->title."<br/>";
+		}
+		echo '<br/><br/>'; 
+	?>	
+<form  method="post" action="<?php echo $this->baseUrl(); ?>/admin/category/delete">
+  <?php foreach($this->ids as $id):?>
+  <input type="hidden" name="ids[]" value="<?php echo $id?>"/>
+  <?php endforeach;?>
+  <input type="hidden" name="f" value="1"/>
+	 <div >  
+		 <button type="submit" class="standout">
+	        <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	       <?php echo $this->translate("Force Delete");?>
+	    </button>	
+	    
+		<?php echo $this->translate('OR'); ?>
+		
+		<a href='<?php echo $this->baseUrl()."/admin/category/"?>' class="mild" >
+		<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/back.png"/>
+		<?php echo $this->translate('Go Back')?>
+		</a> 
+	</div>
+</form>
+</div>

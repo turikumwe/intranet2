@@ -1,0 +1,404 @@
+<style>
+.smallBtn {
+  color: #637993;
+  background: #BCCBDB;
+  font-weight: bold;
+  font-size:9px;
+  border: 3px double #fff;
+  padding-left:3px;
+  padding-right:3px;
+
+	
+}
+
+.smallBtn:hover {
+ color: #fff;
+ background: #7499C3;
+ border: 3px double #ffffff;
+ cursor: pointer; /* cursor: hand; for IE5 */
+ text-decoration:none;
+}
+</style>
+
+<script type='text/javascript'>
+
+<?php
+
+if( ! Precurio_Utils::isNull($this->contact_id) ) // if booking appointment for a selected contact
+{
+	require_once('contact/models/Contacts.php');
+	
+	$contact = Contacts::getContact($this->contact_id);
+	echo "setContact({$contact->id},'{$contact->full_name}','{$contact->company}');";
+}
+?>
+var selected_ids = new Array();
+var temp_id = 0;
+var id_count = 0;
+
+$('#host_name').live('click', function()
+	{
+		url = $('#selectHost').attr("href") ;
+		$.post(url, {},
+			  function(data){
+				loadSelectPopup();
+			  }, "text");
+			  return false;
+	});
+	
+$("#contact_name").autocomplete("<?php echo $this->baseUrl();?>/visitor/ajax/autocompletecontact/u_id/"+$('#host').val(), {
+	width: 260		
+});
+	
+		
+$("#contact_name").result(function(event, data, formatted) {
+	if (! data )return;
+		$('#contact_company').val(data[2]);
+		temp_id = data[1];
+	
+	$('#addCont').show();
+});
+
+$("#contact_name").emptyResult(function() {
+	temp_id = 0;
+	$('#contact_company').val('');
+	$('#addCont').show();	
+});
+
+$("#contact_name").changed(function() {
+	$('#addCont').hide();	
+});
+	
+	
+$('.removeParticipant').live('click', function()
+{
+	for(i=0; i < selected_ids.length; i++)
+		if( selected_ids[i] == $(this).parent().parent().attr('id') )
+			delete(selected_ids[i]);
+			
+	$(this).parent().parent().remove();
+});
+
+$('.removeContact').live('click',function()
+{		
+	
+	$(this).parent().parent().remove();
+});
+
+function fillParticipantTable(str)
+{
+	var users = str.split('/');
+	
+	for(i=0; i < (users.length-1); i++)
+	{
+		user = users[i].substr(1, users[i].length-2);
+		user = user.split(",");
+		
+		user_id = user[0];		
+		fullname = user[1];
+		
+		if ( $.inArray(user_id, selected_ids) == -1 )
+		{		
+			newrow = "<tr id="+user_id+'><td>'+fullname+"</td><td><a href='javascript:void(0)' class='removeParticipant'>" + "<?php echo $this->translate('remove'); ?>" + "</a></td></tr>";
+			$('#participantTable').append(newrow);
+			selected_ids.push(user_id);
+			
+			ids = new Array(selected_ids);
+			ids.push($('#host').val());
+			
+			$("#contact_name").flushCache();
+			$("#contact_name").setOptions({url: "<?php echo $this->baseUrl();?>/visitor/ajax/autocompletecontact/u_id/"+ids.join(',')});	
+		}
+	}
+	
+	
+}
+
+function setHost(str)
+{
+	user = str.split(",");
+	
+	$('#host').val(user[0]);
+	$('#host_name').val(user[1]);
+	
+	
+	$('#contact_name').val('');
+	$('#contact_company').val('');
+
+	$("#contact_name").flushCache();
+	$("#contact_name").setOptions({url: "<?php echo $this->baseUrl();?>/visitor/ajax/autocompletecontact/u_id/"+$('#host').val()});	
+}
+
+function addContact()
+{
+	if( ($.trim($('#contact_name').val()) == '') || ($.trim($('#contact_company').val()) == '') )
+	{
+		alert("<?php echo $this->translate('Both fields are required') ?>");
+		return;
+	}
+	
+	if(temp_id == 0) 
+	{
+		alert("<?php echo $this->translate('This entry would be created as a new contact'); ?>");
+		newrow = "<tr id=n"+id_count+'><td>'+$('#contact_name').val()+"</td><td>"+$('#contact_company').val()+"</td><td><a href='javascript:void(0)' class='removeContact'>"+ "<?php echo $this->translate('remove'); ?>" + "</a></td></tr>";
+		
+		id_count++;
+	}
+	else
+	{
+		if( $('#contactTable').find('#'+temp_id).size() == 1 )
+		return;
+		
+		newrow = "<tr id="+temp_id+'><td>'+$('#contact_name').val()+"</td><td>"+$('#contact_company').val()+"</td><td><a href='javascript:void(0)' class='removeContact'>" + "<?php echo $this->translate('remove'); ?>" + "</a></td></tr>";
+	}
+	
+	
+	$('#contactTable').append(newrow);
+		
+	$('#contact_name').val('');
+	$('#contact_company').val('');
+	
+	temp_id=0;
+		
+}
+
+function setContact(id, name, company) 
+{
+	newrow = "<tr id="+id+'><td>'+name+"</td><td>"+company+"</td><td><a href='javascript:void(0)' class='removeContact'>" + "<?php echo $this->translate('remove'); ?>" + "</a></td></tr>";
+	$('#contactTable').append(newrow);
+}
+
+function back()
+{
+	page = "<?php echo $this->baseUrl() ?>/visitor/list/upcomingappointment/mine/1";
+	$("#loading").show();
+	
+	loadPage(page);
+}
+
+function addAppointment()
+{
+	var participants = new Array();
+	var contacts = new Array();
+	var new_contacts = new Array(); 
+	
+	$('#contactTable tr').each(function()
+	{
+		if( $(this).attr('id') == '' ) return;
+		
+		if( $(this).attr('id').charAt(0) == 'n')
+		{
+			contact_name = $(this).find('td').eq(0).text();
+			company = $(this).find('td').eq(1).text();
+			new_contacts.push(contact_name+','+company);
+			return;
+		}	
+		
+		contacts.push($(this).attr('id'));		
+	});
+	
+	$('#participantTable tr').each(function()
+	{
+		if( $(this).attr('id') == '' ) return;
+		participants.push($(this).attr('id'));
+	});
+	
+	
+	var data = 
+	{
+		host: $('#host').val(),
+		title: $('#title').val(),
+		purpose: $('#purpose').val(),
+		purpose_detail: $('#purpose_detail').val(),
+		expected_month: $('#expected_month').val(),
+		expected_day: $('#expected_day').val(),
+		expected_year: $('#expected_year').val(),
+		expected_hour: $('#expected_hour').val(),
+		expected_minute: $('#expected_minute').val(),
+		participants: participants.join(','),
+		contacts: contacts.join(','),
+		newcontacts: new_contacts.join('--')
+		
+	};
+	url = "<?php echo $this->baseUrl() ?>/visitor/appointment/submit" ;
+		$.post(url, data,
+			  function(result){
+				alert(result);
+				back();
+			  });
+			  return false;
+}
+</script>
+
+
+<div  id="form" style="background-color:white;padding-left: 10px">
+<div class="buttons" style="float:right;margin:10px 10px 10px 10px;">
+	<a href='javascript:void(0)' class='smallBtn' onClick='back()'> 
+	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/back.png" alt=""/>
+   	<?php echo $this->translate('back to appointments'); ?> </a>
+</div>
+<br/><br/>
+<form method="post" action="#" id="registerAppointmentForm"  name="registerForm">
+
+	<div id='details'>
+	
+	<?php  echo "<h3> {$this->translate('Appointment Details')}</h3>"; ?>
+	<?php echo $this->form->id; ?>
+	
+	
+	
+	<p>
+	<label for="" > <?php echo $this->translate('Host') ?> </label>
+	<?php echo $this->form->host_name; ?>
+	 <a href="<?php echo $this->baseUrl();?>/visitor/appointment/selecthost" id='selectHost'>
+	   <?php echo $this->translate('Select Host') ?></a>
+	<?php echo $this->form->host; ?>
+	</p>
+	
+	<p><label for="" > <?php echo $this->translate('Title') ?> </label>
+		<?php echo $this->form->title; ?>
+	</p>
+	
+		
+	
+
+	<p><label for="expected_month" > <?php echo $this->translate('Expected Date'); ?></label>
+		<?php echo $this->form->expected_month; ?>
+		<?php echo $this->form->expected_day; ?>
+		<?php echo $this->form->expected_year; ?>
+	</p>
+	    
+    <p><label for="in_hour" > <?php echo $this->translate('Expected Time') ?></label>
+		<?php echo $this->form->expected_hour; ?> : 
+		<?php echo $this->form->expected_minute; ?>
+		24hrs format
+	</p>
+    
+    <p><label for="purpose" > <?php echo $this->translate('Purpose') ?></label>
+    
+    	<?php echo $this->form->purpose; ?>
+	</p>
+    
+      <p><label for="purpose_detail" > <?php echo $this->translate('Purpose Detail'); ?> </label>
+		<?php echo $this->form->purpose_detail; ?>
+		
+	</div>
+	
+	<?php if ( ! isset($this->appointment_id) )
+	{
+	?>
+	
+	<div id='participants'>
+	<h3><?php echo $this->translate("Other people in the meeting").'('.$this->translate('if any').')';?></h3>
+	<a href="<?php echo $this->baseUrl();?>/visitor/appointment/selectparticipants" class="smallBtn" id='addParticipants'>
+	  <?php echo $this->translate('Add'); ?></a>
+	
+	<p>
+	<table border='1' width='90%' align='center' id='participantTable'>
+	
+	<tr>
+		
+		
+		<td style="background-color:#CCC">
+		<?php echo $this->translate('Name'); ?>
+		</td>
+		
+				
+		<td style="background-color:#CCC">
+		
+		</td>
+		
+	</tr>
+	</table>
+	</p>
+	
+	</div>
+	<div id='contacts'>
+	<h3><?php echo $this->translate("Visitor(s)");?></h3>
+	<p><label for "contact_name"> <?php echo $this->translate('Name'); ?></label>
+		<input type='text' id='contact_name' name='contact_name'/>
+	</p>
+	
+	<p><label for "contact_name"> <?php echo $this->translate("Company"); ?></label>
+		<input type='text' id='contact_company' name='contact_company'/>  <br/>
+	</p>	
+		<p>
+		<label>&nbsp;</label>
+		 <div class="buttons">
+		 <a href='javascript:void(0)' onclick='addContact()' class="positive" id='addCont'>
+			<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/>                     
+			                      <?php echo $this->translate('add'); ?>    </a> 
+		 </div>
+		</p>
+		<br/><br/>
+	
+	<p>
+	
+	<table border='1' width='90%' align='center' id='contactTable'>
+	<tr>
+	
+		<td style="background-color:#CCC">
+		<?php echo $this->translate('Name') ?>
+		</td>
+		
+				
+		<td style="background-color:#CCC">
+		<?php echo $this->translate('Company') ?>
+		</td>
+		
+		<td style="background-color:#CCC">
+		
+		</td>
+		
+		
+	</tr>
+	</table>
+	</p>
+	</div>
+	
+	
+	
+	
+	<?php
+	}
+	?>
+	<h3></h3>
+	 <p><label >&nbsp;</label>
+	 
+		
+		    <div class="buttons bottomPadding ">
+		    
+		<?php if(isset($this->appointment_id) )
+		{
+		?>
+             <button type="submit" class="positive" id="saveAppointment">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+            <?php echo $this->translate('Edit Appointment') ?>
+            </button>
+	    
+	    <?php
+	}else
+	{
+	?>
+	
+			<button type="submit" class="positive" onclick='addAppointment();return false;'>
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/calendar_add.png" alt=""/> 
+            <?php echo $this->translate('Add Appointment') ?>
+            </button>
+<!--            <input type='button' class='standout' onclick='addAppointment()' value="<?php echo $this->translate('Add Appointment') ?>"/>-->
+            
+	   <?php
+	   }
+	   ?>
+            </div>
+	    
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>

@@ -1,0 +1,55 @@
+
+<?php
+require_once('employee/models/Employees.php');
+
+$employees = new Employees();
+$users = $employees->getAll(true);
+?>
+<div id="tasksHolder">
+ <div class="taskDetail_Header"> <?php echo $this->translate('Staff Diary') ?> </div>
+
+
+               			<div id="task_body" >
+                        <div class="task_Pad">
+
+						 <div id="details_info" style="height: 90px;>
+						 <?php echo $this->translate('Select Staff') ?> 
+						 &nbsp;
+						 <!-- <form id='stfSearchForm'> -->
+							<select name='staff_id' id='staff_id' style='width:200px'>
+								<?php
+								foreach($users as $user)
+								echo "<option value={$user->user_id}>{$user->getFullName()}</a>";
+								?>
+							 </select>
+						<!--</form>-->
+				
+							&nbsp; 
+							 
+                      		
+                                  <a href="<?php echo $this->baseUrl();?>/visitor/index/getsdiary" id='getSDiary' class="positive" ">
+			                      <?php echo $this->translate('Go') ?>    </a>      
+							
+                            </div>
+
+
+
+
+
+                         <div id="details_box">	</div>
+						
+						</div>
+
+
+
+
+
+
+                           </div>
+
+		                            </div>
+
+
+
+</div>
+

@@ -1,0 +1,20 @@
+
+
+
+<script type='text/javascript'>
+$('#checker').click(function()
+{
+	$('#loading').show();
+	//alert($('#a').text())
+	switch($.trim($('#a').text()))
+	{
+		case '(Yours)':
+			loadPage("<?php echo $this->baseUrl()?>/visitor/list/telmessages");
+			break;
+		case '(All)':
+			loadPage("<?php echo $this->baseUrl()?>/visitor/list/telmessages/mine/1");
+			break;
+	}
+});
+
+</script>

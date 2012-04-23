@@ -1,0 +1,79 @@
+
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate('Search'); ?></div>
+           <div id="titleBtns">
+             
+                <a href="#" class=""  onclick=" jQuery(document).trigger('close.facebox');"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/btn_close.jpg"   /></a> 
+            </div>
+       	               
+    </div>       
+    <div  id="windowContent">
+ 		
+<div  id="form">
+<form method="post" action="#" id="visitorSearchForm"  name="visitorSearchForm">
+		
+	<p><label for="start_month" > <?php echo $this->translate('Contact Name'); ?></label>
+		<?php echo $this->form->contact_name; ?>
+	</p>
+	
+	<p><label for="start_month" > <?php echo $this->translate('Purpose'); ?></label>
+		<?php echo $this->form->purpose; ?>
+	</p>
+	
+		    
+    <p><label for="start_month" > <?php echo $this->translate('Start Day'); ?></label>
+		<?php echo $this->form->start_month; ?> : 
+		<?php echo $this->form->start_day; ?>
+		<?php echo $this->form->start_year; ?>
+		
+	</p>
+    
+	<p><label for="start_hour" ><?php echo $this->translate('Start Time'); ?></label>
+		<?php echo $this->form->start_hour; ?> : 
+		<?php echo $this->form->start_minute; ?>
+		
+		<?php echo $this->translate('24hrs format'); ?>
+	</p>
+	
+	<p><label for="end_month" > <?php echo $this->translate('End Day'); ?></label>
+		<?php echo $this->form->end_month; ?> : 
+		<?php echo $this->form->end_day; ?>
+		<?php echo $this->form->end_year; ?>
+		
+	</p>
+    
+	<p><label for="end_hour" > <?php echo $this->translate('End Time'); ?></label>
+		<?php echo $this->form->end_hour; ?> : 
+		<?php echo $this->form->end_minute; ?>
+		
+		<?php echo $this->translate('24hrs format'); ?>
+	</p>
+    
+	
+    
+     <p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+             <button type="submit" class="positive" id="doSearch" tag="/visitor/index/logoutsubmit/">
+                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+              <?php echo $this->translate('Search'); ?>
+            </button>
+            
+               <button type="button"  class="mild" onclick=" jQuery(document).trigger('close.facebox');">
+                
+               <?php echo $this->translate('Cancel'); ?>
+            </button>
+            </div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>

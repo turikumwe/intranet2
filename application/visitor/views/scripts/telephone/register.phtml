@@ -1,0 +1,179 @@
+<script type='text/javascript'>
+var contact_id = 0;
+$("#contact_name").autocomplete("<?php echo $this->baseUrl();?>/visitor/ajax/autocompletecontact/u_id/"+$('#logged_for').val(), {
+	width: 260		
+});
+	
+		
+$("#contact_name").result(function(event, data, formatted) {
+	//alert('data');
+	$('#contact_company').val(data[2]);
+	contact_id = data[1];
+	$('.standout').show();
+	//alert('hry');
+});
+
+
+
+$("#contact_name").emptyResult(function() {
+	contact_id = 0;
+	$('#contact_company').val('');
+	$('.standout').show();
+	
+	//alert('returned empty data');
+});
+
+$("#contact_name").changed(function() {
+	$('.standout').hide();
+	//alert('returned empty data');
+});
+
+
+// If host is changed, function sets the selected host
+function setHost(str)
+{
+	user = str.split(",");
+	
+	$('#logged_for').val(user[0]);
+	$('#owners_name').val(user[1]);
+	
+	/* Since new contacts would have to be fecthed for the new host, clear the currently selected contact */
+	contact_id = 0
+	$('#contact_name').val('');
+	$('#contact_company').val('');
+	
+	// Fetch contacts from the selected host
+	
+	$("#contact_name").flushCache();
+	$("#contact_name").setOptions({url: "<?php echo $this->baseUrl();?>/visitor/ajax/autocompletecontact/u_id/"+$('#logged_for').val()});	
+	
+}
+
+
+
+
+function addTelephoneMessage()
+{
+	//alert(contact_id);
+	if($.trim($('#contact_company').val()) == '')
+	{
+		alert('Contact company is empty');
+		return;
+	}
+	
+	//if(contact_id != 0)
+	$('#contact_id').val(contact_id);
+	//else $('#contact_id').val($('#contact_name').val()+','+$('#contact_company').val());
+		
+	$.post("<?php echo $this->baseUrl();?>/visitor/telephone/submit", $("#registerTelephoneMessageForm").serialize(),
+  function(data){
+    alert(data);
+    back();
+    //location.reload();
+  });
+
+	return false;
+}
+
+function loadUserContacts()
+{
+	page =  '<?php echo $this->baseUrl();?>/visitor/ajax/getcontacts/user_id/' +  $('#logged_for').attr('value');
+		
+	$('#contact_id').html('');
+	$("#statusMsg").text("Loading user contacts");
+		
+	$.post(page, {},
+	function(html){
+	$("#statusMsg").text("");
+	$('#contact_id').html(html);
+	}, "text");
+		
+	return false;
+}
+
+function back()
+{
+	page = "<?php echo $this->baseUrl() ?>/visitor/list/telmessages/mine/1";
+	$("#loading").show();
+	
+	loadPage(page);
+}
+</script>
+
+<div class="window">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php $x = isset($this->msg_id) ? 'Log' : 'Register'; echo $x;?> <?php echo $this->translate('Telephone Message') ?></div>
+                  	               
+    </div>       
+    <div  id="windowContent">
+ 	<a href='#' onClick='back()'> <?php echo $this->translate('back to Telephone Messages') ?> </a>	
+<div  id="form">
+<form method="post" action="#" id="registerTelephoneMessageForm"  name="registerForm">
+	
+	
+	<input type='hidden' id='contact_id' name='contact_id'/>
+	
+	<p><label for="logged_for" > <?php echo $this->translate('Message For') ?></label>
+		<?php echo $this->form->owners_name ?> 
+		<a href="<?php echo $this->baseUrl();?>/visitor/appointment/selecthost" id='selectHost'> <?php echo $this->translate('select') ?></a>
+		<?php echo $this->form->logged_for ?>
+	</p>
+	
+	<p><label for "contact_name"> <?php echo $this->translate('Contact Name') ?></label>
+		<input type='text' id='contact_name' name='contact_name'/>
+	</p>
+	
+	<p><label for "contact_name"> <?php echo $this->translate('From') ?></label>
+		<input type='text' id='contact_company' name='contact_company'/>
+	</p>
+	
+	<p>
+	
+	<!-- <span id='statusMsg'></span>
+	<p><label for="contact" >Contact</label>
+				
+	</p>
+	<a href='#' id='addContact'>Add New Contact</a>
+	-->
+	
+		
+	
+	
+	<p><label for="expected_month" > <?php echo $this->translate('Log Date') ?></label>
+		<?php echo $this->form->log_month; ?>
+		<?php echo $this->form->log_day; ?>
+		<?php echo $this->form->log_year; ?>
+	</p>
+	    
+    <p><label for="in_hour" > <?php echo $this->translate('Log Time') ?></label>
+		<?php echo $this->form->log_hour; ?> : 
+		<?php echo $this->form->log_minute; ?>
+		24hrs format
+	</p>
+    
+    <p><label for="purpose" > <?php echo $this->translate('Message') ?> </label>
+    
+    	<?php echo $this->form->content; ?>
+	</p>
+    
+      
+		<div id="results" ></div>
+	
+    
+     <p><label >&nbsp;</label>
+     <div class="buttons bottomPadding ">
+	<input type='button' class='standout' onclick='addTelephoneMessage()' value='Submit'/>
+	</div>
+	</p>
+    
+
+</form>
+    
+          <br />
+          
+	
+   
+</div>
+    </div>          	
+       		
+ <!-- end window panel --></div>

@@ -1,0 +1,150 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><?php echo $this->company_name; ?> <?php echo $this->translate("Intranet");?></title>
+	<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/tipsy/jquery.tipsy.js"></script>
+	<?php echo $this->headLink();?>
+	<link rel="stylesheet"   type="text/css"   media="print" href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/print.css" />
+	<!--[if lte IE 7]> <link href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/theme_ie6.css" rel="stylesheet" type="text/css" /> <![endif]-->
+	<script type="text/javascript">
+		function handleError() {
+		      return true;
+		}
+		
+		//window.onerror = handleError;
+	</script>
+</head>
+<body>	
+
+<?php $user = $this->userView()->currentUser();?>
+<!-- Header -->
+<div id="headerGradient">
+
+  <div id="information_container" >
+  	<div id="logoPlaceHolder" >
+    	<a href="<?php echo $this->baseUrl();?>/">
+    	<?php 
+    	$root = Zend_Registry::get('root');
+    	if(file_exists($root.'/public/library/css/'.$this->themestyle.'/images/logo.jpg')):?>
+    		<img height="32px" src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/logo.jpg" />
+    	<?php else:?>
+    		<?php echo $this->company_name; ?>
+    	<?php endif;?>
+    	</a>
+    </div>	
+
+    <div id="topLink" >
+      <ul >
+        <li class="rightBorder"><a href="<?php echo $this->baseUrl();?>/index/home" > <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/mypage.png" /> <?php echo $this->translate("Home");?> </a></li>
+        <li class="rightBorder"> <a href="<?php echo $this->baseUrl();?>/user/mypage" ><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/discuss.png" /><?php echo $this->translate("My Page");?></a> </li>
+        <li class="menu_class_up"> <a href="#"  id="applications"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/share.png" /><?php echo $this->translate("Intranet Applications");?> </a> </li>
+      </ul>
+    </div>
+   
+    <div id="searchForm"  >
+    <form method="post" action="<?php echo $this->baseUrl();?>/search/index/index">
+            <input type="text" name="qry"  value="<?php echo $this->translate('Search  the intranet');?>" class="header_search"/>
+       	
+       
+       
+      
+  	      
+</form>
+
+      </div>
+        
+     
+ 
+    <div id="topRight">
+    	
+      <ul >
+         <li ><a href="<?php echo $this->baseUrl();?>/login/logout" >  <?php echo $user->isAnonymous() ? $this->translate('Login') : $this->translate("Logout");?></a></li>
+       <li ><a href="<?php echo $this->baseUrl();?>/user/mypage/settings" >  <?php echo $this->translate("Settings");?> </a></li>
+       <div id="myDivElement" style="z-index:99;" >
+
+		</div>
+     </ul>
+    </div>  
+</div>
+</div>
+<div id="headerLinks">
+  <div id="linksContainer">
+   <div id="links_text" class="buttons">
+   <?php 
+  	 
+  	 class Header
+  	 {
+  	 	
+	  	 /**
+	  	  * This function handles the display of each module item and MUST be implemented in a class of  any script including 'modules.phtml'
+	  	  * @param Precurio_Module $module
+	  	  * @param string $baseUrl - application base url
+	  	  * @param string $pathToIcons - web url path to icons 
+	  	  * @return null
+	  	  */
+	  	 function displayModule($module,$baseUrl,$pathToIcons)
+	  	 {
+	  	 	if(!$module->isStandAlone())return;
+	  	 	$moduleName = $module->getName();
+	  	 	$label = $module->getShortTitle();
+   			$url = $baseUrl.'/'.$module->getName();
+   			$description = $module->getDescription();
+   			$tr = Zend_Registry::get('Zend_Translate');
+		  	$label = $tr->translate($label);
+		  	$description = $tr->translate($description);
+	  	 	echo("<a href='$url' title='$description' id='midnight_{$moduleName}'/>$label </a>");
+	  	 	echo("<script type='text/javascript'>$('#midnight_{$moduleName}').tipsy({gravity: 'n'});</script> ");
+	  	 }
+  	 }
+  	 $module = new Header(); //an object of a class implementing displayModule must be named '$module' 
+  	 include('modules.phtml');
+   ?>
+    <br/>
+   </div>
+   
+  </div>
+</div>
+<div id="headerBottom">
+  <div id="container">
+   <div class="rightside">
+    <?php 
+    $themes = new Precurio_Themes();
+    $theme = $themes->getUserTheme();
+    $styles = $themes->getThemeStyles($theme);?>
+   
+    <?php if(count($styles) > 1):?>
+<!--    this is where we display an icon for each style. please note that the icon 
+ 		to load, is gotten from the style. i.e a style must have an icon image of the 
+ 		same name in the "[stylename]/images/" directory.-->
+		 <?php foreach($styles as $aStyle):?>
+	  		  <a href="#"  class="styleswitch" rel="<?php echo $aStyle;?>"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $theme;?>/<?php echo $aStyle;?>/images/<?php echo $aStyle.'.jpg';?>" /></a>
+	   	 <?php endforeach;?>   
+    <?php endif;?>
+        </div>
+        <div class="rightside">
+        <?php if(count($styles) > 1):?>
+        	<span class="choose"> <?php echo $this->translate("Choose your style");?>: </span>
+        <?php endif;?>
+        </div>
+	<div class="rightside">
+	
+    <?php echo $this->translate("Welcome");?> <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $user->getId(); ?>"><strong><?php echo $user->getFirstName();?></strong></a> : 
+    <em><?php
+     $fact = $this->contentView()->getCompanyFact();
+     if($fact != null)
+     {
+     	if($fact->hasUrl())
+     	{
+     		echo "<a href='".$fact->getUrl()."' target='_blank'>".$fact->getTitle()."</a>";
+     	}
+     	else
+     	{
+     		echo $fact->getTitle();
+     	}
+     }
+     ?>
+     </em></div>
+    
+   
+  </div>
+</div>

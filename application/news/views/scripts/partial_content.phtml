@@ -1,0 +1,72 @@
+	<div class="rssLine">
+		<a href="<?php echo $this->baseUrl();?>/cms/view/details/c_id/<?php echo $this->content->getId();?>"><?php echo $this->content->getTitle();?> </a><br />
+		<span  class="rss_text"><?php echo $this->content->getSummary();?></span><br />
+     <?php $comments = $this->content->getComments();?>
+      <span class="textLinks">
+     <?php  echo $this->content->getDateAdded();?>
+     &nbsp;
+     <a href="#" onclick="toggleMe(event,<?php echo $this->content->getId();?>);return false;"><?php echo (count($comments) ? count($comments): $this->translate('No') ).' '.(count($comments) == 1 ? $this->translate('Comment') : $this->translate('Comments')); ?></a>
+      &nbsp;&nbsp;&nbsp;
+      <a href="<?php echo $this->baseUrl();?>/cms/edit/edit/c_id/<?php echo $this->content->getId();?>"><?php echo $this->translate("edit");?></a>. &nbsp;
+	  <a href="#" rel="<?php echo $this->content->getId();?>" tag="<?php echo ($this->content->user_id == Precurio_Session::getCurrentUserId());?>" id="deleteContent"><?php echo $this->translate("delete");?></a>
+      </span>
+    <div   class="temp" id="<?php echo ('comments'.$this->content->getId());?>"> 
+		<div id="<?php echo ('comment'.$this->content->getId());?>">
+		    <?php 
+				$this->partialLoop()->setObjectKey('comment');
+				echo $this->partialLoop('partial_comment.phtml',$comments);
+			?>
+		  	
+		 </div>
+  
+  <?php 
+		$this->partialLoop()->setObjectKey('content');
+	?>
+  	
+  
+  </div>
+    </div>
+    <?php 
+		$this->partialLoop()->setObjectKey('content');
+	?>
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.temp').each(function(){
+		tempChild = $(this).children().eq(0);
+		x = $(this).children().eq(0).children().size();
+		
+		if(x==0)$(this).hide();
+	});
+	
+	//handle clicking on delete
+	$('#deleteContent').live('click', function()  {
+		
+		tag = $(this).attr("tag");   
+		if(!tag)
+		{
+			alert("<?php echo $this->translate("You don't have enough permission to delete this content");?>");
+			return false;	
+		}
+
+         if (confirm('<?php echo $this->translate("Are you sure you want to delete this content?");?>'))
+		 {
+			$.post("<?php echo $this->baseUrl();?>/cms/delete/delete/", {'c_id':$(this).attr("rel") },
+			  function(data){
+				window.location = "<?php echo $this->baseUrl();?>/cms"
+
+			  }, "text");
+
+		
+		
+		}
+		return false;
+		
+		
+		
+	});
+
+	
+  });
+
+</script>

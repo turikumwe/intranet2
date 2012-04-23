@@ -1,0 +1,94 @@
+	
+	<script type='text/javascript'>
+	
+	function deleteTopic(id)
+	{
+		if( ! confirm("<?php echo $this->translate('Are you sure you want to delete this topic?'); ?>") )
+		return false;
+		
+		$.post("<?php echo $this->baseUrl();?>/forum/topic/delete", {id: id},
+		function(data)
+		{
+			alert(data);
+			location.reload();
+		}, "text");
+	}
+	</script>
+
+	<?php 
+	require_once('forum/models/Topics.php');
+	
+	$topics = new Topics();
+	$forum_id = $this->form->id->getValue();
+	$items = $topics->getTopics($forum_id);
+	$baseUrl = $this->baseUrl();
+	
+	
+	
+	$header = array('', $this->translate('Title'), $this->translate('Date Created'), $this->translate('Replies'),$this->translate('Remove'), $this->translate('View') );
+	
+	function generateTable($arr,$header,$group_id,$baseUrl)
+	{
+		$translate = Zend_Registry::get('Zend_Translate');
+		$str = "<table border='1' width='100%'>";
+
+		
+		$str .= "<tr>";
+		foreach($header as $i)
+		{
+			$str .= "<th>$i </th>";
+		}
+		$str .= "<th></th>";
+		$str .= "</tr>";
+		
+		
+		foreach($arr as $value)
+		{
+			$str .= "<tr>";
+			$key = $value['id'];
+			foreach($value as $prop=>$j)
+			{
+				if($prop === "id")continue;
+				$str .= "<td>$j </td>";
+			}
+						
+				$str .= "<td><a href='javascript:void(0)' onClick='deleteTopic({$key})'>".$translate->translate('Delete')." </a></td>";
+				$str .= "<td><a href='{$baseUrl}/forum/post/index/tid/{$key}'>".$translate->translate('Go to topic')." </a></td>";
+				$str .= "<td><a href='{$baseUrl}/forum/topic/edit/tid/{$key}' rel='facebox'>".$translate->translate('Edit')." </a></td>";
+			$str .= "</tr>";
+		}
+		$str .= "</table>";
+		return $str;
+	}
+
+	?>
+<br/><br/>
+<?php echo $this->translate("Forum Topics");?>
+<br/>	
+	
+	
+	<form method="post" name="searchListForm" id="searchListForm" action="<?php echo $this->baseUrl();?>/admin/group/view/id/<?php echo $group_id;?>" >
+		<input id="table" name="table" value="<?php echo $this->table;?>" type="hidden">
+		
+	</form>
+
+	<div id="adminTable"> 
+	<form action="" name="listForm" id="form" method="post"> 
+		<?php 
+			if(count($items))
+			{
+			 	$arr = array();
+				$i = 1;
+				
+				foreach($items as $item)			
+					$arr[] = array($i++,'title'=>$item->title,'date_created'=>$item->getDateCreated(),'no_replies'=>$item->getNumberOfReplies(),'id'=>$item->id);
+				
+				echo generateTable($arr,$header,$forum_id,$this->baseUrl());
+			}
+			else
+			{
+				echo "<div id='noRecords'>".$this->translate('No records found')."</div>";
+			}
+		?>
+	</form>  
+	</div>	

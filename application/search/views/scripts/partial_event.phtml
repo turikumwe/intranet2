@@ -1,0 +1,15 @@
+<div class="dashboardLine">
+        	<div class="dashboardModule">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle(); ?>/images/icons/calendar.png"  /><a href="#"><?php echo $this->translate(PrecurioStrings::MOD_EVENT);?>            </a>
+             </div>
+             <div class="dashboardContent">
+             	 <div id="dashEventsDesc">
+   	 	  <span class="nameText"><a href="<?php echo $this->baseUrl();?>/event/<?php echo ($this->model->is_past ? 'past'  : 'upcoming' );?>/details/e_id/<?php echo $this->model->getDocument()->getFieldValue('id');?>" ><?php echo $this->model->title;?> </a></span><br />
+                <?php echo $this->model->summary;?>
+                <p>
+                <?php echo $this->translate("Venue");?> : <?php echo $this->model->venue;?>
+                </p>
+                <p><a href="<?php echo $this->baseUrl();?>/event/<?php echo ($this->model->is_past ? 'past'  : 'upcoming' );?>/details/e_id/<?php echo $this->model->getDocument()->getFieldValue('id');?>"><?php echo $this->translate("View Event Details");?></a> </p>
+           </div>
+             </div>
+        </div>

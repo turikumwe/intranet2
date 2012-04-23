@@ -1,0 +1,35 @@
+<?php $widget = $this->widget;?>
+	<div>    
+     <form method="post" action="<?php echo $this->baseUrl();?>/widget/<?php echo $widget->getName(); ?>/submitconfig">
+      <table class="workflow_table" >
+        <tr>
+          <th colspan="2"> <?php echo $this->translate('Widget Settings for ').$widget->getTitle();?></th>
+        </tr>
+        <tr>
+          <td style="border-right: 0px"><strong><?php echo $this->translate('Title');?></strong></td>
+          <td><input type="text" name="title" value="<?php echo $widget->getTitle();?>" /></td>
+        </tr>
+        <tr>
+          <td class="alt" style="border-right: 0px"><strong><?php echo $this->translate('Position');?></strong></td>
+          <td class="alt">
+          	<select name="position" style="width: 100px">
+          		<option <?php if($widget->getPosition() == 'top')echo "selected='selected'";?> label="<?php echo $this->translate('Top');?>" value="top"><?php echo $this->translate('Top');?></option>
+          		<option <?php if($widget->getPosition() == 'bottom')echo "selected='selected'";?>  label="<?php echo $this->translate('Bottom');?>" value="bottom"><?php echo $this->translate('Bottom');?></option>
+          		<option <?php if($widget->getPosition() == 'left')echo "selected='selected'";?>  label="<?php echo $this->translate('Left');?>" value="left"><?php echo $this->translate('Left');?></option>
+          		<option <?php if($widget->getPosition() == 'right')echo "selected='selected'";?>  label="<?php echo $this->translate('Right');?>" value="right"><?php echo $this->translate('Right');?></option>
+          		<option <?php if($widget->getPosition() == 'side')echo "selected='selected'";?>  label="<?php echo $this->translate('Side');?>" value="side"><?php echo $this->translate('Side');?></option>
+          	</select>
+		  </td> 
+        </tr>
+        <tr>
+          <td style="border-right: 0px"><strong><?php echo $this->translate('Order');?></strong></td>
+          <td><input type="text" name="order" value="<?php echo $widget->getOrder();?>"/></td> 
+        </tr>
+        
+        <tr>
+          <td style="border-right: 0px" class="alt">&nbsp;</td>
+          <td class="alt"><input type="submit" name="submit" value="Submit" /></td>
+        </tr>
+      </table>
+     </form>
+    </div> 

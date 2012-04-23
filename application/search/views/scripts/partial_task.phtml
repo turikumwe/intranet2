@@ -1,0 +1,27 @@
+<div class="dashboardLine">
+        	<div class="dashboardModule">
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->userView()->getUserThemeStyle();?>/images/icons/tasks.png"  /><a href="#"><?php echo $this->translate(PrecurioStrings::MOD_TASK);?>         </a>
+             </div>
+             <div class="dashboardContent">
+             					 
+            <div id="task_info">
+                 <div class="task_title">
+                      <span><a href="<?php echo $this->baseUrl();?>/task/index/index/id/<?php echo $this->model->getDocument()->getFieldValue('id');?>"><?php echo ($this->model->title); ?></a></span>
+                 </div>
+                                                                              
+                     <p> <em><?php echo $this->translate("Assigned by");?>: </em><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($this->model->creator_user_id); ?>"> <?php echo ($this->model->creator); ?></a></p>
+                     <!-- 
+                   
+                     <p>
+                     	<em>description:</em> <span class="statusText"> <?php echo ($this->model->description); ?></span>
+                      </p>
+                      
+					-->
+			</div>                                    
+                                         
+            <div id="task_due">
+                 <em><?php echo $this->translate("Due");?>:  </em><?php echo ($this->model->due_date); ?> <br />     
+            </div>     
+                                              
+             </div>
+        </div>

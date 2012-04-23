@@ -1,0 +1,160 @@
+
+<?php 
+
+require_once('task/models/Tasks.php'); 
+require_once('task/models/vo/Task.php'); 
+?>
+<?php 
+$tasks = new Tasks();
+$task_id = $this->task_id ; 
+$type = $this->type;
+$task = $tasks->getTaskDetails($task_id) ;
+if(!$task->canAccess(Precurio_Session::getCurrentUserId())){echo $this->translate("You do not have access to this task"); return;}
+?>
+
+<div id="tasksHolder">
+ <div class="taskDetail_Header"> <?php echo ($task->title); ?> </div> 
+
+                        
+               			<div id="task_body">
+                        <div class="task_Pad">
+                       	 <div id="details_info">
+                            <ul>
+                                <li>
+                                    <em><?php echo $this->translate("Created");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($task->getDateCreated()); ?>
+                                </li>
+                                
+                                <li>
+                                      <em><?php echo $this->translate("Due Date");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($task->getDueDate()); ?>
+                                </li>
+                                
+                                <li>
+                                    <em><?php echo $this->translate("Last Modified");?></em>  <span class="arrow">&nbsp; &nbsp; </span><?php echo ($task->getLastModified()); ?>
+                                </li>
+                             </ul>
+                            
+                            </div>
+                            
+                            	
+                                
+                                
+                               
+                         <div id="details_box">
+                          <p><span class="details_header"><?php echo $this->translate("Task Details");?>  </span></p>
+                               <p><em><?php echo $this->translate("Title");?>:</em> <?php echo ($task->title); ?></p>
+                          		<p><em><?php echo $this->translate("Description");?>:</em><br /> <?php echo ($task->description); ?></p>
+                                
+                      
+                                                      
+                        <?php if($task->isMine()):?>
+                         <p><em><?php echo $this->translate("Assigned to");?>: </em><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($task->user_id); ?>"> <?php echo ($task->getTaskUserName()); ?></a></p><br />  
+                         <?php else:?>    
+                        	<p> <em><?php echo $this->translate("Assigned by");?>: </em><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($task->creator_user_id); ?>"> <?php echo ($task->getTaskCreatorName()); ?></a></p><br />  
+                        <?php endif;?>   
+                     <p><em><?php echo $this->translate("Status");?>:</em> <span class="statusText"> <?php echo ($task->getStatusStr()); ?></span>
+                      <?php if($task->status == Task::STATUS_OPEN):?>
+                      <a href="#"  onclick="changeStatus(event,<?php echo $task_id.','. Task::STATUS_ONHOLD.','.$type; ?>)" class="textLinks"><?php echo $this->translate("put on hold");?></a>
+                     <?php elseif($task->status == Task::STATUS_ONHOLD):?>
+                     <a href="#"  onclick="changeStatus(event,<?php echo $task_id.','. Task::STATUS_OPEN.','.$type; ?>)" class="textLinks"><?php echo $this->translate("Open task");?></a>
+                     <?php endif;?>
+                      </p>
+                      <?php if($task->is_transfer):?>
+                      <div >
+                      		<p><span class="details_header"> <?php echo $this->translate("Transfer History");?>  </span></p>
+                      	
+                      		<?php 
+                      			$transfers = $task->getTransferHistory();
+                      			foreach($transfers as $transfer):
+                      		?>
+                      		
+                      		
+	                        <div id="transfer_Details">
+       
+        <div class="left"><em><?php echo $this->translate("From");?>: </em></div>  <?php echo ($transfer->getFrom()); ?>    <br />  	
+        <div class="left"> <em><?php echo $this->translate("To");?>: </em> </div><?php echo ($transfer->getTo()); ?>   <br />  
+                 <div class="left"> <em><?php echo $this->translate("Date");?>: </em></div><?php echo ($transfer->getDate()); ?>     <br />  
+                  <div class="left">  <em><?php echo $this->translate("Reason");?>: </em></div><?php echo $transfer->reason;?>     
+    <br /> <br />
+	</div>
+                             
+	                     		
+	                     		  
+	                     		   
+                             <?php endforeach;?>
+                          
+
+                      </div>
+                      <?php endif;?>
+                      <div class="buttons" id="task_controlBar">
+                      		<?php if($task->isAssignedToMe()):?>
+                                      <?php if(!$task->isComplete() && (!$task->isApproval())):?>                   
+                                                         
+			                               <a href="#"  onclick="changeStatus(event,<?php echo $task_id.','. Task::STATUS_COMPLETE.','.$type; ?>)"  class="positive">
+			                                 <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+			                                 <?php echo $this->translate("Mark as done");?>    </a>
+			                               
+			                               <a href="<?php echo $this->baseUrl();?>/task/index/edit/id/<?php echo $task_id; ?>" id="editTask" tag="<?php echo ($task->creator_user_id == Precurio_Session::getCurrentUserId())?>" >
+			                                 <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/edit.png" alt=""/> 
+			                                <?php echo $this->translate("Edit details");?>     </a>
+			                                
+			                                <a href="<?php echo $this->baseUrl();?>/task/index/transfer/id/<?php echo $task_id; ?>" id="transferTask" class="mild"  tag="<?php echo ($task->user_id == Precurio_Session::getCurrentUserId() && $task->is_transferable)?>" >
+			                                 <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/users.png" alt=""/> 
+			                                <?php echo $this->translate("Transfer task");?></a>
+                                     <?php elseif(!$task->isComplete() && $task->type != Task::TYPE_WORKFLOW):?>
+			                               <a href="#"  onclick="changeStatus(event,<?php echo $task_id.','. Task::STATUS_COMPLETE.','.$type; ?>)"  class="positive">
+			                                 <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+			                                 <?php echo $this->translate("Approve");?>    </a>
+			                               <a href="#"  onclick="changeStatus(event,<?php echo $task_id.','. Task::STATUS_REJECT.','.$type; ?>)"  class="negative">
+			                                 <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+			                                 <?php echo $this->translate("Reject");?>    </a>
+                                     <?php endif;?>
+                      		<?php endif;?>
+                      </div>
+                                                     
+   <p><strong><?php echo $this->translate("Comments");?></strong></p>     
+   
+  <div class="taskComments"> 
+    <div id="<?php echo ('comment'.$task->getActivityId());?>"  >
+     <?php 
+		$this->partialLoop()->setObjectKey('comment');
+		echo $this->partialLoop('partial_comment.phtml',$task->getComments());
+	?>
+  	</div>
+  
+    	
+  <div  class="taskComments">
+  
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($task->getActivityId().','.$this->userView()->currentUser()->getId().',0' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$task->getActivityId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($task->getActivityId()) ?>)"> <?php echo $this->translate("Write Something");?></textarea>
+    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+        </div>
+  	</form>
+  </div>
+  </div>                                    
+						</div>
+
+<div id="details_bar">
+    <ul>
+    <!-- this should be whererever u're coming from. i.e if u're coming frm pending tasks, it shld be return to pending tasks -->
+     
+    	<li id="tasks_return"> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/back.png" /><a href="#" rel="<?php echo $type; ?>"> <?php echo $this->translate("Return to tasks");?> </a> </li> 
+
+	    <li> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/delete.png" /><a id="deleteTask" type="<?php echo $this->type;?>" href="#" rel="<?php echo $task_id; ?>"  tag="<?php echo ($task->creator_user_id == Precurio_Session::getCurrentUserId())?>"> <?php echo $this->translate("Delete task");?></a></li>
+        <li> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/printer.png" /><a href="#" onclick="window.print();return false;"> <?php echo $this->translate("Print task");?></a></li>
+<!--        <li> <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/word.png" /><a id="downloadTask" type="<?php echo $this->type;?>" href="<?php echo $this->baseUrl();?>/task/index/download/id/<?php echo $task_id; ?>/type/<?php echo $this->type; ?>" rel="<?php echo $task_id; ?>"> Download task   this should be .rtf !</a></li>-->
+<!--    -->
+    </ul>
+</div> 
+                                    
+                                    
+                                    
+                                 
+                           
+                           </div> 
+                            
+		                            </div>
+                       
+                        
+                     
+</div>                      

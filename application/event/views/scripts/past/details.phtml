@@ -1,0 +1,189 @@
+<script>
+	$(document).ready(function(){
+		$('.searchBox').autofill({
+			value: 'Search Within Events'
+		});
+		$(document).bind('close.facebox', function() {
+			//alert('closed');
+			return false;
+			});
+		$('#changeStatus').click(function(){
+			$('#showStatus').toggle();
+			$('#buttons').toggle();
+		});
+	});
+	function submitStatus(event,e_id,s)
+	{
+		params = {'e_id':e_id,'s':s};
+		$.post('<?php echo $this->baseUrl();?>/event/upcoming/status', params, function(data) {
+			
+			alert('<?php echo $this->translate("Attendance status updated");?>' + data);
+			return false;
+
+		});
+		event.preventDefault();
+		return false;
+	}
+	
+</script>
+<?php $selected = $this->page; ?>
+<div id="holder" >
+	
+    <div class="rightside">
+<!-- 	<form>-->
+<!--    	<input type="text"  class="searchBox"/>-->
+<!--    </form>-->
+    </div>
+ </div>
+<div  id="tab" class="appTabs">
+ <?php require_once('event/views/scripts/tabs.phtml'); ?>
+ 
+ <div class="completeText" id="application_controlBar">
+ 	<!--<a href="<?php echo $this->baseUrl();?>/event/<?php //echo $selected;?>">go back to <?php //echo $selected; ?> events   </a>
+ --></div>  <?php 
+  if($this->event == null)
+ {
+ echo "<div id='noRecords'>".$this->translate("Event does not exist anymore")."</div>";
+ return;
+ }
+ ?>
+ <div  id="app_sidebar"> 
+	<div class="contentPad">
+		<img width="100" src="<?php echo $this->event->getImagePath();?>"  /><br/>
+      <span class="maroon_text"><strong><?php echo $this->translate("Confirmed Guests");?></strong></span><br />
+      <?php 
+      foreach($this->event->getUsersAttending() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/>
+       <span class="maroon_text"><strong><?php echo $this->translate("Not Sure");?></strong></span><br />
+      <?php 
+      foreach($this->event->getUsersNotSure() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/>
+       <span class="maroon_text"><strong><?php echo $this->translate("Not Attending");?></strong></span><br />
+      <?php 
+      foreach($this->event->getUsersNotAttending() as $user)
+      {
+      	echo ('<a href="<?php echo $this->baseUrl();?>/user/profile/view/'.$user->getId().'">'. $user->getFullName().'</a><br />');
+      }
+      ?>
+      <br/><br/>
+      <div class="buttons">
+      <a href="<?php echo $this->baseUrl();?>/user/index/select"  class="positive" rel="facebox">
+		     <?php echo $this->translate("Invitation list");?>    
+		     <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/calendar_add.png" alt=""/> 
+		</a>
+	</div>
+      <br/>
+
+    </div>
+  </div>
+<div id="app_main">
+
+<div class="eventsWindow">
+ 	<span class="nameText"><?php echo $this->event->getTitle();?>  </span>
+     <div id="eventsDesc_Details">
+       <p>
+        <div class="left"><em><?php echo $this->translate("Location");?>: </em></div>
+       <?php echo $this->event->getLocation();?>      <br />  	
+                 <div class="left"> <em><?php echo $this->translate("Host");?>: </em> </div><?php echo $this->event->host;?>    <br />  
+                 <div class="left"> <em><?php echo $this->translate("Venue");?>: </em></div><?php echo $this->event->venue;?>      <br />  
+                 <div class="left">  <em><?php echo $this->translate("Start");?>: </em></div><?php echo $this->event->start_time.'.  '.$this->event->getDate();?> <br /> 
+                  <div class="left">  <em><?php echo $this->translate("End");?>: </em></div><?php echo $this->event->getEndDate();?>       
+      </div>
+	</div>
+    
+	 <div id="box" class="eventsWindow"> 
+	    <div id="showStatus" > 
+		     <span class="maroon_text">
+				<?php echo $this->translate("Attendance Status");?> : <?php echo $this->event->getStatusStr(); ?> 
+			</span><br />
+		</div>
+	     
+	</div>
+	
+ <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Description");?></div>
+           
+    </div>       
+    <div  id="event_Description">
+    	<?php echo $this->event->description; ?>
+    </div>          	
+	
+ <!-- end window panel --></div>  	
+ 
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Photos");?></div>
+           <?php if($this->event->getStatus() != Event::NOTATTENDING):?>
+           <div id="titleBtns">
+           <a  href='<?php echo $this->baseUrl();?>/event/upcoming/upload/id/<?php echo $this->event->getId();?>'  rel="facebox" >		<?php echo $this->translate("Add Photo");?></a>
+	        </div>
+	        <?php endif;?>
+    </div>      
+    <?php $photos = $this->event->getPhotos();?>	 
+    <div  id="event_Description">
+      <a href="<?php echo $this->baseUrl();?>/event/content/photos/id/<?php echo $this->event->getId();?>"><?php echo $this->translate("There are");?> <?php echo count($photos);?> <?php echo $this->translate("Photos. Click here to view all");?>
+      </a>
+      <div id="profilePhotoHolder">
+             <?php if(count($photos)):?>
+            <?php $i=1;foreach($photos as $key=>$photo):?>
+            <?php if($i++ > 3) break; ?>
+		<a href="<?php echo $this->baseUrl();?>/event/content/viewphoto/e_id/<?php echo ($this->event->getId()); ?>/pos/<?php echo ($key+1); ?>"><img alt="<?php echo ($photo->getTitle()); ?>" src="<?php echo ($photo->getImagePath()); ?>" /></a>
+	<?php endforeach;?>
+                 
+     <?php endif;?> 
+                 
+                 
+                   
+        </div>
+      
+    
+      </div>             	
+       		
+  <!-- end window panel  --></div>
+ 
+ 
+
+ 
+  <!-- window panel -->
+ <div class="eventsWindow">
+ 	<div  class="titleWindow ">
+           <div  id="titleText"><?php echo $this->translate("Comments");?></div>
+           
+    </div>       
+   
+  <div id="<?php echo ('comment'.$this->event->getActivityId());?>"  class="eventcomment"> 
+    <?php 
+		$this->partialLoop()->setObjectKey('comment');
+		echo $this->partialLoop('partial_comment.phtml',$this->event->getComments());
+	?>
+  	
+  </div>
+    	
+  <div  class="eventcomment">
+  
+  	<form id="addComment" action='#' onsubmit="submitComment(event,<?php echo ($this->event->getActivityId().','.$this->userView()->currentUser()->getId().',0' ); ?>)">
+    	<div align="right">
+    	  <textarea id="<?php echo ('textarea'.$this->event->getActivityId());?>" class="commentTextArea" onclick="clearMe(<?php echo ($this->event->getActivityId()) ?>)"> <?php echo $this->translate("Write Something");?></textarea>
+    	  <input type="submit" value="<?php echo $this->translate("Comment");?>" />
+        </div>
+  	</form>
+  </div>
+ <!-- end window panel --></div>
+    
+ </div>
+
+
+
+  <br style="clear:both"/>		
+</div>

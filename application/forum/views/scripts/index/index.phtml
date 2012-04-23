@@ -1,0 +1,153 @@
+
+<?php 
+	require_once 'Zend/Paginator.php';
+	require_once('forum/models/Forums.php');
+	
+	$rowsPerPage = 10;
+	$forums = new Forums();	
+	
+	$paginator = Zend_Paginator::factory($forums->getForums());
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage($rowsPerPage);  
+	$this->paginator = $paginator;
+	
+	$rsForums = $paginator->getCurrentItems();	
+?>
+
+<script type='text/javascript'>
+
+$(document).ready(function()
+{
+	$('.addForum').live('click', function()  
+	{
+		url = $(this).attr("href") ;
+		jQuery.facebox({ ajax: url });
+		return false;
+	});
+	
+	$('#jumpToForum').click(function()
+	{
+		if($('#forumSelect').val() == null)
+		{
+			alert("<?php echo $this->translate('You have not selected a forum'); ?>");
+			return false;
+		}
+		
+		window.location.href = "<?php echo $this->baseUrl();?>/forum/topic/list/fid/" + $('#forumSelect').val();
+	});
+	
+});
+
+</script>
+
+	
+	
+	<!-- start forums_main -->
+<div id="forums_main"> 
+         		<div class="contentMargin_5"> 
+				
+                <div id="forums_controlbar"> 
+                	<div class="buttons">
+                    <a href="<?php echo $this->baseUrl();?>/forum/index/add" class="addForum mild" > 
+                    <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/> 
+					<?php echo $this->translate('Create New Forum'); ?>
+                    </a>
+					
+                    </div>
+        
+                    <div class="inner_bar">
+                        <select id='forumSelect'>
+                           <?php $allForums =  $forums->getForums() ?>
+                            <?php foreach($allForums as $forum)
+				echo "<option value='{$forum->getId()}'>{$forum->getTitle()}</option>";
+			    ?>
+                        </select>
+                        <div class="buttons"><a id="jumpToForum" href="javascript:void(0)"> <?php echo $this->translate('GO'); ?></a></div>  
+                    </div>
+                    </div>    				
+                      <div  class="titleWindow"> 
+			<div id="titleText"><?php echo $this->translate('Forums'); ?></div>
+		        <?php  
+								
+			//confirm that there are records, otherwise , display message
+				if ($paginator->getCurrentItemCount())
+				{
+			?>
+						
+                        <div class="forum_paginationControl"> 
+                        <?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+                        
+                         </div> 
+					  </div>
+                      
+                 <?php 
+			//while ($rowCount < $rowsPerPage && isset($rsForums[$rowCount])):
+			//$row_rsForums = $rsForums[$rowCount];
+			
+			foreach($rsForums as $row_rsForums)
+			{
+			
+			//echo $row_rsAppointments['full_name'];
+		?>
+		
+		    <div>
+               				                      
+                        <table class="forum_table" width="100%">
+                        	<tr>
+                            	<td>
+                                	<a href="<?php echo $this->baseUrl();?>/forum/topic/list/fid/<?php echo $row_rsForums->getId(); ?>"><h3><?php echo $row_rsForums->title; ?></h3></a>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<td><?php echo $row_rsForums->description; ?></td>
+                            </tr>
+                            <tr>
+                            	<td class="time"><?php echo $row_rsForums->getNumberOfTopics(); ?> Topics | <?php echo $row_rsForums->getNumberOfReplies(); ?> <?php echo $this->translate('Replies'); ?> | <?php echo $this->translate('Last Post'); ?>: <?php echo  Precurio_Utils::isNull($row_rsForums->getLastPost()) ? 'none' : $row_rsForums->getLastPost()->getDatePosted(); ?> </td>
+                            </tr>
+                        </table>
+                      </div>
+		      
+		      <?php } /*$rowCount++; endwhile;*/ ?>
+		      
+		      
+                      <div class="completeText" id="application_controlBar_bottom"> 
+	<div class="forum_paginationControl"> 
+                        <?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+                        
+                     </div> 
+		
+		<?php		
+		}
+		else
+		{
+		?>
+			<div style="padding: 40px">
+                            <?php echo $this->translate('There are currently no forums'); ?> <br />
+                              
+                           </div>     
+                <?php
+		}
+		?>
+		
+</div>
+                      
+                      <div id="forums_controlbar"> 
+	
+		
+	 
+		
+	
+	</div>
+    
+						<br/> 
+						                               
+						                        
+						               		
+				  </div>
+         		</div>
+	
+	<!-- end forums_main -->  
+	
+	
+
+  

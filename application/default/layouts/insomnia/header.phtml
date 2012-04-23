@@ -1,0 +1,147 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><?php echo $this->company_name; ?> <?php echo $this->translate("Intranet");?></title>
+	<script type="text/javascript" src="<?php echo $this->baseUrl();?>/library/js/jquery/jquery.js"></script>
+	
+	<?php echo $this->headLink();?>
+	<link rel="stylesheet"   type="text/css"   media="print" href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/print.css" />
+	<!--[if lte IE 7]> <link href="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->theme;?>/theme_ie6.css" rel="stylesheet" type="text/css" /> <![endif]-->
+	<script type="text/javascript">
+	$(document).ready(function(){ 
+		settings = {
+		          antiAlias: true,
+		          autoPad: true,
+		          validTags: ["div", "input"]
+		      };
+		$(".rounded").corner(settings);
+		
+		$('a[rel*=facebox]').facebox(
+			{'loadingImage':baseUrl+'/library/css/facebox/images/loading.gif',
+				'closeImage':baseUrl+'/library/css/facebox/images/closelabel.gif'
+				}
+			);
+	});
+		function handleError() {
+		      return true;
+		}
+		
+		window.onerror = handleError;
+	</script>
+	
+	<?php 
+	$tr = Zend_Registry::get('Zend_Translate');
+	$locale =  $tr->getLocale();	
+	if(strtolower(substr($locale,0,2) == 'en')):?>
+	<style type="text/css">
+#navBar li a:link, #navBar li a:visited, #navBar li a:hover{
+	display:block;
+	margin:0 0px 0 0px;
+	padding:7px 15px;
+	color:#FFFFFF;
+	text-align:center;
+	border-right:1px solid #9F9D9D;
+
+	width: expression( document.body.clientWidth > 49 ? "50px" : "auto" ); /* sets max-width for IE */
+
+	}
+	
+#navBar li li a:link, #navBar li li a:visited{
+	width:150px;
+	float:none;
+	margin:0;
+	padding:7px 15px;
+	font-size:12px;
+	font-weight:normal;
+
+	border-left:1px solid #FFFFFF;
+	}
+	</style>
+	<?php endif;?>
+</head>
+<body>	
+
+<?php $user = $this->userView()->currentUser();?>
+
+<div id="topbar" class="row1"> 
+		<div id="container"><h1><a href="<?php echo $this->baseUrl();?>/"><?php echo $this->company_name; ?> </a></h1> 
+
+        <div id="search">
+       
+          <form action="<?php echo $this->baseUrl();?>/search/index/index" method="post">
+        <input type="text" name="qry" class="header_search" />
+        <input type="submit" name="go" id="go" value="<?php echo $this->translate('GO');?>" />
+      
+      </form>
+    </div>
+           <div id="topLinks" >
+		   <a href="<?php echo $this->baseUrl();?>/login/logout"><?php echo $user->isAnonymous() ? $this->translate('Login') : $this->translate("Logout");?></a>
+       	<a href="<?php echo $this->baseUrl();?>/user/mypage/settings"><?php echo $this->translate("Settings");?></a>   </div>
+  </div>
+        
+    	<div id="container">
+        <div id="mainPage"> 
+        	<div id="navBar" class="row2">
+                <ul id="topnav">
+                  
+                      <li><a href="<?php echo $this->baseUrl();?>/index/home"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/home.png" width="32" height="32" /><?php echo $this->translate("Home");?></a>      </li>
+                      <li><a href="<?php echo $this->baseUrl();?>/user/mypage"><img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/my_page.png" width="32" height="32" /><?php echo $this->translate("My Page");?></a>      </li>
+                   <?php 
+  	 
+				  	 class Header
+				  	 {
+				  	 	
+					  	 /**
+					  	  * This function handles the display of each module item and MUST be implemented in a class of  any script including 'modules.phtml'
+					  	  * @param Precurio_Module $module
+					  	  * @param string $baseUrl - application base url
+					  	  * @param string $pathToIcons - web url path to icons 
+					  	  * @return null
+					  	  */
+					  	 function displayModule($module,$baseUrl,$pathToIcons)
+					  	 {
+					  	 	if($pathToIcons === FALSE)return ;
+					  	 	if(!$module->isStandAlone())return;
+					  	 	$moduleName = $module->getName();
+		  	 				$label = $module->getShortTitle();
+		  	 				$url = $baseUrl.'/'.$module->getName();
+		  	 				$iconFile = $pathToIcons.$moduleName.'.png';
+		  	 				$description = $module->getDescription();
+		  	 				$tr = Zend_Registry::get('Zend_Translate');
+		  	 				$label = $tr->translate($label);
+		  	 				$description = $tr->translate($description);
+					  	 	echo("<li><a href='$url' title='$description' id='insomnia_{$moduleName}'><img src='$iconFile' width='32' height='32' />$label</a>      </li>");
+							//echo("<script type='text/javascript'>$('#insomnia_{$moduleName}').tipsy({gravity: 'n'});</script> ");					  	 	
+					  	 }
+				  	 }
+				  	 $module = new Header(); //an object of a class implementing displayModule must be named '$module' 
+				  	 include('modules.phtml');
+				   ?>
+                </ul>
+                
+	      </div>
+          
+          <div id="navLinks" class="row3">  
+  
+   		  </div>
+ 			<div id="welcomeBar" class="row4">
+			
+            	<div class="welcomeText"><?php echo $this->translate("Welcome");?> <a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo $user->getId(); ?>"><strong><?php echo $user->getFirstName();?></strong></a>:  <em>  <?php
+			     $fact = $this->contentView()->getCompanyFact();
+			     if($fact != null)
+			     {
+			     	if($fact->hasUrl())
+			     	{
+			     		echo "<a href='".$fact->getUrl()."' target='_blank'>".$fact->getTitle()."</a>";
+			     	}
+			     	else
+			     	{
+			     		echo $fact->getTitle();
+			     	}
+			     }
+			     ?></em> 
+     		</div>
+            </div>
+          
+            
+ 
+ 

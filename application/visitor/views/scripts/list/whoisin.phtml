@@ -1,0 +1,251 @@
+<?php 
+
+require_once('visitor/models/Visitors.php'); 
+require_once('visitor/models/vo/Visitor.php'); 
+?>
+
+<?php 
+
+$visitors = new Visitors();
+$type = $this->type;
+
+$page =  1;
+$rowsPerPage = 3;
+
+
+
+if (isset($this->page)) {
+  $page = $this->page;
+}
+
+$firstRec = ($page-1)*$rowsPerPage + 1  ;
+
+$rsVisitors = $visitors->whoIsIn($page);
+$total = $visitors->countIn();
+$rowCount = 0;
+
+//echo $rsAppointments;
+$totalRows_rsVisitors = count($rsVisitors);
+
+
+?>
+
+<div id="holder" >
+	
+    <div class="rightside">
+	<!--<form>
+    	<input type="text" id="who"  class="searchBox"/>    
+		</form>-->
+    </div>
+</div>
+
+<?php //$selected = 'past'; ?>
+<div  id="tab" class="appTabs">
+
+
+<span class="listHeader"> <?php echo $this->translate('Visitors'); ?>  </span> <?php if($total):?><span class="textLinks"> <?php echo $this->translate('Showing') ?> <?php 
+ echo ($firstRec);?>  to  <?php echo ($firstRec + $totalRows_rsVisitors - 1) ;?> of <?php echo  $total;?> </span><?php endif;?>
+   
+ 
+				
+							
+							
+                      		
+                          <!--        <a href="/visitor/index/search" id='searchVisitor' style="float:right" class="positive">
+			                     <img src="/library/css//images/icons/tick.png" alt=""/> 
+			                      Search    </a> -->
+ <div  id="visitors_body"> 
+ 
+	<div class="contentPad">
+
+      <?php  
+								
+			//confirm that there are records, otherwise , display message
+			if ($totalRows_rsVisitors > 0)
+			{
+		?>
+                                
+                                
+       
+		 
+		 <?php 
+			while ($rowCount < $rowsPerPage && isset($rsVisitors[$rowCount])):
+			$row_rsVisitors = $rsVisitors[$rowCount];
+			
+			//echo $row_rsAppointments['full_name'];
+		?>
+							
+									<!-- start table body -->  
+                        <div  class="taskLine <?php if ($rowCount % 2 == 0) echo ("even"); ?> ">
+                    <div id="task_status">
+                         
+			 <div class="visitor_tag"> <?php echo ($row_rsVisitors->visitor_tag); ?> </div>
+                                                          
+                    </div>
+                    <div id="task_info">
+                         <div class="task_title">
+                               <span><a href="#"><?php echo ($row_rsVisitors->full_name); ?></a></span>
+                         </div>
+                         
+			  <em><?php echo $this->translate("For");?>: </em> <?php echo ($row_rsVisitors->title); ?> &nbsp;&nbsp;&nbsp;
+                         <em><?php echo $this->translate("With");?>: </em><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($row_rsVisitors->host); ?>"> <?php echo ($row_rsVisitors->getToSee()); ?></a><br />  
+                         <em><?php echo $this->translate("Car Number");?>:  </em>  <?php echo ($row_rsVisitors->car_reg_number); ?>  &nbsp;&nbsp;&nbsp;   
+                          <em><?php echo $this->translate("Time In");?>:  </em>  <?php echo ($row_rsVisitors->getTimeIn()); ?>  &nbsp;&nbsp;&nbsp;    
+                         <em><?php echo $this->translate("Emergency Contact");?>:  </em>  <?php echo ($row_rsVisitors->emergency_contact); ?>     
+                                            
+                    </div>                                    
+                    
+                         
+		    
+		     
+  			   </div> 
+							
+							                            <!-- end table body -->
+									
+									<?php $rowCount++; endwhile; ?>
+									
+									</div>
+						</div>
+						
+						  <div id="pager" class="buttons">
+                         <?php
+						 //paging script 
+						 
+						 $maxPage = ceil($total/$rowsPerPage);
+						
+						// print the link to access each page
+						//$self = $_SERVER['PHP_SELF'];
+						$nav  = '';
+						$currentpage = $page ; 
+						
+						$startpager = 1 ;
+						
+						$pagerTotal = $maxPage; 
+						$showfirst = false;
+						$showlast = false;
+						if ($maxPage > 5 )
+						{
+							$pagerTotal = 5 ; 
+							$startpager = $currentpage - 2; 
+							$showfirst = true;
+							$showlast = true;
+							if ($currentpage < 3)
+							{
+								$startpager = 1;
+								$showfirst = false;
+							}						
+							
+							if ($maxPage - $currentpage < 3 )
+							{
+								$startpager = $maxPage - 4; 
+								$showfirst = true;
+								$showlast = false;
+							}
+							
+							if ($maxPage - $currentpage < 5 )
+							{
+								$showlast = false;
+							}
+						}
+						
+						
+						$count = 1; 
+					 
+						
+					    
+						for($page = $startpager; $count <= $pagerTotal; $page++)
+						
+						{
+						   
+						   
+						   if ($page == $currentpage)
+						   {
+							  $nav .= "<span> $page </span> "; // no need to create a link to current page, create span instead
+						   }
+						   else
+						   {
+							  $nav .= " <a href=\"#$page\" id=\"$type\" rel=\"$page\">$page</a> ";
+						   }
+						   $count++;
+						}
+						 
+						if ($currentpage > 1 and $showfirst)
+						{
+						   $page  = $currentpage - 1;
+						
+							$next = '&nbsp;';//
+						   $prev  = '&nbsp;';
+						   $first = " <a href=\"#$page\" id=\"$type\" rel=\"1\">First</a> ";
+						}
+						else
+						{
+							$next = '&nbsp;';
+						   $prev  = '&nbsp;'; // we're on page one, don't print previous link
+						   $first = '&nbsp;'; // nor the first page link
+						}
+						
+						if ($currentpage < $maxPage and $showlast)
+						{
+						   $page = $currentpage + 1;
+						   $next = '&nbsp;';//
+						   $prev  = '&nbsp;';
+						
+						   $last = " <a href=\"#$page\" id=\"$type\" rel=\"$maxPage\">Last</a> ";
+						}
+						else
+						{
+						   $next = '&nbsp;'; // we're on the last page, don't print next link
+						   $last = '&nbsp;'; // nor the last page link
+						}
+						
+						// print the navigation link
+						echo $first . $prev . $nav . $next . $last;
+
+
+						 ?>
+                       
+                        </div>
+
+				<?php		}
+								else
+								{
+								
+								 ?>
+                               <div id="noRecords">
+                              <?php echo $this->translate('There are currently no visitors in the premises') ?>. <br />
+                              
+                                 
+                               <?php
+								 }
+								 ?>			
+                                     
+      
+	</div>
+ </div>
+ 
+ </div>
+ 
+ <script type='text/javascript'>
+ $('#pager a').click( function()  {
+		$(this).css('outline','none');
+		
+		//alert ("test");
+		
+		var page  = "<?php echo $this->baseUrl();?>/visitor/list/whoisin/page/" + $(this).attr("rel");
+	
+		$("#loading").show();
+	//	$("#contacts_b").hide('slow');
+		loadPage(page);
+     	
+		
+		
+	
+		return false;
+		
+		
+		
+	}); 
+ </script>
+ 
+	
+

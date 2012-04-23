@@ -1,0 +1,50 @@
+<form action="<?php echo $this->form->getAction(); ?>" method="post" enctype= 'multipart/form-data'>
+<?php echo $this->form->section; ?>
+	<p>
+		<?php echo $this->form->company_name; ?>
+	</p>
+	<p>
+		<?php echo $this->form->base_url; ?>
+		<label >&nbsp;</label><span class="textLinks"><?php echo $this->translate("This should be what you have before");?> '/admin/setting/..' <?php echo $this->translate("on your address bar now");?>. <br/>eg http://kdl/intranet </span>
+	</p>
+	<p>
+		<?php echo $this->form->currency_symbol; ?>
+	</p>
+	
+    <p>
+		<?php echo $this->form->auth_mech; ?>
+		<span class="textLinks"><?php echo $this->translate("NOTE : If you are changing from database authentication to Active Directory");?> <br/><label >&nbsp;</label> <?php echo $this->translate("Make sure you have properly configured your active directory settings");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->email_domain; ?>
+	</p>
+	<p>
+		<?php echo $this->form->domain; ?>
+		<label >&nbsp;</label><span class="textLinks"><?php echo $this->translate("When using LDAP Authentication, the domain corresponds to the directory structure");?>. <br/><?php echo $this->translate("Although this will typically be the same as your email domain");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->content_requires_approval; ?>
+		<span class="textLinks"><?php echo $this->translate("This will not affect group contents. To configure group content approval,");?> <a href="<?php echo $this->baseUrl()?>/admin/content/add"><?php echo $this->translate("click here");?></a>.</span>
+	</p>
+	<p>
+		<?php echo $this->form->allow_anonymous_user; ?>
+		<span class="textLinks"><?php echo $this->translate("Do not forget to set permissions for the anonymous user (i.e. guest user)");?> <a rel="facebox" href="<?php echo $this->baseUrl()?>/admin/setting/anonymousinfo"><?php echo $this->translate("click here for more information");?></a></span>
+	</p>
+	
+	<p>
+		<?php echo $this->form->welcome_text; ?>
+		<label >&nbsp;</label><span class="textLinks"><?php echo $this->translate("NOTE : This text will only appear on the login page if your current theme allows it");?></span>
+	</p>
+	<p>
+		<?php echo $this->form->default_locale; ?>
+	</p>
+	<p><label >&nbsp;</label>
+		    <div class="buttons bottomPadding ">
+	             <button type="submit" class="positive" id="addTask">
+	                <img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/tick.png" alt=""/> 
+	              <?php echo $this->translate("Save");?>
+	            </button>
+            </div>
+	</p>
+</form>
+           

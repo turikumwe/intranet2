@@ -1,0 +1,26 @@
+<?php $user = $this->userView()->currentUser();?>
+<div id="profile_holder">
+
+    	<div>
+		    <div style="width: 100%;text-align: center"><img src="<?php echo $this->baseUrl().$user->getProfilePicture()?>" align="centre"/></div>
+            <br/>
+            <span class="nameText"> <a href="<?php echo $this->baseUrl();?>/user/profile/view"><?php echo $user->getFullName(); ?></a></span>
+            <div id="profile_menu" >
+            	<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/picture_edit.png" align="left" /> <a href="<?php echo $this->baseUrl();?>/user/profile/edit"><?php echo $this->translate("Edit Profile");?>            </a>
+            </div>
+             <div id="profile_menu">
+           	   <div class="box_D_noMargin">
+               	 <div class="maroon" style="width:<?php echo abs($user->getPercentageComplete()-3);?>%"> </div>
+                 </div>
+                 <br />
+                 <span class="maroon_text ">
+                 <?php if($user->getPercentageComplete() < 100):?>
+	                 <?php echo $this->translate("Your profile is");?> <strong><?php echo $user->getPercentageComplete();?>%</strong> <?php echo $this->translate("complete");?> 
+                	 <a href="<?php echo $this->baseUrl();?>/user/profile/edit"><?php echo $this->translate("click here");?></a> <?php echo $this->translate("to edit your profile");?>             
+                 <?php else:?>
+                 	 <?php echo $this->translate("You have completed your profile");?>	 
+             	 <?php endif;?>
+                 </span><br />
+             </div>
+        </div>
+    </div>

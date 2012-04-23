@@ -1,0 +1,20 @@
+	<?php $poll = $this->poll;?>
+	<form id="voteForm" name="voteForm" method="post" action="">
+        <input type="hidden" name="poll_id" id="poll_id" value="<?php echo $poll->id;?>"/>
+        <p><strong><?php echo $poll->getQuestion();?></strong>        </p>
+        <p>
+        <?php
+		$options = 	$poll->getOptions();
+        foreach($options as $option):?>
+          	<?php if($poll->multiple_answers):?>
+          		<input type="checkbox" name="option<?php echo $option->id?>" id="option<?php echo $option->id?>" value="<?php echo $option->id;?>" /><?php echo $option->label; ?><br />
+			<?php else:?>
+	          	<input type="radio" name="option" id="option<?php echo $option->id?>" value="<?php echo $option->id;?>" /><?php echo $option->label; ?><br />
+			<?php endif;?>	
+        <?php endforeach;?>
+		<br/>
+        <input type="submit" name="button" id="voteBtn" value="Vote" alt="<?php echo $poll->id;?>"  class="green" /> 
+        <?php echo $this->translate("or");?> <a id="viewResult" href="#" rel="<?php echo $poll->id; ?>"><?php echo $this->translate("view results");?> </a>
+        </p>
+    </form>
+    sdsdsdsd

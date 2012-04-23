@@ -1,0 +1,115 @@
+	<?php 
+	$category_id = $this->category_id;
+	$list = generateList($category_id,$this->searchText);
+	$header = array('',$this->translate('Group'),$this->translate('Shared By'),$this->translate('Date Shared'));
+	function generateList($category_id,$searchText) 
+	{
+		
+		$arr = array();
+		
+		$category = Category::getCategory($category_id);
+		$i = 1;
+
+		$items = $category->getGroupsToCategory();
+		foreach($items as $item)
+		{
+			if(!Precurio_Utils::isNull($searchText))
+			{
+				if(stripos($item->getTitle(),$searchText)===FALSE)
+				{
+					if(stripos($item->getSharedBy()->getFullName(),$searchText)===FALSE)
+					{
+						continue;
+					}
+				}
+				
+			}
+			$arr[] = array($i++,'title'=>$item->getTitle(),'shared_by'=>$item->getSharedBy(),'date_shared'=>$item->getDateShared(),'id'=>$item->getGroupId());
+		}
+		
+		return $arr;
+	}
+	function generateTable($arr,$header,$category_id,$baseUrl)
+	{
+		$translate = Zend_Registry::get('Zend_Translate');
+		$str = "<table border='1' width='100%'>";
+
+		
+		$str .= "<tr>";
+		foreach($header as $i)
+		{
+			$str .= "<th>$i </th>";
+		}
+		$str .= "<th></th>";
+		$str .= "</tr>";
+		
+		foreach($arr as $value)
+		{
+			$str .= "<tr>";
+			$key = $value['id'];
+			foreach($value as $prop=>$j)
+			{
+				if($prop === "id")continue;
+				$str .= "<td>$j </td>";
+			}
+			
+			$str .= "<td><a href='$baseUrl/admin/category/removegroup/id/{$category_id}/g_id/{$key}'>".$translate->translate('Remove')." </a></td>";
+			$str .= "</tr>";
+		}
+		$str .= "</table>";
+		return $str;
+	}
+
+	?>
+<br/><br/>
+**<font style="text-decoration: underline;"><?php echo $this->translate("Only members of the groups below will have access to this category");?>
+</font>**
+<br/>	<br/>
+	<?php 
+	$pathToController = $this->pathToController;
+
+	require_once 'Zend/Paginator.php';
+	$paginator = Zend_Paginator::factory($list);
+	$paginator->setCurrentPageNumber($this->cpage);
+	$paginator->setItemCountPerPage(10);
+	$this->paginator = $paginator;
+	?>
+	<?php if(count($list) > 10)://if there is going to be more than one page?>
+	<form method="post" name="searchListForm" id="searchListForm" action="<?php echo $this->baseUrl();?>/admin/category/groups/id/<?php echo $category_id;?>" >
+		<input id="table" name="table" value="<?php echo $this->table;?>" type="hidden">
+		<table class="ewBasicSearch">
+			<tbody><tr>
+				<td>
+					<input name="search" id="search" size="20" value="<?php echo $this->searchText;?>" type="text">
+					<input name="Submit" id="Submit" value="<?php echo $this->translate("Search");?> (*)" type="Submit">&nbsp;
+					<a href="<?php echo $this->baseUrl();?>/admin/category/groups/id/<?php echo $category_id;?>"><?php echo $this->translate("Show all");?></a>&nbsp;
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+	<?php endif;?>
+	<div class="buttons"> 
+		<a class="mild" href="<?php echo $this->baseUrl();?>/admin/category/addgroup/id/<?php echo $category_id;?>"  rel="facebox"">
+		<img src="<?php echo $this->baseUrl();?>/library/css/<?php echo $this->themestyle;?>/images/icons/add.png" alt=""/> 	
+		<?php echo $this->translate("Add Group");?></a>&nbsp;&nbsp;
+	</div>
+	<?php echo $this->paginationControl($this->paginator, 'Elastic'); ?>
+	<div id="adminTable"> 
+	<form action="" name="listForm" id="form" method="post"> 
+		<?php 
+			if(count($list))
+			{
+				echo generateTable($paginator->getCurrentItems(),$header,$category_id,$this->baseUrl());
+			}
+			else if(empty($this->searchText))
+			{
+				echo "<div id='noRecords'>".$this->translate('This category has not been shared with any group.')." <br/> <a href='".$this->baseUrl()."/admin/category/addgroup/id/$category_id' rel='facebox'>".$this->translate('Click here to share with group(s)')."</a> </div>";
+			}
+			else
+			{
+				echo "<div id='noRecords'>".$this->translate('Search returned no result.')."</div>";
+			}
+		?>
+	</form>  
+	</div>	

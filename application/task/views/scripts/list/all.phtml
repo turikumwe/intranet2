@@ -1,0 +1,211 @@
+
+<?php 
+
+require_once('task/models/Tasks.php'); 
+require_once('task/models/vo/Task.php'); 
+?>
+
+<?php 
+
+$tasks = new Tasks();
+$type = $this->type;
+
+$page =  1;
+$rowsPerPage = 5;
+
+
+
+if (isset($this->page)) {
+  $page = $this->page;
+}
+
+$firstRec = ($page-1)*$rowsPerPage + 1  ;
+
+switch ($type)
+{
+	case Tasks::TYPE_ALL:
+		$desc = $this->translate("All Tasks");
+		break;
+	case Tasks::TYPE_TO:
+		$desc = $this->translate("Tasks assigned to me");
+		break;
+	case Tasks::TYPE_BY:
+		$desc = $this->translate("Tasks assigned by me");
+		break;
+	case Tasks::TYPE_PENDING:
+		$desc = $this->translate("Pending Tasks");
+		break;
+	case Tasks::TYPE_COMPLETE:
+		$desc = $this->translate("Completed Tasks");
+		break;
+}
+$total = $tasks->getCount($type);
+$rowCount = 0;
+$rsTasks = $tasks->getTaskSummary($type, $page);
+$totalRows_rsTasks = count($rsTasks);
+?>
+<div id="tasksHolder">
+	<div class="taskHeader"> <?php echo ($desc); ?>  <span class="textLinks"> 
+<?php 
+ if ($totalRows_rsTasks > 0)
+{
+    echo ($firstRec);?>  <?php echo $this->translate("to");?>  <?php echo ($firstRec + $totalRows_rsTasks - 1) ;?> <?php echo $this->translate("of");?> <?php echo  $total; }?>
+   		 </span>
+    </div>
+                        
+    <div id="task_body">
+                            
+    <?php  
+		
+		//confirm that there are records, otherwise , display message
+		if ($totalRows_rsTasks > 0)
+		{
+	?>
+		<?php 
+			while ($rowCount < $rowsPerPage && isset($rsTasks[$rowCount])):
+								$row_rsTasks = $rsTasks[$rowCount]
+		?>
+                                
+                                
+       <!-- start task line --> 
+ <!-- add taskDue class if task is due, and add taskClosed class if task is closed, add even for alternating rows--> 
+               <div  class="taskLine <?php if ($rowCount % 2 == 0) echo ("even"); ?> <?php if ($row_rsTasks->isComplete()) echo ("taskClosed");elseif($row_rsTasks->isDue())echo ("taskDue"); ?>" id="<?php echo ($row_rsTasks->id); ?>" tag="<?php echo $type; ?>">
+                    <div id="task_status">
+                         <!-- put status here ,open, close and on_hold) -->
+                         <div class=" <?php echo ($row_rsTasks->getStatusStyleStr()); ?>">  </div>
+                                  
+                    </div>
+                    <div id="task_info">
+                         <div class="task_title">
+                               <span><a href="#"><?php echo ($row_rsTasks->title); ?></a></span>
+                         </div>
+                         <?php if($row_rsTasks->isMine()):?>
+                         	<em><?php echo $this->translate("Assigned to");?>: </em><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($row_rsTasks->user_id); ?>"> <?php echo ($row_rsTasks->getTaskUserName()); ?></a><br />  
+                         <?php else:?>    
+                        	 <em><?php echo $this->translate("Assigned by");?>: </em><a href="<?php echo $this->baseUrl();?>/user/profile/view/<?php echo ($row_rsTasks->creator_user_id); ?>"> <?php echo ($row_rsTasks->getTaskCreatorName()); ?></a><br />  
+                        <?php endif;?>                           
+                    </div>                                    
+                    <div id="task_due">
+                         <em><?php echo $this->translate("Due Date");?>:  </em>  <?php echo ($row_rsTasks->getDueDate()); ?>  <br />     
+                    </div>                        
+  			   </div> 
+  		<!-- end task line -->  
+               
+		<?php $rowCount++ ;endwhile; ?>
+                                    
+                                    
+     </div>
+                           
+<!-- </div> -->
+                        
+                        <div id="pager" class="buttons">
+                         <?php
+						 //paging script 
+						 
+						 $maxPage = ceil($total/$rowsPerPage);
+						
+						// print the link to access each page
+						//$self = $_SERVER['PHP_SELF'];
+						$nav  = '';
+						$currentpage = $page ; 
+						
+						$startpager = 1 ;
+						
+						$pagerTotal = $maxPage; 
+						$showfirst = false;
+						$showlast = false;
+						if ($maxPage > 5 )
+						{
+							$pagerTotal = 5 ; 
+							$startpager = $currentpage - 2; 
+							$showfirst = true;
+							$showlast = true;
+							if ($currentpage < 3)
+							{
+								$startpager = 1;
+								$showfirst = false;
+							}						
+							
+							if ($maxPage - $currentpage < 3 )
+							{
+								$startpager = $maxPage - 4; 
+								$showfirst = true;
+								$showlast = false;
+							}
+							
+							if ($maxPage - $currentpage < 5 )
+							{
+								$showlast = false;
+							}
+						}
+						
+						
+						$count = 1; 
+					 
+						
+					    
+						for($page = $startpager; $count <= $pagerTotal; $page++)
+						
+						{
+						   
+						   
+						   if ($page == $currentpage)
+						   {
+							  $nav .= "<span> $page </span> "; // no need to create a link to current page, create span instead
+						   }
+						   else
+						   {
+							  $nav .= " <a href=\"#$page\" id=\"$type\" rel=\"$page\">$page</a> ";
+						   }
+						   $count++;
+						}
+						 
+						if ($currentpage > 1 and $showfirst)
+						{
+						   $page  = $currentpage - 1;
+						
+							$next = '&nbsp;';//
+						   $prev  = '&nbsp;';
+						   $first = " <a href=\"#$page\" id=\"$type\" rel=\"1\">First</a> ";
+						}
+						else
+						{
+							$next = '&nbsp;';
+						   $prev  = '&nbsp;'; // we're on page one, don't print previous link
+						   $first = '&nbsp;'; // nor the first page link
+						}
+						
+						if ($currentpage < $maxPage and $showlast)
+						{
+						   $page = $currentpage + 1;
+						   $next = '&nbsp;';//
+						   $prev  = '&nbsp;';
+						
+						   $last = " <a href=\"#$page\" id=\"$type\" rel=\"$maxPage\">Last</a> ";
+						}
+						else
+						{
+						   $next = '&nbsp;'; // we're on the last page, don't print next link
+						   $last = '&nbsp;'; // nor the last page link
+						}
+						
+						// print the navigation link
+						echo $first . $prev . $nav . $next . $last;
+
+
+						 ?>
+                       
+                        </div>
+                        <?php		}
+								else
+								{
+								
+								 ?>
+	                              <div id="noRecords">
+	                               	<?php echo $this->translate("No tasks on this list");?> <br />
+	                               </div>
+                               <?php
+								 }
+								 ?>
+                     
+</div>   

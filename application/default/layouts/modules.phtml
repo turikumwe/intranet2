@@ -1,0 +1,71 @@
+ <?php 
+ if(!function_exists('isAllowed'))
+ {
+ function isAllowed($resource)//this function has a clone in report/views/scripts/index/index.phtml
+ {
+ 	try
+ 	{
+ 		$ignoreAcl = Zend_Registry::get('ignoreAcl');//this is set in performAcl()::Initializer.php
+ 		if($ignoreAcl)return true;
+ 	}
+ 	catch(Exception $e)
+ 	{
+ 		
+ 	}
+ 	
+ 	
+ 	$resource = new Precurio_Resource($resource);
+
+	$userRoles = UserUtil::getUser(Precurio_Session::getCurrentUserId())->getRoles();
+    
+	
+    $acl = Precurio_Acl::getInstance();
+    $acl->initialise(array($resource),$userRoles);
+    
+ 	if(!$acl->has($resource))return true;
+	 foreach($userRoles as $role)
+	  {
+	  	if (!$acl->hasRole($role)) {
+	  	    continue;									
+	  	}
+	  	if ($acl->isAllowed($role, $resource,'view'))
+	  	{
+	  		return true;//if the user belongs to a role that is allowed access, then he can
+	  		//access the resource even if he belongs to roles that have been denied access
+	  	}
+	 }
+ 
+  	$table = new Zend_Db_Table(array('name'=>PrecurioTableConstants::ROLES));
+  	if($table->fetchAll()->count() > 1)//if there is more than one available role, then set error
+  	{
+  		//ok, the administrator has created atleast 2 roles, let's check if he has assign rules to them
+  		$table = new Zend_Db_Table(array('name'=>PrecurioTableConstants::RULES));
+  		if($table->fetchAll()->count() > 0)//atleast, a rule has been set on one of the roles, then throw acess error
+  		{
+  			return false;
+  		}
+  		else
+  		{
+  			return true;
+  		}
+  	}//else, allow access to all resources since there aren't enough roles or rules to successfully implement the role based acess control.
+  	else
+  	{
+  		return true;
+  	}	
+		  	
+	 return false;
+ }
+ } 		
+ 
+    $pathToIcons  = $this->baseUrl(). '/library/css/'.$this->themestyle.'/images/icons/';
+	$baseUrl = $this->baseUrl();
+    $modules = Bootstrap::getModules(true);
+	foreach($modules as $precurioModule)
+	{
+		$moduleResource = $precurioModule->getName().'_index';
+		if(isAllowed($moduleResource))
+			$module->displayModule($precurioModule,$baseUrl,$pathToIcons);
+	} 
+	//   	$module->displayModule('http://localhost/precurio_hradmin/', 'ESS','ess',$pathToIcons);
+   ?>
