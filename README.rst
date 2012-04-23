@@ -1,0 +1,1 @@
+This application if for organizations intranet activities
